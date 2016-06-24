@@ -1,0 +1,66 @@
+"","Probe","Group","Group2"
+"1","CDH1","adhesion",NA
+"2","CDH5","adhesion",NA
+"3","CLEC4A","adhesion",NA
+"4","CLEC4C","adhesion",NA
+"5","CLEC5A","adhesion",NA
+"6","CLEC6A","adhesion",NA
+"7","CLEC7A","adhesion",NA
+"8","DST","adhesion",NA
+"9","IBSP","adhesion",NA
+"10","ICAM1","adhesion",NA
+"11","ICAM2","adhesion",NA
+"12","ICAM3","adhesion",NA
+"13","ICAM4","adhesion",NA
+"14","ITGA1","adhesion",NA
+"15","ITGA2","adhesion",NA
+"16","ITGA4","adhesion",NA
+"17","ITGA5","adhesion",NA
+"18","ITGA6","adhesion",NA
+"19","ITGAL","adhesion",NA
+"20","ITGAM","adhesion",NA
+"21","ITGB1","adhesion",NA
+"22","ITGB2","adhesion",NA
+"23","ITGB3","adhesion",NA
+"24","ITGB4","adhesion",NA
+"25","L1CAM","adhesion",NA
+"26","LGALS1","adhesion",NA
+"27","LGALS3","adhesion",NA
+"28","LGALS9","adhesion",NA
+"29","MBL2","adhesion",NA
+"30","MUC1","adhesion","cell signaling"
+"31","NCAM1","adhesion",NA
+"32","PVR","adhesion",NA
+"33","SELE","adhesion",NA
+"34","THBS1","adhesion",NA
+"35","THY1","adhesion",NA
+"36","EPCAM","adhesion",NA
+"37","ADGRE5","adhesion",NA
+"38","ALCAM","adhesion",NA
+"39","FN1","adhesion",NA
+"40","SVIL","adhesion",NA
+"41","ADA","immune function",NA
+"42","AICDA","immune function",NA
+"43","ALOX5","immune function",NA
+"44","APP","immune function",NA
+"45","CAMP","immune function",NA
+"46","CD14","immune function","lineage marker"
+"47","CYBB","immune function",NA
+"48","DEFB1","immune function",NA
+"49","FCMR","immune function",NA
+"50","GZMA","immune function",NA
+"51","GZMB","immune function",NA
+"52","GZMH","immune function",NA
+"53","GZMK","immune function",NA
+"54","GZMM","immune function",NA
+"55","HLA-A","immune function",NA
+"56","HLA-B","immune function",NA
+"57","HLA-DRA","immune function",NA
+"58","HLA-E","immune function",NA
+"59","IDO1","immune function",NA
+"60","IDO2","immune function",NA
+"61","PLA2G7","immune function",NA
+"62","PRF1","immune function",NA
+"63","TREM1","immune function",NA
+"64","TREM2","immune function",NA
+"65","TXNIP","immune function",NA
