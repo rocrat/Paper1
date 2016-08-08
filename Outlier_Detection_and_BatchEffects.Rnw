@@ -1,23 +1,27 @@
 \documentclass{article}
 \usepackage[colorlinks=true, linkcolor=blue, citecolor=blue]{hyperref}
 \usepackage[backend=bibtex,style=authoryear,backref=true,hyperref=true]{biblatex}
-\addbibresource{mybib.bib}
+\addbibresource{proportionality.bib}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{fullpage}
+\usepackage{setspace}
+\doublespacing
 
 \title{RNA-Seq as a Measure of Relative Abundance: oportunities afforded by a compositional analysis framework.}
 \author{Dominic LaRoche \and Dean Billheimer \and Shripad Sinari \and Kurt Michels \and  Bonnie LaFleur}
 \begin{document}
+
 \maketitle
 
+\doublespacing
 \section{Abstract}
 
 
 \section{Introduction}
 
 %-- Introduce the problem and motivate the research -->
-The rapid rise in the use of RNA sequencing technology (RNA-seq) for scientific discovery has led to its consideration as a clinical diagnostic tool.  However, as a new technology the analytical accuracy and reproducibility of RNA-seq must be established before it can realize its full clinical utility (SEQC Consortium 2014, Van Keuren-Jensen et al. 2014). Recent studies evaluating RNA-seq have found generally high intra-platform and inter-platform congruence across multiple laboratories (Li et al. 2013, 't Hoen et al. 2013, SEQC/MAQC-III Consortium 2014).  Despite these promising results, there is still a need to establish reliable diagnostics, quality control metrics and improve the reproducibility of RNA-seq data.  Understanding, and capatilizing on, the relative frequency nature of RNA-Seq data provides tools for identifying batch effects, creating quality control metrics, and improving reproducibility.\\
+The rapid rise in the use of RNA sequencing technology (RNA-seq) for scientific discovery has led to its consideration as a clinical diagnostic tool.  However, as a new technology the analytical accuracy and reproducibility of RNA-seq must be established before it can realize its full clinical utility (\cite{SEQC/MAQC-IIIConsortium2014}, \cite{VanKeuren-Jensen2014}). Recent studies evaluating RNA-seq have found generally high intra-platform and inter-platform congruence across multiple laboratories (\cite{Li2013, tHoen2013, SEQC/MAQC-IIIConsortium2014}).  Despite these promising results, there is still a need to establish reliable diagnostics, quality control metrics and improve the reproducibility of RNA-seq data.  Understanding, and capatilizing on, the relative frequency nature of RNA-Seq data provides tools for identifying batch effects, creating quality control metrics, and improving reproducibility.\\
 
 %Accurately identifying batch effects, and differentiating these from true biological differences, will be necessary if smaller laboratories wish to utilize RNA-seq technology for clinical applications (cite).  Moreover, the reliable identification and removal of poor quality data produced by RNA-seq pipelines has the potential to dramatically improve the analytical accuracy and reproducibility of RNA-seq data, thereby improving its clinical utility.\\
 
@@ -35,24 +39,17 @@ NGS-based RNA-Seq methods are inherently compositional because high-throughput R
 %-- Proposed solution with brief outline of methodology -->
 Ignoring the sum constraint can lead to unexpected results and erroneous inference (\cite{Pearson1896, Aitchison1986, Lovell2011}).  Despite the evidence that RNA-Seq data are compositional in nature, few researchers have extended the broad set of compositional data analysis theory and tools for use in RNA-Seq analysis problems.  We extend existing compositional data methodology to include statistical diagnostic tests for the identification of sample outliers and batch effects. We also show how compositional properties can be exploited to improve exploratory analyses and improve reproducibility.\\
 
-%-- 
-% Justify QC metric:
-% 1) Saturation is important (RSeQC)
-% 2) Limited total reads allocated to samples
-% 3) 
-% -->
-
 
 
 \section{Methods}
 \subsection{Compositional Data}
 %-- CODA intro -->
-We begin with a brief introduction to compositional data, its properties, and some established analytical methods.  Compositional data is defined as any data in which all elements are non-negative and sum to a fixed constant (\cite{Aitchison1986a}). The total sum constraint is common in biological sampling.  For example, if a 1 ml sample of blood is taken this sample could be divided into several components such as plasma, red blood cells, white blood cells, and platelets.  If the amount of any 1 component were to increase some other component (or all the other components) must decrease due to the fixed volume of the sample.  \\
+We begin with a brief introduction to compositional data, its properties, and some established analytical methods.  Compositional data is defined as any data in which all elements are non-negative and sum to a fixed constant (\cite{Aitchison1986}). The total sum constraint is common in biological sampling.  For example, if a 1 ml sample of blood is taken this sample could be divided into several components such as plasma, red blood cells, white blood cells, and platelets.  If the amount of any 1 component were to increase some other component (or all the other components) must decrease due to the fixed volume of the sample.  \\
 
-An important feature of compositional data, beyond the total sum constraint, is that of \emph{scale invariance}.  Scale invariance means that the absolute size of the total sum is irrelevent and information is only contained in the relative size between and among elements.  As previously mentioned, this feature of RNA-seq data has been recognized by previous authors (\cite{Robinson2007, Robinson2010}), although the consequences of this property have not been fully realized.\\
+%An important feature of compositional data, beyond the total sum constraint, is that of \emph{scale invariance}.  Scale invariance means that the absolute size of the total sum is irrelevent and information is only contained in the relative size between and among elements.  As previously mentioned, this feature of RNA-seq data has been recognized by previous authors (\cite{Robinson2007, Robinson2010}), although the consequences of this property have not been fully realized.\\
 
 %-- Establish notation -->
-For RNA-seq data, the total sum constraint is imposed by the sequencing technology.  Since this total differs between platforms we will refer to the total number of available reads as $\mathbb{T}$. These reads are distributed among the $D$ samples in a run such that:
+For RNA-seq data, the total sum constraint is imposed by the limited number of available reads in each sequencing platform.  Since this total differs between platforms we will refer to the total number of available reads as $\mathbb{T}$. These reads are distributed among the $D$ samples in a sequencing run such that:
 \begin{equation}
 \sum_{i=1}^{D} t_i = \mathbb{T}
 \label{sumt}
@@ -62,13 +59,13 @@ where $t_i$ represents the total reads for sample $i$.  Because of the total sum
 t_D = \mathbb{T} - \sum_{i=1}^{d} t_i
 \label{sumConst}
 \end{equation}
-In equation~\ref{sumConst}, any of the elements can be chosen for $t_D$ with the remaining elements labeled $1, ..., d$ in any order.  \\
+In \ref{sumConst}, any of the elements can be chosen for $t_D$ with the remaining elements labeled $1, ..., d$ in any order (\cite{Aitchison1986}).  \\
 
-From equations~\ref{sumt} and~\ref{sumConst} it is clear that the $D$ samples represent a $d$ dimensional sample space. This leads to a diffculty in interpreting the traditional covariance structure.  Because of this, standard statistical methodology is not always appropriate (\cite{Aitchison1986a}) and can produce misleading results (\cite{Lovell2015}).\\
+From equations~\ref{sumt} and~\ref{sumConst} it is clear that the $D$ samples represent a $D - 1 = d$ dimensional simplex ($S^d$). This leads to a diffculty in interpreting the traditional $D \times D$ covariance structure.  Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions (\cite{Aitchison2000}).  Because of this, standard statistical methodology is not always appropriate (\cite{Aitchison1986}) and can produce misleading results (\cite{Lovell2015}).\\
 
-To overcome these obstacles, Aitchison (\cite{Aitchison1980}) proposed an additive log-ratio transformation (ALR), $y(\mathbf{t}) = \left\{ \text{log}(x_1/x_D), ..., \text{log}(x_d/x_D)\right\}$, which follows a Multivariate Normal distribution. However, the use of the common divisor in the ALR can affect the distances between points in the transformed space, an undesireable property in the present problem. We focus, instead, on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and permits an interpretable covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
+To overcome these obstacles, Aitchison (\cite{Aitchison1980}) proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
 \begin{equation}
-\text{CLR}(x_i) = log \left(\frac{x_i}{g(\mathbf{x})} \right),
+y_i  = \text{CLR}(x_i) = log \left(\frac{x_i}{g(\mathbf{x})} \right),
 \label{clr}
 \end{equation}
 where $g(\mathbf{t})$ is the geometric mean of $\mathbf{t}$.  The $D \times D$ covariance matrix is then defined as:
@@ -78,7 +75,16 @@ where $g(\mathbf{t})$ is the geometric mean of $\mathbf{t}$.  The $D \times D$ c
 \end{equation}
 Although the CLR transformation gives equal treatment to every element of $\mathbf{t}$, the resulting covariance matrix, $\Gamma$, is singular.  Therefore, care should be taken when using general multivariate methods on CLR transformed data.\\
 
-Up to this point we have referred to the total reads available per sequencing run, $\mathbb{T}$.  However, it is more typical to work with the aligned reads in practice.  The total aligned reads, $T$, is always a fraction of the total reads available for a sequencing run, $\mathbb{T}$.  The fraction of the total reads aligned can be a affected by multiple factors, including the choice of alignment algorithm, which we do not address here.  We assume that $T$ imposes the same constraints on the data as oultined above for $\mathbb{T}$ and will refer exclusively to $T$ hereafter.\\  
+The constraints on compositional data also affect the measures of difference between any two compositions.  Aitchison (\cite{Aitchison1992}) outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale. The permutation invariance is generally satisfied by existing methods (\cite{Martin-Fernandez1998}).  However, the perturbation invariance and subcompositional dominance are not generally satisfied. Fortunately, Martin-Fernandez et al. (1998) showed that applying either Euclidean distance or Mahalanobis distance metric to CLR transformed data satisfies all the requirements of a compositional distance metric. Euclidean distance on CLR transformed compositions is referred to as Aitchison distance:
+
+$$d_A(x_i, x_j) = \left[\sum_{k=1}^D \left( log \left(\frac{x_{ik}}{g(x_i)} \right) - log \left(\frac{x_{jk}}{g(x_j)} \right) \right)^2  \right]^\frac{1}{2}$$
+
+or 
+
+$$d_A(x_i, x_j) = \left[\sum_{k=1}^D \left( clr(x_{ik}) - clr(x_{jk}) \right)^2  \right]^\frac{1}{2}.$$
+
+
+%Up to this point we have referred to the total reads available per sequencing run, $\mathbb{T}$.  However, it is more typical to work with the aligned reads in practice.  The total aligned reads, $T$, is always a fraction of the total reads available for a sequencing run, $\mathbb{T}$.  The fraction of the total reads aligned can be a affected by multiple factors, including the choice of alignment algorithm, which we do not address here.  We assume that $T$ imposes the same constraints on the data as oultined above for $\mathbb{T}$ and will refer exclusively to $T$ hereafter.\\  
 
 \subsection{Outlier Detection}
 For most experimental designs We expect the number of reads in each sample, $t_i$, to be equivalent notwithstanding random error. Since these reads are part of a composition it is natural to view them as arising from a Multinomial distribution with equal probabilities. The sample totals can then be ordered from the lowest, $t_{(1)}$, to the highest, $t_{(D)}$.  Outliers can then be identified as those with counts less than expected for the lowest order statistic or greater than the highest order statistic.\\
