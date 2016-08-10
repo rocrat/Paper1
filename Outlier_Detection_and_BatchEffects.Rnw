@@ -87,22 +87,17 @@ $$d_A(x_i, x_j) = \left[\sum_{k=1}^D \left( clr(x_{ik}) - clr(x_{jk}) \right)^2 
 %Up to this point we have referred to the total reads available per sequencing run, $\mathbb{T}$.  However, it is more typical to work with the aligned reads in practice.  The total aligned reads, $T$, is always a fraction of the total reads available for a sequencing run, $\mathbb{T}$.  The fraction of the total reads aligned can be a affected by multiple factors, including the choice of alignment algorithm, which we do not address here.  We assume that $T$ imposes the same constraints on the data as oultined above for $\mathbb{T}$ and will refer exclusively to $T$ hereafter.\\  
 
 \subsection{Outlier Detection}
-For most experimental designs We expect the number of reads in each sample, $t_i$, to be equivalent notwithstanding random error. Since these reads are part of a composition it is natural to view them as arising from a Multinomial distribution with equal probabilities. The sample totals can then be ordered from the lowest, $t_{(1)}$, to the highest, $t_{(D)}$.  Outliers can then be identified as those with counts less than expected for the lowest order statistic or greater than the highest order statistic.\\
+Problems with RNA isolation, library preparation, or sequencing may result in a low number of reads for the sample.  There is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. We develop a method grounded in the compositional nature of RNA-Seq data for objectively identifying samples with potentially poor quality.\\
 
-The probability mass function for the Multinomial distribution with equal cell probabilities is given as:
-\begin{equation}
-f(x) = P(X = t | p) = \frac{n!}{t_1!\cdot\cdot\cdot t_D!}p^{t_1} \cdot\cdot\cdot p^{t_D},
-\label{multnom}
-\end{equation}
-% and the cumulative density function is given as:
-% \begin{equation}
-% F(x) = 
-% \label{mult-cdf}
-% \end{equation}
+For most experimental designs we expect the number of reads in each sample, $t_i$, to be equivalent notwithstanding random variation.   Since these reads are part of a composition it is natural to view them as arising from a Multinomial distribution with equal probabilities. Since each cell has the same probability we test for outlying values using the Binomial distribution with probability $1/D$ and size $n = \text{total available reads}$.
+% The sample totals can then be ordered from the lowest, $t_{(1)}$, to the highest, $t_{(D)}$.  Outliers can then be identified as those with counts less than expected for the lowest order statistic or greater than the highest order statistic.\\
 
 
-\subsection{Batch Effects}
-The CLR transformation provides a covariance matrix which is suitable for exploration through principle components analysis (PCA) (\cite{Aitchison2002}).  
+
+\subsection{Batch Effects and Normalization}
+Batch effects arising from differing labratory conditions or operator differences have been identified as a problem in high-throughput measurement systems (\cite{leek2010, chen2011}).  Identifying and controlling for batch effects is a critical step in the transition of RNA-Seq from the lab to the clinic.  Batch effects are typically identified with a hierarchical clustering method or principal components analysis (PCA) and removed through various normalization methods (\cite{Robinson2007, Anders2010, Robinson2010, Law2014, leek2014}).  \\ 
+
+The compositional nature of RNA-Seq data has important implications for the detection of batch effects becuase of the difficulty of interpreting the covariace matrix (\cite{Aitchison1986}) and the incompatibility with standard measures of distance (\cite{Martin-Fernandez1998}).  The CLR transformation facilitates both batch effect detection and normalization.  The CLR transformed covariance matrix is suitable for exploration through PCA (\cite{Aitchison2002}) or hierarchical clustering using standard Euclidean distance (\cite{Martin-Fernandez1998}).  \\
 % *Methods Rough Outline:* 
 % 
 % * For CLR on total reads approach    
