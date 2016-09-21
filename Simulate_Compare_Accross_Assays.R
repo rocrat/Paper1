@@ -31,7 +31,7 @@ for(i in 1:100){
 simDat <- function(minprop, maxprop){
   #create two datasets from two different length assays
   a1 <- list()
-  #simulate random allocation of reads to each sample
+  #simulate random allocation of reads to each sample (different number of total reads for each sample)
   a1.totals <- rmultinom(1, size = 25e6, prob = clo(runif(100, min = minprop, max = maxprop)))
   for(i in 1:length(samps)){
     #add additional values for genes which do not overlap between assays and close composition

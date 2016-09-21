@@ -87,9 +87,19 @@ t_D = \mathbb{T} - \sum_{i=1}^{d} t_i
 \end{equation}
 In \ref{sumConst}, any of the elements can be chosen for $t_D$ with the remaining elements labeled $1, ..., d$ in any order (\cite{Aitchison1986}).  \\
 
-From equations~\ref{sumt} and~\ref{sumConst} it is clear that the $D$ samples represent a $D - 1 = d$ dimensional simplex ($S^d$). This leads to a diffculty in interpreting the traditional $D \times D$ covariance structure.  Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions (\cite{Aitchison2000}).  Because of this, standard statistical methodology is not always appropriate (\cite{Aitchison1986}) and can produce misleading results (\cite{Lovell2015}).\\
+From equations~\ref{sumt} and~\ref{sumConst} it is clear that the $D$ samples represent a $D - 1 = d$ dimensional simplex ($S^d$). This leads to a diffculty in interpreting the traditional $D \times D$ covariance structure.  In particular, it is clear that for a D-part composition $\mathbf{x}$, $\text{cov}(x_1, x_1+ \cdots +x_D) = 0$  since $x_1 + \cdots + x_D$ is a constant.  Moreover, the sum constraint induces negativity in the covariance matrix,
 
-To overcome these obstacles, Aitchison (\cite{Aitchison1980}) proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
+\begin{equation}
+\text{cov}(x_1, x_2) + \cdots + \text{cov}(x_1, x_D) = -\text{var}(x_1),
+\label{negbias}
+\end{equation}
+
+which means at least one element of each row of the covariance matrix mustbe negative. Aitchison refers to this as the "negative bias difficulty" (although bias is not used in the traditional sense; \cite{Aitchison1986}, p. 53). The existence of these negative values creates problems for the interpretation of the covariance matrix since values are no longer free to take values between 0 and 1.\\
+
+Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions (\cite{Aitchison2000}).  Because of this, \\
+
+
+Standard statistical methodology is not always appropriate (\cite{Aitchison1986}) and can produce misleading results (\cite{Lovell2015}).  To overcome these obstacles, Aitchison (\cite{Aitchison1980}) proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
 \begin{equation}
 y_i  = \text{CLR}(x_i) = log \left(\frac{x_i}{g(\mathbf{x})} \right),
 \label{clr}
