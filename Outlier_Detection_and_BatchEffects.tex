@@ -21,7 +21,6 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
-\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -141,16 +140,16 @@ In \ref{sumConst}, any of the elements can be chosen for $t_D$ with the remainin
 From equations~\ref{sumt} and~\ref{sumConst} it is clear that the $D$ samples represent a $D - 1 = d$ dimensional simplex ($S^d$). This leads to a diffculty in interpreting the traditional $D \times D$ covariance structure.  In particular, it is clear that for a D-part composition $\mathbf{x}$, $\text{cov}(x_1, x_1+ \cdots +x_D) = 0$  since $x_1 + \cdots + x_D$ is a constant.  Moreover, the sum constraint induces negativity in the covariance matrix,
 
 \begin{equation}
-\text{cov}(x_1, x_2) + \cdots + \text{cov}(x_1, x_D) = -\text{var}(x_1).
+\text{cov}(x_1, x_2) + \cdots + \text{cov}(x_1, x_D) = -\text{var}(x_1),
 \label{negbias}
 \end{equation}
 
-, which means at least one element of each row of the covariance matrix mustbe negative. Aitchison refers to this as the "negative bias difficulty" (although bias is perhaps not the correct term) (\cite{Aitchison1986}, p. 53) and it creates a difficulty for interpretation.  \\
+which means at least one element of each row of the covariance matrix mustbe negative. Aitchison refers to this as the "negative bias difficulty" (although `bias' is not used in the traditional sense; \cite{Aitchison1986}, p. 53). The existence of these negative values creates problems for the interpretation of the covariance matrix since values are no longer free to take values between 0 and 1.\\
 
-Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions (\cite{Aitchison2000}).  Because of this, standard statistical methodology is not always appropriate (\cite{Aitchison1986}) and can produce misleading results (\cite{Lovell2015}).\\
+Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions (\cite{Aitchison2000}).  Aitchison (\cite{Aitchison1992}) outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data). The permutation invariance is generally satisfied by existing methods (\cite{Martin-Fernandez1998}). However, the perturbation invariance and subcompositional dominance are not generally satisfied. \\
 
 
-To overcome these obstacles, Aitchison (\cite{Aitchison1980}) proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
+Becuase of the difficulties outlined above, standard statistical methodology is not always appropriate (\cite{Aitchison1986}) and can produce misleading results (\cite{Lovell2015}).  To overcome these obstacles, Aitchison (\cite{Aitchison1980}) proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
 \begin{equation}
 y_i  = \text{CLR}(x_i) = log \left(\frac{x_i}{g(\mathbf{x})} \right),
 \label{clr}
@@ -162,7 +161,21 @@ where $g(\mathbf{t})$ is the geometric mean of $\mathbf{t}$.  The $D \times D$ c
 \end{equation}
 Although the CLR transformation gives equal treatment to every element of $\mathbf{t}$, the resulting covariance matrix, $\Gamma$, is singular.  Therefore, care should be taken when using general multivariate methods on CLR transformed data.\\
 
-The constraints on compositional data also affect the measures of difference between any two compositions.  Aitchison (\cite{Aitchison1992}) outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale. The permutation invariance is generally satisfied by existing methods (\cite{Martin-Fernandez1998}).  However, the perturbation invariance and subcompositional dominance are not generally satisfied. Fortunately, Martin-Fernandez et al. (1998) showed that applying either Euclidean distance or Mahalanobis distance metric to CLR transformed data satisfies all the requirements of a compositional distance metric. Euclidean distance on CLR transformed compositions is referred to as Aitchison distance:
+
+
+Aitchison (\cite{Aitchison1986, Aitchison1992}) suggests using the sum of squares if all log-ratio differnces.  Billheimer, Guttorp, and Fagan (2001) use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison (\cite{Aitchison1986}), allow the interpretation of differences in compositions (\cite{Billherimer2001}). Briefly, denote the elementwise multiplication of two positive k-vectors \textbf{u} and \textbf{v} by  
+
+$$\mathbf{u}\cdot \mathbf{v} \equiv \left( u_1v_1, u2_v2, ..., u_kv_k\right)^\prime.$$
+
+Further define the perturbation operator for composition \textbf{x} and perturbation $\mathbf{\alpha} \in S^{d}$ as
+
+$$z = \mathbf{x}\oplus \alpha = C\left(\mathbf{x}\alpha \right)$$
+
+$$||x|| = $$
+
+
+
+Martin-Fernandez et al. (1998) showed that applying either Euclidean distance or Mahalanobis distance metric to CLR transformed data satisfies all the requirements of a compositional distance metric. Euclidean distance on CLR transformed compositions is referred to as Aitchison distance:
 
 $$d_A(x_i, x_j) = \left[\sum_{k=1}^D \left( log \left(\frac{x_{ik}}{g(x_i)} \right) - log \left(\frac{x_{jk}}{g(x_j)} \right) \right)^2  \right]^\frac{1}{2}$$
 
@@ -208,5 +221,7 @@ The compositional nature of RNA-Seq data has important implications for the dete
 % <!-- potential problems
 % What if the control samples are so different that these differences "swamp out" the batch effects but the differences between the biological samples is not so big?
 \newpage
+
 \printbibliography
+
 \end{document}
