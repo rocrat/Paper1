@@ -38,6 +38,7 @@
   \verb http://dl.acm.org/citation.cfm?id=17272
   \endverb
   \field{year}{1986}
+  \warn{\item Invalid format of field 'month'}
 \endentry
 
 \entry{Aitchison1980}{article}{}

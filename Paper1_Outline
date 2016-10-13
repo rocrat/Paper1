@@ -1,0 +1,45 @@
+Paper 1 Outline 
+
+Title:  Relative frequency measurements: Metrics for sample quality, sequencing integrity, and batch effects in targeted NGS.
+
+I) Introduction - Introduce the problem and motivate the research
+  P1) There is a need for robust quality control and batch effect removal for NGS bases RNA sequencing to reach its full clinical utility
+  P2) Brief discussion of RNA sequencing data as a composition
+  P3) Introduction to compositional data constraints and potential pitfalls
+  P4) Outline of the paper
+    i) Present introduction to compositional methods
+    ii) Compositional QC metrics
+      a) Sample Quality Metrics
+        1) Proportion of total reads in a run allocated to each sample
+        2) Proportion of total reads in a sample allocated to exogenous controls
+      b) Sequencing Integrity Metrics
+        1) Proportionality of exogenous positive controls
+        
+    iii) Compositional analyses
+      a) CLR as a "normalization" transformation
+      b) Aitchison Distance as a substitute for Euclidean distance
+      c) Amalgamations as an exploratory analysis tool
+    
+II) Introduction to Compositional Methods
+  P1) Definition of a composition with motivating example
+  P2) Total sum constraint
+  P3) Implications for covariance matrices
+  P4) Log-ratio transformations and the CLR
+  P5) Implications for measuring distance
+  P6) Aitchison distance
+
+III) Compositional QC Metrics
+  P1) Using proportions for quality control
+  P2) Proportion of total reads in a run allocated to each sample (Sample Quality Metric)
+  P3) Proportion of total reads in a sample allocated to exogenous controls (Sample Quality Metric)(Not sure if this works)
+  P4) Proportionality of exogenous positive controls (Sequencing Integrity Metric)
+  
+IV) Analysis of Compositions
+  P1) CLR as a "normalization" 
+    i) Compare to other methods which use a scaling factor
+    ii) Not necessary to have assumption of non-DE genes
+  P2) Aitchison Distance as a substitute for Euclidean distance
+  P3) The power of amalgamations
+  
+V) Conclusions
+
