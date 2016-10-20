@@ -30,7 +30,6 @@
   \keyw{CoDa}
   \strng{namehash}{AJ1}
   \strng{fullhash}{AJ1}
-  \field{labelyear}{1986}
   \field{sortinit}{A}
   \field{isbn}{0-412-28060-4}
   \field{title}{{The statistical analysis of compositional data}}
@@ -56,7 +55,6 @@
   }
   \strng{namehash}{AJSS1}
   \strng{fullhash}{AJSS1}
-  \field{labelyear}{1980}
   \field{sortinit}{A}
   \verb{doi}
   \verb 10.1093/biomet/67.2.261
@@ -107,7 +105,6 @@
   invariance,Subcompositional dominance}
   \strng{namehash}{AJ+1}
   \strng{fullhash}{AJBVCMFJAPGV1}
-  \field{labelyear}{2000}
   \field{sortinit}{A}
   \field{abstract}{%
   The concept of distance between two compositions is important in the
@@ -150,7 +147,6 @@
   }
   \strng{namehash}{AJ1}
   \strng{fullhash}{AJ2}
-  \field{labelyear}{1992}
   \field{sortinit}{A}
   \verb{doi}
   \verb 10.1007/BF00891269
@@ -188,7 +184,6 @@
   }
   \strng{namehash}{AJGM1}
   \strng{fullhash}{AJGM1}
-  \field{labelyear}{2002}
   \field{sortinit}{A}
   \verb{doi}
   \verb 10.1111/1467-9876.00275
@@ -225,7 +220,6 @@
   }
   \strng{namehash}{ASHW1}
   \strng{fullhash}{ASHW1}
-  \field{labelyear}{2010}
   \field{sortinit}{A}
   \verb{doi}
   \verb 10.1186/gb-2010-11-10-r106
@@ -270,7 +264,6 @@
   assemblage}
   \strng{namehash}{BDGPFWF1}
   \strng{fullhash}{BDGPFWF1}
-  \field{labelyear}{2001}
   \field{sortinit}{B}
   \field{abstract}{%
   The relative abundance of different species characterizes the structure of a
@@ -350,7 +343,6 @@
   }
   \strng{namehash}{CC+1}
   \strng{fullhash}{CCGKBJZDGEJLLC1}
-  \field{labelyear}{2011}
   \field{sortinit}{C}
   \field{abstract}{%
   The expression microarray is a frequently used approach to study gene
@@ -420,7 +412,6 @@
   Genetics,Microbial Genetics and Genomics,Plant Genetics {\&} Genomics}
   \strng{namehash}{LCW+1}
   \strng{fullhash}{LCWCYSWSGK1}
-  \field{labelyear}{2014}
   \field{sortinit}{L}
   \field{abstract}{%
   New normal linear modeling strategies are presented for analyzing read counts
@@ -467,7 +458,6 @@
   }
   \strng{namehash}{LJT1}
   \strng{fullhash}{LJT1}
-  \field{labelyear}{2014}
   \field{sortinit}{L}
   \field{abstract}{%
   It is now known that unwanted noise and unmodeled artifacts such as batch
@@ -562,7 +552,6 @@
   }
   \strng{namehash}{LJT+1}
   \strng{fullhash}{LJTSRBBHCSDLBJWEGDBKIRa1}
-  \field{labelyear}{2010}
   \field{sortinit}{L}
   \field{abstract}{%
   High-throughput technologies are widely used, for example to assay genetic
@@ -600,6 +589,74 @@
   \field{journaltitle}{Nature reviews. Genetics}
   \field{eprinttype}{arXiv}
   \field{year}{2010}
+\endentry
+
+\entry{Lovell2015}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Lovell}{L.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Pawlowsky-Glahn}{P.-G.}%
+     {Vera}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Egozcue}{E.}%
+     {Juan~Jos{\'{e}}}{J.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Marguerat}{M.}%
+     {Samuel}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {B{\"{a}}hler}{B.}%
+     {J{\"{u}}rg}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LD+1}
+  \strng{fullhash}{LDPGVEJJMSBJ1}
+  \field{sortinit}{L}
+  \field{abstract}{%
+  In the life sciences, many measurement methods yield only the relative
+  abundances of different components in a sample. With such relative-or
+  compositional-data, differential expression needs careful interpretation, and
+  correlation-a statistical workhorse for analyzing pairwise relationships-is
+  an inappropriate measure of association. Using yeast gene expression data we
+  show how correlation can be misleading and present proportionality as a valid
+  alternative for relative data. We show how the strength of proportionality
+  between two variables can be meaningfully and interpretably described by a
+  new statistic ϕ which can be used instead of correlation as the basis of
+  familiar analyses and visualisation methods, including co-expression networks
+  and clustered heatmaps. While the main aim of this study is to present
+  proportionality as a means to analyse relative data, it also raises
+  intriguing questions about the molecular mechanisms underlying the
+  proportional regulation of a range of yeast genes.%
+  }
+  \verb{doi}
+  \verb 10.1371/journal.pcbi.1004075
+  \endverb
+  \field{isbn}{10.1371/journal.pcbi.1004075}
+  \field{issn}{1553-7358}
+  \field{number}{3}
+  \field{pages}{e1004075}
+  \field{title}{{Proportionality: A Valid Alternative to Correlation for
+  Relative Data.}}
+  \verb{url}
+  \verb http://www.ncbi.nlm.nih.gov/pubmed/25775355
+  \endverb
+  \field{volume}{11}
+  \verb{file}
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Lovell-
+  \verb proportionality-PLOSOne2015.pdf:pdf
+  \endverb
+  \field{journaltitle}{PLoS computational biology}
+  \field{year}{2015}
 \endentry
 
 \entry{Lovell2011}{incollection}{}
@@ -646,7 +703,6 @@
   accountant par excellence,percentages,referring to mRNAs}
   \strng{namehash}{LD+1}
   \strng{fullhash}{LDMWTJZAHC1}
-  \field{labelyear}{2011}
   \field{sortinit}{L}
   \field{abstract}{%
   This chapter contains sections titled: * Introduction * The Omics Imp and Two
@@ -671,75 +727,6 @@
   \verb f:pdf
   \endverb
   \field{year}{2011}
-\endentry
-
-\entry{Lovell2015}{article}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Lovell}{L.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Pawlowsky-Glahn}{P.-G.}%
-     {Vera}{V.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Egozcue}{E.}%
-     {Juan~Jos{\'{e}}}{J.~J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Marguerat}{M.}%
-     {Samuel}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {B{\"{a}}hler}{B.}%
-     {J{\"{u}}rg}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LD+1}
-  \strng{fullhash}{LDPGVEJJMSBJ1}
-  \field{labelyear}{2015}
-  \field{sortinit}{L}
-  \field{abstract}{%
-  In the life sciences, many measurement methods yield only the relative
-  abundances of different components in a sample. With such relative-or
-  compositional-data, differential expression needs careful interpretation, and
-  correlation-a statistical workhorse for analyzing pairwise relationships-is
-  an inappropriate measure of association. Using yeast gene expression data we
-  show how correlation can be misleading and present proportionality as a valid
-  alternative for relative data. We show how the strength of proportionality
-  between two variables can be meaningfully and interpretably described by a
-  new statistic ϕ which can be used instead of correlation as the basis of
-  familiar analyses and visualisation methods, including co-expression networks
-  and clustered heatmaps. While the main aim of this study is to present
-  proportionality as a means to analyse relative data, it also raises
-  intriguing questions about the molecular mechanisms underlying the
-  proportional regulation of a range of yeast genes.%
-  }
-  \verb{doi}
-  \verb 10.1371/journal.pcbi.1004075
-  \endverb
-  \field{isbn}{10.1371/journal.pcbi.1004075}
-  \field{issn}{1553-7358}
-  \field{number}{3}
-  \field{pages}{e1004075}
-  \field{title}{{Proportionality: A Valid Alternative to Correlation for
-  Relative Data.}}
-  \verb{url}
-  \verb http://www.ncbi.nlm.nih.gov/pubmed/25775355
-  \endverb
-  \field{volume}{11}
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Lovell-
-  \verb proportionality-PLOSOne2015.pdf:pdf
-  \endverb
-  \field{journaltitle}{PLoS computational biology}
-  \field{year}{2015}
 \endentry
 
 \entry{Martin-Fernandez1998}{article}{}
@@ -777,7 +764,6 @@
   }
   \strng{namehash}{MFJA+1}
   \strng{fullhash}{MFJABVCPGVBANGPR1}
-  \field{labelyear}{1998}
   \field{sortinit}{M}
   \field{abstract}{%
   F or the application of a hierarc hic classification method it is necessary
@@ -814,7 +800,6 @@
   }
   \strng{namehash}{PK1}
   \strng{fullhash}{PK1}
-  \field{labelyear}{1896}
   \field{sortinit}{P}
   \field{pages}{489\bibrangedash 498}
   \field{title}{{Mathematical Contributions to the Theory of Evolution.--On a
@@ -844,7 +829,6 @@
   }
   \strng{namehash}{RMDSGK1}
   \strng{fullhash}{RMDSGK1}
-  \field{labelyear}{2007}
   \field{sortinit}{R}
   \verb{doi}
   \verb 10.1093/biostatistics/kxm030
@@ -882,7 +866,6 @@
   }
   \strng{namehash}{RMDOA1}
   \strng{fullhash}{RMDOA1}
-  \field{labelyear}{2010}
   \field{sortinit}{R}
   \field{abstract}{%
   The fine detail provided by sequencing-based transcriptome surveys suggests
@@ -928,7 +911,6 @@
   RNA,Sequence Analysis, RNA: standards}
   \strng{namehash}{S1}
   \strng{fullhash}{S1}
-  \field{labelyear}{2014}
   \field{sortinit}{S}
   \field{abstract}{%
   We present primary results from the Sequencing Quality Control (SEQC)
@@ -1081,7 +1063,6 @@
   RNA: methods,Sequence Analysis, RNA: standards}
   \strng{namehash}{tPAC+1}
   \strng{fullhash}{tPACFMRAJSMPIASYLJFJBHPJKOBMDJTdOGJBvGIGGREXSACDETLT1}
-  \field{labelyear}{2013}
   \field{sortinit}{T}
   \field{abstract}{%
   RNA sequencing is an increasingly popular technology for genome-wide analysis
@@ -1142,7 +1123,6 @@
   }
   \strng{namehash}{VKKJJCDW1}
   \strng{fullhash}{VKKJJCDW1}
-  \field{labelyear}{2014}
   \field{sortinit}{V}
   \verb{doi}
   \verb 10.1038/nbt.3017
