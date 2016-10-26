@@ -62,12 +62,10 @@ From equations~\ref{sumt} and~\ref{sumConst} it is clear that the $D$ samples re
 \label{negbias}
 \end{equation}
 
-which means at least one element of each row of the covariance matrix must be negative. Aitchison refers to this as the "negative bias difficulty" (although `bias' is not used in the traditional sense;~\cite{Aitchison1986} (p. 53). The existence of these negative values creates problems for the interpretation of the covariance matrix since values are no longer free to take values between 0 and 1.\\
-
-Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions (\cite{Aitchison2000}).  Aitchison (\cite{Aitchison1992}) outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data). The permutation invariance is generally satisfied by existing methods (\cite{Martin-Fernandez1998}). However, the perturbation invariance and subcompositional dominance are not generally satisfied. \\
+which means at least one element of each row of the covariance matrix must be negative. Aitchison refers to this as the "negative bias difficulty" (although `bias' is not used in the traditional sense;~\cite{Aitchison1986}, p. 53). The existence of these negative values creates problems for the interpretation of the covariance matrix since values are no longer free to range between 0 and 1.\\
 
 
-Becuase of the difficulties outlined above, standard statistical methodology is not always appropriate (\cite{Aitchison1986}) and can produce misleading results (\cite{Lovell2015}).  To overcome these obstacles, Aitchison (\cite{Aitchison1980}) proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
+Becuase of the difficulties outlined above, standard statistical methodology is not always appropriate~\cite{Aitchison1986} and can produce misleading results~\cite{Lovell2015}.  To overcome these obstacles, Aitchison~\cite{Aitchison1980} proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
 \begin{equation}
 y_i  = \text{CLR}(x_i) = log \left(\frac{x_i}{g(\mathbf{x})} \right),
 \label{clr}
@@ -77,11 +75,11 @@ where $g(\mathbf{t})$ is the geometric mean of $\mathbf{t}$.  The $D \times D$ c
 \Gamma = \left[\text{cov}\left(y_i, y_j \right): i,\ j = 1, ..., D \right]
 \label{gamma}
 \end{equation}
-Although the CLR transformation gives equal treatment to every element of $\mathbf{t}$, the resulting covariance matrix, $\Gamma$, is singular.  Therefore, care should be taken when using general multivariate methods on CLR transformed data.\\
+Although the CLR transformation preserves the original dimmension of the data, and gives equal treatment to every element of $\mathbf{t}$, the resulting covariance matrix, $\Gamma$, is singular.  Therefore, care should be taken when using general multivariate methods on CLR transformed data.\\
 
+Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions~\cite{Aitchison2000}.  Aitchison~\cite{Aitchison1992} outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data due to differences in read depth). The permutation invariance is generally satisfied by existing methods~\cite{Martin-Fernandez1998}. However, the perturbation invariance and subcompositional dominance are not generally satisfied. \\
 
-
-Aitchison (\cite{Aitchison1986, Aitchison1992}) suggests using the sum of squares of all log-ratio differnces.  Billheimer, Guttorp, and Fagan (2001) use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison (\cite{Aitchison1986}), allow the interpretation of differences in compositions (\cite{Billheimer2001}). Briefly, denote the elementwise multiplication of two positive D-vectors \textbf{u} and \textbf{v} by  
+Aitchison~\cite{Aitchison1986, Aitchison1992} suggests using the sum of squares of all log-ratio differnces.  Billheimer, Guttorp, and Fagan~\cite{Billheimer2001} use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison (\cite{Aitchison1986}), allow the interpretation of differences in compositions (\cite{Billheimer2001}). Briefly, denote the elementwise multiplication of two positive D-vectors \textbf{u} and \textbf{v} by  
 
 $$\mathbf{u}\cdot \mathbf{v} \equiv \left( u_1v_1, u2_v2, ..., u_Dv_D\right)^\prime.$$
 

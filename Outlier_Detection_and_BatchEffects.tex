@@ -49,7 +49,7 @@
 
 \usepackage{alltt}
 \usepackage[colorlinks=true, linkcolor=blue, citecolor=blue]{hyperref}
-\usepackage[backend=bibtex,style=authoryear,backref=true,hyperref=true]{biblatex}
+\usepackage[backend=bibtex,backref=true,hyperref=true]{biblatex}
 \addbibresource{proportionality.bib}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -71,61 +71,28 @@
 \section{Introduction}
 
 %-- Introduce the problem and motivate the research -->
-The rapid rise in the use of RNA sequencing technology (RNA-seq) for scientific discovery has led to its consideration as a clinical diagnostic tool.  However, as a new technology the analytical accuracy and reproducibility of RNA-seq must be established before it can realize its full clinical utility (\cite{SEQC/MAQC-IIIConsortium2014}, \cite{VanKeuren-Jensen2014}). Recent studies evaluating RNA-seq have found generally high intra-platform and inter-platform congruence across multiple laboratories (\cite{Li2013, tHoen2013, SEQC/MAQC-IIIConsortium2014}).  Despite these promising results, there is still a need to establish reliable diagnostics, quality control metrics and improve the reproducibility of RNA-seq data.  Understanding, and capatilizing on, the relative frequency nature of RNA-Seq data provides tools for identifying batch effects, creating quality control metrics, and improving reproducibility.\\
+The rapid rise in the use of RNA sequencing technology (RNA-seq) for scientific discovery has led to its consideration as a clinical diagnostic tool.  However, as a new technology the analytical accuracy and reproducibility of RNA-seq must be established before it can realize its full clinical utility~\cite{SEQC/MAQC-IIIConsortium2014,VanKeuren-Jensen2014}. Recent studies evaluating RNA-seq have found generally high intra-platform and inter-platform congruence across multiple laboratories~\cite{Li2013, tHoen2013, SEQC/MAQC-IIIConsortium2014}.  Despite these promising results, there is still a need to establish reliable diagnostics, quality control metrics and improve the reproducibility of RNA-seq data.  Understanding, and capatilizing on, the relative frequency nature of RNA-Seq data provides tools for identifying batch effects, creating quality control metrics, and improving reproducibility.\\
 
 %Accurately identifying batch effects, and differentiating these from true biological differences, will be necessary if smaller laboratories wish to utilize RNA-seq technology for clinical applications (cite).  Moreover, the reliable identification and removal of poor quality data produced by RNA-seq pipelines has the potential to dramatically improve the analytical accuracy and reproducibility of RNA-seq data, thereby improving its clinical utility.\\
 
 %-- Brief intro to compositional data
-Relative frequency measures (hereafter reffered to as \emph{compositional data} for consistency with other disciplines) are characterzied as a vector of proportions of some whole.  These proportions are necessarily positive and sum to a constant.  The positivity and summation constraint complicate the analysis of compositions.  For example, John Aitchison (\cite{Aitchison1986}) identified the difficulty of interpreting the covariance matrix of a composition that results from the depency in the data induced by the sum constraint.  As early as 1896 Karl Pearson (\cite{Pearson1896}) identified the spurious correlation problem associated with compositions.  \\
+Relative frequency measures are characterized as a vector of proportions of some whole.  These proportions are necessarily positive and sum to a constant which is determined by the measurement system and not the measurand.  For example, as an experiment, we count the number and type of cars passing by us in the first lane of the highway for 5 minutes.  We cannot observe the other lanes because they are obstructed by the first lane and we do not know haw many lanes the highway contains.  If we assume the first lane is representative of the other lanes we might be able to say something about the relative frequency of each car type on the highway, but without knowing the total number of lanes we won't be able to say anything about the total number of each car type travelling on that highway during the 5 minutes we observed. If we are able to observe 2 lanes our total number of cars observed will be greater than (or equal to) the total number of cars we observed in 1 lane.  Clearly, the total number of cars we observe is a function of the measurement process and not the total number of cars on the highway.\\
+
+Suppose we repeat this experiment several times.  Since we can only observe a finite number of cars during a 5 minute span, if any 1 car type increases in frequency then the other car types must then decrease in frequency proportionally.  This proportionality is strictly enforced if the lane is at maximum capacity, but one can imagine if the number of cars observed is very small compared to the number of cars possible to observe the proportionality may be less strict.  \\
+
 
 %-- Short description of compositional data and justification of treating RNA-seq as compositional-->
-NGS-based RNA-Seq methods are inherently compositional because high-throughput RNA-Seq instruments have a maximum number of reads available per run.  For example, the Roche 454 GS Junior \textsuperscript{(TM)} claims approximately 100,000 reads per run for shotgun sequencing and 70,000 reads per run for amplicon sequencing.  The Illumina Mi-Seq, with shorters read lengths, is limited to 25 million reads per sequencing run.  These reads are distributed across all of the samples included in a sequencing run and, therefore, impose a total sum constraint on the data.  This constraint cascades down to each probe or tag within a sample which is, in turn, constrained by the total number of reads allocated to the sample.  Previous authors have identified the relative nature of RNA-Seq data (\cite{Robinson2007, Anders2010, Robinson2010, Law2014, Lovell2015}).  For example, Robinson and Smyth (2007) consider counts of RNA tags as relative abundances in their development of a model for estimating differential gene expression implemented in the Bioconductor package edgeR.  Similarly, Robinson and Oshlack (2010) explicitly acknowledge the mapped read constraint when developing their widely used Trimmed-Mean of M-values (TMM) normalization method for RNA-Seq data.  \\
 
-%-- Paragraph on existing QC metrics -->
-%There are several software packages devoted to quality control of RNA-seq data (\cite{Deluca2012} and RSeQC). However, none of these proposed models address a fundamental feature of RNA-Seq data. Specifically, \
+Similarly, NGS-based RNA-Seq methods are also relative frequencies.  High-throughput RNA-Seq instruments have a maximum number of reads available per run.  For example, the Roche 454 GS Junior \textsuperscript{(TM)} claims approximately 100,000 reads per run for shotgun sequencing and 70,000 reads per run for amplicon sequencing.  The Illumina Mi-Seq, with shorter read lengths, is limited to 25 million reads per sequencing run.  These reads are distributed across all of the samples included in a sequencing run and, therefore, impose a total sum constraint on the data.  This constraint cascades down to each probe or tag within a sample which is, in turn, constrained by the total number of reads allocated to the sample.  Previous authors have identified the relative nature of RNA-Seq data~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, Lovell2015}.  For example, Robinson and Smyth (2007) consider counts of RNA tags as relative abundances in their development of a model for estimating differential gene expression implemented in the Bioconductor package edgeR.  Similarly, Robinson and Oshlack (2010) explicitly acknowledge the mapped-read constraint when developing their widely used Trimmed-Mean of M-values (TMM) normalization method for RNA-Seq data.  \\%However, none of these authors reference the large body of literature on the analysis of compositions.
 
-
+The positivity and summation constraint complicate the analysis of relative frequency data.  John Aitchison observed that relative frequency data is compositional and developed a methodology based on the geometric constraints of composiitons~\cite{Aitchison1986}.  Aitchison~\cite{Aitchison1986} identified the difficulty of interpreting the covariance matrix of a composition due to the dependency in the data induced by the sum constraint.  As early as 1896 Karl Pearson~\cite{Pearson1896} identified the spurious correlation problem associated with compositions.  Recent authors have also identified that ignoring the sum constraint can lead to unexpected results and erroneous inference~\cite{Lovell2011}.  Despite the evidence that RNA-Seq data are compositional in nature, few researchers have extended the broad set of compositional data analysis theory and operations for use in RNA-Seq analysis problems.  We provide a brief background on compositional methods.  We then extend existing compositional data methodology to include 3 quality control metrics for RNA-Seq data. Finally, we show how compositional properties can be exploited to improve reproducibility of RNA-Seq analyses and facilitate exploratortion of high-dimensional RNA-Seq data.\\
 
 %-- Proposed solution with brief outline of methodology -->
-Ignoring the sum constraint can lead to unexpected results and erroneous inference (\cite{Pearson1896, Aitchison1986, Lovell2011}).  Despite the evidence that RNA-Seq data are compositional in nature, few researchers have extended the broad set of compositional data analysis theory and tools for use in RNA-Seq analysis problems.  We extend existing compositional data methodology to include statistical diagnostic tests for the identification of sample outliers and batch effects. We also show how compositional properties can be exploited to improve exploratory analyses and improve reproducibility.\\
-
-%use amalgamations as a quality control metric as opoosed to a discovery tool.  
-%Look in appendx of billheimer 2001 for the simplex derivation of the distance
-%%show that angles then make sense so that we can say it is iterpretable in the same way (if in fact it is interpretable in the same way)
-%%Probes that I care about vs probes that I don't care about.
-%%%make sure the genes I want to be expressing are expressing
-%%%change read depth experimentally on control samples to find LOD
-%%%statistical rule of thumb for read depth e.g. 3/n - use jefferies prior and estimate 
-%Get time series data used in Lovell paper 
-
-%formalize the biplot evaluation and a statistical model for the amalgamations
-%CCLasso as an idea for genes that share a common pathway (like a phylogeny but ofr pathways)
-
-%What are the different ways that a run or sample could fail and ow can we leverage compositions to detect this
-%how can we apply a metric on a per sample basis
-%can HTG data be made publicly available
-%can we find publicly available targeted data 
-%are the reproducibility study data is free to share publicly
-%see what sort of restrictions I would have.
-%identify groups of interest somehow?
-%heterogenity measure within amalgamation <- select groups based on minimum heterogeneity??
-%R package GlobalTest ^|^(above) might be adapted to compositions
-
-%prove I_D -1_Dj_dJ_D' is a projection matrix (or not )
-
-%Do we need to have a written comprehensive exam?? Ask Michael
-%Need to develop an outline
-%Commitee:  Ed, ChengCheng, Melanie, Bonnie (ask if she wants to direct the commitee)
-%
 
 \section{Methods}
 \subsection{Compositional Data}
 %-- CODA intro -->
-We begin with a brief introduction to compositional data, its properties, and some established analytical methods.  Compositional data is defined as any data in which all elements are non-negative and sum to a fixed constant (\cite{Aitchison1986}). The total sum constraint is common in biological sampling.  For example, if a 1 ml sample of blood is taken this sample could be divided into several components such as plasma, red blood cells, white blood cells, and platelets.  If the amount of any 1 component were to increase some other component (or all the other components) must decrease due to the fixed volume of the sample.  \\
-
-%An important feature of compositional data, beyond the total sum constraint, is that of \emph{scale invariance}.  Scale invariance means that the absolute size of the total sum is irrelevent and information is only contained in the relative size between and among elements.  As previously mentioned, this feature of RNA-seq data has been recognized by previous authors (\cite{Robinson2007, Robinson2010}), although the consequences of this property have not been fully realized.\\
-
-%-- Establish notation -->
+We begin with a brief introduction to compositional data, its properties, and some established analytical methods.  Compositional data is defined as any data in which all elements are non-negative and sum to a fixed constant~\cite{Aitchison1986}. %-- Establish notation -->
 For RNA-seq data, the total sum constraint is imposed by the limited number of available reads in each sequencing platform.  Since this total differs between platforms we will refer to the total number of available reads as $\mathbb{T}$. These reads are distributed among the $D$ samples in a sequencing run such that:
 \begin{equation}
 \sum_{i=1}^{D} t_i = \mathbb{T}
@@ -136,21 +103,19 @@ where $t_i$ represents the total reads for sample $i$.  Because of the total sum
 t_D = \mathbb{T} - \sum_{i=1}^{d} t_i
 \label{sumConst}
 \end{equation}
-In \ref{sumConst}, any of the elements can be chosen for $t_D$ with the remaining elements labeled $1, ..., d$ in any order (\cite{Aitchison1986}).  \\
+In \ref{sumConst}, any of the elements can be chosen for $t_D$ with the remaining elements labeled $1, ..., d$ in any order~\cite{Aitchison1986}.  \\
 
-From equations~\ref{sumt} and~\ref{sumConst} it is clear that the $D$ samples represent a $D - 1 = d$ dimensional simplex ($S^d$). This leads to a diffculty in interpreting the traditional $D \times D$ covariance structure.  In particular, it is clear that for a D-part composition $\mathbf{x}$, $\text{cov}(x_1, x_1+ \cdots +x_D) = 0$  since $x_1 + \cdots + x_D$ is a constant.  Moreover, the sum constraint induces negativity in the covariance matrix,
+From equations~\ref{sumt} and~\ref{sumConst} it is clear that the $D$ samples represent a $D - 1 = d$ dimensional simplex ($\mathcal{S}^d$). This leads to a diffculty in interpreting the traditional $D \times D$ covariance structure.  In particular, it is clear that for a D-part composition $\mathbf{x}$, $\text{cov}(x_1, x_1+ \cdots +x_D) = 0$  since $x_1 + \cdots + x_D$ is a constant.  Moreover, the sum constraint induces negativity in the covariance matrix,
 
 \begin{equation}
 \text{cov}(x_1, x_2) + \cdots + \text{cov}(x_1, x_D) = -\text{var}(x_1),
 \label{negbias}
 \end{equation}
 
-which means at least one element of each row of the covariance matrix mustbe negative. Aitchison refers to this as the "negative bias difficulty" (although `bias' is not used in the traditional sense; \cite{Aitchison1986}, p. 53). The existence of these negative values creates problems for the interpretation of the covariance matrix since values are no longer free to take values between 0 and 1.\\
-
-Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions (\cite{Aitchison2000}).  Aitchison (\cite{Aitchison1992}) outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data). The permutation invariance is generally satisfied by existing methods (\cite{Martin-Fernandez1998}). However, the perturbation invariance and subcompositional dominance are not generally satisfied. \\
+which means at least one element of each row of the covariance matrix must be negative. Aitchison refers to this as the "negative bias difficulty" (although `bias' is not used in the traditional sense;~\cite{Aitchison1986}, p. 53). The existence of these negative values creates problems for the interpretation of the covariance matrix since values are no longer free to range between 0 and 1.\\
 
 
-Becuase of the difficulties outlined above, standard statistical methodology is not always appropriate (\cite{Aitchison1986}) and can produce misleading results (\cite{Lovell2015}).  To overcome these obstacles, Aitchison (\cite{Aitchison1980}) proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
+Becuase of the difficulties outlined above, standard statistical methodology is not always appropriate~\cite{Aitchison1986} and can produce misleading results~\cite{Lovell2015}.  To overcome these obstacles, Aitchison~\cite{Aitchison1980} proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
 \begin{equation}
 y_i  = \text{CLR}(x_i) = log \left(\frac{x_i}{g(\mathbf{x})} \right),
 \label{clr}
@@ -160,11 +125,11 @@ where $g(\mathbf{t})$ is the geometric mean of $\mathbf{t}$.  The $D \times D$ c
 \Gamma = \left[\text{cov}\left(y_i, y_j \right): i,\ j = 1, ..., D \right]
 \label{gamma}
 \end{equation}
-Although the CLR transformation gives equal treatment to every element of $\mathbf{t}$, the resulting covariance matrix, $\Gamma$, is singular.  Therefore, care should be taken when using general multivariate methods on CLR transformed data.\\
+Although the CLR transformation preserves the original dimmension of the data, and gives equal treatment to every element of $\mathbf{t}$, the resulting covariance matrix, $\Gamma$, is singular.  Therefore, care should be taken when using general multivariate methods on CLR transformed data.\\
 
+Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions~\cite{Aitchison2000}.  Aitchison~\cite{Aitchison1992} outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data due to differences in read depth). The permutation invariance is generally satisfied by existing methods~\cite{Martin-Fernandez1998}. However, the perturbation invariance and subcompositional dominance are not generally satisfied. \\
 
-
-Aitchison (\cite{Aitchison1986, Aitchison1992}) suggests using the sum of squares if all log-ratio differnces.  Billheimer, Guttorp, and Fagan (2001) use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison (\cite{Aitchison1986}), allow the interpretation of differences in compositions (\cite{Billheimer2001}). Briefly, denote the elementwise multiplication of two positive D-vectors \textbf{u} and \textbf{v} by  
+Aitchison~\cite{Aitchison1986, Aitchison1992} suggests using the sum of squares of all log-ratio differnces.  Billheimer, Guttorp, and Fagan~\cite{Billheimer2001} use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison (\cite{Aitchison1986}), allow the interpretation of differences in compositions (\cite{Billheimer2001}). Briefly, denote the elementwise multiplication of two positive D-vectors \textbf{u} and \textbf{v} by  
 
 $$\mathbf{u}\cdot \mathbf{v} \equiv \left( u_1v_1, u2_v2, ..., u_Dv_D\right)^\prime.$$
 

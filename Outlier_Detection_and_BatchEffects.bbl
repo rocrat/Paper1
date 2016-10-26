@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 2.7 $
+% $ biblatex bbl format version 2.8 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -16,14 +16,14 @@
   {}
 \endgroup
 
-\sortlist[entry]{nyt/global/}
+\sortlist[entry]{nty/global/}
   \entry{Aitchison1986}{book}{}
     \name{author}{1}{}{%
       {{hash=AJ}{%
          family={Aitchison},
-         family_i={A\bibinitperiod},
+         familyi={A\bibinitperiod},
          given={J},
-         given_i={J},
+         giveni={J},
       }}%
     }
     \list{publisher}{1}{%
@@ -34,7 +34,6 @@
     \strng{fullhash}{AJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{1986}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{isbn}{0-412-28060-4}
@@ -43,28 +42,28 @@
     \verb http://dl.acm.org/citation.cfm?id=17272
     \endverb
     \field{year}{1986}
+    \warn{\item Invalid format of field 'month'}
   \endentry
 
   \entry{Aitchison1980}{article}{}
     \name{author}{2}{}{%
       {{hash=AJ}{%
          family={Aitchison},
-         family_i={A\bibinitperiod},
+         familyi={A\bibinitperiod},
          given={J.},
-         given_i={J\bibinitperiod},
+         giveni={J\bibinitperiod},
       }}%
       {{hash=SS}{%
          family={Shen},
-         family_i={S\bibinitperiod},
+         familyi={S\bibinitperiod},
          given={S.M.},
-         given_i={S\bibinitperiod},
+         giveni={S\bibinitperiod},
       }}%
     }
     \strng{namehash}{AJSS1}
     \strng{fullhash}{AJSS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{1980}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \verb{doi}
@@ -75,17 +74,14 @@
     \field{pages}{261\bibrangedash 272}
     \field{title}{{Logistic-normal distributions:Some properties and uses}}
     \verb{url}
-    \verb
-  https://www.researchgate.net/publication/229099731{\_}Logistic-Normal{\
-    \verb _}Distributions{\_}Some{\_}Properties{\_}and{\_}Uses
+    \verb https://www.researchgate.net/publication/229099731{\_}Logistic-Normal
+    \verb {\_}Distributions{\_}Some{\_}Properties{\_}and{\_}Uses
     \endverb
     \field{volume}{67}
     \verb{file}
-    \verb
-  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Aitchis
-    \verb on and Chen (1980) Logistic normal distributions- some uses and
-  propert
-    \verb ies.pdf:pdf
+    \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Aitch
+    \verb ison and Chen (1980) Logistic normal distributions- some uses and pro
+    \verb perties.pdf:pdf
     \endverb
     \field{journaltitle}{Biometrika}
     \field{year}{1980}
@@ -96,27 +92,27 @@
     \name{author}{4}{}{%
       {{hash=AJ}{%
          family={Aitchison},
-         family_i={A\bibinitperiod},
+         familyi={A\bibinitperiod},
          given={J.},
-         given_i={J\bibinitperiod},
+         giveni={J\bibinitperiod},
       }}%
       {{hash=BVC}{%
          family={Barcel{\'{o}}-Vidal},
-         family_i={B\bibinitperiod-V\bibinitperiod},
+         familyi={B\bibinitperiod-V\bibinitperiod},
          given={C.},
-         given_i={C\bibinitperiod},
+         giveni={C\bibinitperiod},
       }}%
       {{hash=MFJA}{%
          family={Mart{\'{i}}n-Fern{\'{a}}ndez},
-         family_i={M\bibinitperiod-F\bibinitperiod},
+         familyi={M\bibinitperiod-F\bibinitperiod},
          given={J.\bibnamedelima A.},
-         given_i={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
       }}%
       {{hash=PGV}{%
          family={Pawlowsky-Glahn},
-         family_i={P\bibinitperiod-G\bibinitperiod},
+         familyi={P\bibinitperiod-G\bibinitperiod},
          given={V.},
-         given_i={V\bibinitperiod},
+         giveni={V\bibinitperiod},
       }}%
     }
     \keyw{Euclidean distance,Permutation invariance,Perturbation
@@ -125,7 +121,6 @@
     \strng{fullhash}{AJBVCMFJAPGV1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2000}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{abstract}{%
@@ -149,9 +144,9 @@
     \field{title}{{Logratio analysis and compositional distance}}
     \field{volume}{32}
     \verb{file}
-    \verb
-  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Aitchis
-    \verb on et al. (2000) Logratio analysis and compositional distance.pdf:pdf
+    \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Aitch
+    \verb ison et al. (2000) Logratio analysis and compositional distance.pdf:p
+    \verb df
     \endverb
     \field{journaltitle}{Mathematical Geology}
     \field{year}{2000}
@@ -161,9 +156,9 @@
     \name{author}{1}{}{%
       {{hash=AJ}{%
          family={Aitchison},
-         family_i={A\bibinitperiod},
+         familyi={A\bibinitperiod},
          given={John},
-         given_i={J\bibinitperiod},
+         giveni={J\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
@@ -173,7 +168,6 @@
     \strng{fullhash}{AJ2}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{1992}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \verb{doi}
@@ -188,11 +182,9 @@
     \endverb
     \field{volume}{24}
     \verb{file}
-    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley
-  Des
-    \verb ktop/Downloaded/Aitchison - 1992 - On criteria for measures of
-  composit
-    \verb ional difference.pdf:pdf
+    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley D
+    \verb esktop/Downloaded/Aitchison - 1992 - On criteria for measures of comp
+    \verb ositional difference.pdf:pdf
     \endverb
     \field{journaltitle}{Mathematical Geology}
     \field{year}{1992}
@@ -203,22 +195,21 @@
     \name{author}{2}{}{%
       {{hash=AJ}{%
          family={Aitchison},
-         family_i={A\bibinitperiod},
+         familyi={A\bibinitperiod},
          given={John},
-         given_i={J\bibinitperiod},
+         giveni={J\bibinitperiod},
       }}%
       {{hash=GM}{%
          family={Greenacre},
-         family_i={G\bibinitperiod},
+         familyi={G\bibinitperiod},
          given={Michael},
-         given_i={M\bibinitperiod},
+         giveni={M\bibinitperiod},
       }}%
     }
     \strng{namehash}{AJGM1}
     \strng{fullhash}{AJGM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2002}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \verb{doi}
@@ -242,15 +233,15 @@
     \name{author}{2}{}{%
       {{hash=AS}{%
          family={Anders},
-         family_i={A\bibinitperiod},
+         familyi={A\bibinitperiod},
          given={Simon},
-         given_i={S\bibinitperiod},
+         giveni={S\bibinitperiod},
       }}%
       {{hash=HW}{%
          family={Huber},
-         family_i={H\bibinitperiod},
+         familyi={H\bibinitperiod},
          given={W},
-         given_i={W},
+         giveni={W},
       }}%
     }
     \list{publisher}{1}{%
@@ -260,7 +251,6 @@
     \strng{fullhash}{ASHW1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2010}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \verb{doi}
@@ -276,11 +266,9 @@
     \endverb
     \field{volume}{11}
     \verb{file}
-    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley
-  Des
-    \verb ktop/Downloaded/Anders, Huber - 2010 - Differential expression
-  analysis
-    \verb  for sequence count data.pdf:pdf
+    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley D
+    \verb esktop/Downloaded/Anders, Huber - 2010 - Differential expression anal
+    \verb ysis for sequence count data.pdf:pdf
     \endverb
     \field{journaltitle}{Genome Biol}
     \field{year}{2010}
@@ -290,21 +278,21 @@
     \name{author}{3}{}{%
       {{hash=BD}{%
          family={Billheimer},
-         family_i={B\bibinitperiod},
+         familyi={B\bibinitperiod},
          given={Dean},
-         given_i={D\bibinitperiod},
+         giveni={D\bibinitperiod},
       }}%
       {{hash=GP}{%
          family={Guttorp},
-         family_i={G\bibinitperiod},
+         familyi={G\bibinitperiod},
          given={Peter},
-         given_i={P\bibinitperiod},
+         giveni={P\bibinitperiod},
       }}%
       {{hash=FWF}{%
          family={Fagan},
-         family_i={F\bibinitperiod},
+         familyi={F\bibinitperiod},
          given={William\bibnamedelima F},
-         given_i={W\bibinitperiod\bibinitdelim F\bibinitperiod},
+         giveni={W\bibinitperiod\bibinitdelim F\bibinitperiod},
       }}%
     }
     \keyw{compositional data,mcmc,multinomial regression,random effects,species
@@ -313,7 +301,6 @@
     \strng{fullhash}{BDGPFWF1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2001}
     \field{sortinit}{B}
     \field{sortinithash}{B}
     \field{abstract}{%
@@ -346,11 +333,9 @@
     \endverb
     \field{volume}{96}
     \verb{file}
-    \verb
-  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Billhei
-    \verb mer, Guttorp, and Fagan (2011) Statistical Interpretation of Species
-  Co
-    \verb mposition.pdf:pdf
+    \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Billh
+    \verb eimer, Guttorp, and Fagan (2011) Statistical Interpretation of Specie
+    \verb s Composition.pdf:pdf
     \endverb
     \field{journaltitle}{Journal of the American Statistical Association}
     \field{year}{2001}
@@ -360,52 +345,51 @@
     \name{author}{7}{}{%
       {{hash=CC}{%
          family={Chen},
-         family_i={C\bibinitperiod},
+         familyi={C\bibinitperiod},
          given={Chao},
-         given_i={C\bibinitperiod},
+         giveni={C\bibinitperiod},
       }}%
       {{hash=GK}{%
          family={Grennan},
-         family_i={G\bibinitperiod},
+         familyi={G\bibinitperiod},
          given={Kay},
-         given_i={K\bibinitperiod},
+         giveni={K\bibinitperiod},
       }}%
       {{hash=BJ}{%
          family={Badner},
-         family_i={B\bibinitperiod},
+         familyi={B\bibinitperiod},
          given={Judith},
-         given_i={J\bibinitperiod},
+         giveni={J\bibinitperiod},
       }}%
       {{hash=ZD}{%
          family={Zhang},
-         family_i={Z\bibinitperiod},
+         familyi={Z\bibinitperiod},
          given={Dandan},
-         given_i={D\bibinitperiod},
+         giveni={D\bibinitperiod},
       }}%
       {{hash=GE}{%
          family={Gershon},
-         family_i={G\bibinitperiod},
+         familyi={G\bibinitperiod},
          given={Elliot},
-         given_i={E\bibinitperiod},
+         giveni={E\bibinitperiod},
       }}%
       {{hash=JL}{%
          family={Jin},
-         family_i={J\bibinitperiod},
+         familyi={J\bibinitperiod},
          given={Li},
-         given_i={L\bibinitperiod},
+         giveni={L\bibinitperiod},
       }}%
       {{hash=LC}{%
          family={Liu},
-         family_i={L\bibinitperiod},
+         familyi={L\bibinitperiod},
          given={Chunyu},
-         given_i={C\bibinitperiod},
+         giveni={C\bibinitperiod},
       }}%
     }
     \strng{namehash}{CC+1}
     \strng{fullhash}{CCGKBJZDGEJLLC1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2011}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{abstract}{%
@@ -436,10 +420,8 @@
     \field{volume}{6}
     \verb{file}
     \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Chen
-  et
-    \verb  al (2011) Removing Batch Effects in Analysis of Expression
-  Microarray
-    \verb Data- An Evaluation of Six Batch Adjustment Methods.pdf:pdf
+    \verb et al (2011) Removing Batch Effects in Analysis of Expression Microar
+    \verb ray Data- An Evaluation of Six Batch Adjustment Methods.pdf:pdf
     \endverb
     \field{journaltitle}{PLoS ONE}
     \field{year}{2011}
@@ -449,27 +431,27 @@
     \name{author}{4}{}{%
       {{hash=LCW}{%
          family={Law},
-         family_i={L\bibinitperiod},
+         familyi={L\bibinitperiod},
          given={Charity\bibnamedelima W},
-         given_i={C\bibinitperiod\bibinitdelim W\bibinitperiod},
+         giveni={C\bibinitperiod\bibinitdelim W\bibinitperiod},
       }}%
       {{hash=CY}{%
          family={Chen},
-         family_i={C\bibinitperiod},
+         familyi={C\bibinitperiod},
          given={Yunshun},
-         given_i={Y\bibinitperiod},
+         giveni={Y\bibinitperiod},
       }}%
       {{hash=SW}{%
          family={Shi},
-         family_i={S\bibinitperiod},
+         familyi={S\bibinitperiod},
          given={Wei},
-         given_i={W\bibinitperiod},
+         giveni={W\bibinitperiod},
       }}%
       {{hash=SGK}{%
          family={Smyth},
-         family_i={S\bibinitperiod},
+         familyi={S\bibinitperiod},
          given={Gordon\bibnamedelima K},
-         given_i={G\bibinitperiod\bibinitdelim K\bibinitperiod},
+         giveni={G\bibinitperiod\bibinitdelim K\bibinitperiod},
       }}%
     }
     \list{language}{1}{%
@@ -484,7 +466,6 @@
     \strng{fullhash}{LCWCYSWSGK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2014}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{abstract}{%
@@ -508,17 +489,14 @@
     \field{title}{{voom: Precision weights unlock linear model analysis tools
   for RNA-seq read counts.}}
     \verb{url}
-    \verb
-  http://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-2-r2
-    \verb 9
+    \verb http://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-2-
+    \verb r29
     \endverb
     \field{volume}{15}
     \verb{file}
-    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley
-  Des
-    \verb ktop/Downloaded/Law et al. - 2014 - voom Precision weights unlock
-  linea
-    \verb r model analysis tools for RNA-seq read counts.pdf:pdf
+    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley D
+    \verb esktop/Downloaded/Law et al. - 2014 - voom Precision weights unlock l
+    \verb inear model analysis tools for RNA-seq read counts.pdf:pdf
     \endverb
     \field{journaltitle}{Genome biology}
     \field{year}{2014}
@@ -529,16 +507,15 @@
     \name{author}{1}{}{%
       {{hash=LJT}{%
          family={Leek},
-         family_i={L\bibinitperiod},
+         familyi={L\bibinitperiod},
          given={Jeffrey\bibnamedelima T.},
-         given_i={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+         giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod},
       }}%
     }
     \strng{namehash}{LJT1}
     \strng{fullhash}{LJT1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2014}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{abstract}{%
@@ -574,10 +551,8 @@
     \field{volume}{42}
     \verb{file}
     \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Leek
-  (2
-    \verb 014) svaseek- removing batch effects and other unwanted noise from
-  sequ
-    \verb encing data..pdf:pdf
+    \verb (2014) svaseek- removing batch effects and other unwanted noise from
+    \verb sequencing data..pdf:pdf
     \endverb
     \field{journaltitle}{Nucleic acids research}
     \field{year}{2014}
@@ -587,57 +562,57 @@
     \name{author}{9}{}{%
       {{hash=LJT}{%
          family={Leek},
-         family_i={L\bibinitperiod},
+         familyi={L\bibinitperiod},
          given={Jeffrey\bibnamedelima T},
-         given_i={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+         giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod},
       }}%
       {{hash=SRB}{%
          family={Scharpf},
-         family_i={S\bibinitperiod},
+         familyi={S\bibinitperiod},
          given={Robert\bibnamedelima B},
-         given_i={R\bibinitperiod\bibinitdelim B\bibinitperiod},
+         giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod},
       }}%
       {{hash=BHC}{%
          family={Bravo},
-         family_i={B\bibinitperiod},
+         familyi={B\bibinitperiod},
          given={H{\'{e}}ctor\bibnamedelima Corrada},
-         given_i={H\bibinitperiod\bibinitdelim C\bibinitperiod},
+         giveni={H\bibinitperiod\bibinitdelim C\bibinitperiod},
       }}%
       {{hash=SD}{%
          family={Simcha},
-         family_i={S\bibinitperiod},
+         familyi={S\bibinitperiod},
          given={David},
-         given_i={D\bibinitperiod},
+         giveni={D\bibinitperiod},
       }}%
       {{hash=LB}{%
          family={Langmead},
-         family_i={L\bibinitperiod},
+         familyi={L\bibinitperiod},
          given={Benjamin},
-         given_i={B\bibinitperiod},
+         giveni={B\bibinitperiod},
       }}%
       {{hash=JWE}{%
          family={Johnson},
-         family_i={J\bibinitperiod},
+         familyi={J\bibinitperiod},
          given={W\bibnamedelima Evan},
-         given_i={W\bibinitperiod\bibinitdelim E\bibinitperiod},
+         giveni={W\bibinitperiod\bibinitdelim E\bibinitperiod},
       }}%
       {{hash=GD}{%
          family={Geman},
-         family_i={G\bibinitperiod},
+         familyi={G\bibinitperiod},
          given={Donald},
-         given_i={D\bibinitperiod},
+         giveni={D\bibinitperiod},
       }}%
       {{hash=BK}{%
          family={Baggerly},
-         family_i={B\bibinitperiod},
+         familyi={B\bibinitperiod},
          given={Keith},
-         given_i={K\bibinitperiod},
+         giveni={K\bibinitperiod},
       }}%
       {{hash=IRa}{%
          family={Irizarry},
-         family_i={I\bibinitperiod},
+         familyi={I\bibinitperiod},
          given={Rafael\bibnamedelima a},
-         given_i={R\bibinitperiod\bibinitdelim a\bibinitperiod},
+         giveni={R\bibinitperiod\bibinitdelim a\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
@@ -647,7 +622,6 @@
     \strng{fullhash}{LJTSRBBHCSDLBJWEGDBKIRa1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2010}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{abstract}{%
@@ -680,134 +654,51 @@
     \field{volume}{11}
     \verb{file}
     \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Leek
-  et
-    \verb  al. (2010) Tackling the widespread and critical impact of batch
-  effect
-    \verb s in high-throughput data..pdf:pdf
+    \verb et al. (2010) Tackling the widespread and critical impact of batch ef
+    \verb fects in high-throughput data..pdf:pdf
     \endverb
     \field{journaltitle}{Nature reviews. Genetics}
     \field{eprinttype}{arXiv}
     \field{year}{2010}
   \endentry
 
-  \entry{Lovell2011}{incollection}{}
-    \name{author}{5}{}{%
-      {{hash=LD}{%
-         family={Lovell},
-         family_i={L\bibinitperiod},
-         given={David},
-         given_i={D\bibinitperiod},
-      }}%
-      {{hash=MW}{%
-         family={M{\"{u}}ller},
-         family_i={M\bibinitperiod},
-         given={Warren},
-         given_i={W\bibinitperiod},
-      }}%
-      {{hash=TJ}{%
-         family={Taylor},
-         family_i={T\bibinitperiod},
-         given={Jen},
-         given_i={J\bibinitperiod},
-      }}%
-      {{hash=ZA}{%
-         family={Zwart},
-         family_i={Z\bibinitperiod},
-         given={Alec},
-         given_i={A\bibinitperiod},
-      }}%
-      {{hash=HC}{%
-         family={Helliwell},
-         family_i={H\bibinitperiod},
-         given={Chris},
-         given_i={C\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {John Wiley {\&} Sons, Ltd}%
-    }
-    \keyw{Applications-proportions,Challenge posed by omics data to
-  compositional ana,Compositional data,Compositional data analysis-roots in
-  geosciences,Current raft of nucleotide-counting sequencing tec,Impact of
-  compositional constraints in the omics-b,Impact of compositional
-  constraints-on correlation,Impact of compositional constraints-on
-  multivariat,PPM-whether molecular biosciences treat compositio,The Omics Imp
-  and bioscience experiment paradigms-,Under-and over-expression-used in gene
-  expression,and biological systems with sources of variability,being scarce,in
-  comparison with abundance of measurements (p),in molecular biology-principled
-  approaches,interpreting measurements of mineral content of ro,molecular
-  accountant par excellence,percentages,referring to mRNAs}
-    \strng{namehash}{LD+1}
-    \strng{fullhash}{LDMWTJZAHC1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelyear}{2011}
-    \field{sortinit}{L}
-    \field{sortinithash}{L}
-    \field{abstract}{%
-    This chapter contains sections titled: * Introduction * The Omics Imp and
-  Two Bioscience Experiment Paradigms * The Impact of Compositional Constraints
-  in the Omics * Impact of Compositional Constraints on Correlation and
-  Covariance * Implications * Acknowledgements * References%
-    }
-    \field{booktitle}{Compositional Data Analysis: Theory and Applications}
-    \verb{doi}
-    \verb 10.1002/9781119976462.ch14
-    \endverb
-    \field{isbn}{9780470711354}
-    \field{number}{October}
-    \field{pages}{191\bibrangedash 207}
-    \field{title}{{Proportions, Percentages, PPM: Do The Molecular Biosciences
-  Treat Compositional Data Right?}}
-    \verb{url}
-    \verb http://dx.doi.org/10.1002/9781119976462.ch14
-    \endverb
-    \verb{file}
-    \verb
-  :C$\backslash$:/Classes/Dissertation/Proportionality/CoDa-A05-Lovell.pd
-    \verb f:pdf
-    \endverb
-    \field{year}{2011}
-  \endentry
-
   \entry{Lovell2015}{article}{}
     \name{author}{5}{}{%
       {{hash=LD}{%
          family={Lovell},
-         family_i={L\bibinitperiod},
+         familyi={L\bibinitperiod},
          given={David},
-         given_i={D\bibinitperiod},
+         giveni={D\bibinitperiod},
       }}%
       {{hash=PGV}{%
          family={Pawlowsky-Glahn},
-         family_i={P\bibinitperiod-G\bibinitperiod},
+         familyi={P\bibinitperiod-G\bibinitperiod},
          given={Vera},
-         given_i={V\bibinitperiod},
+         giveni={V\bibinitperiod},
       }}%
       {{hash=EJJ}{%
          family={Egozcue},
-         family_i={E\bibinitperiod},
+         familyi={E\bibinitperiod},
          given={Juan\bibnamedelima Jos{\'{e}}},
-         given_i={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+         giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod},
       }}%
       {{hash=MS}{%
          family={Marguerat},
-         family_i={M\bibinitperiod},
+         familyi={M\bibinitperiod},
          given={Samuel},
-         given_i={S\bibinitperiod},
+         giveni={S\bibinitperiod},
       }}%
       {{hash=BJ}{%
          family={B{\"{a}}hler},
-         family_i={B\bibinitperiod},
+         familyi={B\bibinitperiod},
          given={J{\"{u}}rg},
-         given_i={J\bibinitperiod},
+         giveni={J\bibinitperiod},
       }}%
     }
     \strng{namehash}{LD+1}
     \strng{fullhash}{LDPGVEJJMSBJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2015}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{abstract}{%
@@ -840,58 +731,134 @@
     \endverb
     \field{volume}{11}
     \verb{file}
-    \verb
-  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Lovell-
-    \verb proportionality-PLOSOne2015.pdf:pdf
+    \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Lovel
+    \verb l-proportionality-PLOSOne2015.pdf:pdf
     \endverb
     \field{journaltitle}{PLoS computational biology}
     \field{year}{2015}
+  \endentry
+
+  \entry{Lovell2011}{incollection}{}
+    \name{author}{5}{}{%
+      {{hash=LD}{%
+         family={Lovell},
+         familyi={L\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=MW}{%
+         family={M{\"{u}}ller},
+         familyi={M\bibinitperiod},
+         given={Warren},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Taylor},
+         familyi={T\bibinitperiod},
+         given={Jen},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZA}{%
+         family={Zwart},
+         familyi={Z\bibinitperiod},
+         given={Alec},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=HC}{%
+         family={Helliwell},
+         familyi={H\bibinitperiod},
+         given={Chris},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {John Wiley {\&} Sons, Ltd}%
+    }
+    \keyw{Applications-proportions,Challenge posed by omics data to
+  compositional ana,Compositional data,Compositional data analysis-roots in
+  geosciences,Current raft of nucleotide-counting sequencing tec,Impact of
+  compositional constraints in the omics-b,Impact of compositional
+  constraints-on correlation,Impact of compositional constraints-on
+  multivariat,PPM-whether molecular biosciences treat compositio,The Omics Imp
+  and bioscience experiment paradigms-,Under-and over-expression-used in gene
+  expression,and biological systems with sources of variability,being scarce,in
+  comparison with abundance of measurements (p),in molecular biology-principled
+  approaches,interpreting measurements of mineral content of ro,molecular
+  accountant par excellence,percentages,referring to mRNAs}
+    \strng{namehash}{LD+1}
+    \strng{fullhash}{LDMWTJZAHC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    This chapter contains sections titled: * Introduction * The Omics Imp and
+  Two Bioscience Experiment Paradigms * The Impact of Compositional Constraints
+  in the Omics * Impact of Compositional Constraints on Correlation and
+  Covariance * Implications * Acknowledgements * References%
+    }
+    \field{booktitle}{Compositional Data Analysis: Theory and Applications}
+    \verb{doi}
+    \verb 10.1002/9781119976462.ch14
+    \endverb
+    \field{isbn}{9780470711354}
+    \field{number}{October}
+    \field{pages}{191\bibrangedash 207}
+    \field{title}{{Proportions, Percentages, PPM: Do The Molecular Biosciences
+  Treat Compositional Data Right?}}
+    \verb{url}
+    \verb http://dx.doi.org/10.1002/9781119976462.ch14
+    \endverb
+    \verb{file}
+    \verb :C$\backslash$:/Classes/Dissertation/Proportionality/CoDa-A05-Lovell.
+    \verb pdf:pdf
+    \endverb
+    \field{year}{2011}
   \endentry
 
   \entry{Martin-Fernandez1998}{article}{}
     \name{author}{6}{}{%
       {{hash=MFJA}{%
          family={Mart{\'{i}}n-Fern{\'{a}}ndez},
-         family_i={M\bibinitperiod-F\bibinitperiod},
+         familyi={M\bibinitperiod-F\bibinitperiod},
          given={J\bibnamedelima A},
-         given_i={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
       }}%
       {{hash=BVC}{%
          family={Barcel{\'{o}}-Vidal},
-         family_i={B\bibinitperiod-V\bibinitperiod},
+         familyi={B\bibinitperiod-V\bibinitperiod},
          given={C},
-         given_i={C},
+         giveni={C},
       }}%
       {{hash=PGV}{%
          family={Pawlowsky-Glahn},
-         family_i={P\bibinitperiod-G\bibinitperiod},
+         familyi={P\bibinitperiod-G\bibinitperiod},
          given={V},
-         given_i={V},
+         giveni={V},
       }}%
       {{hash=BA}{%
          family={Buccianti},
-         family_i={B\bibinitperiod},
+         familyi={B\bibinitperiod},
          given={A},
-         given_i={A},
+         giveni={A},
       }}%
       {{hash=NG}{%
          family={Nardi},
-         family_i={N\bibinitperiod},
+         familyi={N\bibinitperiod},
          given={G},
-         given_i={G},
+         giveni={G},
       }}%
       {{hash=PR}{%
          family={Potenza},
-         family_i={P\bibinitperiod},
+         familyi={P\bibinitperiod},
          given={R},
-         given_i={R},
+         giveni={R},
       }}%
     }
     \strng{namehash}{MFJA+1}
     \strng{fullhash}{MFJABVCPGVBANGPR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{1998}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{abstract}{%
@@ -910,13 +877,10 @@
   hierarchical clustering methods}}
     \field{volume}{98}
     \verb{file}
-    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley
-  Des
-    \verb ktop/Downloaded/Mart{\'{i}}n-Fern{\'{a}}ndez et al. - 1998 - Measures
-  o
-    \verb f difference for compositional data and hierarchical clustering
-  methods
-    \verb .pdf:pdf
+    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley D
+    \verb esktop/Downloaded/Mart{\'{i}}n-Fern{\'{a}}ndez et al. - 1998 - Measur
+    \verb es of difference for compositional data and hierarchical clustering m
+    \verb ethods.pdf:pdf
     \endverb
     \field{journaltitle}{Proceedings of IAMG}
     \field{year}{1998}
@@ -926,16 +890,15 @@
     \name{author}{1}{}{%
       {{hash=PK}{%
          family={Pearson},
-         family_i={P\bibinitperiod},
+         familyi={P\bibinitperiod},
          given={Karl},
-         given_i={K\bibinitperiod},
+         giveni={K\bibinitperiod},
       }}%
     }
     \strng{namehash}{PK1}
     \strng{fullhash}{PK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{1896}
     \field{sortinit}{P}
     \field{sortinithash}{P}
     \field{pages}{489\bibrangedash 498}
@@ -955,22 +918,21 @@
     \name{author}{2}{}{%
       {{hash=RMD}{%
          family={Robinson},
-         family_i={R\bibinitperiod},
+         familyi={R\bibinitperiod},
          given={M.\bibnamedelima D.},
-         given_i={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+         giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
       }}%
       {{hash=SGK}{%
          family={Smyth},
-         family_i={S\bibinitperiod},
+         familyi={S\bibinitperiod},
          given={G.\bibnamedelima K.},
-         given_i={G\bibinitperiod\bibinitdelim K\bibinitperiod},
+         giveni={G\bibinitperiod\bibinitdelim K\bibinitperiod},
       }}%
     }
     \strng{namehash}{RMDSGK1}
     \strng{fullhash}{RMDSGK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2007}
     \field{sortinit}{R}
     \field{sortinithash}{R}
     \verb{doi}
@@ -982,15 +944,13 @@
     \field{title}{{Small-sample estimation of negative binomial dispersion,
   with applications to SAGE data}}
     \verb{url}
-    \verb
-  http://biostatistics.oxfordjournals.org/cgi/doi/10.1093/biostatistics/k
-    \verb xm030
+    \verb http://biostatistics.oxfordjournals.org/cgi/doi/10.1093/biostatistics
+    \verb /kxm030
     \endverb
     \field{volume}{9}
     \verb{file}
-    \verb
-  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/EdgeR.p
-    \verb df:pdf
+    \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/EdgeR
+    \verb .pdf:pdf
     \endverb
     \field{journaltitle}{Biostatistics}
     \field{year}{2007}
@@ -1000,22 +960,21 @@
     \name{author}{2}{}{%
       {{hash=RMD}{%
          family={Robinson},
-         family_i={R\bibinitperiod},
+         familyi={R\bibinitperiod},
          given={Mark\bibnamedelima D},
-         given_i={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+         giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
       }}%
       {{hash=OA}{%
          family={Oshlack},
-         family_i={O\bibinitperiod},
+         familyi={O\bibinitperiod},
          given={Alicia},
-         given_i={A\bibinitperiod},
+         giveni={A\bibinitperiod},
       }}%
     }
     \strng{namehash}{RMDOA1}
     \strng{fullhash}{RMDOA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2010}
     \field{sortinit}{R}
     \field{sortinithash}{R}
     \field{abstract}{%
@@ -1038,11 +997,9 @@
   analysis of RNA-seq data.}}
     \field{volume}{11}
     \verb{file}
-    \verb
-  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Robinso
-    \verb n and Oshlack (2010)
-  A{\_}scaling{\_}normalization{\_}method{\_}for{\_}
-    \verb differential{\_}expression{\_}(TMM).pdf:pdf
+    \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Robin
+    \verb son and Oshlack (2010) A{\_}scaling{\_}normalization{\_}method{\_}for
+    \verb {\_}differential{\_}expression{\_}(TMM).pdf:pdf
     \endverb
     \field{journaltitle}{Genome biology}
     \field{year}{2010}
@@ -1052,7 +1009,7 @@
     \name{author}{1}{}{%
       {{hash=S}{%
          family={{SEQC/MAQC-III Consortium}},
-         family_i={S\bibinitperiod},
+         familyi={S\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
@@ -1065,7 +1022,6 @@
     \strng{fullhash}{S1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{shorttitle}
-    \field{labelyear}{2014}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{abstract}{%
@@ -1102,13 +1058,10 @@
     \endverb
     \field{volume}{32}
     \verb{file}
-    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley
-  Des
-    \verb ktop/Downloaded/SEQCMAQC-III Consortium - 2014 - A comprehensive
-  assess
-    \verb ment of RNA-seq accuracy, reproducibility and information content by
-  th
-    \verb e Sequenci.pdf:pdf
+    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley D
+    \verb esktop/Downloaded/SEQCMAQC-III Consortium - 2014 - A comprehensive as
+    \verb sessment of RNA-seq accuracy, reproducibility and information content
+    \verb  by the Sequenci.pdf:pdf
     \endverb
     \field{journaltitle}{Nature biotechnology}
     \field{year}{2014}
@@ -1119,119 +1072,118 @@
     \name{author}{18}{}{%
       {{hash=tPAC}{%
          family={{'t Hoen}},
-         family_i={t\bibinitperiod},
+         familyi={t\bibinitperiod},
          given={Peter A\bibnamedelima C},
-         given_i={P\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim
+         giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim
   C\bibinitperiod},
       }}%
       {{hash=FMR}{%
          family={Friedl{\"{a}}nder},
-         family_i={F\bibinitperiod},
+         familyi={F\bibinitperiod},
          given={Marc\bibnamedelima R},
-         given_i={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+         giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
       }}%
       {{hash=AJ}{%
          family={Alml{\"{o}}f},
-         family_i={A\bibinitperiod},
+         familyi={A\bibinitperiod},
          given={Jonas},
-         given_i={J\bibinitperiod},
+         giveni={J\bibinitperiod},
       }}%
       {{hash=SM}{%
          family={Sammeth},
-         family_i={S\bibinitperiod},
+         familyi={S\bibinitperiod},
          given={Michael},
-         given_i={M\bibinitperiod},
+         giveni={M\bibinitperiod},
       }}%
       {{hash=PI}{%
          family={Pulyakhina},
-         family_i={P\bibinitperiod},
+         familyi={P\bibinitperiod},
          given={Irina},
-         given_i={I\bibinitperiod},
+         giveni={I\bibinitperiod},
       }}%
       {{hash=ASY}{%
          family={Anvar},
-         family_i={A\bibinitperiod},
+         familyi={A\bibinitperiod},
          given={Seyed\bibnamedelima Yahya},
-         given_i={S\bibinitperiod\bibinitdelim Y\bibinitperiod},
+         giveni={S\bibinitperiod\bibinitdelim Y\bibinitperiod},
       }}%
       {{hash=LJFJ}{%
          family={Laros},
-         family_i={L\bibinitperiod},
+         familyi={L\bibinitperiod},
          given={Jeroen F\bibnamedelima J},
-         given_i={J\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim
+         giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim
   J\bibinitperiod},
       }}%
       {{hash=BHPJ}{%
          family={Buermans},
-         family_i={B\bibinitperiod},
+         familyi={B\bibinitperiod},
          given={Henk P\bibnamedelima J},
-         given_i={H\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim
+         giveni={H\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim
   J\bibinitperiod},
       }}%
       {{hash=KO}{%
          family={Karlberg},
-         family_i={K\bibinitperiod},
+         familyi={K\bibinitperiod},
          given={Olof},
-         given_i={O\bibinitperiod},
+         giveni={O\bibinitperiod},
       }}%
       {{hash=BM}{%
          family={Br{\"{a}}nnvall},
-         family_i={B\bibinitperiod},
+         familyi={B\bibinitperiod},
          given={Mathias},
-         given_i={M\bibinitperiod},
+         giveni={M\bibinitperiod},
       }}%
       {{hash=dDJT}{%
          prefix={den},
-         prefix_i={d\bibinitperiod},
+         prefixi={d\bibinitperiod},
          family={Dunnen},
-         family_i={D\bibinitperiod},
+         familyi={D\bibinitperiod},
          given={Johan\bibnamedelima T},
-         given_i={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+         giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod},
       }}%
       {{hash=vOGJB}{%
          prefix={van},
-         prefix_i={v\bibinitperiod},
+         prefixi={v\bibinitperiod},
          family={Ommen},
-         family_i={O\bibinitperiod},
+         familyi={O\bibinitperiod},
          given={Gert-Jan\bibnamedelima B},
-         given_i={G\bibinitperiod-J\bibinitperiod\bibinitdelim
-  B\bibinitperiod},
+         giveni={G\bibinitperiod-J\bibinitperiod\bibinitdelim B\bibinitperiod},
       }}%
       {{hash=GIG}{%
          family={Gut},
-         family_i={G\bibinitperiod},
+         familyi={G\bibinitperiod},
          given={Ivo\bibnamedelima G},
-         given_i={I\bibinitperiod\bibinitdelim G\bibinitperiod},
+         giveni={I\bibinitperiod\bibinitdelim G\bibinitperiod},
       }}%
       {{hash=GR}{%
          family={Guig{\'{o}}},
-         family_i={G\bibinitperiod},
+         familyi={G\bibinitperiod},
          given={Roderic},
-         given_i={R\bibinitperiod},
+         giveni={R\bibinitperiod},
       }}%
       {{hash=EX}{%
          family={Estivill},
-         family_i={E\bibinitperiod},
+         familyi={E\bibinitperiod},
          given={Xavier},
-         given_i={X\bibinitperiod},
+         giveni={X\bibinitperiod},
       }}%
       {{hash=SAC}{%
          family={Syv{\"{a}}nen},
-         family_i={S\bibinitperiod},
+         familyi={S\bibinitperiod},
          given={Ann-Christine},
-         given_i={A\bibinitperiod-C\bibinitperiod},
+         giveni={A\bibinitperiod-C\bibinitperiod},
       }}%
       {{hash=DET}{%
          family={Dermitzakis},
-         family_i={D\bibinitperiod},
+         familyi={D\bibinitperiod},
          given={Emmanouil\bibnamedelima T},
-         given_i={E\bibinitperiod\bibinitdelim T\bibinitperiod},
+         giveni={E\bibinitperiod\bibinitdelim T\bibinitperiod},
       }}%
       {{hash=LT}{%
          family={Lappalainen},
-         family_i={L\bibinitperiod},
+         familyi={L\bibinitperiod},
          given={Tuuli},
-         given_i={T\bibinitperiod},
+         giveni={T\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
@@ -1250,7 +1202,6 @@
     \strng{fullhash}{tPACFMRAJSMPIASYLJFJBHPJKOBMDJTdOGJBvGIGGREXSACDETLT1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{shorttitle}
-    \field{labelyear}{2013}
     \field{sortinit}{T}
     \field{sortinithash}{T}
     \field{abstract}{%
@@ -1292,21 +1243,21 @@
     \name{author}{3}{}{%
       {{hash=VK}{%
          family={{Van Keuren-Jensen}},
-         family_i={V\bibinitperiod},
+         familyi={V\bibinitperiod},
          given={Kendall},
-         given_i={K\bibinitperiod},
+         giveni={K\bibinitperiod},
       }}%
       {{hash=KJJ}{%
          family={Keats},
-         family_i={K\bibinitperiod},
+         familyi={K\bibinitperiod},
          given={Jonathan\bibnamedelima J},
-         given_i={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+         giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod},
       }}%
       {{hash=CDW}{%
          family={Craig},
-         family_i={C\bibinitperiod},
+         familyi={C\bibinitperiod},
          given={David\bibnamedelima W},
-         given_i={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+         giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
@@ -1317,7 +1268,6 @@
     \strng{fullhash}{VKKJJCDW1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{shorttitle}
-    \field{labelyear}{2014}
     \field{sortinit}{V}
     \field{sortinithash}{V}
     \verb{doi}
