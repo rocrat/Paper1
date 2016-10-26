@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex version 2.5 $
+% $ biblatex bbl format version 2.7 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -16,100 +16,120 @@
   {}
 \endgroup
 
-\entry{Aitchison1986}{book}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Aitchison}{A.}%
-     {J}{J}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Chapman {\&} Hall, Ltd.}%
-  }
-  \keyw{CoDa}
-  \strng{namehash}{AJ1}
-  \strng{fullhash}{AJ1}
-  \field{labelyear}{1986}
-  \field{sortinit}{A}
-  \field{isbn}{0-412-28060-4}
-  \field{title}{{The statistical analysis of compositional data}}
-  \verb{url}
-  \verb http://dl.acm.org/citation.cfm?id=17272
-  \endverb
-  \field{year}{1986}
-\endentry
+\sortlist[entry]{nyt/global/}
+  \entry{Aitchison1986}{book}{}
+    \name{author}{1}{}{%
+      {{hash=AJ}{%
+         family={Aitchison},
+         family_i={A\bibinitperiod},
+         given={J},
+         given_i={J},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Chapman {\&} Hall, Ltd.}%
+    }
+    \keyw{CoDa}
+    \strng{namehash}{AJ1}
+    \strng{fullhash}{AJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1986}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{isbn}{0-412-28060-4}
+    \field{title}{{The statistical analysis of compositional data}}
+    \verb{url}
+    \verb http://dl.acm.org/citation.cfm?id=17272
+    \endverb
+    \field{year}{1986}
+  \endentry
 
-\entry{Aitchison1980}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Aitchison}{A.}%
-     {J.}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Shen}{S.}%
-     {S.M.}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{AJSS1}
-  \strng{fullhash}{AJSS1}
-  \field{labelyear}{1980}
-  \field{sortinit}{A}
-  \verb{doi}
-  \verb 10.1093/biomet/67.2.261
-  \endverb
-  \field{issn}{0006-3444}
-  \field{number}{2}
-  \field{pages}{261\bibrangedash 272}
-  \field{title}{{Logistic-normal distributions:Some properties and uses}}
-  \verb{url}
-  \verb https://www.researchgate.net/publication/229099731{\_}Logistic-Normal{\
-  \verb _}Distributions{\_}Some{\_}Properties{\_}and{\_}Uses
-  \endverb
-  \field{volume}{67}
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Aitchis
-  \verb on and Chen (1980) Logistic normal distributions- some uses and propert
-  \verb ies.pdf:pdf
-  \endverb
-  \field{journaltitle}{Biometrika}
-  \field{year}{1980}
-  \warn{\item Invalid format of field 'month'}
-\endentry
+  \entry{Aitchison1980}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AJ}{%
+         family={Aitchison},
+         family_i={A\bibinitperiod},
+         given={J.},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Shen},
+         family_i={S\bibinitperiod},
+         given={S.M.},
+         given_i={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AJSS1}
+    \strng{fullhash}{AJSS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1980}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1093/biomet/67.2.261
+    \endverb
+    \field{issn}{0006-3444}
+    \field{number}{2}
+    \field{pages}{261\bibrangedash 272}
+    \field{title}{{Logistic-normal distributions:Some properties and uses}}
+    \verb{url}
+    \verb
+  https://www.researchgate.net/publication/229099731{\_}Logistic-Normal{\
+    \verb _}Distributions{\_}Some{\_}Properties{\_}and{\_}Uses
+    \endverb
+    \field{volume}{67}
+    \verb{file}
+    \verb
+  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Aitchis
+    \verb on and Chen (1980) Logistic normal distributions- some uses and
+  propert
+    \verb ies.pdf:pdf
+    \endverb
+    \field{journaltitle}{Biometrika}
+    \field{year}{1980}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
 
-\entry{Aitchison2000}{article}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Aitchison}{A.}%
-     {J.}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Barcel{\'{o}}-Vidal}{B.-V.}%
-     {C.}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Mart{\'{i}}n-Fern{\'{a}}ndez}{M.-F.}%
-     {J.~A.}{J.~A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Pawlowsky-Glahn}{P.-G.}%
-     {V.}{V.}%
-     {}{}%
-     {}{}}%
-  }
-  \keyw{Euclidean distance,Permutation invariance,Perturbation invariance,Scale
-  invariance,Subcompositional dominance}
-  \strng{namehash}{AJ+1}
-  \strng{fullhash}{AJBVCMFJAPGV1}
-  \field{labelyear}{2000}
-  \field{sortinit}{A}
-  \field{abstract}{%
-  The concept of distance between two compositions is important in the
+  \entry{Aitchison2000}{article}{}
+    \name{author}{4}{}{%
+      {{hash=AJ}{%
+         family={Aitchison},
+         family_i={A\bibinitperiod},
+         given={J.},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=BVC}{%
+         family={Barcel{\'{o}}-Vidal},
+         family_i={B\bibinitperiod-V\bibinitperiod},
+         given={C.},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=MFJA}{%
+         family={Mart{\'{i}}n-Fern{\'{a}}ndez},
+         family_i={M\bibinitperiod-F\bibinitperiod},
+         given={J.\bibnamedelima A.},
+         given_i={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=PGV}{%
+         family={Pawlowsky-Glahn},
+         family_i={P\bibinitperiod-G\bibinitperiod},
+         given={V.},
+         given_i={V\bibinitperiod},
+      }}%
+    }
+    \keyw{Euclidean distance,Permutation invariance,Perturbation
+  invariance,Scale invariance,Subcompositional dominance}
+    \strng{namehash}{AJ+1}
+    \strng{fullhash}{AJBVCMFJAPGV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2000}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    The concept of distance between two compositions is important in the
   statistical analysis of compositional data, particularly in such activities
   as cluster analysis and multidimensional scaling. This paper exposes rite
   fallacies in a recent criticism of logratio-based distance measures-in
@@ -118,162 +138,187 @@
   compositional data analysis involving distance concepts satisfies certain
   logically necessary invariance conditions. Logratio analysis and its
   associated distance measures satisfies these conditions.%
-  }
-  \verb{doi}
-  \verb 10.1023/A:1007529726302
-  \endverb
-  \field{isbn}{0882-8121}
-  \field{issn}{08828121}
-  \field{number}{3}
-  \field{pages}{271\bibrangedash 275}
-  \field{title}{{Logratio analysis and compositional distance}}
-  \field{volume}{32}
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Aitchis
-  \verb on et al. (2000) Logratio analysis and compositional distance.pdf:pdf
-  \endverb
-  \field{journaltitle}{Mathematical Geology}
-  \field{year}{2000}
-\endentry
+    }
+    \verb{doi}
+    \verb 10.1023/A:1007529726302
+    \endverb
+    \field{isbn}{0882-8121}
+    \field{issn}{08828121}
+    \field{number}{3}
+    \field{pages}{271\bibrangedash 275}
+    \field{title}{{Logratio analysis and compositional distance}}
+    \field{volume}{32}
+    \verb{file}
+    \verb
+  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Aitchis
+    \verb on et al. (2000) Logratio analysis and compositional distance.pdf:pdf
+    \endverb
+    \field{journaltitle}{Mathematical Geology}
+    \field{year}{2000}
+  \endentry
 
-\entry{Aitchison1992}{article}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Aitchison}{A.}%
-     {John}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Kluwer Academic Publishers-Plenum Publishers}%
-  }
-  \strng{namehash}{AJ1}
-  \strng{fullhash}{AJ2}
-  \field{labelyear}{1992}
-  \field{sortinit}{A}
-  \verb{doi}
-  \verb 10.1007/BF00891269
-  \endverb
-  \field{issn}{0882-8121}
-  \field{number}{4}
-  \field{pages}{365\bibrangedash 379}
-  \field{title}{{On criteria for measures of compositional difference}}
-  \verb{url}
-  \verb http://link.springer.com/10.1007/BF00891269
-  \endverb
-  \field{volume}{24}
-  \verb{file}
-  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
-  \verb ktop/Downloaded/Aitchison - 1992 - On criteria for measures of composit
-  \verb ional difference.pdf:pdf
-  \endverb
-  \field{journaltitle}{Mathematical Geology}
-  \field{year}{1992}
-  \warn{\item Invalid format of field 'month'}
-\endentry
+  \entry{Aitchison1992}{article}{}
+    \name{author}{1}{}{%
+      {{hash=AJ}{%
+         family={Aitchison},
+         family_i={A\bibinitperiod},
+         given={John},
+         given_i={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Kluwer Academic Publishers-Plenum Publishers}%
+    }
+    \strng{namehash}{AJ1}
+    \strng{fullhash}{AJ2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1992}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1007/BF00891269
+    \endverb
+    \field{issn}{0882-8121}
+    \field{number}{4}
+    \field{pages}{365\bibrangedash 379}
+    \field{title}{{On criteria for measures of compositional difference}}
+    \verb{url}
+    \verb http://link.springer.com/10.1007/BF00891269
+    \endverb
+    \field{volume}{24}
+    \verb{file}
+    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley
+  Des
+    \verb ktop/Downloaded/Aitchison - 1992 - On criteria for measures of
+  composit
+    \verb ional difference.pdf:pdf
+    \endverb
+    \field{journaltitle}{Mathematical Geology}
+    \field{year}{1992}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
 
-\entry{Aitchison2002}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Aitchison}{A.}%
-     {John}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Greenacre}{G.}%
-     {Michael}{M.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{AJGM1}
-  \strng{fullhash}{AJGM1}
-  \field{labelyear}{2002}
-  \field{sortinit}{A}
-  \verb{doi}
-  \verb 10.1111/1467-9876.00275
-  \endverb
-  \field{issn}{0035-9254}
-  \field{number}{4}
-  \field{pages}{375\bibrangedash 392}
-  \field{title}{{Biplots of compositional data}}
-  \verb{url}
-  \verb http://doi.wiley.com/10.1111/1467-9876.00275
-  \endverb
-  \field{volume}{51}
-  \field{journaltitle}{Journal of the Royal Statistical Society: Series C
+  \entry{Aitchison2002}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AJ}{%
+         family={Aitchison},
+         family_i={A\bibinitperiod},
+         given={John},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Greenacre},
+         family_i={G\bibinitperiod},
+         given={Michael},
+         given_i={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AJGM1}
+    \strng{fullhash}{AJGM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2002}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1111/1467-9876.00275
+    \endverb
+    \field{issn}{0035-9254}
+    \field{number}{4}
+    \field{pages}{375\bibrangedash 392}
+    \field{title}{{Biplots of compositional data}}
+    \verb{url}
+    \verb http://doi.wiley.com/10.1111/1467-9876.00275
+    \endverb
+    \field{volume}{51}
+    \field{journaltitle}{Journal of the Royal Statistical Society: Series C
   (Applied Statistics)}
-  \field{year}{2002}
-  \warn{\item Invalid format of field 'month'}
-\endentry
+    \field{year}{2002}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
 
-\entry{Anders2010}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Anders}{A.}%
-     {Simon}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Huber}{H.}%
-     {W}{W}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {BioMed Central Ltd}%
-  }
-  \strng{namehash}{ASHW1}
-  \strng{fullhash}{ASHW1}
-  \field{labelyear}{2010}
-  \field{sortinit}{A}
-  \verb{doi}
-  \verb 10.1186/gb-2010-11-10-r106
-  \endverb
-  \field{isbn}{1474-7596}
-  \field{issn}{1465-6906}
-  \field{number}{10}
-  \field{pages}{R106}
-  \field{title}{{Differential expression analysis for sequence count data}}
-  \verb{url}
-  \verb http://www.biomedcentral.com/content/pdf/gb-2010-11-10-r106.pdf
-  \endverb
-  \field{volume}{11}
-  \verb{file}
-  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
-  \verb ktop/Downloaded/Anders, Huber - 2010 - Differential expression analysis
-  \verb  for sequence count data.pdf:pdf
-  \endverb
-  \field{journaltitle}{Genome Biol}
-  \field{year}{2010}
-\endentry
+  \entry{Anders2010}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AS}{%
+         family={Anders},
+         family_i={A\bibinitperiod},
+         given={Simon},
+         given_i={S\bibinitperiod},
+      }}%
+      {{hash=HW}{%
+         family={Huber},
+         family_i={H\bibinitperiod},
+         given={W},
+         given_i={W},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {BioMed Central Ltd}%
+    }
+    \strng{namehash}{ASHW1}
+    \strng{fullhash}{ASHW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2010}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1186/gb-2010-11-10-r106
+    \endverb
+    \field{isbn}{1474-7596}
+    \field{issn}{1465-6906}
+    \field{number}{10}
+    \field{pages}{R106}
+    \field{title}{{Differential expression analysis for sequence count data}}
+    \verb{url}
+    \verb http://www.biomedcentral.com/content/pdf/gb-2010-11-10-r106.pdf
+    \endverb
+    \field{volume}{11}
+    \verb{file}
+    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley
+  Des
+    \verb ktop/Downloaded/Anders, Huber - 2010 - Differential expression
+  analysis
+    \verb  for sequence count data.pdf:pdf
+    \endverb
+    \field{journaltitle}{Genome Biol}
+    \field{year}{2010}
+  \endentry
 
-\entry{Billheimer2001}{article}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Billheimer}{B.}%
-     {Dean}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Guttorp}{G.}%
-     {Peter}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Fagan}{F.}%
-     {William~F}{W.~F.}%
-     {}{}%
-     {}{}}%
-  }
-  \keyw{compositional data,mcmc,multinomial regression,random effects,species
+  \entry{Billheimer2001}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BD}{%
+         family={Billheimer},
+         family_i={B\bibinitperiod},
+         given={Dean},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=GP}{%
+         family={Guttorp},
+         family_i={G\bibinitperiod},
+         given={Peter},
+         given_i={P\bibinitperiod},
+      }}%
+      {{hash=FWF}{%
+         family={Fagan},
+         family_i={F\bibinitperiod},
+         given={William\bibnamedelima F},
+         given_i={W\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+    }
+    \keyw{compositional data,mcmc,multinomial regression,random effects,species
   assemblage}
-  \strng{namehash}{BDGPFWF1}
-  \strng{fullhash}{BDGPFWF1}
-  \field{labelyear}{2001}
-  \field{sortinit}{B}
-  \field{abstract}{%
-  The relative abundance of different species characterizes the structure of a
-  biological community. We analyze an experiment addressing the relationship
+    \strng{namehash}{BDGPFWF1}
+    \strng{fullhash}{BDGPFWF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2001}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    The relative abundance of different species characterizes the structure of
+  a biological community. We analyze an experiment addressing the relationship
   between omnivorous feeding linkages and community stability. Our goal is to
   determine whether communities with different predator compositions respond
   similarly to environmental disturbance. To evaluate these data, we develop a
@@ -287,72 +332,84 @@
   omnivory can help to stabilize community dynamics and prevent radical shifts
   in community composition. This result is at odds with classical food-web
   predictions, but agrees with recent theoretical formulations.%
-  }
-  \verb{doi}
-  \verb 10.1198/016214501753381850
-  \endverb
-  \field{isbn}{01621459}
-  \field{issn}{0162-1459}
-  \field{number}{456}
-  \field{pages}{1205\bibrangedash 1214}
-  \field{title}{{Statistical Interpretation of Species Composition}}
-  \verb{url}
-  \verb http://www.jstor.org/stable/3085883
-  \endverb
-  \field{volume}{96}
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Billhei
-  \verb mer, Guttorp, and Fagan (2011) Statistical Interpretation of Species Co
-  \verb mposition.pdf:pdf
-  \endverb
-  \field{journaltitle}{Journal of the American Statistical Association}
-  \field{year}{2001}
-\endentry
+    }
+    \verb{doi}
+    \verb 10.1198/016214501753381850
+    \endverb
+    \field{isbn}{01621459}
+    \field{issn}{0162-1459}
+    \field{number}{456}
+    \field{pages}{1205\bibrangedash 1214}
+    \field{title}{{Statistical Interpretation of Species Composition}}
+    \verb{url}
+    \verb http://www.jstor.org/stable/3085883
+    \endverb
+    \field{volume}{96}
+    \verb{file}
+    \verb
+  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Billhei
+    \verb mer, Guttorp, and Fagan (2011) Statistical Interpretation of Species
+  Co
+    \verb mposition.pdf:pdf
+    \endverb
+    \field{journaltitle}{Journal of the American Statistical Association}
+    \field{year}{2001}
+  \endentry
 
-\entry{chen2011}{article}{}
-  \name{author}{7}{}{%
-    {{}%
-     {Chen}{C.}%
-     {Chao}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Grennan}{G.}%
-     {Kay}{K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Badner}{B.}%
-     {Judith}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zhang}{Z.}%
-     {Dandan}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Gershon}{G.}%
-     {Elliot}{E.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Jin}{J.}%
-     {Li}{L.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Liu}{L.}%
-     {Chunyu}{C.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{CC+1}
-  \strng{fullhash}{CCGKBJZDGEJLLC1}
-  \field{labelyear}{2011}
-  \field{sortinit}{C}
-  \field{abstract}{%
-  The expression microarray is a frequently used approach to study gene
+  \entry{chen2011}{article}{}
+    \name{author}{7}{}{%
+      {{hash=CC}{%
+         family={Chen},
+         family_i={C\bibinitperiod},
+         given={Chao},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=GK}{%
+         family={Grennan},
+         family_i={G\bibinitperiod},
+         given={Kay},
+         given_i={K\bibinitperiod},
+      }}%
+      {{hash=BJ}{%
+         family={Badner},
+         family_i={B\bibinitperiod},
+         given={Judith},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=ZD}{%
+         family={Zhang},
+         family_i={Z\bibinitperiod},
+         given={Dandan},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=GE}{%
+         family={Gershon},
+         family_i={G\bibinitperiod},
+         given={Elliot},
+         given_i={E\bibinitperiod},
+      }}%
+      {{hash=JL}{%
+         family={Jin},
+         family_i={J\bibinitperiod},
+         given={Li},
+         given_i={L\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Liu},
+         family_i={L\bibinitperiod},
+         given={Chunyu},
+         given_i={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CC+1}
+    \strng{fullhash}{CCGKBJZDGEJLLC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    The expression microarray is a frequently used approach to study gene
   expression on a genome-wide scale. However, the data produced by the
   thousands of microarray studies published annually are confounded by "batch
   effects," the systematic error introduced when samples are processed in
@@ -367,63 +424,72 @@
   for correlation of expression profiles, due to a sizeable probe effect in
   microarray data that can inflate the correlation among replicates and
   unrelated samples.%
-  }
-  \verb{doi}
-  \verb 10.1371/journal.pone.0017238
-  \endverb
-  \field{isbn}{1932-6203}
-  \field{issn}{19326203}
-  \field{number}{2}
-  \field{title}{{Removing batch effects in analysis of expression microarray
+    }
+    \verb{doi}
+    \verb 10.1371/journal.pone.0017238
+    \endverb
+    \field{isbn}{1932-6203}
+    \field{issn}{19326203}
+    \field{number}{2}
+    \field{title}{{Removing batch effects in analysis of expression microarray
   data: An evaluation of six batch adjustment methods}}
-  \field{volume}{6}
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Chen et
-  \verb  al (2011) Removing Batch Effects in Analysis of Expression Microarray
-  \verb Data- An Evaluation of Six Batch Adjustment Methods.pdf:pdf
-  \endverb
-  \field{journaltitle}{PLoS ONE}
-  \field{year}{2011}
-\endentry
+    \field{volume}{6}
+    \verb{file}
+    \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Chen
+  et
+    \verb  al (2011) Removing Batch Effects in Analysis of Expression
+  Microarray
+    \verb Data- An Evaluation of Six Batch Adjustment Methods.pdf:pdf
+    \endverb
+    \field{journaltitle}{PLoS ONE}
+    \field{year}{2011}
+  \endentry
 
-\entry{Law2014}{article}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Law}{L.}%
-     {Charity~W}{C.~W.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Chen}{C.}%
-     {Yunshun}{Y.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Shi}{S.}%
-     {Wei}{W.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Smyth}{S.}%
-     {Gordon~K}{G.~K.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{language}{1}{%
-    {En}%
-  }
-  \list{publisher}{1}{%
-    {BioMed Central}%
-  }
-  \keyw{Animal Genetics and Genomics,Bioinformatics,Fungus Genetics,Human
+  \entry{Law2014}{article}{}
+    \name{author}{4}{}{%
+      {{hash=LCW}{%
+         family={Law},
+         family_i={L\bibinitperiod},
+         given={Charity\bibnamedelima W},
+         given_i={C\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Chen},
+         family_i={C\bibinitperiod},
+         given={Yunshun},
+         given_i={Y\bibinitperiod},
+      }}%
+      {{hash=SW}{%
+         family={Shi},
+         family_i={S\bibinitperiod},
+         given={Wei},
+         given_i={W\bibinitperiod},
+      }}%
+      {{hash=SGK}{%
+         family={Smyth},
+         family_i={S\bibinitperiod},
+         given={Gordon\bibnamedelima K},
+         given_i={G\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \list{language}{1}{%
+      {En}%
+    }
+    \list{publisher}{1}{%
+      {BioMed Central}%
+    }
+    \keyw{Animal Genetics and Genomics,Bioinformatics,Fungus Genetics,Human
   Genetics,Microbial Genetics and Genomics,Plant Genetics {\&} Genomics}
-  \strng{namehash}{LCW+1}
-  \strng{fullhash}{LCWCYSWSGK1}
-  \field{labelyear}{2014}
-  \field{sortinit}{L}
-  \field{abstract}{%
-  New normal linear modeling strategies are presented for analyzing read counts
-  from RNA-seq experiments. The voom method estimates the mean-variance
+    \strng{namehash}{LCW+1}
+    \strng{fullhash}{LCWCYSWSGK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2014}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    New normal linear modeling strategies are presented for analyzing read
+  counts from RNA-seq experiments. The voom method estimates the mean-variance
   relationship of the log-counts, generates a precision weight for each
   observation and enters these into the limma empirical Bayes analysis
   pipeline. This opens access for RNA-seq analysts to a large body of
@@ -432,44 +498,51 @@
   data are generated according to the assumptions of the earlier methods. Two
   case studies illustrate the use of linear modeling and gene set testing
   methods.%
-  }
-  \verb{doi}
-  \verb 10.1186/gb-2014-15-2-r29
-  \endverb
-  \field{issn}{1465-6914}
-  \field{number}{2}
-  \field{pages}{R29}
-  \field{title}{{voom: Precision weights unlock linear model analysis tools for
-  RNA-seq read counts.}}
-  \verb{url}
-  \verb http://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-2-r2
-  \verb 9
-  \endverb
-  \field{volume}{15}
-  \verb{file}
-  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
-  \verb ktop/Downloaded/Law et al. - 2014 - voom Precision weights unlock linea
-  \verb r model analysis tools for RNA-seq read counts.pdf:pdf
-  \endverb
-  \field{journaltitle}{Genome biology}
-  \field{year}{2014}
-  \warn{\item Invalid format of field 'month'}
-\endentry
+    }
+    \verb{doi}
+    \verb 10.1186/gb-2014-15-2-r29
+    \endverb
+    \field{issn}{1465-6914}
+    \field{number}{2}
+    \field{pages}{R29}
+    \field{title}{{voom: Precision weights unlock linear model analysis tools
+  for RNA-seq read counts.}}
+    \verb{url}
+    \verb
+  http://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-2-r2
+    \verb 9
+    \endverb
+    \field{volume}{15}
+    \verb{file}
+    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley
+  Des
+    \verb ktop/Downloaded/Law et al. - 2014 - voom Precision weights unlock
+  linea
+    \verb r model analysis tools for RNA-seq read counts.pdf:pdf
+    \endverb
+    \field{journaltitle}{Genome biology}
+    \field{year}{2014}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
 
-\entry{leek2014}{article}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Leek}{L.}%
-     {Jeffrey~T.}{J.~T.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LJT1}
-  \strng{fullhash}{LJT1}
-  \field{labelyear}{2014}
-  \field{sortinit}{L}
-  \field{abstract}{%
-  It is now known that unwanted noise and unmodeled artifacts such as batch
+  \entry{leek2014}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LJT}{%
+         family={Leek},
+         family_i={L\bibinitperiod},
+         given={Jeffrey\bibnamedelima T.},
+         given_i={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LJT1}
+    \strng{fullhash}{LJT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2014}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    It is now known that unwanted noise and unmodeled artifacts such as batch
   effects can dramatically reduce the accuracy of statistical inference in
   genomic experiments. These sources of noise must be modeled and removed to
   accurately measure biological variability and to obtain correct statistical
@@ -488,83 +561,97 @@
   FPKM-based data. These updates are available through the sva Bioconductor
   package and I have made fully reproducible analysis using these methods
   available from: https://github.com/jtleek/svaseq.%
-  }
-  \verb{doi}
-  \verb 10.1093/nar/gku864
-  \endverb
-  \field{isbn}{1362-4962 (Electronic)$\backslash$r0305-1048 (Linking)}
-  \field{issn}{13624962}
-  \field{number}{21}
-  \field{pages}{1\bibrangedash 9}
-  \field{title}{{Svaseq: Removing Batch Effects and Other Unwanted Noise From
+    }
+    \verb{doi}
+    \verb 10.1093/nar/gku864
+    \endverb
+    \field{isbn}{1362-4962 (Electronic)$\backslash$r0305-1048 (Linking)}
+    \field{issn}{13624962}
+    \field{number}{21}
+    \field{pages}{1\bibrangedash 9}
+    \field{title}{{Svaseq: Removing Batch Effects and Other Unwanted Noise From
   Sequencing Data}}
-  \field{volume}{42}
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Leek (2
-  \verb 014) svaseek- removing batch effects and other unwanted noise from sequ
-  \verb encing data..pdf:pdf
-  \endverb
-  \field{journaltitle}{Nucleic acids research}
-  \field{year}{2014}
-\endentry
+    \field{volume}{42}
+    \verb{file}
+    \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Leek
+  (2
+    \verb 014) svaseek- removing batch effects and other unwanted noise from
+  sequ
+    \verb encing data..pdf:pdf
+    \endverb
+    \field{journaltitle}{Nucleic acids research}
+    \field{year}{2014}
+  \endentry
 
-\entry{leek2010}{article}{}
-  \name{author}{9}{}{%
-    {{}%
-     {Leek}{L.}%
-     {Jeffrey~T}{J.~T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Scharpf}{S.}%
-     {Robert~B}{R.~B.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Bravo}{B.}%
-     {H{\'{e}}ctor~Corrada}{H.~C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Simcha}{S.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Langmead}{L.}%
-     {Benjamin}{B.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Johnson}{J.}%
-     {W~Evan}{W.~E.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Geman}{G.}%
-     {Donald}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Baggerly}{B.}%
-     {Keith}{K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Irizarry}{I.}%
-     {Rafael~a}{R.~a.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Nature Publishing Group}%
-  }
-  \strng{namehash}{LJT+1}
-  \strng{fullhash}{LJTSRBBHCSDLBJWEGDBKIRa1}
-  \field{labelyear}{2010}
-  \field{sortinit}{L}
-  \field{abstract}{%
-  High-throughput technologies are widely used, for example to assay genetic
+  \entry{leek2010}{article}{}
+    \name{author}{9}{}{%
+      {{hash=LJT}{%
+         family={Leek},
+         family_i={L\bibinitperiod},
+         given={Jeffrey\bibnamedelima T},
+         given_i={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=SRB}{%
+         family={Scharpf},
+         family_i={S\bibinitperiod},
+         given={Robert\bibnamedelima B},
+         given_i={R\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+      {{hash=BHC}{%
+         family={Bravo},
+         family_i={B\bibinitperiod},
+         given={H{\'{e}}ctor\bibnamedelima Corrada},
+         given_i={H\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Simcha},
+         family_i={S\bibinitperiod},
+         given={David},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=LB}{%
+         family={Langmead},
+         family_i={L\bibinitperiod},
+         given={Benjamin},
+         given_i={B\bibinitperiod},
+      }}%
+      {{hash=JWE}{%
+         family={Johnson},
+         family_i={J\bibinitperiod},
+         given={W\bibnamedelima Evan},
+         given_i={W\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=GD}{%
+         family={Geman},
+         family_i={G\bibinitperiod},
+         given={Donald},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=BK}{%
+         family={Baggerly},
+         family_i={B\bibinitperiod},
+         given={Keith},
+         given_i={K\bibinitperiod},
+      }}%
+      {{hash=IRa}{%
+         family={Irizarry},
+         family_i={I\bibinitperiod},
+         given={Rafael\bibnamedelima a},
+         given_i={R\bibinitperiod\bibinitdelim a\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nature Publishing Group}%
+    }
+    \strng{namehash}{LJT+1}
+    \strng{fullhash}{LJTSRBBHCSDLBJWEGDBKIRa1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2010}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    High-throughput technologies are widely used, for example to assay genetic
   variants, gene and protein expression, and epigenetic modifications. One
   often overlooked complication with such studies is batch effects, which occur
   because measurements are affected by laboratory conditions, reagent lots and
@@ -574,66 +661,73 @@
   effects (as well as other technical and biological artefacts) are widespread
   and critical to address. We review experimental and computational approaches
   for doing so.%
-  }
-  \verb{doi}
-  \verb 10.1038/nrg2825
-  \endverb
-  \verb{eprint}
-  \verb NIHMS150003
-  \endverb
-  \field{isbn}{1471-0064 (Electronic)$\backslash$r1471-0056 (Linking)}
-  \field{issn}{1471-0056}
-  \field{number}{10}
-  \field{pages}{733\bibrangedash 739}
-  \field{title}{{Tackling the widespread and critical impact of batch effects
+    }
+    \verb{doi}
+    \verb 10.1038/nrg2825
+    \endverb
+    \verb{eprint}
+    \verb NIHMS150003
+    \endverb
+    \field{isbn}{1471-0064 (Electronic)$\backslash$r1471-0056 (Linking)}
+    \field{issn}{1471-0056}
+    \field{number}{10}
+    \field{pages}{733\bibrangedash 739}
+    \field{title}{{Tackling the widespread and critical impact of batch effects
   in high-throughput data.}}
-  \verb{url}
-  \verb http://dx.doi.org/10.1038/nrg2825
-  \endverb
-  \field{volume}{11}
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Leek et
-  \verb  al. (2010) Tackling the widespread and critical impact of batch effect
-  \verb s in high-throughput data..pdf:pdf
-  \endverb
-  \field{journaltitle}{Nature reviews. Genetics}
-  \field{eprinttype}{arXiv}
-  \field{year}{2010}
-\endentry
+    \verb{url}
+    \verb http://dx.doi.org/10.1038/nrg2825
+    \endverb
+    \field{volume}{11}
+    \verb{file}
+    \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Leek
+  et
+    \verb  al. (2010) Tackling the widespread and critical impact of batch
+  effect
+    \verb s in high-throughput data..pdf:pdf
+    \endverb
+    \field{journaltitle}{Nature reviews. Genetics}
+    \field{eprinttype}{arXiv}
+    \field{year}{2010}
+  \endentry
 
-\entry{Lovell2011}{incollection}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Lovell}{L.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {M{\"{u}}ller}{M.}%
-     {Warren}{W.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Taylor}{T.}%
-     {Jen}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zwart}{Z.}%
-     {Alec}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Helliwell}{H.}%
-     {Chris}{C.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {John Wiley {\&} Sons, Ltd}%
-  }
-  \keyw{Applications-proportions,Challenge posed by omics data to compositional
-  ana,Compositional data,Compositional data analysis-roots in
+  \entry{Lovell2011}{incollection}{}
+    \name{author}{5}{}{%
+      {{hash=LD}{%
+         family={Lovell},
+         family_i={L\bibinitperiod},
+         given={David},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=MW}{%
+         family={M{\"{u}}ller},
+         family_i={M\bibinitperiod},
+         given={Warren},
+         given_i={W\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Taylor},
+         family_i={T\bibinitperiod},
+         given={Jen},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=ZA}{%
+         family={Zwart},
+         family_i={Z\bibinitperiod},
+         given={Alec},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=HC}{%
+         family={Helliwell},
+         family_i={H\bibinitperiod},
+         given={Chris},
+         given_i={C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {John Wiley {\&} Sons, Ltd}%
+    }
+    \keyw{Applications-proportions,Challenge posed by omics data to
+  compositional ana,Compositional data,Compositional data analysis-roots in
   geosciences,Current raft of nucleotide-counting sequencing tec,Impact of
   compositional constraints in the omics-b,Impact of compositional
   constraints-on correlation,Impact of compositional constraints-on
@@ -643,69 +737,81 @@
   comparison with abundance of measurements (p),in molecular biology-principled
   approaches,interpreting measurements of mineral content of ro,molecular
   accountant par excellence,percentages,referring to mRNAs}
-  \strng{namehash}{LD+1}
-  \strng{fullhash}{LDMWTJZAHC1}
-  \field{labelyear}{2011}
-  \field{sortinit}{L}
-  \field{abstract}{%
-  This chapter contains sections titled: * Introduction * The Omics Imp and Two
-  Bioscience Experiment Paradigms * The Impact of Compositional Constraints in
-  the Omics * Impact of Compositional Constraints on Correlation and Covariance
-  * Implications * Acknowledgements * References%
-  }
-  \field{booktitle}{Compositional Data Analysis: Theory and Applications}
-  \verb{doi}
-  \verb 10.1002/9781119976462.ch14
-  \endverb
-  \field{isbn}{9780470711354}
-  \field{number}{October}
-  \field{pages}{191\bibrangedash 207}
-  \field{title}{{Proportions, Percentages, PPM: Do The Molecular Biosciences
+    \strng{namehash}{LD+1}
+    \strng{fullhash}{LDMWTJZAHC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    This chapter contains sections titled: * Introduction * The Omics Imp and
+  Two Bioscience Experiment Paradigms * The Impact of Compositional Constraints
+  in the Omics * Impact of Compositional Constraints on Correlation and
+  Covariance * Implications * Acknowledgements * References%
+    }
+    \field{booktitle}{Compositional Data Analysis: Theory and Applications}
+    \verb{doi}
+    \verb 10.1002/9781119976462.ch14
+    \endverb
+    \field{isbn}{9780470711354}
+    \field{number}{October}
+    \field{pages}{191\bibrangedash 207}
+    \field{title}{{Proportions, Percentages, PPM: Do The Molecular Biosciences
   Treat Compositional Data Right?}}
-  \verb{url}
-  \verb http://dx.doi.org/10.1002/9781119976462.ch14
-  \endverb
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/CoDa-A05-Lovell.pd
-  \verb f:pdf
-  \endverb
-  \field{year}{2011}
-\endentry
+    \verb{url}
+    \verb http://dx.doi.org/10.1002/9781119976462.ch14
+    \endverb
+    \verb{file}
+    \verb
+  :C$\backslash$:/Classes/Dissertation/Proportionality/CoDa-A05-Lovell.pd
+    \verb f:pdf
+    \endverb
+    \field{year}{2011}
+  \endentry
 
-\entry{Lovell2015}{article}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Lovell}{L.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Pawlowsky-Glahn}{P.-G.}%
-     {Vera}{V.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Egozcue}{E.}%
-     {Juan~Jos{\'{e}}}{J.~J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Marguerat}{M.}%
-     {Samuel}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {B{\"{a}}hler}{B.}%
-     {J{\"{u}}rg}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LD+1}
-  \strng{fullhash}{LDPGVEJJMSBJ1}
-  \field{labelyear}{2015}
-  \field{sortinit}{L}
-  \field{abstract}{%
-  In the life sciences, many measurement methods yield only the relative
+  \entry{Lovell2015}{article}{}
+    \name{author}{5}{}{%
+      {{hash=LD}{%
+         family={Lovell},
+         family_i={L\bibinitperiod},
+         given={David},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=PGV}{%
+         family={Pawlowsky-Glahn},
+         family_i={P\bibinitperiod-G\bibinitperiod},
+         given={Vera},
+         given_i={V\bibinitperiod},
+      }}%
+      {{hash=EJJ}{%
+         family={Egozcue},
+         family_i={E\bibinitperiod},
+         given={Juan\bibnamedelima Jos{\'{e}}},
+         given_i={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Marguerat},
+         family_i={M\bibinitperiod},
+         given={Samuel},
+         given_i={S\bibinitperiod},
+      }}%
+      {{hash=BJ}{%
+         family={B{\"{a}}hler},
+         family_i={B\bibinitperiod},
+         given={J{\"{u}}rg},
+         given_i={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LD+1}
+    \strng{fullhash}{LDPGVEJJMSBJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    In the life sciences, many measurement methods yield only the relative
   abundances of different components in a sample. With such relative-or
   compositional-data, differential expression needs careful interpretation, and
   correlation-a statistical workhorse for analyzing pairwise relationships-is
@@ -719,218 +825,251 @@
   proportionality as a means to analyse relative data, it also raises
   intriguing questions about the molecular mechanisms underlying the
   proportional regulation of a range of yeast genes.%
-  }
-  \verb{doi}
-  \verb 10.1371/journal.pcbi.1004075
-  \endverb
-  \field{isbn}{10.1371/journal.pcbi.1004075}
-  \field{issn}{1553-7358}
-  \field{number}{3}
-  \field{pages}{e1004075}
-  \field{title}{{Proportionality: A Valid Alternative to Correlation for
+    }
+    \verb{doi}
+    \verb 10.1371/journal.pcbi.1004075
+    \endverb
+    \field{isbn}{10.1371/journal.pcbi.1004075}
+    \field{issn}{1553-7358}
+    \field{number}{3}
+    \field{pages}{e1004075}
+    \field{title}{{Proportionality: A Valid Alternative to Correlation for
   Relative Data.}}
-  \verb{url}
-  \verb http://www.ncbi.nlm.nih.gov/pubmed/25775355
-  \endverb
-  \field{volume}{11}
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Lovell-
-  \verb proportionality-PLOSOne2015.pdf:pdf
-  \endverb
-  \field{journaltitle}{PLoS computational biology}
-  \field{year}{2015}
-\endentry
+    \verb{url}
+    \verb http://www.ncbi.nlm.nih.gov/pubmed/25775355
+    \endverb
+    \field{volume}{11}
+    \verb{file}
+    \verb
+  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Lovell-
+    \verb proportionality-PLOSOne2015.pdf:pdf
+    \endverb
+    \field{journaltitle}{PLoS computational biology}
+    \field{year}{2015}
+  \endentry
 
-\entry{Martin-Fernandez1998}{article}{}
-  \name{author}{6}{}{%
-    {{}%
-     {Mart{\'{i}}n-Fern{\'{a}}ndez}{M.-F.}%
-     {J~A}{J.~A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Barcel{\'{o}}-Vidal}{B.-V.}%
-     {C}{C}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Pawlowsky-Glahn}{P.-G.}%
-     {V}{V}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Buccianti}{B.}%
-     {A}{A}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Nardi}{N.}%
-     {G}{G}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Potenza}{P.}%
-     {R}{R}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{MFJA+1}
-  \strng{fullhash}{MFJABVCPGVBANGPR1}
-  \field{labelyear}{1998}
-  \field{sortinit}{M}
-  \field{abstract}{%
-  F or the application of a hierarc hic classification method it is necessary
+  \entry{Martin-Fernandez1998}{article}{}
+    \name{author}{6}{}{%
+      {{hash=MFJA}{%
+         family={Mart{\'{i}}n-Fern{\'{a}}ndez},
+         family_i={M\bibinitperiod-F\bibinitperiod},
+         given={J\bibnamedelima A},
+         given_i={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=BVC}{%
+         family={Barcel{\'{o}}-Vidal},
+         family_i={B\bibinitperiod-V\bibinitperiod},
+         given={C},
+         given_i={C},
+      }}%
+      {{hash=PGV}{%
+         family={Pawlowsky-Glahn},
+         family_i={P\bibinitperiod-G\bibinitperiod},
+         given={V},
+         given_i={V},
+      }}%
+      {{hash=BA}{%
+         family={Buccianti},
+         family_i={B\bibinitperiod},
+         given={A},
+         given_i={A},
+      }}%
+      {{hash=NG}{%
+         family={Nardi},
+         family_i={N\bibinitperiod},
+         given={G},
+         given_i={G},
+      }}%
+      {{hash=PR}{%
+         family={Potenza},
+         family_i={P\bibinitperiod},
+         given={R},
+         given_i={R},
+      }}%
+    }
+    \strng{namehash}{MFJA+1}
+    \strng{fullhash}{MFJABVCPGVBANGPR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1998}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{abstract}{%
+    F or the application of a hierarc hic classification method it is necessary
   to establish the measure of difference to be used, as well the appropriate
   measures of cen tral tendency and dispersion in accordance with the nature of
   the data. In this study w e review the requiremen ts for the measure of
   difference when the data set is compositional and we present specifc measures
   of cen tral tendency and dispersion to be used with hierarchical clustering
   methods.%
-  }
-  \field{isbn}{88--900308--2--8}
-  \field{number}{1}
-  \field{pages}{526\bibrangedash 531}
-  \field{title}{{Measures of difference for compositional data and hierarchical
-  clustering methods}}
-  \field{volume}{98}
-  \verb{file}
-  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
-  \verb ktop/Downloaded/Mart{\'{i}}n-Fern{\'{a}}ndez et al. - 1998 - Measures o
-  \verb f difference for compositional data and hierarchical clustering methods
-  \verb .pdf:pdf
-  \endverb
-  \field{journaltitle}{Proceedings of IAMG}
-  \field{year}{1998}
-\endentry
+    }
+    \field{isbn}{88--900308--2--8}
+    \field{number}{1}
+    \field{pages}{526\bibrangedash 531}
+    \field{title}{{Measures of difference for compositional data and
+  hierarchical clustering methods}}
+    \field{volume}{98}
+    \verb{file}
+    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley
+  Des
+    \verb ktop/Downloaded/Mart{\'{i}}n-Fern{\'{a}}ndez et al. - 1998 - Measures
+  o
+    \verb f difference for compositional data and hierarchical clustering
+  methods
+    \verb .pdf:pdf
+    \endverb
+    \field{journaltitle}{Proceedings of IAMG}
+    \field{year}{1998}
+  \endentry
 
-\entry{Pearson1896}{article}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Pearson}{P.}%
-     {Karl}{K.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{PK1}
-  \strng{fullhash}{PK1}
-  \field{labelyear}{1896}
-  \field{sortinit}{P}
-  \field{pages}{489\bibrangedash 498}
-  \field{title}{{Mathematical Contributions to the Theory of Evolution.--On a
+  \entry{Pearson1896}{article}{}
+    \name{author}{1}{}{%
+      {{hash=PK}{%
+         family={Pearson},
+         family_i={P\bibinitperiod},
+         given={Karl},
+         given_i={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PK1}
+    \strng{fullhash}{PK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1896}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{pages}{489\bibrangedash 498}
+    \field{title}{{Mathematical Contributions to the Theory of Evolution.--On a
   Form of Spurious Correlation Which May Arise When Indices Are Used in the
   Measurement of Organs : Pearson, K. : Free Download {\&} Streaming : Internet
   Archive}}
-  \verb{url}
-  \verb https://archive.org/details/philtrans00847732
-  \endverb
-  \field{volume}{60}
-  \field{journaltitle}{Proceedings of the Royal Society of London}
-  \field{year}{1896}
-\endentry
+    \verb{url}
+    \verb https://archive.org/details/philtrans00847732
+    \endverb
+    \field{volume}{60}
+    \field{journaltitle}{Proceedings of the Royal Society of London}
+    \field{year}{1896}
+  \endentry
 
-\entry{Robinson2007}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Robinson}{R.}%
-     {M.~D.}{M.~D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Smyth}{S.}%
-     {G.~K.}{G.~K.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{RMDSGK1}
-  \strng{fullhash}{RMDSGK1}
-  \field{labelyear}{2007}
-  \field{sortinit}{R}
-  \verb{doi}
-  \verb 10.1093/biostatistics/kxm030
-  \endverb
-  \field{issn}{1465-4644}
-  \field{number}{2}
-  \field{pages}{321\bibrangedash 332}
-  \field{title}{{Small-sample estimation of negative binomial dispersion, with
-  applications to SAGE data}}
-  \verb{url}
-  \verb http://biostatistics.oxfordjournals.org/cgi/doi/10.1093/biostatistics/k
-  \verb xm030
-  \endverb
-  \field{volume}{9}
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/EdgeR.p
-  \verb df:pdf
-  \endverb
-  \field{journaltitle}{Biostatistics}
-  \field{year}{2007}
-\endentry
+  \entry{Robinson2007}{article}{}
+    \name{author}{2}{}{%
+      {{hash=RMD}{%
+         family={Robinson},
+         family_i={R\bibinitperiod},
+         given={M.\bibnamedelima D.},
+         given_i={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=SGK}{%
+         family={Smyth},
+         family_i={S\bibinitperiod},
+         given={G.\bibnamedelima K.},
+         given_i={G\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RMDSGK1}
+    \strng{fullhash}{RMDSGK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2007}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \verb{doi}
+    \verb 10.1093/biostatistics/kxm030
+    \endverb
+    \field{issn}{1465-4644}
+    \field{number}{2}
+    \field{pages}{321\bibrangedash 332}
+    \field{title}{{Small-sample estimation of negative binomial dispersion,
+  with applications to SAGE data}}
+    \verb{url}
+    \verb
+  http://biostatistics.oxfordjournals.org/cgi/doi/10.1093/biostatistics/k
+    \verb xm030
+    \endverb
+    \field{volume}{9}
+    \verb{file}
+    \verb
+  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/EdgeR.p
+    \verb df:pdf
+    \endverb
+    \field{journaltitle}{Biostatistics}
+    \field{year}{2007}
+  \endentry
 
-\entry{Robinson2010}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Robinson}{R.}%
-     {Mark~D}{M.~D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Oshlack}{O.}%
-     {Alicia}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{RMDOA1}
-  \strng{fullhash}{RMDOA1}
-  \field{labelyear}{2010}
-  \field{sortinit}{R}
-  \field{abstract}{%
-  The fine detail provided by sequencing-based transcriptome surveys suggests
+  \entry{Robinson2010}{article}{}
+    \name{author}{2}{}{%
+      {{hash=RMD}{%
+         family={Robinson},
+         family_i={R\bibinitperiod},
+         given={Mark\bibnamedelima D},
+         given_i={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=OA}{%
+         family={Oshlack},
+         family_i={O\bibinitperiod},
+         given={Alicia},
+         given_i={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RMDOA1}
+    \strng{fullhash}{RMDOA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2010}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{abstract}{%
+    The fine detail provided by sequencing-based transcriptome surveys suggests
   that RNA-seq is likely to become the platform of choice for interrogating
   steady state RNA. In order to discover biologically important changes in
   expression, we show that normalization continues to be an essential step in
   the analysis. We outline a simple and effective method for performing
   normalization and show dramatically improved results for inferring
   differential expression in simulated and publicly available data sets.%
-  }
-  \verb{doi}
-  \verb 10.1186/gb-2010-11-3-r25
-  \endverb
-  \field{isbn}{1465-6914 (Electronic)$\backslash$r1465-6906 (Linking)}
-  \field{issn}{1465-6906}
-  \field{number}{3}
-  \field{pages}{R25}
-  \field{title}{{A scaling normalization method for differential expression
+    }
+    \verb{doi}
+    \verb 10.1186/gb-2010-11-3-r25
+    \endverb
+    \field{isbn}{1465-6914 (Electronic)$\backslash$r1465-6906 (Linking)}
+    \field{issn}{1465-6906}
+    \field{number}{3}
+    \field{pages}{R25}
+    \field{title}{{A scaling normalization method for differential expression
   analysis of RNA-seq data.}}
-  \field{volume}{11}
-  \verb{file}
-  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Robinso
-  \verb n and Oshlack (2010) A{\_}scaling{\_}normalization{\_}method{\_}for{\_}
-  \verb differential{\_}expression{\_}(TMM).pdf:pdf
-  \endverb
-  \field{journaltitle}{Genome biology}
-  \field{year}{2010}
-\endentry
+    \field{volume}{11}
+    \verb{file}
+    \verb
+  :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Robinso
+    \verb n and Oshlack (2010)
+  A{\_}scaling{\_}normalization{\_}method{\_}for{\_}
+    \verb differential{\_}expression{\_}(TMM).pdf:pdf
+    \endverb
+    \field{journaltitle}{Genome biology}
+    \field{year}{2010}
+  \endentry
 
-\entry{SEQC/MAQC-IIIConsortium2014}{article}{}
-  \name{author}{1}{}{%
-    {{}%
-     {{SEQC/MAQC-III Consortium}}{S.}%
-     {}{}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Nature Publishing Group, a division of Macmillan Publishers Limited. All
+  \entry{SEQC/MAQC-IIIConsortium2014}{article}{}
+    \name{author}{1}{}{%
+      {{hash=S}{%
+         family={{SEQC/MAQC-III Consortium}},
+         family_i={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nature Publishing Group, a division of Macmillan Publishers Limited. All
   Rights Reserved.}%
-  }
-  \keyw{Polymerase Chain Reaction,Reproducibility of Results,Sequence Analysis,
-  RNA,Sequence Analysis, RNA: standards}
-  \strng{namehash}{S1}
-  \strng{fullhash}{S1}
-  \field{labelyear}{2014}
-  \field{sortinit}{S}
-  \field{abstract}{%
-  We present primary results from the Sequencing Quality Control (SEQC)
+    }
+    \keyw{Polymerase Chain Reaction,Reproducibility of Results,Sequence
+  Analysis, RNA,Sequence Analysis, RNA: standards}
+    \strng{namehash}{S1}
+    \strng{fullhash}{S1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2014}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    We present primary results from the Sequencing Quality Control (SEQC)
   project, coordinated by the US Food and Drug Administration. Examining
   Illumina HiSeq, Life Technologies SOLiD and Roche 454 platforms at multiple
   laboratory sites using reference RNA samples with built-in controls, we
@@ -947,130 +1086,159 @@
   transcript-level profiling. The complete SEQC data sets, comprising
   {\textgreater}100 billion reads (10Tb), provide unique resources for
   evaluating RNA-seq analyses for clinical and regulatory settings.%
-  }
-  \verb{doi}
-  \verb 10.1038/nbt.2957
-  \endverb
-  \field{issn}{1546-1696}
-  \field{number}{9}
-  \field{pages}{903\bibrangedash 14}
-  \field{shorttitle}{Nat Biotech}
-  \field{title}{{A comprehensive assessment of RNA-seq accuracy,
+    }
+    \verb{doi}
+    \verb 10.1038/nbt.2957
+    \endverb
+    \field{issn}{1546-1696}
+    \field{number}{9}
+    \field{pages}{903\bibrangedash 14}
+    \field{shorttitle}{Nat Biotech}
+    \field{title}{{A comprehensive assessment of RNA-seq accuracy,
   reproducibility and information content by the Sequencing Quality Control
   Consortium.}}
-  \verb{url}
-  \verb http://dx.doi.org/10.1038/nbt.2957
-  \endverb
-  \field{volume}{32}
-  \verb{file}
-  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
-  \verb ktop/Downloaded/SEQCMAQC-III Consortium - 2014 - A comprehensive assess
-  \verb ment of RNA-seq accuracy, reproducibility and information content by th
-  \verb e Sequenci.pdf:pdf
-  \endverb
-  \field{journaltitle}{Nature biotechnology}
-  \field{year}{2014}
-  \warn{\item Invalid format of field 'month'}
-\endentry
+    \verb{url}
+    \verb http://dx.doi.org/10.1038/nbt.2957
+    \endverb
+    \field{volume}{32}
+    \verb{file}
+    \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley
+  Des
+    \verb ktop/Downloaded/SEQCMAQC-III Consortium - 2014 - A comprehensive
+  assess
+    \verb ment of RNA-seq accuracy, reproducibility and information content by
+  th
+    \verb e Sequenci.pdf:pdf
+    \endverb
+    \field{journaltitle}{Nature biotechnology}
+    \field{year}{2014}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
 
-\entry{tHoen2013}{article}{}
-  \name{author}{18}{}{%
-    {{}%
-     {{'t Hoen}}{t.}%
-     {Peter A~C}{P.~A.~C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Friedl{\"{a}}nder}{F.}%
-     {Marc~R}{M.~R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Alml{\"{o}}f}{A.}%
-     {Jonas}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Sammeth}{S.}%
-     {Michael}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Pulyakhina}{P.}%
-     {Irina}{I.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Anvar}{A.}%
-     {Seyed~Yahya}{S.~Y.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Laros}{L.}%
-     {Jeroen F~J}{J.~F.~J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Buermans}{B.}%
-     {Henk P~J}{H.~P.~J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Karlberg}{K.}%
-     {Olof}{O.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Br{\"{a}}nnvall}{B.}%
-     {Mathias}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dunnen}{D.}%
-     {Johan~T}{J.~T.}%
-     {den}{d.}%
-     {}{}}%
-    {{}%
-     {Ommen}{O.}%
-     {Gert-Jan~B}{G.-J.~B.}%
-     {van}{v.}%
-     {}{}}%
-    {{}%
-     {Gut}{G.}%
-     {Ivo~G}{I.~G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Guig{\'{o}}}{G.}%
-     {Roderic}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Estivill}{E.}%
-     {Xavier}{X.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Syv{\"{a}}nen}{S.}%
-     {Ann-Christine}{A.-C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dermitzakis}{D.}%
-     {Emmanouil~T}{E.~T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lappalainen}{L.}%
-     {Tuuli}{T.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Nature Publishing Group, a division of Macmillan Publishers Limited. All
+  \entry{tHoen2013}{article}{}
+    \name{author}{18}{}{%
+      {{hash=tPAC}{%
+         family={{'t Hoen}},
+         family_i={t\bibinitperiod},
+         given={Peter A\bibnamedelima C},
+         given_i={P\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim
+  C\bibinitperiod},
+      }}%
+      {{hash=FMR}{%
+         family={Friedl{\"{a}}nder},
+         family_i={F\bibinitperiod},
+         given={Marc\bibnamedelima R},
+         given_i={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=AJ}{%
+         family={Alml{\"{o}}f},
+         family_i={A\bibinitperiod},
+         given={Jonas},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sammeth},
+         family_i={S\bibinitperiod},
+         given={Michael},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=PI}{%
+         family={Pulyakhina},
+         family_i={P\bibinitperiod},
+         given={Irina},
+         given_i={I\bibinitperiod},
+      }}%
+      {{hash=ASY}{%
+         family={Anvar},
+         family_i={A\bibinitperiod},
+         given={Seyed\bibnamedelima Yahya},
+         given_i={S\bibinitperiod\bibinitdelim Y\bibinitperiod},
+      }}%
+      {{hash=LJFJ}{%
+         family={Laros},
+         family_i={L\bibinitperiod},
+         given={Jeroen F\bibnamedelima J},
+         given_i={J\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim
+  J\bibinitperiod},
+      }}%
+      {{hash=BHPJ}{%
+         family={Buermans},
+         family_i={B\bibinitperiod},
+         given={Henk P\bibnamedelima J},
+         given_i={H\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim
+  J\bibinitperiod},
+      }}%
+      {{hash=KO}{%
+         family={Karlberg},
+         family_i={K\bibinitperiod},
+         given={Olof},
+         given_i={O\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Br{\"{a}}nnvall},
+         family_i={B\bibinitperiod},
+         given={Mathias},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=dDJT}{%
+         prefix={den},
+         prefix_i={d\bibinitperiod},
+         family={Dunnen},
+         family_i={D\bibinitperiod},
+         given={Johan\bibnamedelima T},
+         given_i={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=vOGJB}{%
+         prefix={van},
+         prefix_i={v\bibinitperiod},
+         family={Ommen},
+         family_i={O\bibinitperiod},
+         given={Gert-Jan\bibnamedelima B},
+         given_i={G\bibinitperiod-J\bibinitperiod\bibinitdelim
+  B\bibinitperiod},
+      }}%
+      {{hash=GIG}{%
+         family={Gut},
+         family_i={G\bibinitperiod},
+         given={Ivo\bibnamedelima G},
+         given_i={I\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+      {{hash=GR}{%
+         family={Guig{\'{o}}},
+         family_i={G\bibinitperiod},
+         given={Roderic},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=EX}{%
+         family={Estivill},
+         family_i={E\bibinitperiod},
+         given={Xavier},
+         given_i={X\bibinitperiod},
+      }}%
+      {{hash=SAC}{%
+         family={Syv{\"{a}}nen},
+         family_i={S\bibinitperiod},
+         given={Ann-Christine},
+         given_i={A\bibinitperiod-C\bibinitperiod},
+      }}%
+      {{hash=DET}{%
+         family={Dermitzakis},
+         family_i={D\bibinitperiod},
+         given={Emmanouil\bibnamedelima T},
+         given_i={E\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=LT}{%
+         family={Lappalainen},
+         family_i={L\bibinitperiod},
+         given={Tuuli},
+         given_i={T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nature Publishing Group, a division of Macmillan Publishers Limited. All
   Rights Reserved.}%
-  }
-  \keyw{Female,Gene Expression Profiling,Gene Expression Profiling:
+    }
+    \keyw{Female,Gene Expression Profiling,Gene Expression Profiling:
   methods,Gene Expression Profiling: standards,High-Throughput Nucleotide
   Sequencing,High-Throughput Nucleotide Sequencing: methods,High-Throughput
   Nucleotide Sequencing: standards,Humans,Male,MicroRNAs,MicroRNAs:
@@ -1078,89 +1246,95 @@
   Messenger: analysis,RNA, Messenger: chemistry,RNA, Messenger:
   genetics,Reproducibility of Results,Sequence Analysis, RNA,Sequence Analysis,
   RNA: methods,Sequence Analysis, RNA: standards}
-  \strng{namehash}{tPAC+1}
-  \strng{fullhash}{tPACFMRAJSMPIASYLJFJBHPJKOBMDJTdOGJBvGIGGREXSACDETLT1}
-  \field{labelyear}{2013}
-  \field{sortinit}{T}
-  \field{abstract}{%
-  RNA sequencing is an increasingly popular technology for genome-wide analysis
-  of transcript sequence and abundance. However, understanding of the sources
-  of technical and interlaboratory variation is still limited. To address this,
-  the GEUVADIS consortium sequenced mRNAs and small RNAs of lymphoblastoid cell
-  lines of 465 individuals in seven sequencing centers, with a large number of
-  replicates. The variation between laboratories appeared to be considerably
-  smaller than the already limited biological variation. Laboratory effects
-  were mainly seen in differences in insert size and GC content and could be
-  adequately corrected for. In small-RNA sequencing, the microRNA (miRNA)
-  content differed widely between samples owing to competitive sequencing of
-  rRNA fragments. This did not affect relative quantification of miRNAs. We
-  conclude that distributing RNA sequencing among different laboratories is
-  feasible, given proper standardization and randomization procedures. We
-  provide a set of quality measures and guidelines for assessing technical
-  biases in RNA-seq data.%
-  }
-  \verb{doi}
-  \verb 10.1038/nbt.2702
-  \endverb
-  \field{issn}{1546-1696}
-  \field{number}{11}
-  \field{pages}{1015\bibrangedash 22}
-  \field{shorttitle}{Nat Biotech}
-  \field{title}{{Reproducibility of high-throughput mRNA and small RNA
+    \strng{namehash}{tPAC+1}
+    \strng{fullhash}{tPACFMRAJSMPIASYLJFJBHPJKOBMDJTdOGJBvGIGGREXSACDETLT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2013}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{abstract}{%
+    RNA sequencing is an increasingly popular technology for genome-wide
+  analysis of transcript sequence and abundance. However, understanding of the
+  sources of technical and interlaboratory variation is still limited. To
+  address this, the GEUVADIS consortium sequenced mRNAs and small RNAs of
+  lymphoblastoid cell lines of 465 individuals in seven sequencing centers,
+  with a large number of replicates. The variation between laboratories
+  appeared to be considerably smaller than the already limited biological
+  variation. Laboratory effects were mainly seen in differences in insert size
+  and GC content and could be adequately corrected for. In small-RNA
+  sequencing, the microRNA (miRNA) content differed widely between samples
+  owing to competitive sequencing of rRNA fragments. This did not affect
+  relative quantification of miRNAs. We conclude that distributing RNA
+  sequencing among different laboratories is feasible, given proper
+  standardization and randomization procedures. We provide a set of quality
+  measures and guidelines for assessing technical biases in RNA-seq data.%
+    }
+    \verb{doi}
+    \verb 10.1038/nbt.2702
+    \endverb
+    \field{issn}{1546-1696}
+    \field{number}{11}
+    \field{pages}{1015\bibrangedash 22}
+    \field{shorttitle}{Nat Biotech}
+    \field{title}{{Reproducibility of high-throughput mRNA and small RNA
   sequencing across laboratories.}}
-  \verb{url}
-  \verb http://dx.doi.org/10.1038/nbt.2702
-  \endverb
-  \field{volume}{31}
-  \field{journaltitle}{Nature biotechnology}
-  \field{year}{2013}
-  \warn{\item Invalid format of field 'month'}
-\endentry
+    \verb{url}
+    \verb http://dx.doi.org/10.1038/nbt.2702
+    \endverb
+    \field{volume}{31}
+    \field{journaltitle}{Nature biotechnology}
+    \field{year}{2013}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
 
-\entry{VanKeuren-Jensen2014}{article}{}
-  \name{author}{3}{}{%
-    {{}%
-     {{Van Keuren-Jensen}}{V.}%
-     {Kendall}{K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Keats}{K.}%
-     {Jonathan~J}{J.~J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Craig}{C.}%
-     {David~W}{D.~W.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Nature Publishing Group, a division of Macmillan Publishers Limited. All
+  \entry{VanKeuren-Jensen2014}{article}{}
+    \name{author}{3}{}{%
+      {{hash=VK}{%
+         family={{Van Keuren-Jensen}},
+         family_i={V\bibinitperiod},
+         given={Kendall},
+         given_i={K\bibinitperiod},
+      }}%
+      {{hash=KJJ}{%
+         family={Keats},
+         family_i={K\bibinitperiod},
+         given={Jonathan\bibnamedelima J},
+         given_i={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=CDW}{%
+         family={Craig},
+         family_i={C\bibinitperiod},
+         given={David\bibnamedelima W},
+         given_i={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nature Publishing Group, a division of Macmillan Publishers Limited. All
   Rights Reserved.}%
-  }
-  \strng{namehash}{VKKJJCDW1}
-  \strng{fullhash}{VKKJJCDW1}
-  \field{labelyear}{2014}
-  \field{sortinit}{V}
-  \verb{doi}
-  \verb 10.1038/nbt.3017
-  \endverb
-  \field{issn}{1546-1696}
-  \field{number}{9}
-  \field{pages}{884\bibrangedash 5}
-  \field{shorttitle}{Nat Biotech}
-  \field{title}{{Bringing RNA-seq closer to the clinic.}}
-  \verb{url}
-  \verb http://dx.doi.org/10.1038/nbt.3017
-  \endverb
-  \field{volume}{32}
-  \field{journaltitle}{Nature biotechnology}
-  \field{year}{2014}
-  \warn{\item Invalid format of field 'month'}
-\endentry
-
-\lossort
-\endlossort
-
+    }
+    \strng{namehash}{VKKJJCDW1}
+    \strng{fullhash}{VKKJJCDW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2014}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \verb{doi}
+    \verb 10.1038/nbt.3017
+    \endverb
+    \field{issn}{1546-1696}
+    \field{number}{9}
+    \field{pages}{884\bibrangedash 5}
+    \field{shorttitle}{Nat Biotech}
+    \field{title}{{Bringing RNA-seq closer to the clinic.}}
+    \verb{url}
+    \verb http://dx.doi.org/10.1038/nbt.3017
+    \endverb
+    \field{volume}{32}
+    \field{journaltitle}{Nature biotechnology}
+    \field{year}{2014}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+\endsortlist
 \endinput

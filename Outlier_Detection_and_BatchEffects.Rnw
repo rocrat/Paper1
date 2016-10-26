@@ -114,23 +114,25 @@ Although the CLR transformation gives equal treatment to every element of $\math
 
 
 
-Aitchison (\cite{Aitchison1986, Aitchison1992}) suggests using the sum of squares if all log-ratio differnces.  Billheimer, Guttorp, and Fagan (2001) use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison (\cite{Aitchison1986}), allow the interpretation of differences in compositions (\cite{Billheimer2001}). Briefly, denote the elementwise multiplication of two positive D-vectors \textbf{u} and \textbf{v} by  
+Aitchison (\cite{Aitchison1986, Aitchison1992}) suggests using the sum of squares if all log-ratio differnces.  Billheimer, Guttorp, and Fagan (2001) use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison (\cite{Aitchison1986}), allow the interpretation of differences in compositions (\cite{Billheimer2001}). 
 
-$$\mathbf{u}\cdot \mathbf{v} \equiv \left( u_1v_1, u2_v2, ..., u_Dv_D\right)^\prime.$$
+% Briefly, denote the elementwise multiplication of two positive D-vectors \textbf{u} and \textbf{v} by  
 
-Further define the perturbation operator for composition \textbf{x} and perturbation $\mathbf{\alpha} \in S^{d}$ as
-
-$$\mathbf{z} = \mathbf{x}\oplus \alpha = C\left(\mathbf{x}\alpha \right)$$
-
-for compositional addition.  Compositional multiplication is acheived via the power transformation, 
-
-$$\mathbf{x}^\alpha \equiv C\left(x_1^\alpha, x_2^\alpha, ..., x_k^\alpha \right).$$
-
-Billheimer et al. (\cite{Billheimer2001}) show that $S^d$, with a defined perturbation orperator and scalar multiplication, constitutes a complete inner product space an inner product defined as
-
-$$\langle \mathbf{u,z} \rangle = \left( \theta^{\prime}\mathcal{N}^{-1}\eta \right)^{1/2},$$
-
-where, $\theta$ and $\eta$ are the CLR transformations of \textbf{u}, and \textbf{z} respectively and $\mathcal{N} = I_D + j_D^{} j_D^{\prime}$ ($I_D$ is a $D$-dimensional identity matrix and $j_D$ is a $D$-length vector of 1's).
+% $$\mathbf{u}\cdot \mathbf{v} \equiv \left( u_1v_1, u2_v2, ..., u_Dv_D\right)^\prime.$$
+% 
+% Further define the perturbation operator for composition \textbf{x} and perturbation $\mathbf{\alpha} \in S^{d}$ as
+% 
+% $$\mathbf{z} = \mathbf{x}\oplus \alpha = C\left(\mathbf{x}\alpha \right)$$
+% 
+% for compositional addition.  Compositional multiplication is acheived via the power transformation, 
+% 
+% $$\mathbf{x}^\alpha \equiv C\left(x_1^\alpha, x_2^\alpha, ..., x_k^\alpha \right).$$
+% 
+% Billheimer et al. (\cite{Billheimer2001}) show that $S^d$, with a defined perturbation orperator and scalar multiplication, constitutes a complete inner product space an inner product defined as
+% 
+% $$\langle \mathbf{u,z} \rangle = \left( \theta^{\prime}\mathcal{N}^{-1}\eta \right)^{1/2},$$
+% 
+% where, $\theta$ and $\eta$ are the CLR transformations of \textbf{u}, and \textbf{z} respectively and $\mathcal{N} = I_D + j_D^{} j_D^{\prime}$ ($I_D$ is a $D$-dimensional identity matrix and $j_D$ is a $D$-length vector of 1's).
 
 
 
