@@ -79,25 +79,7 @@ Although the CLR transformation preserves the original dimmension of the data, a
 
 Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions~\cite{Aitchison2000}.  Aitchison~\cite{Aitchison1992} outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data due to differences in read depth). The permutation invariance is generally satisfied by existing methods~\cite{Martin-Fernandez1998}. However, the perturbation invariance and subcompositional dominance are not generally satisfied. \\
 
-Aitchison~\cite{Aitchison1986, Aitchison1992} suggests using the sum of squares of all log-ratio differnces.  Billheimer, Guttorp, and Fagan~\cite{Billheimer2001} use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison (\cite{Aitchison1986}), allow the interpretation of differences in compositions (\cite{Billheimer2001}). Briefly, denote the elementwise multiplication of two positive D-vectors \textbf{u} and \textbf{v} by  
-
-$$\mathbf{u}\cdot \mathbf{v} \equiv \left( u_1v_1, u2_v2, ..., u_Dv_D\right)^\prime.$$
-
-Further define the perturbation operator for composition \textbf{x} and perturbation $\mathbf{\alpha} \in S^{d}$ as
-
-$$\mathbf{z} = \mathbf{x}\oplus \alpha = C\left(\mathbf{x}\alpha \right)$$
-
-for compositional addition.  Compositional multiplication is acheived via the power transformation, 
-
-$$\mathbf{x}^\alpha \equiv C\left(x_1^\alpha, x_2^\alpha, ..., x_k^\alpha \right).$$
-
-Billheimer et al. (\cite{Billheimer2001}) show that $S^d$, with a defined perturbation orperator and scalar multiplication, constitutes a complete inner product space an inner product defined as
-
-$$\langle \mathbf{u,z} \rangle = \left( \theta^{\prime}\mathcal{N}^{-1}\eta \right)^{1/2},$$
-
-where, $\theta$ and $\eta$ are the CLR transformations of \textbf{u}, and \textbf{z} respectively and $\mathcal{N} = I_D + j_D^{} j_D^{\prime}$ ($I_D$ is a $D$-dimensional identity matrix and $j_D$ is a $D$-length vector of 1's).
-
-
+Aitchison~\cite{Aitchison1986, Aitchison1992} suggests using the sum of squares of all log-ratio differnces.  Billheimer, Guttorp, and Fagan~\cite{Billheimer2001} use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison~\cite{Aitchison1986}`, allow the interpretation of differences in compositions. Billheimer et al.~\cite{Billheimer2001} show that $\mathcal{S}^d$, with a defined perturbation orperator and scalar multiplication, constitutes a complete inner product space and define an inner product.
 
 Martin-Fernandez et al. (1998) showed that applying either Euclidean distance or Mahalanobis distance metric to CLR transformed data satisfies all the requirements of a compositional distance metric. Euclidean distance on CLR transformed compositions is referred to as Aitchison distance:
 
