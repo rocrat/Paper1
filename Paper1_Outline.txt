@@ -1,4 +1,4 @@
-Paper 1 Outline 
+Paper 1 Outline (LOOK FOR APPROPRIATE BIOINFORMATICS JOURNAL - MAYBE SOMETHING NGS FOCUSED)
 
 Title:  Relative frequency measurements: Metrics for sample quality, sequencing integrity, and batch effects in targeted NGS.
 
@@ -20,7 +20,7 @@ I) Introduction - Introduce the problem and motivate the research
       b) Aitchison Distance as a substitute for Euclidean distance
       c) Amalgamations as an exploratory analysis tool
     
-II) Introduction to Compositional Methods
+II) Introduction to Compositional Methods (PARE THIS DOWN TO JUST THE ESSENTIALS)
   P1) Definition of a composition with motivating example
   P2) Total sum constraint
   P3) Implications for covariance matrices
