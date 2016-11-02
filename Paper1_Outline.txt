@@ -1,45 +1,31 @@
 Paper 1 Outline (LOOK FOR APPROPRIATE BIOINFORMATICS JOURNAL - MAYBE SOMETHING NGS FOCUSED)
+Paper 1 Outline 
 
 Title:  Relative frequency measurements: Metrics for sample quality, sequencing integrity, and batch effects in targeted NGS.
 
-I) Introduction - Introduce the problem and motivate the research
-  P1) There is a need for robust quality control and batch effect removal for NGS bases RNA sequencing to reach its full clinical utility
-  P2) Brief discussion of RNA sequencing data as a composition
-  P3) Introduction to compositional data constraints and potential pitfalls
-  P4) Outline of the paper
-    i) Present introduction to compositional methods
-    ii) Compositional QC metrics
-      a) Sample Quality Metrics
-        1) Proportion of total reads in a run allocated to each sample
-        2) Proportion of total reads in a sample allocated to exogenous controls
-      b) Sequencing Integrity Metrics
-        1) Proportionality of exogenous positive controls
-        
-    iii) Compositional analyses
-      a) CLR as a "normalization" transformation
-      b) Aitchison Distance as a substitute for Euclidean distance
-      c) Amalgamations as an exploratory analysis tool
-    
-II) Introduction to Compositional Methods (PARE THIS DOWN TO JUST THE ESSENTIALS)
-  P1) Definition of a composition with motivating example
-  P2) Total sum constraint
-  P3) Implications for covariance matrices
-  P4) Log-ratio transformations and the CLR
-  P5) Implications for measuring distance
-  P6) Aitchison distance
+I)	Background
+    a. NGS/Target NGS differences and similarities (note first step in NGS is extraction – first step in HTG is qRT-PCR straight from FFPE or other sample)
+    b. QC controls (illumina metrics - %PF, cluster density – these are read depth type metrics that are primarily qualitative)
+    c. LLQ – HK – Control genes (not recommended – see Speed et. al. for review of this topic)
+II)	Methods
+    a. Brief discussion of RNA sequencing data as a composition (highlight hierarchical nature as it will be easier to describe metrics for read depth)
+        i. Closure is due to technology (sequencers – see illumina brochure)
+        ii.	Hierarchical structure as a type of amalgamation
+        iii. Transformations – highlight CLR and how this is an extension of CPM/RTKM transformation
+    b. QC metric similar to %PF as a composition – highlight novel in terms of quantitating this as a simple metric based on outliers 
+    c. QC metric for assessing batch effects – highlight likely benefit of compositional framework for multivariate assessments 
+        i. Aitchison Distance as a substitute for Euclidean distance 
+        ii.	Can we prove that the compositional method is more accurate??
+        iii.	
+    d. Process control TBD possibilities
+        i.	Compositional GOF – (expected equivalent proportionality across all probes – removal of HK, ANT, POS genes         ?? What are the issues here, mathematically?)
+            1.	Compute Q3-Q1 based on CLR?
+            2.	Is there a way to come up with a method that doesn’t depend on the empirical distribution for expectation?
+            3.	Ratio of ANT to POS as a QC
+            4.	Proportion of POS to everything else
+        ii.	POS control as a process control – high proportion of relative counts in POS gene indicate poor quality samples?  Is this correlated with read depth?  -- need to be careful whether samples are pool clean-up or not)
+        iii.	ANT gene same as ii – theoretically zero in best situation
 
-III) Compositional QC Metrics
-  P1) Using proportions for quality control
-  P2) Proportion of total reads in a run allocated to each sample (Sample Quality Metric)
-  P3) Proportion of total reads in a sample allocated to exogenous controls (Sample Quality Metric)(Not sure if this works)
-  P4) Proportionality of exogenous positive controls (Sequencing Integrity Metric)
-  
-IV) Analysis of Compositions
-  P1) CLR as a "normalization" 
-    i) Compare to other methods which use a scaling factor
-    ii) Not necessary to have assumption of non-DE genes
-  P2) Aitchison Distance as a substitute for Euclidean distance
-  P3) The power of amalgamations
-  
+
 V) Conclusions
 
