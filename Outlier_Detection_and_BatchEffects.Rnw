@@ -52,7 +52,7 @@ Previous authors have identified the relative nature of RNA-Seq data~\cite{Robin
 The positivity and summation constraint complicate the analysis of relative frequency data.  John Aitchison observed that relative frequency data is compositional and developed a methodology based on the geometric constraints of composiitons~\cite{Aitchison1986}.  As early as 1896 Karl Pearson~\cite{Pearson1896} identified the spurious correlation problem associated with compositions.  Aitchison (1986)~\cite{Aitchison1986} identified the difficulty of interpreting the covariance matrix of a composition.  Recent authors have argued that ignoring the sum constraint can lead to unexpected results and erroneous inference~\cite{Lovell2011}.  Despite the evidence that RNA-Seq data are compositional in nature, few researchers have extended the broad set of compositional data analysis theory and operations for use in RNA-Seq analysis problems.  We provide a brief background on compositional methods.  We then extend existing compositional data methodology to include 3 (?) quality control metrics for RNA-Seq data. Finally, we show how compositional properties can be exploited to facilitate exploratortion of high-dimensional RNA-Seq data.\\
 
 %-- Proposed solution with brief outline of methodology -->
-
+Illumina \tm currently provides several sequencing specific QC metrics including Percent Clusters Passing Filter (\% PF) and cluster density.  Percent PF 
 
 \subsection{Compositional Data}
 %-- CODA intro -->
