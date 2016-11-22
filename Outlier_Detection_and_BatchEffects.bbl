@@ -379,6 +379,51 @@
   \field{year}{2011}
 \endentry
 
+\entry{Kiers2000}{book}{}
+  \name{editor}{4}{}{%
+    {{}%
+     {Kiers}{K.}%
+     {Henk A.~L.}{H.~A.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rasson}{R.}%
+     {Jean-Paul}{J.-P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Groenen}{G.}%
+     {Patrick J.~F.}{P.~J.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Schader}{S.}%
+     {Martin}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer Berlin Heidelberg}%
+  }
+  \strng{namehash}{KHAL+1}
+  \strng{fullhash}{KHALRJPGPJFSM1}
+  \field{sortinit}{K}
+  \verb{doi}
+  \verb 10.1007/978-3-642-59789-3
+  \endverb
+  \field{isbn}{978-3-540-67521-1}
+  \field{series}{Studies in Classification, Data Analysis, and Knowledge
+  Organization}
+  \field{title}{{Data Analysis, Classification, and Related Methods}}
+  \verb{url}
+  \verb http://www.springerlink.com/index/10.1007/978-3-642-59789-3
+  \endverb
+  \list{location}{1}{%
+    {Berlin, Heidelberg}%
+  }
+  \field{year}{2000}
+\endentry
+
 \entry{Law2014}{article}{}
   \name{author}{4}{}{%
     {{}%
@@ -729,6 +774,49 @@
   \field{year}{2011}
 \endentry
 
+\entry{Martin-Fernandez2000}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Mart{\'{i}}n-Fern{\'{a}}ndez}{M.-F.}%
+     {J.~A.}{J.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Barcel{\'{o}}-Vidal}{B.-V.}%
+     {C.}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Pawlowsky-Glahn}{P.-G.}%
+     {V.}{V.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{language}{1}{%
+    {en}%
+  }
+  \list{publisher}{1}{%
+    {Kluwer Academic Publishers-Plenum Publishers}%
+  }
+  \strng{namehash}{MFJABVCPGV1}
+  \strng{fullhash}{MFJABVCPGV1}
+  \field{sortinit}{M}
+  \verb{doi}
+  \verb 10.1023/A:1023866030544
+  \endverb
+  \field{issn}{1573-8868}
+  \field{number}{3}
+  \field{pages}{253\bibrangedash 278}
+  \field{title}{{Dealing with Zeros and Missing Values in Compositional Data
+  Sets Using Nonparametric Imputation}}
+  \verb{url}
+  \verb http://link.springer.com/article/10.1023/A{\%}3A1023866030544
+  \endverb
+  \field{volume}{35}
+  \field{journaltitle}{Mathematical Geology}
+  \field{year}{2000}
+\endentry
+
 \entry{Martin-Fernandez1998}{article}{}
   \name{author}{6}{}{%
     {{}%
@@ -893,6 +981,44 @@
   \endverb
   \field{journaltitle}{Genome biology}
   \field{year}{2010}
+\endentry
+
+\entry{Sanford1993}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Sanford}{S.}%
+     {Richard~F.}{R.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Pierson}{P.}%
+     {Charles~T.}{C.~T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Crovelli}{C.}%
+     {Robert~A.}{R.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SRFPCTCRA1}
+  \strng{fullhash}{SRFPCTCRA1}
+  \field{sortinit}{S}
+  \verb{doi}
+  \verb 10.1007/BF00890676
+  \endverb
+  \field{issn}{0882-8121}
+  \field{number}{1}
+  \field{pages}{59\bibrangedash 80}
+  \field{title}{{An objective replacement method for censored geochemical
+  data}}
+  \verb{url}
+  \verb http://link.springer.com/10.1007/BF00890676
+  \endverb
+  \field{volume}{25}
+  \field{journaltitle}{Mathematical Geology}
+  \field{year}{1993}
+  \warn{\item Invalid format of field 'month'}
 \endentry
 
 \entry{SEQC/MAQC-IIIConsortium2014}{article}{}

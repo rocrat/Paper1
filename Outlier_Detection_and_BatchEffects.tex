@@ -54,6 +54,7 @@
 \addbibresource{proportionality.bib}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{bbm}
 \usepackage{fullpage}
 \usepackage{setspace}
 \doublespacing
@@ -66,7 +67,7 @@
 \maketitle
 
 \doublespacing
-\section{Abstract}
+% \section{Abstract}
 
 
 \section{Introduction}
@@ -80,9 +81,13 @@ This research is focused on developing diagnostics for targeted RNA-Seq.  Target
 %Accurately identifying batch effects, and differentiating these from true biological differences, will be necessary if smaller laboratories wish to utilize RNA-seq technology for clinical applications (cite).  Moreover, the reliable identification and removal of poor quality data produced by RNA-seq pipelines has the potential to dramatically improve the analytical accuracy and reproducibility of RNA-seq data, thereby improving its clinical utility.\\
 
 %-- Brief intro to compositional data
-Targeted and whole transcriptome RNA-Seq data provide relative frequencies of the measured transcripts.  Relative frequency measures are characterized as a vector of proportions of some whole.  These proportions are necessarily positive and sum to a constant which is determined by the measurement system and not the measurand.  For example, as an experiment, we count the number and type of cars passing by us in the first lane of a busy highway for 5 minutes.  We cannot observe the other lanes because they are obstructed by the first lane and we do not know haw many lanes the highway contains.  If we assume the first lane is representative of the other lanes we might be able to say something about the relative frequency of each car type on the highway, but without knowing the total number of lanes we won't be able to say anything about the total number of each car type travelling on that highway during the 5 minutes we observed. If we are able to observe 2 lanes our total number of cars observed will be greater than (or equal to) the total number of cars we observed in 1 lane.  Clearly, the total number of cars we observe is a function of the measurement process and not the total number of cars on the highway.\\
+Targeted and whole transcriptome RNA-Seq data provide relative frequencies of the measured transcripts.  Relative frequency measures are characterized as a vector of proportions of some whole.  These proportions are necessarily positive and sum to a constant which is determined by the measurement system and not the measurand.  For example, as an experiment, we take a large bag of marbles of different colors and pour them over a shallow bowl.  The bag holds many more marbles than the bowl so most of the marbles spill out and remain unmeasured.  Since we measure an unknown portion of the marbles in the bag we cannot know the total number of each marble color that was contained in the bag.  However, we can estimate the relative frequencies of each marble color in the bag.  The total number of marbles we observe is a function of the measurement, i.e. the size of the bowl.\\
 
-Suppose we repeat this experiment several times.  Since we can only observe a finite number of cars during a 5 minute span , if any 1 car type increases in frequency then the other car types must then decrease in frequency proportionally.  This proportionality is strictly enforced if the lane is at maximum capacity, but one can imagine if the number of cars observed is very small compared to the number of cars possible to observe the proportionality may be less strict.  \\
+%we count the number and type of cars passing by us in the first lane of a busy highway for 5 minutes.  We cannot observe the other lanes because they are obstructed by the first lane and we do not know haw many lanes the highway contains.  If we assume the first lane is representative of the other lanes we might be able to say something about the relative frequency of each car type on the highway, but without knowing the total number of lanes we won't be able to say anything about the total number of each car type travelling on that highway during the 5 minutes we observed. If we are able to observe 2 lanes our total number of cars observed will be greater than (or equal to) the total number of cars we observed in 1 lane.  Clearly, the total number of cars we observe is a function of the measurement process and not the total number of cars on the highway.\\
+
+%Suppose we repeat this experiment several times.  Since we can only observe a finite number of cars during a 5 minute span , if any 1 car type increases in frequency then the other car types must then decrease in frequency proportionally.  This proportionality is strictly enforced if the lane is at maximum capacity, but one can imagine if the number of cars observed is very small compared to the number of cars possible to observe the proportionality may be less strict.  \\
+
+Suppose we repeat this experiment a second time with a new bag of marbles to which we add a bunch of red marbles.  Since the bowl is fixed in size, if capture more rd marbles in the bowl (as we expect) then the other colors int he bowl must then decrease in frequency proportionally even if the absolute number of the other colors remains constant.  This proportionality is strictly enforced when the bowl is small and the bag is large, but one can imagine a scenario where the bowl is large and the bag is small in which the propotionality is somewhat relaxed.\\
 
 %-- Short description of compositional data and justification of treating RNA-seq as compositional-->
 
@@ -90,17 +95,20 @@ Similarly, NGS-based RNA-Seq methods are also relative frequencies.  High-throug
 
 Previous authors have identified the relative nature of RNA-Seq data~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, Lovell2015}.  For example, Robinson and Smyth (2007)~\cite{Robinson2007} consider counts of RNA tags as relative abundances in their development of a model for estimating differential gene expression implemented in the Bioconductor package edgeR.  Similarly, Robinson and Oshlack (2010) explicitly acknowledge the mapped-read constraint when developing their widely used Trimmed-Mean of M-values (TMM) normalization method for RNA-Seq data.  \\%However, none of these authors reference the large body of literature on the analysis of compositions.
 
+
+The positivity and summation constraint complicate the analysis of relative frequency data.  John Aitchison observed that relative frequency data is compositional and developed a methodology based on the geometric constraints of composiitons~\cite{Aitchison1986}.  As early as 1896 Karl Pearson~\cite{Pearson1896} identified the spurious correlation problem associated with compositions.  Aitchison (1986)~\cite{Aitchison1986} identified the difficulty of interpreting the covariance matrix of a composition.  Recent authors have argued that ignoring the sum constraint can lead to unexpected results and erroneous inference~\cite{Lovell2011}.  Despite the evidence that RNA-Seq data are compositional in nature, few researchers have extended the broad set of compositional data analysis theory and operations for use in RNA-Seq analysis problems.  We provide a brief background on compositional methods.  We then extend existing compositional data methodology to include 3 (?) quality control metrics for RNA-Seq data. Finally, we show how compositional properties can be exploited to facilitate exploratortion of high-dimensional RNA-Seq data.\\
+
+%-- Describe sequencing QC metrics a little
+Illumina incorporates several sequencing specific quality control metrics including percentage of clusters passing filters and cluster density analysis. Other quality control metrics are also available, such as HTQC~\cite{Yang2013}.  However, most of the quality control metrics, while informative, are subjective...  %not sure what to say about these
+
+Extraction-free sequencing technologies, such as HTG EdgeSeq, permit the use of very small sample volumes but create the need for additional quality control metrics since poor quality samples, which would likely be removed after unsucessful RNA extraction in extraction-based technologies, can be sequenced.\\ %this needs a lot of work!
+
 \section{Methods}
-
-The positivity and summation constraint complicate the analysis of relative frequency data.  John Aitchison observed that relative frequency data is compositional and developed a methodology based on the geometric constraints of composiitons~\cite{Aitchison1986}.  As early as 1896 Karl Pearson~\cite{Pearson1896} identified the spurious correlation problem associated with compositions.  Aitchison (1986)~\cite{Aitchison1986} identified the difficulty of interpreting the covariance matrix of a composition due to the dependency in the data induced by the sum constraint.  Recent authors have also argued that ignoring the sum constraint can lead to unexpected results and erroneous inference~\cite{Lovell2011}.  Despite the evidence that RNA-Seq data are compositional in nature, few researchers have extended the broad set of compositional data analysis theory and operations for use in RNA-Seq analysis problems.  We provide a brief background on compositional methods.  We then extend existing compositional data methodology to include 3 (?) quality control metrics for RNA-Seq data. Finally, we show how compositional properties can be exploited to facilitate exploratortion of high-dimensional RNA-Seq data.\\
-
-%-- Proposed solution with brief outline of methodology -->
-
 
 \subsection{Compositional Data}
 %-- CODA intro -->
 We begin with a brief introduction to compositional data, its properties, and some established analytical methods.  Compositional data is defined as any data in which all elements are non-negative and sum to a fixed constant~\cite{Aitchison1986}. %-- Establish notation  and data hierarchy-->
-For RNA-seq data, the total sum constraint is imposed by the limited number of available reads in each sequencing platform.  Since this total differs between sequencing platforms we will refer to the total number of available reads as $\mathbb{T}$. These reads are distributed among the $D$ samples in a sequencing run such that:
+For RNA-seq data, the total sum constraint is imposed by the limited number of available reads in each sequencing run.  Since this total differs between sequencing platforms we will refer to the total number of available reads as $\mathbb{T}$. These reads are distributed among the $D$ samples in a sequencing run such that:
 \begin{equation}
 \sum_{i=1}^{D} t_i = \mathbb{T}
 \label{sumt}
@@ -110,51 +118,69 @@ where $t_i$ represents the total reads for sample $i$.  Because of the total sum
 t_D = \mathbb{T} - \sum_{i=1}^{d} \mathbf{t_i}
 \label{sumConst}
 \end{equation}
-In \ref{sumConst}, any of the elements can be chosen for $t_D$ with the remaining elements labeled $1, ..., d$ in any order~\cite{Aitchison1986}.  Similarly, the total reads for each sample are distributed among the $P$ transcript targets in the assay such that $\sum_{j=1}^{P} p_{ij} = t_i$, where $p_{ij}$ is the total reads allocated to target $j$ in sample $i$.\\
+In \ref{sumConst}, any of the elements can be chosen for $t_D$ with the remaining elements labeled $1, ..., d$ in any order~\cite{Aitchison1986}.  Similarly, the total reads for each sample ($t_i$) are distributed among the $P$ transcript targets in the assay such that $\sum_{j=1}^{P} p_{ij} = t_i$, where $p_{ij}$ is the total reads allocated to target $j$ in sample $i$.  We highlight the hierarchichal structure of RNA-Seq data as it leads to useful properties when devloping quality control metrics.\\
 
 
-From equations~\ref{sumt} and~\ref{sumConst} it is clear that the $D$ samples represent a $D - 1 = d$ dimensional simplex ($\mathcal{S}^d$). This leads to a diffculty in interpreting the traditional $D \times D$ covariance structure.  In particular, it is clear that for a D-part composition $\mathbf{x}$, $\text{cov}(x_1, x_1+ \cdots +x_D) = 0$  since $x_1 + \cdots + x_D$ is a constant.  Moreover, the sum constraint induces negativity in the covariance matrix,
+From equations~\ref{sumt} and~\ref{sumConst} it is clear that the total reads allocated to each of the $D$ samples represent a $D - 1 = d$ dimensional simplex ($\mathcal{S}^d$). This leads to a diffculty in interpreting the traditional $D \times D$ covariance structure.  In particular, it is clear that for a D-part composition $\mathbf{x}$, $\text{cov}(x_1, x_1+ \cdots +x_D) = 0$  since $x_1 + \cdots + x_D$ is a constant.  Moreover, the sum constraint induces negativity in the covariance matrix,
 
 \begin{equation}
-\text{cov}(x_1, x_2) + \cdots + \text{cov}(x_1, x_D) = -\text{var}(x_1),
+\text{cov}(x_1, x_2) + \cdots + \text{cov}(x_1, x_D) = -\text{var}(x_1).
 \label{negbias}
 \end{equation}
 
-which means at least one element of each row of the covariance matrix must be negative. Aitchison refers to this as the "negative bias difficulty" (although `bias' is not used in the traditional sense;~\cite{Aitchison1986}, p. 53). The existence of these negative values creates problems for the interpretation of the covariance matrix since values are no longer free to range between 0 and 1.\\
+Equation~\ref{negbias} shows that at least one element of each row of the covariance matrix must be negative. Aitchison refers to this as the "negative bias difficulty" (although `bias' is not used in the traditional sense;~\cite{Aitchison1986}, p. 53). The existence of these negative values creates problems for the interpretation of the covariance matrix since values are no longer free to range between 0 and 1.\\
 
 
-Becuase of the difficulties outlined above, standard statistical methodology is not always appropriate~\cite{Aitchison1986} and can produce misleading results~\cite{Lovell2015}.  To overcome these obstacles, Aitchison~\cite{Aitchison1980} proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{t}$ as:
+Because of the difficulties outlined above, standard statistical methodology is not always appropriate~\cite{Aitchison1986} and can produce misleading results~\cite{Lovell2015}.  To overcome these obstacles, Aitchison~\cite{Aitchison1980} proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{x}$ as:
 \begin{equation}
 y_i  = \text{CLR}(x_i) = log \left(\frac{x_i}{g(\mathbf{x})} \right),
 \label{clr}
 \end{equation}
-where $g(\mathbf{t})$ is the geometric mean of $\mathbf{t}$.  The $D \times D$ covariance matrix is then defined as:
+where $g(\mathbf{x})$ is the geometric mean of $\mathbf{x}$.  The $D \times D$ covariance matrix is then defined as:
 \begin{equation}
 \Gamma = \left[\text{cov}\left(y_i, y_j \right): i,\ j = 1, ..., D \right]
 \label{gamma}
 \end{equation}
-Although the CLR transformation preserves the original dimmension of the data, and gives equal treatment to every element of $\mathbf{t}$, the resulting covariance matrix, $\Gamma$, is singular.  Therefore, care should be taken when using general multivariate methods on CLR transformed data.\\
+\\
 
-Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions~\cite{Aitchison2000}.  Aitchison~\cite{Aitchison1992} outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data due to differences in read depth). The permutation invariance is generally satisfied by existing methods~\cite{Martin-Fernandez1998}. However, the perturbation invariance and subcompositional dominance are not generally satisfied. \\
+To avoid numerical difficulties arising from sequence targets with 0 reads Martin-Fernandez et al.~\cite{Martin-Fernandez2000} an additive-multiplicative hybrid transformation.  This transformation is additive on the zero components but multiplicative on the non-zero components.  It has several advantages over the simple additive transformation since it preserves several important compositional properties.  Martin-Fernandez et al.~\cite{Martin-Fernandez2000} recommend using 0.55 $\times$ the smallest detectable value as originally suggested by Sandford et al.~\cite{Kiers2000, Sanford1993}. The threshold value for RNA-seq data must account for read depth since a 0 in a sample with a library size of 1 thousand reads would potentially not be 0 if the total number of reads was increased to 1 million.  Therefore, we define the threshold value for a sample as $\delta = \frac{0.55}{\text{Total Reads}}$.  The Martin-Fernandez transformation then becomes,
 
-Aitchison~\cite{Aitchison1986, Aitchison1992} suggests using the sum of squares of all log-ratio differnces.  Billheimer, Guttorp, and Fagan~\cite{Billheimer2001} use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison~\cite{Aitchison1986}`, allow the interpretation of differences in compositions. Billheimer et al.~\cite{Billheimer2001} show that $\mathcal{S}^d$, with a defined perturbation orperator and scalar multiplication, constitutes a complete inner product space and define an inner product.
+\begin{equation}
+v_i = \frac{x_i}{\sum_{i = 1}^{D} x_i}
+\end{equation}
 
-Martin-Fernandez et al. (1998) showed that applying either Euclidean distance or Mahalanobis distance metric to CLR transformed data satisfies all the requirements of a compositional distance metric. Euclidean distance on CLR transformed compositions is referred to as Aitchison distance:
+\begin{equation}
+u_i  = 
+  \begin{cases} 
+    \delta  & \text{ if }v_i = 0\\
+    v_i \times \left[1 - \left( \sum_{i = 1}^{D} \mathcal{I}_{\left(v_i = 0\right)} \times \delta \right) \right] & \text{ if }x_i \ne 0.\\
+  \end{cases}
+\label{MFclr}
+\end{equation}
+
+The CLR transformation is then applied to the vector $\mathbf{u}$.\\
+
+The CLR transformation can be viewed as an extension of the familiar Counts per Million (CPM) transformation~\cite{Law2014} defined as, $log_2 \left(\frac{r_{gi}+0.5}{t_i+1} \times 10^6 \right)$, where $r_{gi}$ is the number of sequence reads for each probe ($g$) and sample ($i$), (scaled to avoid zero counts), adjusted for the number of mapped reads (library count) for each sample $t_i$ (scaled by a constant 1 to ensure the proportional read to library size ratio is greater than zero). The primary difference between the CLR and log(CPM) transformations is in the use of the geomtric mean in the denominator of the CLR transformation. Although the CLR transformation preserves the original dimmension of the data, and gives equal treatment to every element of $\mathbf{x}$, the resulting covariance matrix, $\Gamma$, is singular.  Therefore, care should be taken when using general multivariate methods on CLR transformed data.\\
+
+Similarly, the compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions~\cite{Aitchison2000}.  Aitchison~\cite{Aitchison1992} outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data due to differences in read depth). The permutation invariance is generally satisfied by existing methods such as Euclidean distance~\cite{Martin-Fernandez1998}. However, the perturbation invariance and subcompositional dominance are not generally satisfied~\cite{Martin-Fernandez1998}. \\
+
+Aitchison~\cite{Aitchison1986, Aitchison1992} suggests using the sum of squares of all log-ratio differences.  Billheimer, Guttorp, and Fagan~\cite{Billheimer2001} use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison~\cite{Aitchison1986}, allow the interpretation of differences in compositions. Martin-Fernandez et al.~\cite{Martin-Fernandez1998} showed that applying either Euclidean distance or Mahalanobis distance metric to CLR transformed data satisfies all the requirements of a compositional distance metric. Euclidean distance on CLR transformed compositions is referred to as Aitchison distance:
 
 $$d_A(x_i, x_j) = \left[\sum_{k=1}^D \left( log \left(\frac{x_{ik}}{g(x_i)} \right) - log \left(\frac{x_{jk}}{g(x_j)} \right) \right)^2  \right]^\frac{1}{2}$$
 
 or 
 
 $$d_A(x_i, x_j) = \left[\sum_{k=1}^D \left( clr(x_{ik}) - clr(x_{jk}) \right)^2  \right]^\frac{1}{2}.$$
+\\
+
+Up to this point we have referred to the total reads available per sequencing run, $\mathbb{T}$.  However, it is more typical to work with the aligned reads in practice.  The total aligned reads, $T$, is always a fraction of the total reads available for a sequencing run, $\mathbb{T}$.  The fraction of the total reads aligned can be a affected by multiple factors, including the choice of alignment algorithm, which we do not address here.  We assume that $T$ imposes the same constraints on the data as oultined above for $\mathbb{T}$ and will refer exclusively to $T$ hereafter.\\  
 
 
-%Up to this point we have referred to the total reads available per sequencing run, $\mathbb{T}$.  However, it is more typical to work with the aligned reads in practice.  The total aligned reads, $T$, is always a fraction of the total reads available for a sequencing run, $\mathbb{T}$.  The fraction of the total reads aligned can be a affected by multiple factors, including the choice of alignment algorithm, which we do not address here.  We assume that $T$ imposes the same constraints on the data as oultined above for $\mathbb{T}$ and will refer exclusively to $T$ hereafter.\\  
 
 \subsection{Outlier Detection}
-Problems with RNA isolation, library preparation, or sequencing may result in a low number of reads for the sample.  There is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. We develop a method grounded in the compositional nature of RNA-Seq data for objectively identifying samples with potentially poor quality.\\
+Problems with sample quality, library preparation, or sequencing may result in a low number of reads for a given sample within a sequencing run.  There is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. We develop a method grounded in the compositional nature of RNA-Seq data for objectively identifying samples with potentially poor quality.\\
 
-For most experimental designs we expect the number of reads in each sample, $t_i$, to be equivalent notwithstanding random variation.   Since these reads are part of a composition it is natural to view them as arising from a Multinomial distribution with equal probabilities. Since each cell has the same probability we test for outlying values using the Binomial distribution with probability $1/D$ and size $n = \text{total available reads}$.
-% The sample totals can then be ordered from the lowest, $t_{(1)}$, to the highest, $t_{(D)}$.  Outliers can then be identified as those with counts less than expected for the lowest order statistic or greater than the highest order statistic.\\
+For most experimental designs we expect the number of reads in each sample, $t_i$, to be equivalent notwithstanding random variation.   
 
 
 
