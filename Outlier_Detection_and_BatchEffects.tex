@@ -153,7 +153,7 @@ v_i = \frac{x_i}{\sum_{i = 1}^{D} x_i}
 u_i  = 
   \begin{cases} 
     \delta  & \text{ if }v_i = 0\\
-    v_i \times \left[1 - \left( \sum_{i = 1}^{D} \mathcal{I}_{\left(v_i = 0\right)} \times \delta \right) \right] & \text{ if }x_i \ne 0.\\
+    v_i \times \left[1 - \left( \sum_{i = 1}^{D} \mathcal{I}_{\left(v_i = 0\right)}\right) \times \delta  \right] & \text{ if }x_i \ne 0.\\
   \end{cases}
 \label{MFclr}
 \end{equation}
@@ -178,7 +178,7 @@ Up to this point we have referred to the total reads available per sequencing ru
 
 
 \subsection{Outlier Detection}
-Problems with sample quality, library preparation, or sequencing may result in a low number of reads for a given sample within a sequencing run.  There is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. We develop a method grounded in the compositional nature of RNA-Seq data for objectively identifying samples with potentially poor quality.\\
+Problems with sample quality, library preparation, or sequencing may result in a low number of reads allocated to a given sample within a sequencing run.  There is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. However, the compositional nature of RNA-Seq data provides an objective method for identifying samples with poor quality.\\
 
 For most experimental designs we expect the number of reads in each sample, $t_i$, to be equivalent notwithstanding random variation.   
 
@@ -190,26 +190,7 @@ Batch effects arising from differing labratory conditions or operator difference
 The compositional nature of RNA-Seq data has important implications for the detection of batch effects becuase of the difficulty of interpreting the covariace matrix (\cite{Aitchison1986}) and the incompatibility with standard measures of distance (\cite{Martin-Fernandez1998}).  The CLR transformation facilitates both batch effect detection and normalization.  The CLR transformed covariance matrix is suitable for exploration through PCA (\cite{Aitchison2002}) or hierarchical clustering using standard Euclidean distance (\cite{Martin-Fernandez1998}).  \\
 
 
-% *Methods Rough Outline:* 
-% 
-% * For CLR on total reads approach    
-%     + Establish notation
-%     + Introduction to compositional transformations 
-%     + The CLR transformation and it's properties 
-%     + Use of the CLR transformed data to identify outliers consistent with properties 
-% * For use of control samples for identifying batch effects 
-%     + Establish notation 
-%     + Typical methods for identifying batch effects (from nature methods paper on batch effects)
-%         + PCA
-%         + Hierarichal clustering
-%     + Apply the CLR transformation to control samples
-%     + Identify batch effects using compositional methods
-%         + PCA on transformed data
-%         + Somehow use the set of perturbations between the control samples...
-%     + Use control samples to "normalize out" batch effects in other samples somehow... (probably save this for another paper)
-% 
-% <!-- potential problems
-% What if the control samples are so different that these differences "swamp out" the batch effects but the differences between the biological samples is not so big?
+
 \newpage
 
 \printbibliography

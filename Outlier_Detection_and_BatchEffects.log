@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.1.28)  22 NOV 2016 10:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.1.28)  22 NOV 2016 10:30
 entering extended mode
 **./Outlier_Detection_and_BatchEffects.tex
 (Outlier_Detection_and_BatchEffects.tex
@@ -711,12 +711,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 190--191
  []
 
 [7] [8] [9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 217.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 198.
  [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 217.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 198.
  (Outlier_Detection_and_BatchEffects.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 217.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 217.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 198.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 198.
 Package rerunfilecheck Info: File `Outlier_Detection_and_BatchEffects.out' has 
 not changed.
 (rerunfilecheck)             Checksum: 8E2F3A4F9A7789ECFEE857C505771039;307.
@@ -733,7 +733,7 @@ Package logreq Info: Writing requests to 'Outlier_Detection_and_BatchEffects.ru
 n.xml'.
 \openout1 = `Outlier_Detection_and_BatchEffects.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 217.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 198.
  ) 
 Here is how much of TeX's memory you used:
  11113 strings out of 493634
@@ -759,7 +759,7 @@ ts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
 amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /symbols/msbm10.pfb>
-Output written on Outlier_Detection_and_BatchEffects.pdf (10 pages, 266523 byte
+Output written on Outlier_Detection_and_BatchEffects.pdf (10 pages, 266538 byte
 s).
 PDF statistics:
  316 PDF objects out of 1000 (max. 8388607)
