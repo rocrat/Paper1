@@ -21,7 +21,6 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
-\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -57,6 +56,12 @@
 \usepackage{bbm}
 \usepackage{fullpage}
 \usepackage{setspace}
+
+\usepackage{amsthm}
+ 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
 \doublespacing
 
 \title{RNA-Seq as a Measure of Relative Abundance: oportunities afforded by a compositional analysis framework.}
@@ -177,10 +182,23 @@ Up to this point we have referred to the total reads available per sequencing ru
 
 
 
-\subsection{Outlier Detection}
-Problems with sample quality, library preparation, or sequencing may result in a low number of reads allocated to a given sample within a sequencing run.  There is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. However, the compositional nature of RNA-Seq data provides an objective method for identifying samples with poor quality.\\
+\subsection{Sample Quality Control}
+Problems with sample quality, library preparation, or sequencing may result in a low number of reads allocated to a given sample within a sequencing run.  The Percent Pass Filter (\% PF) metric provided on Illumina sequencers provides a subjective measure that can identify problems with sequencing that result in a low number of reads allocated to a sample.  However, \% PF will not necessarily catch problems associated with poor sample quality of or problems with sample pre-processing since these processes may affect cluster generation, and not just cluster quality.  Morevoer, there is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. We propose a method for objectively identifying problematic samples based on the total number of reads allocated to the sample. \\
 
-For most experimental designs we expect the number of reads in each sample, $t_i$, to be equivalent notwithstanding random variation.   
+For most experimental designs we expect the number of reads allocated to each sample in a sequencing run to arise from the same general data generating mechanism, regardless of experimental condition.  The objective is then to determine which samples arise from a different mechanism.  Outlier detection is well suited for discovering obervations that deviate so much from other observations that they are likely to have arisen from a different mechanism~\cite{Hawkins1980}.  We base our method off Tukey's box-plots\cite{Tukey1977} which is a well used and robust method for detecting outliers~\cite{Ben-Gal2009}.\\
+
+We expect the total number of reads allocated to each sample, $t_i$, to be equivalent notwithstanding random variation. For a given sequencing run with $D$ samples we define the vector of total reads allocated to each sample as $\mathbf{t}$.  Since the $D$ dimensional vector $\mathbf{t}$ is a composition we have $\mathbf{t} \in \mathcal{S}^{D-1}$, the $D-1$-dimensional simplex. As noted above, traditional statistical methods may not be appropriate for data in the simplex.  Therefore, we map $\mathbf{t} \in \mathcal{S}^{D-1} \rightarrow \mathbf{x} = CLR(\mathbf{t}) \in \mathcal{R}^D$ using the Centered Log Ratio transformation.  We then apply Tukey's method for detecting outliers to $\mathbf{x}$, which simply identifies those observations which lie outside 1.5 times the inter-quartile range.
+
+\theoremstyle{definition}
+\begin{definition}
+$x_i$ is a quality control failure if $x_i <$ lower-quartile$- 1.5 \times$ IQR \emph{or}  $x_i >$ upper-quartile$+ 1.5 \times$ IQR, where IQR is the interquartile range of $\mathbf{x}$.
+\end{definition}
+
+
+
+
+
+
 
 
 
