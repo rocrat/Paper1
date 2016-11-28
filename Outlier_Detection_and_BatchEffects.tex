@@ -21,6 +21,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -203,14 +204,18 @@ $x_i$ is a quality control failure if $x_i <$ lower-quartile$- 1.5 \times$ IQR \
 
 
 \subsection{Batch Effects and Normalization}
-Batch effects arising from differing labratory conditions or operator differences have been identified as a problem in high-throughput measurement systems~\cite{leek2010, chen2011}.  Identifying and controlling for batch effects is a critical step in the transition of RNA-Seq from the lab to the clinic.  Batch effects are typically identified with a hierarchical clustering method or principal components analysis (PCA) and removed through various normalization methods~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, leek2014}.  \\ 
+Batch effects arising from differing labratory conditions or operator differences have been identified as a problem in high-throughput measurement systems~\cite{leek2010, chen2011}.  Identifying and controlling for batch effects is a critical step in the transition of RNA-Seq from the lab to the clinic.  Batch effects are typically identified with a hierarchical clustering (HC) method or principal components analysis (PCA) and removed through various normalization methods~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, leek2014}.  \\ %I wonder if I should move that last line
 
-The process of sequencing results in arbitrary differences in scale among samples. Principle components analysis is very sensitive to differences in scale among the variables, failure to remove these difference can mask potential batch effects and leave unwanted technical variation to the data.  Most normalization methods use a scaling factor calculated for each sample to rescale the read count for each gene within the sample~\cite{Dillies2012}.  The CLR transformation can also be viewed as a scaling factor, the inverse of the geomtric mean $1/g(x)$, which is multiplied to each gene read count in the sample.  However, Aitchison demonstrated that this transformation has several other useful properties in addition to rescaling the data~\cite{Aitchison1986}.\\
+The compositional nature of RNA-Seq data has important implications for the detection of batch effects because of the difficulty of interpreting the covariance matrix~\cite{Aitchison1986} and the incompatibility with standard measures of distance between compositions as noted above~\cite{Martin-Fernandez1998}.  The CLR transformation facilitates both batch effect detection and normalization.  The CLR transformed covariance matrix is suitable for exploration through PCA~\cite{Aitchison2002} or hierarchical clustering using standard Euclidean or Mahalanobis distance~\cite{Martin-Fernandez1998}.  \\
 
-The compositional nature of RNA-Seq data has important implications for the detection of batch effects becuase of the difficulty of interpreting the covariance matrix~\cite{Aitchison1986} and the incompatibility with standard measures of distance as noted above~\cite{Martin-Fernandez1998}.  The CLR transformation facilitates both batch effect detection and normalization.  The CLR transformed covariance matrix is suitable for exploration through PCA~\cite{Aitchison2002} or hierarchical clustering using standard Euclidean distance~\cite{Martin-Fernandez1998}.  \\
+The process of sequencing results in arbitrary differences in scale among samples as some samples will receive more total reads than others by chance. Principle components analysis is very sensitive to differences in scale among the variables, failure to remove these difference can mask potential batch effects and leave unwanted technical variation in the data.  Most normalization methods use a scaling factor calculated for each sample to rescale the read count for each gene within the sample~\cite{Dillies2013}.  The CLR transformation can also be viewed as a scaling factor (the inverse of the geomtric mean $1/g(x)$), which is multiplied to each gene read count in the sample.\\
+
+Aitchison demonstrated that the CLR transformation has several other useful properties in addition to rescaling the data~\cite{Aitchison1986}, particularly with respect to PCA biplots~\cite{Aitchison2002}.  \\
 
 
-   .  However, 
+
+
+
 
 \newpage
 
