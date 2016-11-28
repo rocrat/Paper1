@@ -1,4 +1,4 @@
-Paper 1 Outline (LOOK FOR APPROPRIATE BIOINFORMATICS JOURNAL - MAYBE SOMETHING NGS FOCUSED)
+﻿Paper 1 Outline (LOOK FOR APPROPRIATE BIOINFORMATICS JOURNAL - MAYBE SOMETHING NGS FOCUSED)
 Paper 1 Outline 
 
 Title:  Relative frequency measurements: Metrics for sample quality, sequencing integrity, and batch effects in targeted NGS.
