@@ -57,6 +57,7 @@
 \usepackage{bbm}
 \usepackage{fullpage}
 \usepackage{setspace}
+\usepackage{placeins}
 
 \usepackage{amsthm}
  
@@ -195,24 +196,31 @@ We expect the total number of reads allocated to each sample, $t_i$, to be equiv
 $x_i$ is a quality control failure if $x_i <$ lower-quartile$- 1.5 \times$ IQR \emph{or}  $x_i >$ upper-quartile$+ 1.5 \times$ IQR, where IQR is the interquartile range of $\mathbf{x}$.
 \end{definition}
 
-We demonstrate the utility of our sample quality control measure using two sets of targeted RNA-Seq data: 1) 120 mRNA technical replicate universal RNA samples prepared with the HTG EdgeSeq Immuno-Oncology assay and sequenced in 5 different equally sized runs, and 2) 105 miRNA technical replicate samples of human plasma, FFPE tissue, and Brain RNA prepared with the HTG EdgeSeq Whole Transcriptome miRNA assay.  These two data sets differ in the both the type of RNA (mRNA versus miRNA) and the number of sequence targets in each assay (558 versus 2,280 targets, for the mRNA and miRNA assays respectively).  All samples were prepared for sequencing using the HTG EdgeSeq Processor and sequenced with an Illumina Mi-Seq sequencer.\\
+We demonstrate the utility of our sample quality control measure using two sets of targeted RNA-Seq data: 1) 120 mRNA technical replicate universal-RNA samples prepared with the HTG EdgeSeq Immuno-Oncology assay and sequenced in 5 different equally sized runs, and 2) 105 miRNA technical replicate samples of human plasma, FFPE tissue, and Brain RNA prepared with the HTG EdgeSeq Whole Transcriptome miRNA assay.  These two data sets differ in the both the type of RNA (mRNA versus miRNA) and the number of sequence targets in each assay (558 versus 2,280 targets, for the mRNA and miRNA assays respectively).  All samples were prepared for sequencing using the HTG EdgeSeq Processor and sequenced with an Illumina Mi-Seq sequencer.\\
 
 \subsection{Batch Effects and Normalization}
 Batch effects arising from differing labratory conditions or operator differences have been identified as a problem in high-throughput measurement systems~\cite{leek2010, chen2011}.  Identifying and controlling for batch effects is a critical step in the transition of RNA-Seq from the lab to the clinic.  Batch effects are typically identified with a hierarchical clustering (HC) method or principal components analysis (PCA).  For both methods, the multivariate distance between the samples is visualized. either in a biplot for PCA or a dendrogram for HC, to check for the existence of clusters of samples related to batch. % and removed through various normalization methods~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, leek2014}.  \\ %I wonder if I should move that last line
 The compositional nature of RNA-Seq data has important implications for the detection of batch effects because of the difficulty of interpreting the covariance matrix~\cite{Aitchison1986} and the incompatibility with standard measures of distance between compositions as noted above~\cite{Aitchison1986,Martin-Fernandez1998}.\\  %The CLR transformation facilitates both batch effect detection and normalization.  The CLR transformed covariance matrix is suitable for exploration through PCA (using biplots)~\cite{Aitchison2002} or hierarchical clustering using standard Euclidean or Mahalanobis distance~\cite{Martin-Fernandez1998}.  \\
 
-The next generation sequencing process results in arbitrary differences in scale among samples as some samples will receive more total reads than others by chance. Principle components analysis is sensitive to differences in scale among the variables, failure to remove these difference can mask potential batch effects and leave unwanted technical variation in the data.  Most normalization methods use a scaling factor calculated for each sample to rescale the read count for each gene within the sample~\cite{Dillies2013}.  The CLR transformation can also be viewed as a scaling factor (the inverse of the geomtric mean $1/g(x)$), which is multiplied to each gene read count in the sample.\\
+The next generation sequencing process results in arbitrary differences in scale among samples as some samples will receive more total reads than others by chance. Principle components analysis is sensitive to differences in scale among the variables, failure to remove these difference can mask potential batch effects and leave unwanted technical variation in the data.  Most normalization methods use a scaling factor calculated for each sample to rescale the read count for each gene within the sample~\cite{Dillies2013}.  The CLR transformation can also be viewed as a scaling factor (the inverse of the geomtric mean $1/g(x)$), which is multiplied to each gene read count in the sample.  Unlike other normalization methods, the CLR transformation has the added benefit of being applied at the sample level, not experiment wise.  This makes it particularly suited for the clinic where there are no reference samples to normalize to.\\
 
 Aitchison demonstrated that the CLR transformation has several other useful properties in addition to rescaling the data~\cite{Aitchison1986}, particularly with respect to PCA biplots~\cite{Aitchison2002}.  Most notably for the detection of batch effects, the distance between any two points representing samples in the form-biplot approximates the Euclidean distance between the two samples.  The CLR transformation retains the property that this distance is at least as great as the distance between any corresponding subset of these two compositions (subspace dominance).  Other scaling methods do not necessarily satisfy this property when used with compositions, and therefore batch effects may be masked.\\
 
+\begin{itemize}
+\item I thought I would put a toy eample here of problems with subcompositional dominance when measuring distance between compositions.  I want to demonstrate why it matters to have a proper distance metric represented in the PCA.
+\end{itemize}
+
 %toy example of distance issue when checking for batch effects here
 
+We demonstrate the use of the compositional biplot to detect batch effects using technical replicates of three sample types: brain, plasma, and fresh forzen parafin embedded (FFPE).  Each sample is replicated 8 times in each of 5 sequencing runs for a total of 120 samples.  Samples were prepared using the EdgeSeq Whole Transcriptome miRNA assay which measures 2,280 targets including including 11 control probes and 2,269 unique miRNA probes.  All sequencing was performed on an Illumina Mi-seq sequencer.\\
+
+We create a second data set to better illustrate the effects of changes in read depth on batch effect detection.  To scale the samples from the original we multiply every read count in a given sample by a factor ranging from 0.5 to 1.5 randomly generated from the uniform distribution.  We then obtain a new data set in which the proportions between the read counts remains unchanged but the variance in the total number of reads among the samples is increased.\\ 
 
 \section{Results}
 
 \subsection{Sample Quality Control}
 
-We compare the utility of our method to evaluation of the untransformed total counts.  Figure~\ref{totalFig} shows a boxplot and heatmap of the total number of reads allocated to each sample in each of 5 sequencing runs.  Figure~\ref{clrFig} shows the same data after CLR transformation.  After transformation the poor samples become much more visually evident in the heat maps and the number of poor samples detected increases from 1 to 6.  \\
+We compare the utility of our method to evaluation of the untransformed total counts.  Figure~\ref{totalFig} shows a boxplot and heatmap of the total number of reads allocated to each sample in each of 5 sequencing runs.  Figure~\ref{clrFig} shows the same data after CLR transformation.  After transformation the poor samples become much more visually evident in the heat maps.  Additionally, the outlying values become easier to identify and the number of poor samples detected increases from 1 to 6.  \\
 
 \begin{figure}
 \includegraphics[scale=.5]{./Figures/IO_Repro_Combined_RawTotals}
@@ -226,8 +234,42 @@ We compare the utility of our method to evaluation of the untransformed total co
 \label{clrFig}
 \end{figure}
 
-\newpage
+\subsection{Batch Effects and Normalization}
 
+We perform a PCA on log-transformed and CLR transformed data.  We then construct form-biplots of the first two principle components for each transformed data set (Fig.~\ref{rawPCA}).  The differences between the 3 samples types (brain, plasma, and FFPE) dominate the first two principle componenets for both data sets.  However, the CLR transformed data provides tighter clusters, relative to the distance between the clusters, than the log-transformed raw data.  There is also a single FFPE sample which is closer to the brain samples thant he other samples.  It is worth noting that this sample would have been removed using our proposed quality control metric.\\
+
+\begin{figure}
+\includegraphics[scale=0.4]{./Figures/IO_PCA_2plot}
+\label{rawPCA}
+\caption{Principle component analysis of A) log-transformed and B) CLR-transformed read count data.  The differences between sample types is much greater than the batch effects in both transformation.  The CLR transformation results in tighter sample type clusters resulting from less variation along the first principle component. }
+\end{figure}
+
+Since the sample type differences overwhelm the potential batch effects we performed a second PCA on only the brain samples for both transformed data sets (Fig.~\ref{rawPCAbrain}).  Both biplots exhibit clustering by batch but the CLR transformed data shows better separation between the batches, although batches are still overlapping.  \\
+
+\begin{figure}
+\includegraphics[scale=0.4]{./Figures/IO_PCA_Brain_logRaw_CLR}
+\label{rawPCAbrain}
+\caption{Principle component analysis of only brain samples from A) log-transformed and B) CLR-transformed read count data. The batch effects are more easliy identified in the CLR transformed data.}
+\end{figure}
+
+Some of the batch effects detected in the log-transformed data may be attributable to the differnces in total reads between batches.  By randomly re-scaling each sample by a constant we are able to break the realtionship between batch and the total reads in a sample. Figure~\ref{rescaledPCA} gives the biplots for log-transformed and CLR-transformed randomly re-scaled data.  The sample type clusters in the log-transformed data become more diffuse while the CLR-transformed biplot remains unchanged.  Most notably, the batch effects previously visible in the log-transformed brain samples become completely obscured in the randomly re-scaled data but remain unchanged in the CLR-transformed data (Fig.~\ref{rescaledPCAbrain}).  
+
+\begin{figure}
+\includegraphics[scale=0.4]{./Figures/IO_PCA_Brain_logRaw_CLR_perturbed}
+\label{rescaledPCAbrain}
+\caption{Principle components analysis of the randomly re-scaled brain samples for A) log-transformed and B) CLR-transformed read count data.  The batch effects visual in the log-tranformed raw data disappear after random re-scaling whereas the batch effects remain identifiable in the CLR transformed data.}
+\end{figure}
+
+\FloatBarrier
+\section{Discussion}
+
+
+
+A principle components analysis biplot is a well know dimension reduction visualization.  For the current data the dimension is reduced from 2,280 probes to 2 principle components.  The utlity of the data reduction, including the quality of the approximation of the multivariate distance between the samples, is proportional to the amount of variance explained by these two principle components.  
+
+
+%ask Shripad about slide 59 from his defense Re: interpretation of the biplot on the raw log-transformed data
+\newpage
 \printbibliography
 
 \end{document}

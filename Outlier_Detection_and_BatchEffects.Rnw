@@ -7,6 +7,7 @@
 \usepackage{bbm}
 \usepackage{fullpage}
 \usepackage{setspace}
+\usepackage{placeins}
 
 \usepackage{amsthm}
  
@@ -160,7 +161,9 @@ Aitchison demonstrated that the CLR transformation has several other useful prop
 
 %toy example of distance issue when checking for batch effects here
 
-We demonstrate the use of the PCA biplot on CLR transformed to detect batch effects using 
+We demonstrate the use of the compositional biplot to detect batch effects using technical replicates of three sample types: brain, plasma, and fresh forzen parafin embedded (FFPE).  Each sample is replicated 8 times in each of 5 sequencing runs for a total of 120 samples.  Samples were prepared using the EdgeSeq Whole Transcriptome miRNA assay which measures 2,280 targets including including 11 control probes and 2,269 unique miRNA probes.  All sequencing was performed on an Illumina Mi-seq sequencer.\\
+
+We create a second data set to better illustrate the effects of changes in read depth on batch effect detection.  To scale the samples from the original we multiply every read count in a given sample by a factor ranging from 0.5 to 1.5 randomly generated from the uniform distribution.  We then obtain a new data set in which the proportions between the read counts remains unchanged but the variance in the total number of reads among the samples is increased.\\ 
 
 \section{Results}
 
@@ -182,14 +185,40 @@ We compare the utility of our method to evaluation of the untransformed total co
 
 \subsection{Batch Effects and Normalization}
 
-\begin{figure}
-\includegraphics[scale=0.5]{./Figures/}
-\newpage
+We perform a PCA on log-transformed and CLR transformed data.  We then construct form-biplots of the first two principle components for each transformed data set (Fig.~\ref{rawPCA}).  The differences between the 3 samples types (brain, plasma, and FFPE) dominate the first two principle componenets for both data sets.  However, the CLR transformed data provides tighter clusters, relative to the distance between the clusters, than the log-transformed raw data.  There is also a single FFPE sample which is closer to the brain samples thant he other samples.  It is worth noting that this sample would have been removed using our proposed quality control metric.\\
 
+\begin{figure}
+\includegraphics[scale=0.4]{./Figures/IO_PCA_2plot}
+\label{rawPCA}
+\caption{Principle component analysis of A) log-transformed and B) CLR-transformed read count data.  The differences between sample types is much greater than the batch effects in both transformation.  The CLR transformation results in tighter sample type clusters resulting from less variation along the first principle component. }
+\end{figure}
+
+Since the sample type differences overwhelm the potential batch effects we performed a second PCA on only the brain samples for both transformed data sets (Fig.~\ref{rawPCAbrain}).  Both biplots exhibit clustering by batch but the CLR transformed data shows better separation between the batches, although batches are still overlapping.  \\
+
+\begin{figure}
+\includegraphics[scale=0.4]{./Figures/IO_PCA_Brain_logRaw_CLR}
+\label{rawPCAbrain}
+\caption{Principle component analysis of only brain samples from A) log-transformed and B) CLR-transformed read count data. The batch effects are more easliy identified in the CLR transformed data.}
+\end{figure}
+
+Some of the batch effects detected in the log-transformed data may be attributable to the differnces in total reads between batches.  By randomly re-scaling each sample by a constant we are able to break the realtionship between batch and the total reads in a sample. Figure~\ref{rescaledPCA} gives the biplots for log-transformed and CLR-transformed randomly re-scaled data.  The sample type clusters in the log-transformed data become more diffuse while the CLR-transformed biplot remains unchanged.  Most notably, the batch effects previously visible in the log-transformed brain samples become completely obscured in the randomly re-scaled data but remain unchanged in the CLR-transformed data (Fig.~\ref{rescaledPCAbrain}).  
+
+\begin{figure}
+\includegraphics[scale=0.4]{./Figures/IO_PCA_Brain_logRaw_CLR_perturbed}
+\label{rescaledPCAbrain}
+\caption{Principle components analysis of the randomly re-scaled brain samples for A) log-transformed and B) CLR-transformed read count data.  The batch effects visual in the log-tranformed raw data disappear after random re-scaling whereas the batch effects remain identifiable in the CLR transformed data.}
+\end{figure}
+
+\FloatBarrier
 \section{Discussion}
 
 
 
+A principle components analysis biplot is a well know dimension reduction visualization.  For the current data the dimension is reduced from 2,280 probes to 2 principle components.  The utlity of the data reduction, including the quality of the approximation of the multivariate distance between the samples, is proportional to the amount of variance explained by these two principle components.  
+
+
+%ask Shripad about slide 59 from his defense Re: interpretation of the biplot on the raw log-transformed data
+\newpage
 \printbibliography
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.1.28)  30 NOV 2016 10:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.1.28)  2 DEC 2016 14:22
 entering extended mode
 **./Outlier_Detection_and_BatchEffects.tex
 (Outlier_Detection_and_BatchEffects.tex
@@ -471,6 +471,10 @@ Package: fullpage 1999/02/23 1.1 (PWD)
 ("C:\Users\dlaroche\AppData\Local\Programs\MiKTeX 2.9\tex\latex\setspace\setspa
 ce.sty"
 Package: setspace 2011/12/19 v6.7a set line spacing
+)
+("C:\Users\dlaroche\AppData\Local\Programs\MiKTeX 2.9\tex\latex\placeins\placei
+ns.sty"
+Package: placeins 2005/04/18  v 2.2
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\amscls\amsthm.sty"
 Package: amsthm 2015/03/04 v2.20.2
 \thm@style=\toks20
@@ -502,20 +506,20 @@ File: english.lbx 2015/12/22 v3.2 biblatex localization (PK/JW/AB)
  (Outlier_Detection_and_BatchEffects.aux)
 \openout1 = `Outlier_Detection_and_BatchEffects.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
 
 ("C:\Users\dlaroche\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf
 .mkii"
@@ -533,7 +537,7 @@ LaTeX Font Info:    ... okay on input line 71.
 \everyMPtoPDFconversion=\toks27
 )
 \AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring ON on input line 71.
+Package hyperref Info: Link coloring ON on input line 72.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -542,9 +546,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count300
 )
-LaTeX Info: Redefining \ref on input line 71.
-LaTeX Info: Redefining \pageref on input line 71.
-LaTeX Info: Redefining \nameref on input line 71.
+LaTeX Info: Redefining \ref on input line 72.
+LaTeX Info: Redefining \pageref on input line 72.
+LaTeX Info: Redefining \nameref on input line 72.
 
 (Outlier_Detection_and_BatchEffects.out)
 (Outlier_Detection_and_BatchEffects.out)
@@ -608,177 +612,230 @@ Package biblatex Warning: BibTeX reported the following issues
 (biblatex)                - Invalid format of field 'month'.
 
 )
-Package biblatex Info: Reference section=0 on input line 71.
-Package biblatex Info: Reference segment=0 on input line 71.
-LaTeX Font Info:    Try loading font information for U+msa on input line 74.
+Package biblatex Info: Reference section=0 on input line 72.
+Package biblatex Info: Reference segment=0 on input line 72.
+LaTeX Font Info:    Try loading font information for U+msa on input line 75.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 74.
+LaTeX Font Info:    Try loading font information for U+msb on input line 75.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Citation 'Li2013' on page 1 undefined on input line 82.
+LaTeX Warning: Citation 'Li2013' on page 1 undefined on input line 83.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 85--86
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
 
  []
 
 [1
 
 {C:/Users/dlaroche/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 96--97
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 102--103
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--106
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 
  []
 
 [2]
 
-LaTeX Warning: Citation 'Yang2013' on page 3 undefined on input line 108.
+LaTeX Warning: Citation 'Yang2013' on page 3 undefined on input line 109.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
 
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 126--128
+Underfull \hbox (badness 10000) in paragraph at lines 127--129
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 137--138
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--151
+Underfull \hbox (badness 10000) in paragraph at lines 150--152
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 167--168
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 179--181
+Underfull \hbox (badness 10000) in paragraph at lines 180--182
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 182--183
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--188
+Underfull \hbox (badness 10000) in paragraph at lines 188--189
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--199
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 201--203
+Underfull \hbox (badness 10000) in paragraph at lines 202--204
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--205
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--207
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
 
  []
 
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 210.
 
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 210.
+ [8]
 Underfull \hbox (badness 10000) in paragraph at lines 215--216
 
  []
 
-[8] <./Figures/IO_Repro_Combined_RawTotals.png, id=167, 1011.78pt x 722.7pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--224
+
+ []
+
+<./Figures/IO_Repro_Combined_RawTotals.png, id=175, 1011.78pt x 722.7pt>
 File: ./Figures/IO_Repro_Combined_RawTotals.png Graphic file (type png)
 
 <use ./Figures/IO_Repro_Combined_RawTotals.png>
 Package pdftex.def Info: ./Figures/IO_Repro_Combined_RawTotals.png used on inpu
-t line 218.
+t line 226.
 (pdftex.def)             Requested size: 505.88876pt x 361.3491pt.
 
-Overfull \hbox (36.13374pt too wide) in paragraph at lines 218--219
+Overfull \hbox (36.13374pt too wide) in paragraph at lines 226--227
 [][] 
  []
 
-<./Figures/IO_Repro_Combined_CLR.png, id=168, 1011.78pt x 722.7pt>
+<./Figures/IO_Repro_Combined_CLR.png, id=176, 1011.78pt x 722.7pt>
 File: ./Figures/IO_Repro_Combined_CLR.png Graphic file (type png)
 
 <use ./Figures/IO_Repro_Combined_CLR.png>
 Package pdftex.def Info: ./Figures/IO_Repro_Combined_CLR.png used on input line
- 224.
+ 232.
 (pdftex.def)             Requested size: 505.88876pt x 361.3491pt.
 
-Overfull \hbox (36.13374pt too wide) in paragraph at lines 224--225
+Overfull \hbox (36.13374pt too wide) in paragraph at lines 232--233
 [][] 
  []
 
-[9] [10 <./Figures/IO_Repro_Combined_RawTotals.png>] [11 <./Figures/IO_Repro_Co
-mbined_CLR.png (PNG copy)>] [12] [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 233.
- [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 233.
 
-(Outlier_Detection_and_BatchEffects.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 233.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 233.
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+
+ []
+
+[9] [10 <./Figures/IO_Repro_Combined_RawTotals.png>] [11 <./Figures/IO_Repro_Co
+mbined_CLR.png (PNG copy)>]
+<./Figures/IO_PCA_2plot.png, id=193, 1156.32pt x 578.16pt>
+File: ./Figures/IO_PCA_2plot.png Graphic file (type png)
+
+<use ./Figures/IO_PCA_2plot.png>
+Package pdftex.def Info: ./Figures/IO_PCA_2plot.png used on input line 242.
+(pdftex.def)             Requested size: 462.5198pt x 231.2599pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
+
+ []
+
+<./Figures/IO_PCA_Brain_logRaw_CLR.png, id=195, 1156.32pt x 578.16pt>
+File: ./Figures/IO_PCA_Brain_logRaw_CLR.png Graphic file (type png)
+
+<use ./Figures/IO_PCA_Brain_logRaw_CLR.png>
+Package pdftex.def Info: ./Figures/IO_PCA_Brain_logRaw_CLR.png used on input li
+ne 250.
+(pdftex.def)             Requested size: 462.5198pt x 231.2599pt.
+
+
+LaTeX Warning: Reference `rescaledPCA' on page 12 undefined on input line 255.
+
+[12 <./Figures/IO_PCA_2plot.png>]
+<./Figures/IO_PCA_Brain_logRaw_CLR_perturbed.png, id=203, 1156.32pt x 578.16pt>
+File: ./Figures/IO_PCA_Brain_logRaw_CLR_perturbed.png Graphic file (type png)
+<use ./Figures/IO_PCA_Brain_logRaw_CLR_perturbed.png>
+Package pdftex.def Info: ./Figures/IO_PCA_Brain_logRaw_CLR_perturbed.png used o
+n input line 258.
+(pdftex.def)             Requested size: 462.5198pt x 231.2599pt.
+ [13 <./Figures/IO_PCA_Brain_logRaw_CLR.png>] [14 <./Figures/IO_PCA_Brain_logRa
+w_CLR_perturbed.png>]
+[15] [16]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 275.
+ [17]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 275.
+ (Outlier_Detection_and_BatchEffects.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 275.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 275.
 Package rerunfilecheck Info: File `Outlier_Detection_and_BatchEffects.out' has 
 not changed.
-(rerunfilecheck)             Checksum: 5431A4DFC60B4EF1AE916C344BE80807;427.
+(rerunfilecheck)             Checksum: 5AF4CDB5CBB7790072E809CD9EB9966B;554.
 
 
 LaTeX Warning: There were undefined references.
@@ -792,13 +849,13 @@ Package logreq Info: Writing requests to 'Outlier_Detection_and_BatchEffects.ru
 n.xml'.
 \openout1 = `Outlier_Detection_and_BatchEffects.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 233.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 275.
  ) 
 Here is how much of TeX's memory you used:
- 11215 strings out of 493634
- 177873 string characters out of 3143735
- 372131 words of memory out of 3000000
- 14409 multiletter control sequences out of 15000+200000
+ 11277 strings out of 493634
+ 179277 string characters out of 3143735
+ 372386 words of memory out of 3000000
+ 14453 multiletter control sequences out of 15000+200000
  12937 words of font info for 50 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  36i,10n,48p,1225b,1070s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -819,10 +876,10 @@ ts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 msfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/
 msbm10.pfb>
-Output written on Outlier_Detection_and_BatchEffects.pdf (14 pages, 456441 byte
+Output written on Outlier_Detection_and_BatchEffects.pdf (17 pages, 594320 byte
 s).
 PDF statistics:
- 362 PDF objects out of 1000 (max. 8388607)
- 59 named destinations out of 1000 (max. 500000)
- 67 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 396 PDF objects out of 1000 (max. 8388607)
+ 67 named destinations out of 1000 (max. 500000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 
