@@ -69,9 +69,9 @@
   \endverb
   \field{volume}{67}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Aitchison, Shen - 1980 - Logistic-normal distributionsSo
-  \verb me properties and uses.pdf:pdf
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Aitchis
+  \verb on and Chen (1980) Logistic normal distributions- some uses and propert
+  \verb ies.pdf:pdf
   \endverb
   \field{journaltitle}{Biometrika}
   \field{year}{1980}
@@ -127,9 +127,8 @@
   \field{title}{{Logratio analysis and compositional distance}}
   \field{volume}{32}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Aitchison et al. - 2000 - Logratio analysis and composit
-  \verb ional distance.pdf:pdf
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Aitchis
+  \verb on et al. (2000) Logratio analysis and compositional distance.pdf:pdf
   \endverb
   \field{journaltitle}{Mathematical Geology}
   \field{year}{2000}
@@ -161,9 +160,9 @@
   \endverb
   \field{volume}{24}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Aitchison - 1992 - On criteria for measures of compositi
-  \verb onal difference.pdf:pdf
+  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
+  \verb ktop/Downloaded/Aitchison - 1992 - On criteria for measures of composit
+  \verb ional difference.pdf:pdf
   \endverb
   \field{journaltitle}{Mathematical Geology}
   \field{year}{1992}
@@ -183,9 +182,24 @@
      {}{}%
      {}{}}%
   }
+  \keyw{Logratio transformation,Principal component analysis,Relative variation
+  biplot,Singular value decomposition,Subcomposition}
   \strng{namehash}{AJGM1}
   \strng{fullhash}{AJGM1}
   \field{sortinit}{A}
+  \field{abstract}{%
+  The singular value decomposition and its interpretation as a linear biplot
+  has proved to be a powerful tool for analysing many forms of multivariate
+  data. Here we adapt biplot methodology to the speci¯c case of compositional
+  data consisting of positive vectors each of which is constrained to have unit
+  sum. These relative variation biplots have properties relating to special
+  features of compositional data: the study of ratios, subcompositions and
+  models of compositional relationships. The methodology is demonstrated on a
+  data set consisting of six-part colour compositions in 22 abstract paintings,
+  showing how the singular value decomposition can achieve an accurate biplot
+  of the colour ratios and how possible models interrelating the colours can be
+  diagnosed.%
+  }
   \verb{doi}
   \verb 10.1111/1467-9876.00275
   \endverb
@@ -197,6 +211,11 @@
   \verb http://doi.wiley.com/10.1111/1467-9876.00275
   \endverb
   \field{volume}{51}
+  \verb{file}
+  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
+  \verb ktop/Downloaded/Aitchison, Greenacre - Unknown - Biplots of Composition
+  \verb al Data.pdf:pdf
+  \endverb
   \field{journaltitle}{Journal of the Royal Statistical Society: Series C
   (Applied Statistics)}
   \field{year}{2002}
@@ -235,9 +254,9 @@
   \endverb
   \field{volume}{11}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Anders, Huber - 2010 - Differential expression analysis
-  \verb for sequence count data(2).pdf:pdf
+  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
+  \verb ktop/Downloaded/Anders, Huber - 2010 - Differential expression analysis
+  \verb  for sequence count data.pdf:pdf
   \endverb
   \field{journaltitle}{Genome Biol}
   \field{year}{2010}
@@ -325,9 +344,9 @@
   \endverb
   \field{volume}{96}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Billheimer, Guttorp, Fagan - 2001 - Statistical Interpre
-  \verb tation of Species Composition.pdf:pdf
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Billhei
+  \verb mer, Guttorp, and Fagan (2011) Statistical Interpretation of Species Co
+  \verb mposition.pdf:pdf
   \endverb
   \field{journaltitle}{Journal of the American Statistical Association}
   \field{year}{2001}
@@ -401,10 +420,9 @@
   data: An evaluation of six batch adjustment methods}}
   \field{volume}{6}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Chen et al. - 2011 - Removing batch effects in analysis
-  \verb of expression microarray data An evaluation of six batch adjustment met
-  \verb hods(2).pdf:pdf
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Chen et
+  \verb  al (2011) Removing Batch Effects in Analysis of Expression Microarray
+  \verb Data- An Evaluation of Six Batch Adjustment Methods.pdf:pdf
   \endverb
   \field{journaltitle}{PLoS ONE}
   \field{year}{2011}
@@ -538,10 +556,9 @@
   Illumina high-throughput RNA sequencing data analysis}}
   \field{volume}{14}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Dillies et al. - 2013 - A comprehensive evaluation of no
-  \verb rmalization methods for Illumina high-throughput RNA sequencing data an
-  \verb alysis.pdf:pdf
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Dillies
+  \verb  et al (2012) A comprehensive evaluation of normalization methods.pdf:p
+  \verb df
   \endverb
   \field{journaltitle}{Briefings in Bioinformatics}
   \field{year}{2013}
@@ -680,9 +697,9 @@
   \endverb
   \field{volume}{15}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Law et al. - 2014 - voom Precision weights unlock linear
-  \verb  model analysis tools for RNA-seq read counts.pdf:pdf
+  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
+  \verb ktop/Downloaded/Law et al. - 2014 - voom Precision weights unlock linea
+  \verb r model analysis tools for RNA-seq read counts.pdf:pdf
   \endverb
   \field{journaltitle}{Genome biology}
   \field{year}{2014}
@@ -772,9 +789,9 @@
   \endverb
   \field{volume}{11}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Leek et al. - 2010 - Tackling the widespread and critica
-  \verb l impact of batch effects in high-throughput data.pdf:pdf
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Leek et
+  \verb  al. (2010) Tackling the widespread and critical impact of batch effect
+  \verb s in high-throughput data..pdf:pdf
   \endverb
   \field{journaltitle}{Nature reviews. Genetics}
   \field{eprinttype}{arXiv}
@@ -842,9 +859,8 @@
   \endverb
   \field{volume}{11}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Lovell et al. - 2015 - Proportionality A Valid Alternati
-  \verb ve to Correlation for Relative Data.pdf:pdf
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Lovell-
+  \verb proportionality-PLOSOne2015.pdf:pdf
   \endverb
   \field{journaltitle}{PLoS computational biology}
   \field{year}{2015}
@@ -914,11 +930,187 @@
   \verb http://dx.doi.org/10.1002/9781119976462.ch14
   \endverb
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Lovell et al. - Unknown - DO THE MOLECULAR BIOSCIENCES T
-  \verb REAT COMPOSITIONAL DATA RIGHT.pdf:pdf
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/CoDa-A05-Lovell.pd
+  \verb f:pdf
   \endverb
   \field{year}{2011}
+\endentry
+
+\entry{Luo2010}{article}{}
+  \name{author}{25}{}{%
+    {{}%
+     {Luo}{L.}%
+     {J}{J}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Schumacher}{S.}%
+     {M}{M}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Scherer}{S.}%
+     {A}{A}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sanoudou}{S.}%
+     {D}{D}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Megherbi}{M.}%
+     {D}{D}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Davison}{D.}%
+     {T}{T}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shi}{S.}%
+     {T}{T}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tong}{T.}%
+     {W}{W}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shi}{S.}%
+     {L}{L}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hong}{H.}%
+     {H}{H}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhao}{Z.}%
+     {C}{C}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Elloumi}{E.}%
+     {F}{F}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shi}{S.}%
+     {W}{W}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Thomas}{T.}%
+     {R}{R}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lin}{L.}%
+     {S}{S}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tillinghast}{T.}%
+     {G}{G}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Liu}{L.}%
+     {G}{G}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhou}{Z.}%
+     {Y}{Y}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Herman}{H.}%
+     {D}{D}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Li}{L.}%
+     {Y}{Y}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Deng}{D.}%
+     {Y}{Y}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fang}{F.}%
+     {H}{H}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bushel}{B.}%
+     {P}{P}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Woods}{W.}%
+     {M}{M}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhang}{Z.}%
+     {J}{J}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Nature Publishing Group}%
+  }
+  \strng{namehash}{LJ+1}
+  \strng{fullhash}{LJSMSASDMDDTSTTWSLHHZCEFSWTRLSTGLGZYHDLYDYFHBPWMZJ1}
+  \field{sortinit}{L}
+  \field{abstract}{%
+  Batch effects are the systematic non-biological differences between batches
+  (groups) of samples in microarray experiments due to various causes such as
+  differences in sample preparation and hybridization protocols. Previous work
+  focused mainly on the development of methods for effective batch effects
+  removal. However, their impact on cross-batch prediction performance, which
+  is one of the most important goals in microarray-based applications, has not
+  been addressed. This paper uses a broad selection of data sets from the
+  Microarray Quality Control Phase II (MAQC-II) effort, generated on three
+  microarray platforms with different causes of batch effects to assess the
+  efficacy of their removal. Two data sets from cross-tissue and cross-platform
+  experiments are also included. Of the 120 cases studied using Support vector
+  machines (SVM) and K nearest neighbors (KNN) as classifiers and Matthews
+  correlation coefficient (MCC) as performance metric, we find that Ratio-G,
+  Ratio-A, EJLR, mean-centering and standardization methods perform better or
+  equivalent to no batch effect removal in 89, 85, 83, 79 and 75{\%} of the
+  cases, respectively, suggesting that the application of these methods is
+  generally advisable and ratio-based methods are preferred.%
+  }
+  \verb{doi}
+  \verb 10.1038/tpj.2010.57
+  \endverb
+  \field{issn}{1473-1150}
+  \field{number}{4}
+  \field{pages}{278\bibrangedash 91}
+  \field{title}{{A comparison of batch effect removal methods for enhancement
+  of prediction performance using MAQC-II microarray gene expression data.}}
+  \verb{url}
+  \verb http://www.ncbi.nlm.nih.gov/pubmed/20676067 http://www.pubmedcentral.ni
+  \verb h.gov/articlerender.fcgi?artid=PMC2920074
+  \endverb
+  \field{volume}{10}
+  \verb{file}
+  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
+  \verb ktop/Downloaded/Luo et al. - 2010 - A comparison of batch effect remova
+  \verb l methods for enhancement of prediction performance using MAQC-II micro
+  \verb array gene.pdf:pdf
+  \endverb
+  \field{journaltitle}{The pharmacogenomics journal}
+  \field{year}{2010}
+  \warn{\item Invalid format of field 'month'}
 \endentry
 
 \entry{Martin-Fernandez2000}{article}{}
@@ -1016,10 +1208,10 @@
   clustering methods}}
   \field{volume}{98}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Mart{\'{i}}n-Fern{\'{a}}ndez et al. - 1998 - Measures of
-  \verb  difference for compositional data and hierarchical clustering methods.
-  \verb pdf:pdf
+  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
+  \verb ktop/Downloaded/Mart{\'{i}}n-Fern{\'{a}}ndez et al. - 1998 - Measures o
+  \verb f difference for compositional data and hierarchical clustering methods
+  \verb .pdf:pdf
   \endverb
   \field{journaltitle}{Proceedings of IAMG}
   \field{year}{1998}
@@ -1079,9 +1271,8 @@
   \endverb
   \field{volume}{9}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Robinson, Smyth - 2007 - Small-sample estimation of nega
-  \verb tive binomial dispersion, with applications to SAGE data.pdf:pdf
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/EdgeR.p
+  \verb df:pdf
   \endverb
   \field{journaltitle}{Biostatistics}
   \field{year}{2007}
@@ -1123,9 +1314,9 @@
   analysis of RNA-seq data.}}
   \field{volume}{11}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/Robinson, Oshlack - 2010 - A scaling normalization metho
-  \verb d for differential expression analysis of RNA-seq data.pdf:pdf
+  \verb :C$\backslash$:/Classes/Dissertation/Proportionality/Background/Robinso
+  \verb n and Oshlack (2010) A{\_}scaling{\_}normalization{\_}method{\_}for{\_}
+  \verb differential{\_}expression{\_}(TMM).pdf:pdf
   \endverb
   \field{journaltitle}{Genome biology}
   \field{year}{2010}
@@ -1220,10 +1411,10 @@
   \endverb
   \field{volume}{32}
   \verb{file}
-  \verb :C$\backslash$:/Users/Dominic/AppData/Local/Mendeley Ltd./Mendeley Desk
-  \verb top/Downloaded/SEQCMAQC-III Consortium - 2014 - A comprehensive assessm
-  \verb ent of RNA-seq accuracy, reproducibility and information content by the
-  \verb  Sequenci.pdf:pdf
+  \verb :C$\backslash$:/Users/dlaroche/AppData/Local/Mendeley Ltd./Mendeley Des
+  \verb ktop/Downloaded/SEQCMAQC-III Consortium - 2014 - A comprehensive assess
+  \verb ment of RNA-seq accuracy, reproducibility and information content by th
+  \verb e Sequenci.pdf:pdf
   \endverb
   \field{journaltitle}{Nature biotechnology}
   \field{year}{2014}

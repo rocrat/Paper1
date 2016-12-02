@@ -8,6 +8,7 @@
 \usepackage{fullpage}
 \usepackage{setspace}
 \usepackage{placeins}
+\usepackage{color}
 
 \usepackage{amsthm}
  
@@ -156,7 +157,7 @@ The next generation sequencing process results in arbitrary differences in scale
 Aitchison demonstrated that the CLR transformation has several other useful properties in addition to rescaling the data~\cite{Aitchison1986}, particularly with respect to PCA biplots~\cite{Aitchison2002}.  Most notably for the detection of batch effects, the distance between any two points representing samples in the form-biplot approximates the Euclidean distance between the two samples.  The CLR transformation retains the property that this distance is at least as great as the distance between any corresponding subset of these two compositions (subspace dominance).  Other scaling methods do not necessarily satisfy this property when used with compositions, and therefore batch effects may be masked.\\
 
 \begin{itemize}
-\item I thought I would put a toy eample here of problems with subcompositional dominance when measuring distance between compositions.  I want to demonstrate why it matters to have a proper distance metric represented in the PCA.
+\item \textcolor{blue}{I thought I would put a toy eample here of problems with subcompositional dominance when measuring distance between compositions.  I want to demonstrate why it matters to have a proper distance metric represented in the PCA.}
 \end{itemize}
 
 %toy example of distance issue when checking for batch effects here
@@ -212,9 +213,12 @@ Some of the batch effects detected in the log-transformed data may be attributab
 \FloatBarrier
 \section{Discussion}
 
+Our sample quality control metric can identify problematic samples which arise from multiple failure modes, e.g. a low quality sample or a sequencing problem.  However, it is conceivable that a sample might have an unusually low (or high) number of reads and still provide quality information.  In certain experiemental designs onemight be able to further evaluate these samples with a PCA biplot on the CLR transformed data. In our PCA analysis we identified a FFPE sample which would have failed our quality control and was clearly very different from the other technical replicates.  However, if this sample had remained quite similar to the other FFPE replicates this would have provided information that the sample may still be valuable.  In this way, the quality control metric and PCA biplot can be used in tandem to provide additional information about the quality of a sample.\\
+
+A principle components analysis biplot is a well know dimension reduction visualization.  For the current data the dimension is reduced from 2,280 probes to 2 principle components.  The utlity of the data reduction, including the quality of the approximation of the multivariate distance between the samples, is proportional to the amount of variance explained by these two principle components. In our data the first two principle components explain between 72 and 21 percent of the variation in the data.  The analysis with the lowest percent of variation explained by the first 2 components is of the CLR-transformed brain samples.  Surprisingly, batch effects are still visible in this plot, in which case they can be removed~\cite{Luo2010}.  \\
 
 
-A principle components analysis biplot is a well know dimension reduction visualization.  For the current data the dimension is reduced from 2,280 probes to 2 principle components.  The utlity of the data reduction, including the quality of the approximation of the multivariate distance between the samples, is proportional to the amount of variance explained by these two principle components.  
+As RNA-Seq makes the transition from the research laboratory to the clinic there is a need for robust quality control metrics.  The realization that RNA-Seq data are compositional opens the door to the existing body of theory and methods developed by John Atichison and others.  We show that the properties of compositional data can be leveraged to develop new metrics and enhance existing methods.\\
 
 
 %ask Shripad about slide 59 from his defense Re: interpretation of the biplot on the raw log-transformed data
