@@ -1,0 +1,116 @@
+%* EXAMPLE FOR CODAWORK'17 *********
+
+
+\documentclass [10pt]{article}
+
+%* some useful packages *********
+\usepackage{amsfonts,amssymb}
+\usepackage{epsfig,chicago,float}
+\usepackage[ansinew]{inputenc}
+
+%****************************************************************
+\setlength{\oddsidemargin}{+4.6mm}
+%
+\setlength{\textwidth}{15cm}
+%
+\setlength{\textheight}{23cm}
+%
+\setlength{\topmargin}{-1.25cm} \setlength{\baselineskip}{1mm}
+%
+\setlength{\parindent}{0pt}
+%
+\setlength{\parskip}{0.25cm}
+%
+\pagestyle{empty}
+%
+\renewcommand{\refname}{\centerline{REFERENCES}}
+%
+%*for Spanish*************************************************
+\newcommand{\enye}{\~n}
+%**************************************************************
+
+
+%*for captions*******************************************
+\renewcommand{\figurename}{\footnotesize{\bf Figure}}
+\renewcommand{\tablename}{\footnotesize{\bf Table}}
+%*****************************************************
+
+
+%****************the document **************************
+
+\begin{document}
+\begin{center}
+\textbf{\large Instructions for authors - CoDaWork 2017}
+
+\vskip 0.25cm
+
+\textbf{A.N. Other}$^{1}$\textbf{, U.T. Cobley}$^{2}$\textbf{, and
+S.F. Adams}$^{3}$ \\
+{\small $^{1}$Bloggs University, Biggleswade,
+UK;
+\textit{an.other@hotmail.com} \\
+$^{2}$Institute of Mathematical Geology, St.Petersburg, Russia \\
+$^{3}$PB Petroleum, Houtson, Texas, USA}
+\end{center}
+
+\vskip 0.5cm {\centerline{\bf Abstract}}
+
+Write an informative abstract with sufficient detail (200-400 words) to allow the Scientific Committee to evaluate the contents of the proposed paper. Remember that the abstract will be due {\bf before January 12, 2017}. The paper size should be set at A4 (not American quarto).
+Margins should be 30 mm on left and right, 25 mm at top and bottom. Paragraphs should be
+separated by an empty line in this way. Text should be justified.
+
+Citations within the text should include the
+author's last name and year: ``The air conditioner data (Proschan,
+1963) ...", or when the author is used as a noun in the sentence:
+``Proschan (1963) presented a data set ...".
+
+In text, captions, and table headings, list all authors if two or
+fewer, and just the first author followed by ``and others" for
+more. Examples:
+
+\begin{center}
+(Jones and Johnson, 1986; Emmanuel and others, 1989)
+\end{center}
+or
+\begin{center}
+Emmanuel and others (1989) showed that ..., whereas Jones and
+Johnson (1986) found that ...
+\end{center}
+
+When giving a quote or referring to a specific fact or formula in
+a book or from an article of more than 8 pages, the citation
+should include the page number. Examples:
+
+\begin{center}
+(Chayes, 1956, p. 55) or (Matheron, 1975, p. 229).
+\end{center}
+
+Page numbers should not be given in the text when referring to the
+work as a whole. As with figures, you do not need to direct the
+reader to ``see" a citation to the literature. Be sure your
+references are accurate and formatted correctly.
+
+\vskip 0.2cm {\bf References}
+
+Use first level no-numbered headings. The bibliography should follow the
+{\it Chicago style}. See below for examples.
+
+\vspace{0.5mm}
+\hangindent=0.5cm \hangafter=1 %
+Ghahramani, Z. (1997).
+\newblock Learning dynamic Bayesian networks.
+\newblock In C.~Giles and M.~Gori (Eds.), {\em Adaptive Processing of Sequences
+  and Data Structures}, Lecture Notes in Artificial Intelligence, pp.\
+  168--197. Berlin: Springer Verlag.
+
+\hangindent=0.5cm \hangafter=1 %
+Pearl, J. (1986).
+\newblock Fusion propagation and structuring in belief networks.
+\newblock {\em Artificial Intelligence\/}~{\em 29\/}(3), pp. 241--288.
+
+\hangindent=0.5cm \hangafter=1 %
+Whittaker, J. (1990).
+\newblock {\em Graphical models in applied multivariate statistics}.
+\newblock Chichester: Wiley.
+
+\end{document}
