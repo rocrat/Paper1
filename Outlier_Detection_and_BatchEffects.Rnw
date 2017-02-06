@@ -245,4 +245,312 @@ As RNA-Seq makes the transition from the research laboratory to the clinic there
 \newpage
 \printbibliography
 
+
+<<Set_up, echo = FALSE, message = FALSE>>=
+library(HTGPackage)
+library(car)
+library(tidyverse)
+library(compositions)
+library(reshape2)
+library(cowplot)
+
+plotPCA <- function(data, annodata, projname, Max=80, pc1 = "PC1", pc2 = "PC2", scale = FALSE){
+  x <- t(data)
+  pcares<-prcomp(x, scale = scale)
+  print(summary(pcares))
+  pvar <- summary(pcares)$importance[3, 2]
+  plot(pcares,type="l")
+  pcavect<-pcares$x[,1:5]
+  indanno<-intersect(row.names(pcavect),row.names(annodata))
+  pcavect<-pcavect[indanno,]
+  anno.pca<-annodata[indanno,]
+  pcadata <- cbind(anno.pca, pcavect)
+  return(list(pcadata, pvar))
+}
+
+getPlates <- function(x){
+  df <- as.data.frame(x)
+  df$Proc <- gsub(".*(P\\d{2}).*", "\\1", df$Sample.Name)
+  df$Day <- ifelse(grepl("D", df$Sample.Name), gsub(".*(D\\d{1}).*", "\\1", df$Sample.Name), "D1")
+  df$Plate <- factor(paste0(df$Proc, "_", df$Day))
+  return(df)
+}
+
+getTots <- function(x){#use t-list
+  df <- as.data.frame(t(x[, -1]))
+  names(df) <- make.names(x[, 1])
+  df$row <- gsub("(\\w{1})\\d{1,2}$", "\\1", df$Well)
+  df$column <- gsub("\\w{1}(\\d{1,2})$", "\\1", df$Well)
+  df$Total.Reads <- as.numeric(as.character(df$Total.Counts))
+  df <- df[which(!grepl("No_Sample", df$Sample.Name)), ]
+  return(df)
+}
+
+getTots_mi <- function(x){#use t-list
+  df <- as.data.frame(t(x))
+  df$row <- gsub("(\\w{1})\\d{1,2}$", "\\1", df$Well)
+  df$column <- gsub("\\w{1}(\\d{1,2})$", "\\1", df$Well)
+  df$Total.Reads <- as.numeric(as.character(df$Total.Reads))
+  df <- df[which(!grepl("No_Sample", df$Sample.Name)), ]
+  return(df)
+}
+
+MFtrans <- function(x){#apply to a vector
+  delta <- 0.55/sum(x)# .55 times the smallest detectable value (1 read) after closure
+  tdelta <- sum(x == 0) * delta
+  cx <- clo(x)
+  cxt <- ifelse(cx == 0, delta, cx * (1-tdelta))
+  ccxt <- clr(cxt)
+  return(ccxt)
+}
+
+#Make the legend pretty when it is below the graph
+fancy_scientific <- function(l) {
+     # turn in to character string in scientific notation
+     l <- format(l, scientific = TRUE)
+     # quote the part before the exponent to keep all the digits
+     l <- gsub("^(.*)e\\+", "'\\1'e", l)
+     # turn the 'e+' into plotmath format
+     l <- gsub("e", "%*%10^", l)
+     # return this as an expression
+     parse(text=l)
+}
+
+load("./Data/IO_repro_data_lists.Rdata")
+load("./Data/miRNA_Data_lists.Rdata")
+raw.w.mi <- plyr::join_all(dflist_mi, by = "X1")
+names(raw.w.mi) <- make.names(raw.w.mi[3, ])
+rownames(raw.w.mi) <- make.names(raw.w.mi[, 1])
+@
+
+
+<<IO_Repro_Study, echo = FALSE, message = FALSE>>=
+
+#----- Heat Maps -----#
+
+
+tots <- lapply(tlist, getTots)
+
+tots <- lapply(tots, getPlates)
+
+#Choose P86 and ignore P02
+totl <- do.call(rbind, tots)
+totl <- totl[which(!grepl("P02", totl$Proc)),]
+
+#define order of the plates for other plots
+IO_repro_plates <- levels(totl$Plate)
+totl$column <- factor(totl$column, levels = as.character(1:12))
+
+#Raw totals
+# IOrawTotals <- ggplot(totl, aes(x = column, y = row)) + geom_tile(aes(fill = Total.Reads)) + facet_wrap(~Plate, ncol = 5) + plotTheme(legend.position = "right")  +  xlab("Plate Column") + ylab("Plate Row")
+# ggsave("../Paper1/Figures/IO_Repro_TotalCountHeatMap_RawTotals.png", IOrawTotals, width = 14 , height = 5)
+
+totl$colCompressed <- factor(ifelse(totl$column %in% c(4,7,10), 1, 
+                             ifelse(totl$column %in% c(5,8,11), 2, 3)))
+totl$PlateGen <- Recode(totl$Plate, "'P86_D1' = 'Run 1'; 'P88_D1' = 'Run 2'; 'P35_D1' = 'Run 3'; 'P86_D2' = 'Run 4'; 'P86_D3' = 'Run 5'")
+
+
+
+IOrawTotalsCompressed <- ggplot(totl, aes(x = colCompressed, y = row)) + geom_tile(aes(fill = Total.Reads)) + facet_wrap(~PlateGen, ncol = 5) + plotTheme()  +  xlab("Sample Column") + ylab("Sample Row")  + scale_fill_continuous("Total Reads", labels = fancy_scientific, guide = guide_legend(label.theme = element_text(angle = 45), label.position = "bottom", label.hjust = .5, label.vjust = .5, direction = "horizontal", keywidth = 2))
+ggsave("./Figures/IO_Repro_TotalCountHeatMap_RawTotals_Compressed.png", IOrawTotalsCompressed, width = 14 , height = 5)
+
+TotalBoxplot_IO <- ggplot(totl, aes(x = 1, y = Total.Reads)) + geom_boxplot(outlier.color = "red") + facet_wrap(~PlateGen, ncol = 5) + plotTheme(axis.text.x = element_blank(), axis.text.y = element_text(angle = 90, hjust = .5)) + xlab("")
+
+
+
+Total_Combined_IO <- plot_grid(TotalBoxplot_IO, IOrawTotalsCompressed, labels = c("A", "B"), nrow = 2, ncol =1)
+ggsave("./Figures/IO_Repro_Combined_RawTotals.png", Total_Combined_IO, width = 14 , height = 10)
+
+
+# totsn <- lapply(dfnlist, getTots)
+# totsn <- lapply(totsn, getPlates)
+# 
+# totln <- do.call(rbind, totsn)
+# totln <- totln[which(!grepl("P02", totln$Proc)),]
+# totln$column <- factor(totln$column, levels = as.character(1:12))
+# totln$Plate <- factor(totln$Plate, levels = IO_repro_plates)
+# 
+# 
+# #Normalize together
+# dfw <- plyr::join_all(dflist, by = "X0")
+# rownames(dfw) <- dfw[, 1]
+# names(dfw) <- dfw[3, ]
+# dfw <- dfw[, which(!grepl("No_Sample", names(dfw)))]
+# dfw[-c(1:4), -1] <- quantile_normalisation(data.matrix(dfw[-c(1:4), -1]))
+# dfw <- dfw[, -1]
+# dfw[4, ] <- colSums(data.matrix(dfw[-c(1:4), ]))
+# 
+# #convert to long form
+# dfl <- as.data.frame(t(dfw[1:4,]))
+# dfl$row <- gsub("(\\w{1})(\\d{1,2})$", "\\1", dfl$Well)
+# dfl$column <- gsub("(\\w{1})(\\d{1,2})$", "\\2", dfl$Well)
+# dfl$column <- factor(dfl$column, levels = as.character(1:12))
+# dfl$Total.Reads <- as.numeric(as.character(dfl$`Total Counts`))
+# dfl$Proc <- gsub(".*(P\\d{2}).*", "\\1", dfl$`Sample Name`)
+# dfl$Day <- ifelse(grepl("D", dfl$`Sample Name`), gsub(".*(D\\d{1}).*", "\\1", dfl$`Sample Name`), "D1")
+# dfl$Plate <- factor(paste0(dfl$Proc, "_", dfl$Day), levels = IO_repro_plates)
+# dfl <- dfl[which(!grepl("P02", dfl$Plate)), ]
+
+
+
+
+#CLR the total reads
+clrReads <- function(x){
+   cbind(x, CLR = as.vector(clr( acomp( as.numeric(as.character(x$Total.Counts)) ), detectionlimit = 0 )))
+}
+# tots.clr <- lapply(tots, FUN = clrReads)
+CLRTotals <- do.call(rbind, tots)
+#randomly remove P02 processor
+CLRTotals <- CLRTotals[which(!grepl("P02", CLRTotals$Plate)), ]
+CLRTotals$Plate <- factor(CLRTotals$Plate)
+#split by plate to perform clr
+CLRsplit <- split(CLRTotals, CLRTotals$Plate)
+#CLR transform each plate
+CLRsplit <- lapply(CLRsplit, clrReads)
+#re-assemble data
+CLRTotals <- do.call(rbind, CLRsplit)
+CLRTotals$column <- factor(CLRTotals$column, levels = 1:12)
+CLRTotals$Plate <- factor(CLRTotals$Plate, levels = IO_repro_plates)
+
+# IOCLRTots <- ggplot(CLRTotals, aes(x = column, y = row)) + geom_tile(aes(fill = CLR)) + facet_wrap(~Plate, ncol = 5) + plotTheme(legend.position = "right") +  xlab("Plate Column") + ylab("Plate Row")
+# ggsave("./Figures/IO_Repro_TotalCountHeatMap_CLRTotals.png", IOCLRTots, width = 14 , height = 5)
+
+CLRTotals$colCompressed <- factor(ifelse(CLRTotals$column %in% c(4,7,10), 1, 
+                             ifelse(CLRTotals$column %in% c(5,8,11), 2, 3)))
+CLRTotals$PlateGen <- Recode(CLRTotals$Plate, "'P86_D1' = 'Run 1'; 'P88_D1' = 'Run 2'; 'P35_D1' = 'Run 3'; 'P86_D2' = 'Run 4'; 'P86_D3' = 'Run 5'")
+
+IOCLRTotsCompressed <- ggplot(CLRTotals, aes(x = colCompressed, y = row)) + geom_tile(aes(fill = CLR)) + facet_wrap(~PlateGen, ncol = 5) + plotTheme() +  xlab("Sample Column") + ylab("Sample Row") + scale_fill_continuous("CLR Transformed\nTotal Reads")
+ggsave("../Paper1/Figures/IO_Repro_TotalCountHeatMap_CLRTotals_Compressed.png", IOCLRTotsCompressed, width = 14 , height = 5)
+
+CLRBoxplot_IO <- ggplot(CLRTotals, aes(x = 1, y = CLR)) + geom_boxplot(outlier.color = "red") + facet_wrap(~PlateGen, ncol = 5) + plotTheme(axis.text.x = element_blank(), axis.text.y = element_text(angle = 90, hjust = .5))
+
+CLR_Combined_IO <- plot_grid(CLRBoxplot_IO, IOCLRTotsCompressed, labels = c("A", "B"), nrow = 2, ncol =1)
+ggsave("../Paper1/Figures/IO_Repro_Combined_CLR.png", CLR_Combined_IO, width = 14 , height = 10)
+
+@
+
+
+
+<<PCA_miRNA, echo = FALSE, results = 'hide', warning = FALSE, fig.keep = 'none'>>=
+annodf.mi <- data.frame(SampleID = names(raw.w.mi)[-1])
+annodf.mi$Run <- gsub("^(run\\d{3})\\..*", "\\1", annodf.mi$SampleID)
+annodf.mi$Run <- paste("Run", as.numeric(as.factor(annodf.mi$Run)))
+annodf.mi$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d$", "\\2", annodf.mi$SampleID)
+rownames(annodf.mi) <- annodf.mi$SampleID
+
+pcaDat.mi.orig <- data.matrix(raw.w.mi[-c(1:5), -1])
+
+#create matrix of multipliers to change scaling of raw data
+set.seed(1014)
+sc <- runif(ncol(pcaDat.mi.orig), .5, 1.5)
+scmat <- matrix(nrow = nrow(pcaDat.mi.orig), ncol = ncol(pcaDat.mi.orig))
+for(i in 1:ncol(scmat)){
+  scmat[, i] <- sc[i]
+}
+
+pcaDat.mi <- pcaDat.mi.orig
+#Randomly scale raw data
+pcaDat.mi <- scmat * pcaDat.mi
+
+#log data
+pcaDatl.mi <- apply(pcaDat.mi.orig, c(1,2), function(x) log2(x + 1))
+
+pcplotdatl.mi <- plotPCA(pcaDatl.mi, annodf.mi, scale = FALSE)
+ggpcal.mi.l <- ggplot(pcplotdatl.mi[[1]], aes(x = PC1, y = PC2, color = Run, shape = SampType)) +
+    geom_point( size = 3)  +
+    coord_equal() + ylim(c(-150, 150)) + xlim(c(-150, 150)) +
+    ggtitle(paste0("Cum. proportion of var. = ", round(pcplotdatl.mi[[2]], 2))) +
+    scale_shape_discrete("Sample Type")
+ggsave("./Figures/miRNA_Repro_PCA_log(raw).png", ggpcal.mi.l, width = 9, height = 8 )
+
+#Only Brain
+pcaDatl.mi.brain <- pcaDatl.mi[, which(grepl("Brain", colnames(pcaDatl.mi)))]
+pcplotdatl.mi.brain <- plotPCA(pcaDatl.mi.brain, annodf.mi[which(grepl("Brain", annodf.mi$SampType)), ], scale = FALSE)
+ggpcal.mi.l.brain <- ggplot(pcplotdatl.mi.brain[[1]], aes(x = PC1, y = PC2, color = Run)) + 
+    geom_point( size = 3) +
+    coord_equal() + ylim(c(-30, 100)) + xlim(c(-50, 160)) +
+  ggtitle(paste0("Cum. proportion of var. = ", round(pcplotdatl.mi.brain[[2]], 2)))
+ggsave("./Figures/miRNA_Repro_PCA_log(raw)_BrainOnly_perturbed.png", ggpcal.mi.l.brain, width = 9, height = 8 )
+
+#log perturbed data
+pcaDatl.mi.p <- apply(pcaDat.mi, c(1,2), function(x) log2(x + 1))
+
+pcaDatl.mi.brain.p <- pcaDatl.mi.p[, which(grepl("Brain", colnames(pcaDatl.mi.p)))]
+pcplotdatl.mi.brain <- plotPCA(pcaDatl.mi.brain.p, annodf.mi[which(grepl("Brain", annodf.mi$SampType)), ], scale = FALSE)
+ggpcal.mi.l.brain.perturbed <- ggplot(pcplotdatl.mi.brain[[1]], aes(x = PC1, y = PC2, color = Run)) + 
+    geom_point( size = 3) +
+    coord_equal() + ylim(c(-30, 100)) + xlim(c(-50, 160)) +
+  ggtitle(paste0("Cum. proportion of var. = ", round(pcplotdatl.mi.brain[[2]], 2)))
+ggsave("./Figures/miRNA_Repro_PCA_log(raw)_BrainOnly_perturbed.png", ggpcal.mi.l.brain, width = 9, height = 8 )
+
+# CLR data
+pcaDatc.mi <- data.matrix(raw.w.mi[-c(1:5), which(names(raw.w.mi) %in% annodf.mi$SampleID)])
+pcaDatc.mi <- pcaDatc.mi[-which(rowSums(pcaDatc.mi) == 0), ]
+pcaDatc.mi <- as.data.frame(apply(pcaDatc.mi, 2, MFtrans))
+pcplotdatc.mi <- plotPCA(pcaDatc.mi, annodf.mi, scale = FALSE)
+ggpcac <- ggplot(pcplotdatc.mi[[1]], aes(x= PC1, y= PC2, color=Run, shape=SampType, label = SampleID)) +
+    geom_point( size = 3)   +
+    coord_equal()  +
+    ggtitle(paste0("Cum. proportion of var. = ", round(pcplotdatc.mi[[2]], 2))) +
+    scale_shape_discrete("Sample Type")
+ggsave("./Figures/miRNA_Repro_PCA_CLR.png", ggpcac, width = 9, height = 8 )
+
+
+
+pcaDatc.mi.brain <- pcaDatc.mi[, which(grepl("Brain", colnames(pcaDatc.mi)))]
+pcplotdatc.mi.brain <- plotPCA(pcaDatc.mi.brain, annodf.mi, scale = FALSE)
+ggpcac.brain <- ggplot(pcplotdatc.mi.brain[[1]], aes(x= PC1, y= PC2, color=Run, label = SampleID)) +
+    geom_point( size = 3)   +
+    coord_equal() +
+    ggtitle(paste0("Cum. proportion of var. = ", round(pcplotdatc.mi.brain[[2]], 2)))
+ggsave("./Figures/miRNA_Repro_PCA_CLR_BrainOnly.png", ggpcac.brain, width = 9, height = 8 )
+
+
+pcaPlots2 <- plot_grid(ggpcal.mi.l, ggpcac, ncol = 2, nrow = 1, labels = c("A", "B"))
+ggsave("../Paper1/Figures/miRNA_PCA_2plot.png", pcaPlots2, height = 8, width = 16)
+
+brainPCA <- plot_grid(ggpcal.mi.l.brain, ggpcac.brain, ncol = 2, nrow = 1, labels = c("A", "B"))
+ggsave("../Paper1/Figures/miRNA_PCA_Brain_logRaw_CLR_perturbed.png", brainPCA, height = 8, width = 16)
+
+
+brainPCAperturbed <- plot_grid(ggpcal.mi.l.brain.perturbed, ggpcac.brain, ncol = 2, nrow = 1, labels = c("A", "B"))
+ggsave("../Paper1/Figures/miRNA_PCA_Brain_logRaw_CLR_perturbed.png", brainPCAperturbed, height = 8, width = 16)
+
+
+
+#use gPCA method to test for remaining batch effects for each method.
+# library(gPCA)
+# lrawBE <- gPCA.batchdetect(x = t(pcaDatl.mi), as.numeric(factor(annodf.mi$Plate)), center = FALSE, seed = 1014)
+# lrawGpca <- as.data.frame(lrawBE$PCg)
+# lrawGpca$Plate <- gsub("(^run\\d{3})\\.(\\w+)\\_.+", "\\1", rownames(lrawGpca))
+# lrawGpca$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d", "\\2", rownames(lrawGpca))
+# ggplot(lrawGpca, aes(x = V1, y = V2)) + geom_point(aes(color = Plate, shape = SampType), size= 3) + xlab("gPC1") + ylab("gPC2") + ggtitle("Guided PCA on log(Raw) Data") #+ coord_equal()
+# 
+# cpmBE <- gPCA.batchdetect(x = t(pcaDat.mi), as.numeric(factor(annodf.mi$Plate)), center = FALSE, seed = 1014)
+# cpmGpca <- as.data.frame(cpmBE$PCg)
+# cpmGpca$Plate <- gsub("(^run\\d{3})\\.(\\w+)\\_.+", "\\1", rownames(cpmGpca))
+# cpmGpca$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d", "\\2", rownames(cpmGpca))
+# ggplot(cpmGpca, aes(x = V1, y = V2)) + geom_point(aes(color = Plate, shape = SampType), size= 3) + xlab("gPC1") + ylab("gPC2") + ggtitle("Guided PCA on log(CPM) Data") #+ coord_equal()
+# 
+# qnormBE <- gPCA.batchdetect(x = t(pcaDatn.mi), as.numeric(factor(annodf.mi$Plate)), center = FALSE, seed = 1014)
+# qnormGpca <- as.data.frame(qnormBE$PCg)
+# qnormGpca$Plate <- gsub("(^run\\d{3})\\.(\\w+)\\_.+", "\\1", rownames(qnormGpca))
+# qnormGpca$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d", "\\2", rownames(qnormGpca))
+# ggplot(qnormGpca, aes(x = V1, y = V2)) + geom_point(aes(color = Plate, shape = SampType), size= 3) + xlab("gPC1") + ylab("gPC2") + ggtitle("Guided PCA on Quantile Normalized Data") #+ coord_equal()
+# 
+# mnormBE <- gPCA.batchdetect(x = t(pcaDatm.mi), as.numeric(factor(annodf.mi$Plate)), center = FALSE, seed = 1014, filt = 1000)
+# mnormGpca <- as.data.frame(mnormBE$PCg)
+# mnormGpca$Plate <- gsub("(^run\\d{3})\\.(\\w+)\\_.+", "\\1", rownames(mnormGpca))
+# mnormGpca$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d", "\\2", rownames(mnormGpca))
+# ggplot(mnormGpca, aes(x = V1, y = V2)) + geom_point(aes(color = Plate, shape = SampType), size= 3) + xlab("gPC1") + ylab("gPC2") + ggtitle("Guided PCA on Median Normalized Data") #+ coord_equal()
+# 
+# clrBE <- gPCA.batchdetect(x = t(pcaDatc.mi), as.numeric(factor(annodf.mi$Plate)), center = FALSE, seed = 1014)
+# clrGpca <- as.data.frame(clrBE$PCg)
+# clrGpca$Plate <- gsub("(^run\\d{3})\\.(\\w+)\\_.+", "\\1", rownames(clrGpca))
+# clrGpca$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d", "\\2", rownames(clrGpca))
+# ggplot(clrGpca, aes(x = V1, y = V2)) + geom_point(aes(color = Plate, shape = SampType), size= 3) + xlab("gPC1") + ylab("gPC2") + ggtitle("Guided PCA on Median Normalized Data") #+ coord_equal()
+
+#can't really find a batch effect in the miRNA data!
+@
+
 \end{document}
