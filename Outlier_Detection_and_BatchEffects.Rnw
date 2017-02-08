@@ -256,7 +256,7 @@ library(cowplot)
 
 plotPCA <- function(data, annodata, projname, Max=80, pc1 = "PC1", pc2 = "PC2", scale = FALSE){
   x <- t(data)
-  pcares<-prcomp(x, scale = scale)
+  pcares <- prcomp(x, scale = scale)
   print(summary(pcares))
   pvar <- summary(pcares)$importance[3, 2]
   plot(pcares,type="l")
@@ -441,7 +441,7 @@ rownames(annodf.mi) <- annodf.mi$SampleID
 pcaDat.mi.orig <- data.matrix(raw.w.mi[-c(1:5), -1])
 
 #create matrix of multipliers to change scaling of raw data
-set.seed(1014)
+set.seed(390)
 sc <- runif(ncol(pcaDat.mi.orig), .5, 1.5)
 scmat <- matrix(nrow = nrow(pcaDat.mi.orig), ncol = ncol(pcaDat.mi.orig))
 for(i in 1:ncol(scmat)){
