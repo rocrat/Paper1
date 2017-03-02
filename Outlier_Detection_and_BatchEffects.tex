@@ -219,6 +219,28 @@ $x_i$ is a quality control sample failure if $x_i <$ lower-quartile$- 1.5 \times
 
 We demonstrate the utility of our sample quality control measure using two sets of targeted RNA-Seq data: 1) 120 mRNA technical replicate universal-RNA samples prepared with the HTG EdgeSeq Immuno-Oncology assay and sequenced in 5 different equally sized runs, and 2) 105 miRNA technical replicate samples of human plasma, FFPE tissue, and Brain RNA prepared with the HTG EdgeSeq Whole Transcriptome miRNA assay.  These two data sets differ in the both the type of RNA (mRNA versus miRNA) and the number of sequence targets in each assay (558 versus 2,280 targets, for the mRNA and miRNA assays respectively).  All samples were prepared for sequencing using the HTG EdgeSeq Processor and sequenced with an Illumina Mi-Seq sequencer.\\
 
+
+\section{Testing for Compositional Invariance}
+
+\begin{equation}
+\left[y_1 \ldots y_d \right] = 
+\left[
+\begin{array}{cc}
+1 & t
+\end{array}
+\right]
+\left[
+\begin{array}{ccc}
+\alpha_1 & \cdots & \alpha_d\\
+\beta_1 & \cdots & \beta_d
+\end{array}
+\right] 
++
+\left[e_1 \ldots e_d \right]
+\label{matrixModel}
+\end{equation}
+
+
 \section{Batch Effects and Normalization}
 Batch effects arising from differing labratory conditions or operator differences have been identified as a problem in high-throughput measurement systems~\cite{leek2010, chen2011}.  Identifying and controlling for batch effects is a critical step in the transition of RNA-Seq from the lab to the clinic.  Batch effects are typically identified with a hierarchical clustering (HC) method or principal components analysis (PCA).  For both methods, the multivariate distance between the samples is visualized. either in a biplot for PCA or a dendrogram for HC, to check for the existence of clusters of samples related to batch. % and removed through various normalization methods~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, leek2014}.  \\ %I wonder if I should move that last line
 The compositional nature of RNA-Seq data has important implications for the detection of batch effects because of the difficulty of interpreting the covariance matrix~\cite{Aitchison1986} and the incompatibility with standard measures of distance between compositions as noted above~\cite{Aitchison1986,Martin-Fernandez1998}.\\  %The CLR transformation facilitates both batch effect detection and normalization.  The CLR transformed covariance matrix is suitable for exploration through PCA (using biplots)~\cite{Aitchison2002} or hierarchical clustering using standard Euclidean or Mahalanobis distance~\cite{Martin-Fernandez1998}.  \\

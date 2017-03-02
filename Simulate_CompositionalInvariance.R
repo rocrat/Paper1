@@ -40,6 +40,13 @@ lumAMeans <- rowMeans(dfclo[, which(grepl("Breast", colnames(dfclo)))])
 
 plot(log(tnbcMeans), log(lumAMeans))
 abline(a=0, b = 1)
+
+###############################################################################
+###############################################################################
+## Simulate Data with compositional invariance
+###############################################################################
+###############################################################################
+
 # The total number of reads assigned to a sample is a random variable.  Under
 # normal sequencing we assume these follow a multinomial distribution with
 # each sample having approximately the same probability of receiving reads.
@@ -74,4 +81,12 @@ for (i in 1:length(simtotals)) {
 #this is a data set which should exhibit compositional invariance
 simdat <- as.data.frame(simdat) 
 
-#Create data set without compositional invariance by ...
+###############################################################################
+###############################################################################
+## Simulate data WITHOUT compositional invariance
+###############################################################################
+###############################################################################
+
+
+#Create data set without compositional invariance by multiplying the probability 
+#vector of each sample by a vector of scaling factors determined by 
