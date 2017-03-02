@@ -152,7 +152,7 @@ or
 
 Up to this point we have referred to the total reads available per sequencing run, $\mathbb{T}$.  However, it is more typical to work with the aligned reads in practice.  The total aligned reads, $T$, is always a fraction of the total reads available for a sequencing run, $\mathbb{T}$.  The fraction of the total reads aligned can be a affected by multiple factors, including the choice of alignment algorithm, which we do not address here.  We assume that $T$ imposes the same constraints on the data as oultined above for $\mathbb{T}$ and will refer exclusively to $T$ hereafter.\\  
 
-
+  Aitchison~\cite{Aitchison1986} defines this property as \emph{Compositional Invariance}.  
 
 \section{Sample Quality Control}
 Problems with sample quality, library preparation, or sequencing may result in a low number of reads allocated to a given sample within a sequencing run.  The Percent Pass Filter (\% PF) metric provided on Illumina sequencers provides a subjective measure that can identify problems with sequencing that result in a low number of reads allocated to a sample.  However, \% PF will not necessarily catch problems associated with poor sample quality or problems with sample pre-processing since these processes may affect cluster generation, and not just cluster quality.  This is particularly important for extraction-free RNA-Seq technologies, such as the HTG EdgeSeq$^{(tm)}$, which allow for the use of smaller input amounts but lack the intermediate steps for checking sample quality.  There is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. We propose a method for objectively identifying problematic samples based on the total number of reads allocated to the sample. \\
@@ -167,6 +167,45 @@ $x_i$ is a quality control sample failure if $x_i <$ lower-quartile$- 1.5 \times
 \end{definition}
 
 We demonstrate the utility of our sample quality control measure using two sets of targeted RNA-Seq data: 1) 120 mRNA technical replicate universal-RNA samples prepared with the HTG EdgeSeq Immuno-Oncology assay and sequenced in 5 different equally sized runs, and 2) 105 miRNA technical replicate samples of human plasma, FFPE tissue, and Brain RNA prepared with the HTG EdgeSeq Whole Transcriptome miRNA assay.  These two data sets differ in the both the type of RNA (mRNA versus miRNA) and the number of sequence targets in each assay (558 versus 2,280 targets, for the mRNA and miRNA assays respectively).  All samples were prepared for sequencing using the HTG EdgeSeq Processor and sequenced with an Illumina Mi-Seq sequencer.\\
+
+
+\section{Testing for Compositional Invariance}
+
+Normalization and standardization methods for RNA-Seq generally assume that the total number of reads assigned to a sample does not affect the observed relative frequencies of probes within an assay.  For example, implicit in the CPM transformation is the idea that if you re-scale the counts (by dividing by the total for each sample) then the resulting counts are comparible and any differences are due to underlying differences in expression.  Other methods which apply a scaling factor to each sample, such as Trimmed-mean of M values (TMM) or Quantile normalization, also rely on this assumption.  In the parlance of compositional data these methods assume \emph{Compositional Invariance}, i.e. the underlying composition is statistically independent of the total size of the composition (the total counts for a sample, $t$).\\
+
+It is well documented that the quality of RNA-Seq depends on the read depth of the sequencing run with higher read-depths associated with higher quality data~\cite{CITE}.  This is clearly a violation of compositional invariance (CI).  We derive a test for compositional invariance in high-dimensional RNA-Seq assays to ensure that the differences in expression among samples is independent of the differences in total counts among samples.\\
+
+1. transform using ALR so that we can use mulivariate normal methods
+  1b. results to not depend on choice of divisor
+2. test hypothesis that $H_0$: $\beta_1 = \ldots = \beta_d = 0$
+  2b.  P(reject $H_0$ | Y, t) $\neq$ 0.05 due to multiple testing so need to apply a correction
+  2c. Likely to have small sample size so low power to reject null
+    i. not enough power to demonstrate equivalence
+    ii. Compare effect sizes? i.e. is the DE more related to total than treatment? How to do this with discrete treatment groups?
+    iii. Create a model which simulatenously estimates effects and controls for size effects?
+    
+    
+    
+  
+
+\begin{equation}
+\left[y_1 \ldots y_d \right] = 
+\left[
+\begin{array}{cc}
+1 & t
+\end{array}
+\right]
+\left[
+\begin{array}{ccc}
+\alpha_1 & \cdots & \alpha_d\\
+\beta_1 & \cdots & \beta_d
+\end{array}
+\right] 
++
+\left[e_1 \ldots e_d \right]
+\label{matrixModel}
+\end{equation}
+
 
 \section{Batch Effects and Normalization}
 Batch effects arising from differing labratory conditions or operator differences have been identified as a problem in high-throughput measurement systems~\cite{leek2010, chen2011}.  Identifying and controlling for batch effects is a critical step in the transition of RNA-Seq from the lab to the clinic.  Batch effects are typically identified with a hierarchical clustering (HC) method or principal components analysis (PCA).  For both methods, the multivariate distance between the samples is visualized. either in a biplot for PCA or a dendrogram for HC, to check for the existence of clusters of samples related to batch. % and removed through various normalization methods~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, leek2014}.  \\ %I wonder if I should move that last line
@@ -246,7 +285,7 @@ As RNA-Seq makes the transition from the research laboratory to the clinic there
 \printbibliography
 
 
-<<Set_up, echo = FALSE, message = FALSE>>=
+<<Set_up, echo = FALSE, message = FALSE, eval = FALSE>>=
 library(HTGPackage)
 library(car)
 library(tidyverse)
@@ -324,7 +363,7 @@ rownames(raw.w.mi) <- make.names(raw.w.mi[, 1])
 @
 
 
-<<IO_Repro_Study, echo = FALSE, message = FALSE>>=
+<<IO_Repro_Study, echo = FALSE, message = FALSE, eval = FALSE>>=
 
 #----- Heat Maps -----#
 
@@ -431,7 +470,7 @@ ggsave("../Paper1/Figures/IO_Repro_Combined_CLR.png", CLR_Combined_IO, width = 1
 
 
 
-<<PCA_miRNA, echo = FALSE, results = 'hide', warning = FALSE, fig.keep = 'none'>>=
+<<PCA_miRNA, echo = FALSE, results = 'hide', warning = FALSE, fig.keep = 'none', eval = FALSE>>=
 annodf.mi <- data.frame(SampleID = names(raw.w.mi)[-1])
 annodf.mi$Run <- gsub("^(run\\d{3})\\..*", "\\1", annodf.mi$SampleID)
 annodf.mi$Run <- paste("Run", as.numeric(as.factor(annodf.mi$Run)))
