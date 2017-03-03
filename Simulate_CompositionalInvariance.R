@@ -89,4 +89,24 @@ simdat <- as.data.frame(simdat)
 
 
 #Create data set without compositional invariance by multiplying the probability 
-#vector of each sample by a vector of scaling factors determined by 
+#vector of each sample by a vector of scaling factors determined by the total
+# reads for a sample.  The number of multipiers (betas) != 1 should be the same 
+# within a data set (same betas) but this number should vary between data sets.
+#This model assumes that some probes are sensitive to the total number of reads
+# allocated to a sample. I.e. some probes are more likely to be counted if there
+# are a large number of total reads. (not sure what the chemical mechanism would
+# be) (empirically these effects should be on the order of 1.5x10^-7)
+
+percBeta <- c(.01, .05, .15, .25)
+
+
+simdatIV <- list()
+for (i in 1:length(percBeta)){
+  #Get the number of non-zero multipliers
+  nB <- ceiling(percBeta[i], length(tnbcMeans))
+  for (j in length(simtotals)){
+    newProbs <- 
+  }
+}
+
+
