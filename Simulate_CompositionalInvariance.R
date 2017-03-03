@@ -17,6 +17,20 @@ MFtrans <- function(x){
   return(cxt)
 }
 
+MFtrans.clr <- function(x){#apply to a vector
+  cxt <- MFtrans(x)
+  ccxt <- log(cxt) - sum(log(cxt))/length(cxt)
+  return(ccxt)
+}
+
+MFtrans.alr <- function(x, ivar){#apply to a vector
+  cxt <- MFtrans(x)
+  lcxt <- log(cxt)
+  ccxt <- lcxt[-ivar] - lcxt[ivar]
+  return(ccxt)
+}
+
+
 ###############################################################################
 ###############################################################################
 ## Read in real data to guide simulations
@@ -80,6 +94,29 @@ for (i in 1:length(simtotals)) {
 }
 #this is a data set which should exhibit compositional invariance
 simdat <- as.data.frame(simdat) 
+simdat <- cbind(probe = paste0("p", 1:nrow(simdat)), simdat)
+
+beta1.alr <- compInvTest(data = simdat, trans = "alr")
+beta1.clr <- compInvTest(data = simdat, trans = "clr")
+beta1.clo <- compInvTest(data = simdat, trans = "clo")
+
+sum(beta1.alr$betas$adjP <= 0.05)
+sum(beta1.clr$betas$adjP <= 0.05)
+sum(beta1.clo$betas$adjP <= 0.05, na.rm = TRUE)
+sum(beta1.clr$betas$est > 0 & beta1.clr$betas$adjP <= 0.05, na.rm = TRUE)
+sum(beta1.clr$betas$est < 0 & beta1.clr$betas$adjP <= 0.05, na.rm = TRUE)
+
+clrdf <- beta1.clr$data
+clrbeta <- beta1.clr$betas
+
+probProbes <- paste0("p", beta1.clr$betas[which(beta1.clr$betas$adjP <= 0.05), ]$probe)
+ranProbes <- sample(probProbes, 100)
+ggplot(clrdf[which(clrdf$probe %in% ranProbes), ], aes(x = total, y = trans.count)) +
+  geom_point(aes(color = probe)) + 
+  geom_smooth(aes(color = probe), method = "lm") +
+  plotTheme(panel.grid.major = element_blank(), 
+            panel.grid.minor = element_blank(), 
+            legend.position = "none")
 
 ###############################################################################
 ###############################################################################

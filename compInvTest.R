@@ -1,0 +1,98 @@
+#Test for compositional Invariance using either ALR or CLR transofrmation
+#Function takes a HTG data as produced by read HTG with include.probe = TRUE
+#
+
+compInvTest <- function(data, trans, ctrlProbes = NULL) {
+  #Change to long form and add identifying information
+  #data must have first column as probe id's
+  if(!is.character(data[, 1]) & !is.factor(data[, 1])) stop(
+    "The first column must contain probe names"
+  )
+  df.l <- data %>%
+    gather(sample, count, 2:ncol(data)) 
+  
+  
+  #Gather the sample totals
+  totals <- data.frame(sample = names(data)[-1],
+                       total = colSums(data[, -1]),
+                       stringsAsFactors = FALSE)
+  
+  #Add the totals as a variable to the long data
+  df.l <- dplyr::full_join(df.l, totals, by = "sample")
+  
+  
+  if(trans == "alr"){
+    #Find highest expressing probe for use as ALR denominator
+    avg <- df.l %>%
+      group_by(probe) %>%
+      summarize(avg = mean(count)) 
+    den <- as.character(avg$probe[which.max(avg$avg)])
+    
+    
+    ##Creat alr transformed count values
+    df.l.s <- split(df.l, f = df.l$sample)
+    alr.s <- list()
+    for (i in 1:length(df.l.s)) {
+      df <- df.l.s[[i]]
+      #remove pos and neg
+      if(!is.null(ctrlProbes)){
+        df <- df[-which( df$probe %in% ctrlProbes), ]
+      }
+      
+      alrvec <- MFtrans.alr(df$count, ivar = which(df$probe == den))
+      df.alr <- data.frame(probe = df$probe[-which(df$probe == den)],
+                           trans.count = alrvec,
+                           sample = unique(df$sample),
+                           total = unique(df$total))
+      alr.s[[i]] <- df.alr
+    }
+    #combine back into log data
+    df.l <- do.call(rbind, alr.s)
+  }
+  
+  if(trans == "clr"){
+    df.l <- df.l %>%
+      group_by(sample) %>%
+      mutate(trans.count = MFtrans.clr(count))
+  }
+  
+  if(trans == "clo"){
+    df.l <- df.l %>%
+      group_by(sample) %>%
+      mutate(trans.count = MFtrans(count))
+  }
+  
+  betas <- testInvariance(df.l,
+                          countVar = "trans.count",
+                          splitVar = "probe",
+                          predVar = "total")
+  
+  return(list(betas = betas, data = df.l))
+}
+
+
+
+testInvariance <- function(x, countVar, splitVar, predVar) {
+  #x = data frame 
+  #countVar = variable with transformed read counts
+  #splitVar = generally the column of probe names
+  #predVar = generally the total number of reads
+  
+  #first split data into a list of data frames for each probe
+  xs <- split(x, f = factor(x[[splitVar]])) 
+  betas <- matrix(nrow = length(xs), ncol = 3)
+  colnames(betas) <- c(splitVar, "est", "pval")
+  for ( i in 1:length(xs)){
+    #For each probe determine whether the sample total affects the count
+    mod <- lm(as.formula(paste0(countVar, " ~ ", predVar)), data = xs[[i]])
+    est <- summary(mod)$coef[2, 1]
+    pval <- summary(mod)$coef[2, 4]
+    betas[i, ] <- c(unique(xs[[i]]$probe), 
+                    est, 
+                    pval)
+  }
+  betas <- as.data.frame(betas)
+  #Adjust for multiple testing
+  betas$adjP <- p.adjust(betas$pval, method = "BH")
+  return(betas)
+}
