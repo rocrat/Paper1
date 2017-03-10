@@ -1,0 +1,577 @@
+HTG EdgeSeq Parser run log for X:\Mercury Panel\Mercury Probe Feasibility\Seq_03_Feb_2017_140420\SampleSheet.csv
+------------------------ Bowtie run summary for sample 166-HTG500 6mm/35uL_1 ------------------------
+Bowtie start: 8:14 AM - end: 8:14 AM - duration: 00:10
+Probeset: EIHC
+Parse start: 8:14 AM - end: 8:14 AM - duration: 00:05
+990090 reads; of these:
+  990090 (100.00%) were unpaired; of these:
+    38641 (3.90%) aligned 0 times
+    951449 (96.10%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.10% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG501 6mm/35uL_1 ------------------------
+Bowtie start: 8:14 AM - end: 8:14 AM - duration: 00:11
+Probeset: EIHC
+Parse start: 8:14 AM - end: 8:14 AM - duration: 00:06
+1206242 reads; of these:
+  1206242 (100.00%) were unpaired; of these:
+    40393 (3.35%) aligned 0 times
+    1165849 (96.65%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.65% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG502 6mm/35uL_1 ------------------------
+Bowtie start: 8:14 AM - end: 8:14 AM - duration: 00:18
+Probeset: EIHC
+Parse start: 8:14 AM - end: 8:15 AM - duration: 00:08
+1886506 reads; of these:
+  1886506 (100.00%) were unpaired; of these:
+    55687 (2.95%) aligned 0 times
+    1830819 (97.05%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+97.05% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG503 6mm/35uL_1 ------------------------
+Bowtie start: 8:15 AM - end: 8:15 AM - duration: 00:13
+Probeset: EIHC
+Parse start: 8:15 AM - end: 8:15 AM - duration: 00:08
+1472404 reads; of these:
+  1472404 (100.00%) were unpaired; of these:
+    43120 (2.93%) aligned 0 times
+    1429284 (97.07%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+97.07% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_1 ------------------------
+Bowtie start: 8:15 AM - end: 8:15 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:15 AM - end: 8:15 AM - duration: 00:00
+8089 reads; of these:
+  8089 (100.00%) were unpaired; of these:
+    6383 (78.91%) aligned 0 times
+    1706 (21.09%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+21.09% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG1082 6mm/35uL_1 ------------------------
+Bowtie start: 8:15 AM - end: 8:15 AM - duration: 00:08
+Probeset: EIHC
+Parse start: 8:15 AM - end: 8:15 AM - duration: 00:04
+950402 reads; of these:
+  950402 (100.00%) were unpaired; of these:
+    34518 (3.63%) aligned 0 times
+    915884 (96.37%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.37% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG1065 6mm/35uL_1 ------------------------
+Bowtie start: 8:15 AM - end: 8:15 AM - duration: 00:02
+Probeset: EIHC
+Parse start: 8:15 AM - end: 8:15 AM - duration: 00:01
+314779 reads; of these:
+  314779 (100.00%) were unpaired; of these:
+    18920 (6.01%) aligned 0 times
+    295859 (93.99%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+93.99% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG1072 6mm/35uL_1 ------------------------
+Bowtie start: 8:15 AM - end: 8:15 AM - duration: 00:01
+Probeset: EIHC
+Parse start: 8:15 AM - end: 8:15 AM - duration: 00:00
+127047 reads; of these:
+  127047 (100.00%) were unpaired; of these:
+    16205 (12.76%) aligned 0 times
+    110842 (87.24%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+87.24% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_2 ------------------------
+Bowtie start: 8:15 AM - end: 8:15 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:15 AM - end: 8:15 AM - duration: 00:00
+16717 reads; of these:
+  16717 (100.00%) were unpaired; of these:
+    9922 (59.35%) aligned 0 times
+    6795 (40.65%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+40.65% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG504 6mm/35uL_1 ------------------------
+Bowtie start: 8:15 AM - end: 8:15 AM - duration: 00:02
+Probeset: EIHC
+Parse start: 8:15 AM - end: 8:15 AM - duration: 00:01
+298995 reads; of these:
+  298995 (100.00%) were unpaired; of these:
+    16848 (5.63%) aligned 0 times
+    282147 (94.37%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+94.37% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG505 6mm/35uL_1 ------------------------
+Bowtie start: 8:15 AM - end: 8:15 AM - duration: 00:01
+Probeset: EIHC
+Parse start: 8:15 AM - end: 8:15 AM - duration: 00:00
+146927 reads; of these:
+  146927 (100.00%) were unpaired; of these:
+    12641 (8.60%) aligned 0 times
+    134286 (91.40%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+91.40% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG506 6mm/35uL_1 ------------------------
+Bowtie start: 8:15 AM - end: 8:15 AM - duration: 00:02
+Probeset: EIHC
+Parse start: 8:15 AM - end: 8:15 AM - duration: 00:01
+280265 reads; of these:
+  280265 (100.00%) were unpaired; of these:
+    12458 (4.45%) aligned 0 times
+    267807 (95.55%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+95.55% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG507 6mm/35uL_1 ------------------------
+Bowtie start: 8:15 AM - end: 8:15 AM - duration: 00:03
+Probeset: EIHC
+Parse start: 8:15 AM - end: 8:15 AM - duration: 00:01
+350870 reads; of these:
+  350870 (100.00%) were unpaired; of these:
+    17789 (5.07%) aligned 0 times
+    333081 (94.93%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+94.93% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG508 6mm/35uL_1 ------------------------
+Bowtie start: 8:15 AM - end: 8:16 AM - duration: 00:03
+Probeset: EIHC
+Parse start: 8:16 AM - end: 8:16 AM - duration: 00:01
+362066 reads; of these:
+  362066 (100.00%) were unpaired; of these:
+    20397 (5.63%) aligned 0 times
+    341669 (94.37%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+94.37% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG509 6mm/35uL_1 ------------------------
+Bowtie start: 8:16 AM - end: 8:16 AM - duration: 00:04
+Probeset: EIHC
+Parse start: 8:16 AM - end: 8:16 AM - duration: 00:02
+542164 reads; of these:
+  542164 (100.00%) were unpaired; of these:
+    28963 (5.34%) aligned 0 times
+    513201 (94.66%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+94.66% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_3 ------------------------
+Bowtie start: 8:16 AM - end: 8:16 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:16 AM - end: 8:16 AM - duration: 00:00
+14279 reads; of these:
+  14279 (100.00%) were unpaired; of these:
+    10898 (76.32%) aligned 0 times
+    3381 (23.68%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+23.68% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG510 6mm/35uL_1 ------------------------
+Bowtie start: 8:16 AM - end: 8:16 AM - duration: 00:24
+Probeset: EIHC
+Parse start: 8:16 AM - end: 8:16 AM - duration: 00:12
+2791997 reads; of these:
+  2791997 (100.00%) were unpaired; of these:
+    78909 (2.83%) aligned 0 times
+    2713088 (97.17%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+97.17% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG511 6mm/35uL_1 ------------------------
+Bowtie start: 8:16 AM - end: 8:16 AM - duration: 00:05
+Probeset: EIHC
+Parse start: 8:16 AM - end: 8:16 AM - duration: 00:03
+613150 reads; of these:
+  613150 (100.00%) were unpaired; of these:
+    25890 (4.22%) aligned 0 times
+    587260 (95.78%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+95.78% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_4 ------------------------
+Bowtie start: 8:16 AM - end: 8:16 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:16 AM - end: 8:16 AM - duration: 00:00
+10471 reads; of these:
+  10471 (100.00%) were unpaired; of these:
+    7160 (68.38%) aligned 0 times
+    3311 (31.62%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+31.62% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG512 6mm/35uL_1 ------------------------
+Bowtie start: 8:16 AM - end: 8:17 AM - duration: 00:13
+Probeset: EIHC
+Parse start: 8:17 AM - end: 8:17 AM - duration: 00:06
+1348062 reads; of these:
+  1348062 (100.00%) were unpaired; of these:
+    52583 (3.90%) aligned 0 times
+    1295479 (96.10%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.10% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG297 6mm/35uL_1 ------------------------
+Bowtie start: 8:17 AM - end: 8:17 AM - duration: 00:04
+Probeset: EIHC
+Parse start: 8:17 AM - end: 8:17 AM - duration: 00:02
+512886 reads; of these:
+  512886 (100.00%) were unpaired; of these:
+    23337 (4.55%) aligned 0 times
+    489549 (95.45%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+95.45% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG67 6mm/35uL_1 ------------------------
+Bowtie start: 8:17 AM - end: 8:17 AM - duration: 00:21
+Probeset: EIHC
+Parse start: 8:17 AM - end: 8:17 AM - duration: 00:12
+2496109 reads; of these:
+  2496109 (100.00%) were unpaired; of these:
+    76118 (3.05%) aligned 0 times
+    2419991 (96.95%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.95% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG128 6mm/35uL_1 ------------------------
+Bowtie start: 8:17 AM - end: 8:18 AM - duration: 00:10
+Probeset: EIHC
+Parse start: 8:18 AM - end: 8:18 AM - duration: 00:05
+1193873 reads; of these:
+  1193873 (100.00%) were unpaired; of these:
+    41629 (3.49%) aligned 0 times
+    1152244 (96.51%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.51% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-HTG1812 6mm/35uL_1 ------------------------
+Bowtie start: 8:18 AM - end: 8:18 AM - duration: 00:03
+Probeset: EIHC
+Parse start: 8:18 AM - end: 8:18 AM - duration: 00:01
+333065 reads; of these:
+  333065 (100.00%) were unpaired; of these:
+    29531 (8.87%) aligned 0 times
+    303534 (91.13%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+91.13% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 6 mm/35uL_1 ------------------------
+Bowtie start: 8:18 AM - end: 8:18 AM - duration: 00:13
+Probeset: EIHC
+Parse start: 8:18 AM - end: 8:18 AM - duration: 00:07
+1513949 reads; of these:
+  1513949 (100.00%) were unpaired; of these:
+    49243 (3.25%) aligned 0 times
+    1464706 (96.75%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.75% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 6 mm/35uL_2 ------------------------
+Bowtie start: 8:18 AM - end: 8:18 AM - duration: 00:13
+Probeset: EIHC
+Parse start: 8:18 AM - end: 8:18 AM - duration: 00:07
+1528044 reads; of these:
+  1528044 (100.00%) were unpaired; of these:
+    50363 (3.30%) aligned 0 times
+    1477681 (96.70%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.70% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 6 mm/35uL_3 ------------------------
+Bowtie start: 8:18 AM - end: 8:19 AM - duration: 00:10
+Probeset: EIHC
+Parse start: 8:19 AM - end: 8:19 AM - duration: 00:05
+1157001 reads; of these:
+  1157001 (100.00%) were unpaired; of these:
+    37527 (3.24%) aligned 0 times
+    1119474 (96.76%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.76% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 3 mm/35uL_1 ------------------------
+Bowtie start: 8:19 AM - end: 8:19 AM - duration: 00:08
+Probeset: EIHC
+Parse start: 8:19 AM - end: 8:19 AM - duration: 00:04
+963788 reads; of these:
+  963788 (100.00%) were unpaired; of these:
+    41978 (4.36%) aligned 0 times
+    921810 (95.64%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+95.64% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 3 mm/35uL_2 ------------------------
+Bowtie start: 8:19 AM - end: 8:19 AM - duration: 00:05
+Probeset: EIHC
+Parse start: 8:19 AM - end: 8:19 AM - duration: 00:02
+595019 reads; of these:
+  595019 (100.00%) were unpaired; of these:
+    29594 (4.97%) aligned 0 times
+    565425 (95.03%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+95.03% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 3 mm/35uL_3 ------------------------
+Bowtie start: 8:19 AM - end: 8:19 AM - duration: 00:04
+Probeset: EIHC
+Parse start: 8:19 AM - end: 8:19 AM - duration: 00:02
+551355 reads; of these:
+  551355 (100.00%) were unpaired; of these:
+    30699 (5.57%) aligned 0 times
+    520656 (94.43%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+94.43% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_5 ------------------------
+Bowtie start: 8:19 AM - end: 8:19 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:19 AM - end: 8:19 AM - duration: 00:00
+33300 reads; of these:
+  33300 (100.00%) were unpaired; of these:
+    20534 (61.66%) aligned 0 times
+    12766 (38.34%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+38.34% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_6 ------------------------
+Bowtie start: 8:19 AM - end: 8:19 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:19 AM - end: 8:19 AM - duration: 00:00
+26242 reads; of these:
+  26242 (100.00%) were unpaired; of these:
+    21908 (83.48%) aligned 0 times
+    4334 (16.52%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+16.52% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 1.5 mm/35uL_1 ------------------------
+Bowtie start: 8:19 AM - end: 8:19 AM - duration: 00:02
+Probeset: EIHC
+Parse start: 8:19 AM - end: 8:19 AM - duration: 00:01
+333760 reads; of these:
+  333760 (100.00%) were unpaired; of these:
+    22375 (6.70%) aligned 0 times
+    311385 (93.30%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+93.30% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 1.5 mm/35uL_2 ------------------------
+Bowtie start: 8:19 AM - end: 8:19 AM - duration: 00:06
+Probeset: EIHC
+Parse start: 8:19 AM - end: 8:19 AM - duration: 00:03
+736237 reads; of these:
+  736237 (100.00%) were unpaired; of these:
+    34699 (4.71%) aligned 0 times
+    701538 (95.29%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+95.29% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 1.5 mm/35uL_3 ------------------------
+Bowtie start: 8:19 AM - end: 8:19 AM - duration: 00:01
+Probeset: EIHC
+Parse start: 8:19 AM - end: 8:20 AM - duration: 00:01
+233663 reads; of these:
+  233663 (100.00%) were unpaired; of these:
+    17315 (7.41%) aligned 0 times
+    216348 (92.59%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+92.59% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 0.75 mm/35uL_1 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:00
+35248 reads; of these:
+  35248 (100.00%) were unpaired; of these:
+    9359 (26.55%) aligned 0 times
+    25889 (73.45%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+73.45% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 0.75 mm/35uL_2 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:01
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:00
+121900 reads; of these:
+  121900 (100.00%) were unpaired; of these:
+    15855 (13.01%) aligned 0 times
+    106045 (86.99%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+86.99% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Pool 0.75 mm/35uL_3 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:01
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:00
+164456 reads; of these:
+  164456 (100.00%) were unpaired; of these:
+    21100 (12.83%) aligned 0 times
+    143356 (87.17%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+87.17% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_7 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:00
+24249 reads; of these:
+  24249 (100.00%) were unpaired; of these:
+    17557 (72.40%) aligned 0 times
+    6692 (27.60%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+27.60% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_8 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:00
+35154 reads; of these:
+  35154 (100.00%) were unpaired; of these:
+    23370 (66.48%) aligned 0 times
+    11784 (33.52%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+33.52% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_9 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:00
+18193 reads; of these:
+  18193 (100.00%) were unpaired; of these:
+    8289 (45.56%) aligned 0 times
+    9904 (54.44%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+54.44% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_10 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:00
+10199 reads; of these:
+  10199 (100.00%) were unpaired; of these:
+    7717 (75.66%) aligned 0 times
+    2482 (24.34%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+24.34% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_11 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:00
+11253 reads; of these:
+  11253 (100.00%) were unpaired; of these:
+    8011 (71.19%) aligned 0 times
+    3242 (28.81%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+28.81% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_12 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:00
+9365 reads; of these:
+  9365 (100.00%) were unpaired; of these:
+    7064 (75.43%) aligned 0 times
+    2301 (24.57%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+24.57% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-Lysis Buffer_13 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:00
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:00
+60365 reads; of these:
+  60365 (100.00%) were unpaired; of these:
+    9831 (16.29%) aligned 0 times
+    50534 (83.71%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+83.71% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-All Probe 1 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:03
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:01
+352959 reads; of these:
+  352959 (100.00%) were unpaired; of these:
+    14237 (4.03%) aligned 0 times
+    338722 (95.97%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+95.97% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-All Probe 2 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:03
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:02
+380897 reads; of these:
+  380897 (100.00%) were unpaired; of these:
+    15235 (4.00%) aligned 0 times
+    365662 (96.00%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.00% overall alignment rate
+
+
+------------------------ Bowtie run summary for sample 166-All Probe 3 ------------------------
+Bowtie start: 8:20 AM - end: 8:20 AM - duration: 00:03
+Probeset: EIHC
+Parse start: 8:20 AM - end: 8:20 AM - duration: 00:01
+436214 reads; of these:
+  436214 (100.00%) were unpaired; of these:
+    17320 (3.97%) aligned 0 times
+    418894 (96.03%) aligned exactly 1 time
+    0 (0.00%) aligned >1 times
+96.03% overall alignment rate
+
+

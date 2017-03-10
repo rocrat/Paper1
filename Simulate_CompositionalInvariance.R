@@ -8,6 +8,11 @@
 
 library(HTGPackage)
 library(tidyverse)
+library(foreach)
+library(iterators)
+library(doParallel)
+
+registerDoParallel()
 
 MFtrans <- function(x){
   delta <- 0.55/sum(x)
@@ -30,6 +35,7 @@ MFtrans.alr <- function(x, ivar){#apply to a vector
   return(ccxt)
 }
 
+source("compInvTest.R")
 
 ###############################################################################
 ###############################################################################
@@ -118,6 +124,13 @@ ggplot(clrdf[which(clrdf$probe %in% ranProbes), ], aes(x = total, y = trans.coun
             panel.grid.minor = element_blank(), 
             legend.position = "none")
 
+clrdf$probProbe <- ifelse(clrdf$probe %in% probProbes, "Problem", "No Problem")
+
+#the "porblem" probes exist all over the range of values
+ggplot(clrdf, aes(x = trans.count)) +
+  geom_density(aes(color = probProbe), adjust = 2) + 
+  plotTheme()
+
 ###############################################################################
 ###############################################################################
 ## Simulate data WITHOUT compositional invariance
@@ -133,17 +146,114 @@ ggplot(clrdf[which(clrdf$probe %in% ranProbes), ], aes(x = total, y = trans.coun
 # allocated to a sample. I.e. some probes are more likely to be counted if there
 # are a large number of total reads. (not sure what the chemical mechanism would
 # be) (empirically these effects should be on the order of 1.5x10^-7)
+registerDoPAR()
 
 percBeta <- c(.01, .05, .15, .25)
 
-
-simdatIV <- list()
-for (i in 1:length(percBeta)){
-  #Get the number of non-zero multipliers
-  nB <- ceiling(percBeta[i], length(tnbcMeans))
-  for (j in length(simtotals)){
-    newProbs <- 
+set.seed(1014)
+system.time(
+alrsig <- foreach(icount(100), .packages = "tidyverse") %dopar% {
+  
+  simdatIV <- list()
+  for (i in 1:length(percBeta)){
+    #Get the number of non-zero multipliers
+    nB <- ceiling(percBeta[i] * length(tnbcMeans))
+    
+    #select the probes that will be affected
+    badProbes <- base::sample(1:length(tnbcMeans), nB)
+    
+    #generate coefficients
+    betas <- runif(nB, min = 4e-8, max = 9e-8)
+    
+    newcomps <- tnbcMeans
+    
+    
+    simdat <- matrix(nrow = length(tnbcMeans), ncol = length(simtotals))
+    for (j in 1:length(simtotals)){
+      
+      newcomps[badProbes] <- newcomps[badProbes] + log(simtotals[j]) * betas[26]
+      
+      #re-close the composition
+      newcomps <- newcomps/sum(newcomps)
+      
+      #generate sample
+      simdat[, j] <- rmultinom(1, size = simtotals[j], prob = newcomps)
+    }
+    
+    simdat <- as.data.frame(simdat)
+    simdat <- cbind(probe = paste0("p", 1:nrow(simdat)), simdat) 
+    simdatIV[[i]] <- simdat
   }
+  
+  testSimdat.alr <- lapply(simdatIV, FUN =  compInvTest, trans = "alr")
+  
+  
+  unlist(lapply(testSimdat.alr, function(x) sum(x$betas$adjP < 0.05)))
+  
 }
+)
 
+system.time(
+clrsig <- foreach(icount(100), .packages = "tidyverse") %dopar% {
+  
+  simdatIV <- list()
+  for (i in 1:length(percBeta)){
+    #Get the number of non-zero multipliers
+    nB <- ceiling(percBeta[i] * length(tnbcMeans))
+    
+    #select the probes that will be affected
+    badProbes <- base::sample(1:length(tnbcMeans), nB)
+    
+    #generate coefficients
+    betas <- runif(nB, min = 4e-8, max = 9e-8)
+    
+    newcomps <- tnbcMeans
+    
+    
+    simdat <- matrix(nrow = length(tnbcMeans), ncol = length(simtotals))
+    for (j in 1:length(simtotals)){
+      
+      newcomps[badProbes] <- newcomps[badProbes] + log(simtotals[j]) * betas[26]
+      
+      #re-close the composition
+      newcomps <- newcomps/sum(newcomps)
+      
+      #generate sample
+      simdat[, j] <- rmultinom(1, size = simtotals[j], prob = newcomps)
+    }
+    
+    simdat <- as.data.frame(simdat)
+    simdat <- cbind(probe = paste0("p", 1:nrow(simdat)), simdat) 
+    simdatIV[[i]] <- simdat
+  }
+  
+  testSimdat.clr <- lapply(simdatIV, FUN =  compInvTest, trans = "clr")
+  
+  
+  unlist(lapply(testSimdat.clr, function(x) sum(x$betas$adjP < 0.05)))
+  
+}
+)
 
+alrSig <- as.data.frame(do.call( rbind, alrsig))
+clrSig <- as.data.frame(do.call( rbind, clrsig))
+
+colnames(alrSig) <- colnames(clrSig) <- paste0(ceiling(percBeta * length(tnbcMeans)))
+
+alrSig$Trans <- "ALR"
+clrSig$Trans <- "CLR"
+
+simNumResults <- rbind(alrSig, clrSig) %>%
+  gather(Expected, Observed, 1:4) %>%
+  mutate(Difference = Observed - as.numeric(Expected))
+
+simNumResults$Expected <- factor(simNumResults$Expected, 
+                                 levels = paste0(ceiling(percBeta * length(tnbcMeans))))
+
+ggplot(simNumResults, aes(x = Expected, y = Difference)) +
+  geom_point(aes(color = Trans), position = position_dodge(width = .2)) + 
+  scale_color_discrete("Transformation") +
+  ylab("Difference from Expected") +
+  plotTheme()
+
+write.csv(simNumResults, "Tables/SimulateCompositionalInvarianceTest.csv")

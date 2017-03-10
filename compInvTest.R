@@ -14,7 +14,7 @@ compInvTest <- function(data, trans, ctrlProbes = NULL) {
   
   #Gather the sample totals
   totals <- data.frame(sample = names(data)[-1],
-                       total = colSums(data[, -1]),
+                       total = log(colSums(data[, -1])),
                        stringsAsFactors = FALSE)
   
   #Add the totals as a variable to the long data

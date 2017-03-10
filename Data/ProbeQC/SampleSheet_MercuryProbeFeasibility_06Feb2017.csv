@@ -1,0 +1,67 @@
+[Header],,,,,,,,,,
+IEMFileVersion,4,,,,,,,,,
+Investigator Name,Yulia Lipovka,,,,,,,,,
+Experiment Name,MercuryProbeFeasibility_02Feb2017,,,,,,,,,
+Date,2/3/2017,,,,,,,,,
+Workflow,GenerateFASTQ,,,,,,,,,
+Application,FASTQ Only,,,,,,,,,
+Assay,EdgeSeq,,,,,,,,,
+Description,,,,,,,,,,
+Chemistry,Amplicon,,,,,,,,,
+,,,,,,,,,,
+[Reads],,,,,,,,,,
+50,,,,,,,,,,
+,,,,,,,,,,
+[Settings],,,,,,,,,,
+ReverseComplement,0,,,,,,,,,
+,,,,,,,,,,
+[Data],,,,,,,,,,
+Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,index2,Sample_Project,Description,ProbeSet
+1,166-HTG500 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,A1,RA,CGATGT,F1,ATTGGC,,,EIHC
+2,166-HTG501 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,B1,RB,GCCAAT,F1,ATTGGC,,,EIHC
+3,166-HTG502 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,C1,RC,CAGATC,F1,ATTGGC,,,EIHC
+4,166-HTG503 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,D1,RD,GCCTAA,F1,ATTGGC,,,EIHC
+5,166-Lysis Buffer_1,MercuryProbeFeasibility_02Feb2017,E1,RE,CACTGT,F1,ATTGGC,,,EIHC
+6,166-HTG1082 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,F1,RF,ATTGGC,F1,ATTGGC,,,EIHC
+7,166-HTG1065 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,G1,RG,TCAAGT,F1,ATTGGC,,,EIHC
+8,166-HTG1072 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,H1,RH,CGTACG,F1,ATTGGC,,,EIHC
+9,166-Lysis Buffer_2,MercuryProbeFeasibility_02Feb2017,A2,RA,CGATGT,F2,GCCAAT,,,EIHC
+10,166-HTG504 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,B2,RB,GCCAAT,F2,GCCAAT,,,EIHC
+11,166-HTG505 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,C2,RC,CAGATC,F2,GCCAAT,,,EIHC
+12,166-HTG506 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,D2,RD,GCCTAA,F2,GCCAAT,,,EIHC
+13,166-HTG507 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,E2,RE,CACTGT,F2,GCCAAT,,,EIHC
+14,166-HTG508 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,F2,RF,ATTGGC,F2,GCCAAT,,,EIHC
+15,166-HTG509 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,G2,RG,TCAAGT,F2,GCCAAT,,,EIHC
+16,166-Lysis Buffer_3,MercuryProbeFeasibility_02Feb2017,H2,RH,CGTACG,F2,GCCAAT,,,EIHC
+17,166-HTG510 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,A3,RA,CGATGT,F3,TGACCA,,,EIHC
+18,166-HTG511 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,B3,RB,GCCAAT,F3,TGACCA,,,EIHC
+19,166-Lysis Buffer_4,MercuryProbeFeasibility_02Feb2017,C3,RC,CAGATC,F3,TGACCA,,,EIHC
+20,166-HTG512 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,D3,RD,GCCTAA,F3,TGACCA,,,EIHC
+21,166-HTG297 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,E3,RE,CACTGT,F3,TGACCA,,,EIHC
+22,166-HTG67 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,F3,RF,ATTGGC,F3,TGACCA,,,EIHC
+23,166-HTG128 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,G3,RG,TCAAGT,F3,TGACCA,,,EIHC
+24,166-HTG1812 6mm/35uL_1,MercuryProbeFeasibility_02Feb2017,H3,RH,CGTACG,F3,TGACCA,,,EIHC
+25,166-Pool 6 mm/35uL_1,MercuryProbeFeasibility_02Feb2017,A4,RA,CGATGT,F4,CACTGT,,,EIHC
+26,166-Pool 6 mm/35uL_2,MercuryProbeFeasibility_02Feb2017,B4,RB,GCCAAT,F4,CACTGT,,,EIHC
+27,166-Pool 6 mm/35uL_3,MercuryProbeFeasibility_02Feb2017,C4,RC,CAGATC,F4,CACTGT,,,EIHC
+28,166-Pool 3 mm/35uL_1,MercuryProbeFeasibility_02Feb2017,D4,RD,GCCTAA,F4,CACTGT,,,EIHC
+29,166-Pool 3 mm/35uL_2,MercuryProbeFeasibility_02Feb2017,E4,RE,CACTGT,F4,CACTGT,,,EIHC
+30,166-Pool 3 mm/35uL_3,MercuryProbeFeasibility_02Feb2017,F4,RF,ATTGGC,F4,CACTGT,,,EIHC
+31,166-Lysis Buffer_5,MercuryProbeFeasibility_02Feb2017,G4,RG,TCAAGT,F4,CACTGT,,,EIHC
+32,166-Lysis Buffer_6,MercuryProbeFeasibility_02Feb2017,H4,RH,CGTACG,F4,CACTGT,,,EIHC
+33,166-Pool 1.5 mm/35uL_1,MercuryProbeFeasibility_02Feb2017,A5,RA,CGATGT,F5,TAGCTT,,,EIHC
+34,166-Pool 1.5 mm/35uL_2,MercuryProbeFeasibility_02Feb2017,B5,RB,GCCAAT,F5,TAGCTT,,,EIHC
+35,166-Pool 1.5 mm/35uL_3,MercuryProbeFeasibility_02Feb2017,C5,RC,CAGATC,F5,TAGCTT,,,EIHC
+36,166-Pool 0.75 mm/35uL_1,MercuryProbeFeasibility_02Feb2017,D5,RD,GCCTAA,F5,TAGCTT,,,EIHC
+37,166-Pool 0.75 mm/35uL_2,MercuryProbeFeasibility_02Feb2017,E5,RE,CACTGT,F5,TAGCTT,,,EIHC
+38,166-Pool 0.75 mm/35uL_3,MercuryProbeFeasibility_02Feb2017,F5,RF,ATTGGC,F5,TAGCTT,,,EIHC
+39,166-Lysis Buffer_7,MercuryProbeFeasibility_02Feb2017,G5,RG,TCAAGT,F5,TAGCTT,,,EIHC
+40,166-Lysis Buffer_8,MercuryProbeFeasibility_02Feb2017,H5,RH,CGTACG,F5,TAGCTT,,,EIHC
+41,166-Lysis Buffer_9,MercuryProbeFeasibility_02Feb2017,A6,RA,CGATGT,F6,ACATCG,,,EIHC
+42,166-Lysis Buffer_10,MercuryProbeFeasibility_02Feb2017,B6,RB,GCCAAT,F6,ACATCG,,,EIHC
+43,166-Lysis Buffer_11,MercuryProbeFeasibility_02Feb2017,C6,RC,CAGATC,F6,ACATCG,,,EIHC
+44,166-Lysis Buffer_12,MercuryProbeFeasibility_02Feb2017,D6,RD,GCCTAA,F6,ACATCG,,,EIHC
+45,166-Lysis Buffer_13,MercuryProbeFeasibility_02Feb2017,E6,RE,CACTGT,F6,ACATCG,,,EIHC
+46,166-All Probe 1,MercuryProbeFeasibility_02Feb2017,F6,RF,ATTGGC,F6,ACATCG,,,EIHC
+47,166-All Probe 2,MercuryProbeFeasibility_02Feb2017,G6,RG,TCAAGT,F6,ACATCG,,,EIHC
+48,166-All Probe 3,MercuryProbeFeasibility_02Feb2017,H6,RH,CGTACG,F6,ACATCG,,,EIHC
