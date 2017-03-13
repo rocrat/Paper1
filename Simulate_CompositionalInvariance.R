@@ -254,6 +254,15 @@ ggplot(simNumResults, aes(x = Expected, y = Difference)) +
   geom_point(aes(color = Trans), position = position_dodge(width = .2)) + 
   scale_color_discrete("Transformation") +
   ylab("Difference from Expected") +
+  xlab("Expected number of significant probes") +
+  plotTheme()
+  
+  
+ggplot(simNumResults, aes(x = Expected, y = Difference)) +
+  geom_point(position = position_jitter(width = .1, height = 0)) + 
+  facet_wrap(~Trans, ncol = 1, scales = "free_y") +
+  ylab("Difference from Expected") +
+  xlab("Expected number of significant probes") +
   plotTheme()
 
 write.csv(simNumResults, "Tables/SimulateCompositionalInvarianceTest.csv")
