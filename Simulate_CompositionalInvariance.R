@@ -230,10 +230,12 @@ clrsig <- foreach(icount(100), .packages = "tidyverse") %dopar% {
   testSimdat.clr <- lapply(simdatIV, FUN =  compInvTest, trans = "clr")
   
   
-  unlist(lapply(testSimdat.clr, function(x) sum(x$betas$adjP < 0.05)))
+  return(testSimdat.clr)
   
 }
 )
+
+save(clrsig, file = "./Output/ResultsFromCompInvSim_CLR.RData")
 
 alrSig <- as.data.frame(do.call( rbind, alrsig))
 clrSig <- as.data.frame(do.call( rbind, clrsig))
