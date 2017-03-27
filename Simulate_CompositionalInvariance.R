@@ -236,6 +236,7 @@ clrsig <- foreach(icount(100), .packages = "tidyverse") %dopar% {
 )
 
 save(clrsig, file = "./Output/ResultsFromCompInvSim_CLR.RData")
+save(alrsig, file = "./Output/ResultsFromCompInvSim_ALR.RData")
 
 alrSig <- as.data.frame(do.call( rbind, alrsig))
 clrSig <- as.data.frame(do.call( rbind, clrsig))
