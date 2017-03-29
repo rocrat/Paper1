@@ -93,42 +93,42 @@ where $g(\mathbf{x})$ is the geometric mean of $\mathbf{x}$.  The $D \times D$ c
 \end{equation}
 \\
 
-\emph{\textbf{I think it might be better to leave out the details of this and instead reference the paper and give a brief reason why it is beneficial.
-Original version:}}
+% \emph{\textbf{I think it might be better to leave out the details of this and instead reference the paper and give a brief reason why it is beneficial.
+% Original version:}}
 
-\fboxsep0pt%separate into a text box to suggest removal
-\colorbox{light-gray}{
-\begin{minipage}{\textwidth}
-  To avoid numerical difficulties arising from sequence targets with 0 reads, Martin-Fernandez et al.~\cite{Martin-Fernandez2000} suggest an additive-multiplicative hybrid transformation.  This transformation is additive on the zero components but multiplicative on the non-zero components.  It has several advantages over the simple additive transformation since it preserves several important compositional properties.  Martin-Fernandez et al.~\cite{Martin-Fernandez2000} recommend using 0.55 $\times$ the smallest detectable value as originally suggested by Sandford et al.~\cite{Kiers2000, Sanford1993}. The threshold value for RNA-seq data must account for read depth since a 0 in a sample with a library size of 1 thousand reads would potentially not be 0 if the total number of reads was increased to 1 million.  Therefore, we define the threshold value for a sample as $\delta = \frac{0.55}{\text{Total Reads}}$.  The Martin-Fernandez transformation then becomes,
-  
-  \begin{equation}
-  v_i = \frac{x_i}{\sum_{i = 1}^{D} x_i}
-  \end{equation}
-  
-  \begin{equation}
-  u_i  = 
-  \begin{cases} 
-  \delta  & \text{ if }v_i = 0\\
-  v_i \times \left[1 - \left( \sum_{i = 1}^{D} \mathcal{I}_{\left(v_i = 0\right)}\right) \times \delta  \right] & \text{ if }x_i \ne 0.\\
-  \end{cases}
-  \label{MFclr}
-  \end{equation}
-  
-  \end{minipage}
-}
-\\
-
-\emph{\textbf{Second option:}}
-
-\fboxsep0pt%separate into a text box to suggest removal
-\colorbox{light-gray}{
-\begin{minipage}{\textwidth}
+% \fboxsep0pt%separate into a text box to suggest removal
+% \colorbox{light-gray}{
+% \begin{minipage}{\textwidth}
+%   To avoid numerical difficulties arising from sequence targets with 0 reads, Martin-Fernandez et al.~\cite{Martin-Fernandez2000} suggest an additive-multiplicative hybrid transformation.  This transformation is additive on the zero components but multiplicative on the non-zero components.  It has several advantages over the simple additive transformation since it preserves several important compositional properties.  Martin-Fernandez et al.~\cite{Martin-Fernandez2000} recommend using 0.55 $\times$ the smallest detectable value as originally suggested by Sandford et al.~\cite{Kiers2000, Sanford1993}. The threshold value for RNA-seq data must account for read depth since a 0 in a sample with a library size of 1 thousand reads would potentially not be 0 if the total number of reads was increased to 1 million.  Therefore, we define the threshold value for a sample as $\delta = \frac{0.55}{\text{Total Reads}}$.  The Martin-Fernandez transformation then becomes,
+%   
+%   \begin{equation}
+%   v_i = \frac{x_i}{\sum_{i = 1}^{D} x_i}
+%   \end{equation}
+%   
+%   \begin{equation}
+%   u_i  = 
+%   \begin{cases} 
+%   \delta  & \text{ if }v_i = 0\\
+%   v_i \times \left[1 - \left( \sum_{i = 1}^{D} \mathcal{I}_{\left(v_i = 0\right)}\right) \times \delta  \right] & \text{ if }x_i \ne 0.\\
+%   \end{cases}
+%   \label{MFclr}
+%   \end{equation}
+%   
+%   \end{minipage}
+% }
+% \\
+% 
+% \emph{\textbf{Second option:}}
+% 
+% \fboxsep0pt%separate into a text box to suggest removal
+% \colorbox{light-gray}{
+% \begin{minipage}{\textwidth}
 
 To avoid numerical difficulties arising from sequence targets with 0 reads, Martin-Fernandez et al. (2000)~\cite{Martin-Fernandez2000} suggest an additive-multiplicative hybrid transformation.  If zeros are present in the data We recommend using the Martin-Fernandez transformation with a threshold value of $\delta = \frac{0.55}{\text{Total Reads}}$ to account for differences in library size.  The CLR transformation is then applied to the Martin-Fernandez transformed data which contains no zeros. \\
 
-  \end{minipage}
-}
-\\
+%   \end{minipage}
+% }
+% \\
 
 The CLR transformation is similar to the familiar Counts per Million (CPM) transformation~\cite{Law2014} defined as, $log_2 \left(\frac{r_{gi}+0.5}{t_i+1} \times 10^6 \right)$, where $r_{gi}$ is the number of sequence reads for each probe ($g$) and sample ($i$), (scaled to avoid zero counts), adjusted for the number of mapped reads (library count) for each sample $t_i$ (scaled by a constant 1 to ensure the proportional read to library size ratio is greater than zero). The primary difference between the CLR and log(CPM) transformations is in the use of the geomtric mean in the denominator of the CLR transformation. The use of the geometric mean results in subtracting the mean of the log transformed values from each element thereby centering the vector of log-ratio transformed read counts. The difference appears minor but has important implications for the application of several common statistical methods.\\
 
@@ -147,7 +147,6 @@ or
 
 Up to this point we have referred to the total reads available per sequencing run, $\mathbb{T}$.  However, it is more typical to work with the aligned reads in practice.  The total aligned reads, $T$, is always a fraction of the total reads available for a sequencing run, $\mathbb{T}$.  The fraction of the total reads aligned can be a affected by multiple factors, including the choice of alignment algorithm, which we do not address here.  We assume that $T$ imposes the same constraints on the data as oultined above for $\mathbb{T}$ and will refer exclusively to $T$ hereafter.\\  
 
-  Aitchison~\cite{Aitchison1986} defines this property as \emph{Compositional Invariance}.  
 
 \section{Sample Quality Control}
 Problems with sample quality, library preparation, or sequencing may result in a low number of reads allocated to a given sample within a sequencing run.  The Percent Pass Filter (\% PF) metric provided on Illumina sequencers provides a subjective measure that can identify problems with sequencing that result in a low number of reads allocated to a sample.  However, \% PF will not necessarily catch problems associated with poor sample quality or problems with sample pre-processing since these processes may affect cluster generation, and not just cluster quality.  This is particularly important for extraction-free RNA-Seq technologies, such as the HTG EdgeSeq$^{(tm)}$, which allow for the use of smaller input amounts but lack the intermediate steps for checking sample quality.  There is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. We propose a method for objectively identifying problematic samples based on the total number of reads allocated to the sample. \\
@@ -168,7 +167,10 @@ We demonstrate the utility of our sample quality control measure using two sets 
 
 Normalization and standardization methods for RNA-Seq generally assume that the total number of reads assigned to a sample does not affect the observed relative frequencies of probes within an assay.  For example, implicit in the CPM transformation is the idea that if you re-scale the counts (by dividing by the total for each sample) then the resulting counts are comparible and any differences are due to underlying differences in expression.  Other methods which apply a scaling factor to each sample, such as Trimmed-mean of M values (TMM) or Quantile normalization, also rely on this assumption.  In the parlance of compositional data these methods assume \emph{Compositional Invariance}, i.e. the underlying composition is statistically independent of the total size of the composition (the total counts for a sample, $t$).\\
 
-It is well documented that the quality of RNA-Seq depends on the read depth of the sequencing run with higher read-depths associated with higher quality data~\cite{CITE}.  This is clearly a violation of compositional invariance (CI).  We derive a test for compositional invariance in high-dimensional RNA-Seq assays to ensure that the differences in expression among samples is independent of the differences in total counts among samples.\\
+Compositional invariance is an important property for RNA-Seq data which enables the comparison of samples with differing read depths.  However, it is well documented that the quality of RNA-Seq depends on the read depth of the sequencing run with higher read-depths associated with higher quality data~\cite{Sims2014}. Read depth may affect the measurement of relative abundances for the target RNA sequences as some targets may receive proportionally more reads as the read depth increases.  This would be a direct violation of compositional invarianceand could lead to spurious results.
+
+
+Testing for compositional invariance in high-dimensional RNA-Seq assays is important to ensure that the differences in expression among samples is independent of the differences in total counts among samples.  Aitchison~\cite{Aitchison1986} outlined a simple model for testing compositional covariance using the ALR transformation.\\
 
 1. transform using ALR so that we can use mulivariate normal methods
   1b. results to not depend on choice of divisor

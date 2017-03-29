@@ -12,7 +12,7 @@ library(foreach)
 library(iterators)
 library(doParallel)
 
-registerDoParallel()
+registerDoParallel(cores = 4)
 
 MFtrans <- function(x){
   delta <- 0.55/sum(x)
@@ -43,8 +43,8 @@ source("compInvTest.R")
 ###############################################################################
 ###############################################################################
 
-dfraw <- readHTG("C:/Projects/CompositionalInvariance/RawData/Pfizer Sample Input OBP parsed 18-Nov-2016.xls",
-                 include.probe = FALSE)
+dfraw <- readHTG("Data/Pfizer Sample Input OBP parsed 18-Nov-2016.xls",
+include.probe = FALSE)
 totals <- colSums(dfraw)
 totals <- totals[order(totals)]
 
@@ -146,7 +146,7 @@ ggplot(clrdf, aes(x = trans.count)) +
 # allocated to a sample. I.e. some probes are more likely to be counted if there
 # are a large number of total reads. (not sure what the chemical mechanism would
 # be) (empirically these effects should be on the order of 1.5x10^-7)
-registerDoPAR()
+# registerDoPAR()
 
 percBeta <- c(.01, .05, .15, .25)
 
