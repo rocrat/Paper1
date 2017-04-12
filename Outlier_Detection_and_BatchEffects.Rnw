@@ -124,7 +124,7 @@ where $g(\mathbf{x})$ is the geometric mean of $\mathbf{x}$.  The $D \times D$ c
 % \colorbox{light-gray}{
 % \begin{minipage}{\textwidth}
 
-To avoid numerical difficulties arising from sequence targets with 0 reads, Martin-Fernandez et al. (2000)~\cite{Martin-Fernandez2000} suggest an additive-multiplicative hybrid transformation.  If zeros are present in the data We recommend using the Martin-Fernandez transformation with a threshold value of $\delta = \frac{0.55}{\text{Total Reads}}$ to account for differences in library size.  The CLR transformation is then applied to the Martin-Fernandez transformed data which contains no zeros. \\
+To avoid numerical difficulties arising from sequence targets with 0 reads, Martin-Fernandez et al. (2000)~\cite{Martin-Fernandez2000} suggest an additive-multiplicative hybrid transformation.  If zeros are present in the data We recommend using the Martin-Fernandez transformation with a threshold value of $\delta = \frac{0.55}{\text{Total Reads}}$ to account for differences in sequencing depth.  The CLR transformation is then applied to the Martin-Fernandez transformed data which contains no zeros. \\
 
 %   \end{minipage}
 % }
@@ -151,7 +151,7 @@ Up to this point we have referred to the total reads available per sequencing ru
 \section{Sample Quality Control}
 Problems with sample quality, library preparation, or sequencing may result in a low number of reads allocated to a given sample within a sequencing run.  The Percent Pass Filter (\% PF) metric provided on Illumina sequencers provides a subjective measure that can identify problems with sequencing that result in a low number of reads allocated to a sample.  However, \% PF will not necessarily catch problems associated with poor sample quality or problems with sample pre-processing since these processes may affect cluster generation, and not just cluster quality.  This is particularly important for extraction-free RNA-Seq technologies, such as the HTG EdgeSeq$^{(tm)}$, which allow for the use of smaller input amounts but lack the intermediate steps for checking sample quality.  There is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. We propose a method for objectively identifying problematic samples based on the total number of reads allocated to the sample. \\
 
-For most experimental designs we expect the number of reads allocated to each sample in a sequencing run to arise from the same general data generating mechanism, namely the chemistry of the NGS-based measurement system, regardless of experimental condition.  The objective is then to determine which samples arise from a different mechanism.  Outlier detection is well suited for discovering obervations that deviate so much from other observations that they are likely to have arisen from a different mechanism~\cite{Hawkins1980}.  We base our method off Tukey's box-plots~\cite{Tukey1977}, which is a well used and robust method for detecting outliers~\cite{Ben-Gal2009}.\\
+For most experimental designs we expect the number of reads allocated to each sample in a sequencing run to arise from the same general data generating mechanism, namely the chemistry of the NGS-based measurement system, regardless of experimental condition.  The objective is then to determine which samples arise from a different mechanism.  Outlier detection is well suited for discovering obervations that deviate so much from other observations that they are likely to have arisen from a different mechanism~\cite{Hawkins1980}.  We base our method off Tukey's box-plots~\cite{Tukey1977}, which is a commonly used and robust method for detecting outliers~\cite{Ben-Gal2009}.\\
 
 We expect the total number of reads allocated to each sample, $t_i$, to be equivalent notwithstanding random variation. For a given sequencing run with $D$ samples we define the vector of total reads allocated to each sample as $\mathbf{t}$.  Since the $D$ dimensional vector $\mathbf{t}$ is a composition we have $\mathbf{t} \in \mathcal{S}^{D-1}$, the $D-1$-dimensional simplex. As noted above, traditional statistical methods may not be appropriate for data in the simplex.  Therefore, we map $\mathbf{t} \in \mathcal{S}^{D-1} \rightarrow \mathbf{x} = CLR(\mathbf{t}) \in \mathcal{R}^D$ using the Centered Log Ratio transformation~\ref{clr}.  We then apply Tukey's method for detecting outliers to $\mathbf{x}$, which simply identifies those observations which lie outside 1.5 times the inter-quartile range.
 
@@ -167,7 +167,7 @@ We demonstrate the utility of our sample quality control measure using two sets 
 
 Normalization and standardization methods for RNA-Seq generally assume that the total number of reads assigned to a sample does not affect the observed relative frequencies of probes within an assay.  For example, implicit in the CPM transformation is the idea that if you re-scale the counts (by dividing by the total for each sample) then the resulting counts are comparible and any differences are due to underlying differences in expression.  Other methods which apply a scaling factor to each sample, such as Trimmed-mean of M values (TMM) or Quantile normalization, also rely on this assumption.  In the parlance of compositional data these methods assume \emph{Compositional Invariance}, i.e. the underlying composition is statistically independent of the total size of the composition (the total counts for a sample, $t$).\\
 
-Compositional invariance is an important property for RNA-Seq data which enables the comparison of samples with differing read depths.  However, it is well documented that the quality of RNA-Seq depends on the read depth of the sequencing run with higher read-depths associated with higher quality data~\cite{Sims2014}. Read depth may affect the measurement of relative abundances for the target RNA sequences as some targets may receive proportionally more reads as the read depth increases.  This would be a direct violation of compositional invarianceand could lead to spurious results.
+Compositional invariance is an important property for RNA-Seq data which enables the comparison of samples with differing read depths.  However, it is well documented that the quality of RNA-Seq depends on the read depth of the sequencing run with higher read-depths associated with higher quality data~\cite{Sims2014}. Read depth may affect the measurement of relative abundances for the target RNA sequences as some targets may receive proportionally more reads as the read depth increases.  This would be a direct violation of compositional invariance and could lead to spurious results.
 
 
 Testing for compositional invariance in high-dimensional RNA-Seq assays is important to ensure that the differences in expression among samples is independent of the differences in total counts among samples.  Aitchison~\cite{Aitchison1986} outlined a simple model for testing compositional covariance using the ALR transformation.\\
@@ -205,12 +205,13 @@ Testing for compositional invariance in high-dimensional RNA-Seq assays is impor
 
 
 \section{Batch Effects and Normalization}
+
 Batch effects arising from differing labratory conditions or operator differences have been identified as a problem in high-throughput measurement systems~\cite{leek2010, chen2011}.  Identifying and controlling for batch effects is a critical step in the transition of RNA-Seq from the lab to the clinic.  Batch effects are typically identified with a hierarchical clustering (HC) method or principal components analysis (PCA).  For both methods, the multivariate distance between the samples is visualized. either in a biplot for PCA or a dendrogram for HC, to check for the existence of clusters of samples related to batch. % and removed through various normalization methods~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, leek2014}.  \\ %I wonder if I should move that last line
-The compositional nature of RNA-Seq data has important implications for the detection of batch effects because of the difficulty of interpreting the covariance matrix~\cite{Aitchison1986} and the incompatibility with standard measures of distance between compositions as noted above~\cite{Aitchison1986,Martin-Fernandez1998}.\\  %The CLR transformation facilitates both batch effect detection and normalization.  The CLR transformed covariance matrix is suitable for exploration through PCA (using biplots)~\cite{Aitchison2002} or hierarchical clustering using standard Euclidean or Mahalanobis distance~\cite{Martin-Fernandez1998}.  \\
+The compositional nature of RNA-Seq data has important implications for the detection of batch effects due to the incompatibility with standard measures of distance between compositions as noted above~\cite{Aitchison1986,Martin-Fernandez1998}.\\  %The CLR transformation facilitates both batch effect detection and normalization.  The CLR transformed covariance matrix is suitable for exploration through PCA (using biplots)~\cite{Aitchison2002} or hierarchical clustering using standard Euclidean or Mahalanobis distance~\cite{Martin-Fernandez1998}.  \\
 
-The next generation sequencing process results in arbitrary differences in scale among samples as some samples will receive more total reads than others. Principle components analysis is sensitive to differences in scale among the variables, failure to remove these difference can mask potential batch effects and leave unwanted technical variation in the data.  Most normalization methods use a scaling factor calculated for each sample to rescale the read count for each gene within the sample~\cite{Dillies2013}.  The CLR transformation can also be viewed as a scaling factor (the inverse of the geomtric mean $1/g(x)$), which is multiplied to each gene read count in the sample.  Unlike other normalization methods, the CLR transformation has the added benefit of being applied at the individual sample level, not experiment wise.  This makes it particularly suited for the clinic where there are generally no reference samples to normalize to.\\
+The next generation sequencing process results in arbitrary differences in scale among samples as some samples will receive more total reads than others. Principle components analysis is sensitive to differences in scale among the variables, failure to remove these difference can mask potential batch effects and leave unwanted technical variation in the data.  Most normalization methods use a scaling factor calculated for each sample to rescale the read count for each gene within the sample~\cite{Dillies2013}.  The CLR transformation can similarly be viewed as a scaling normalization (with the scale factor chosen as the inverse of the geomtric mean $1/g(x)$).  Unlike other normalization methods, the CLR transformation has the added benefit of being applied at the individual sample level, not experiment wise, and requires no assumptions about differential expression unlike other popular normalizations.  This makes it particularly well suited for the clinic where there are generally no reference samples for normalization.\\
 
-Aitchison demonstrated that the CLR transformation has several other useful properties in addition to rescaling the data~\cite{Aitchison1986}, particularly with respect to PCA biplots~\cite{Aitchison2002}.  Most notably for the detection of batch effects, the distance between any two points representing samples in the form-biplot approximates the Euclidean distance between the two samples.  The CLR transformation retains the property that this distance is at least as great as the distance between any corresponding subset of these two compositions (subspace dominance).  Other scaling methods do not necessarily satisfy this property when used with compositions, and therefore batch effects may be masked.\\
+Aitchison demonstrated that the CLR transformation has several other useful properties in addition to rescaling the data~\cite{Aitchison1986}, particularly with respect to PCA biplots~\cite{Aitchison2002}.  Most notably for the detection of batch effects, the distance between any two points representing samples in the form-biplot approximates the Euclidean distance between the two samples.  The CLR transformation retains the property that this distance is at least as great as the distance between any corresponding subset of these two compositions (subspace dominance).  Additionally, the euclidean distance between two CLR transformed samples is location invariant. Other scaling and normalization methods do not necessarily satisfy these properties and, therefore, batch effects may be masked or artificial.\\
 
 %toy example of distance issue when checking for batch effects here
 
@@ -218,7 +219,7 @@ We demonstrate the use of the compositional biplot to detect batch effects using
 
 We create a second data set, by re-scaling the original data, to better illustrate the effects of changes in read depth on batch effect detection.  To re-scale the samples from the original we multiply every read count in a given sample by a factor, ranging from 0.5 to 1.5, randomly generated from the uniform distribution.  We then obtain a new data set in which the proportions between the read counts remains unchanged but the variance in the total number of reads among the samples is increased.\\ 
 
-\section{Results}
+\section{Examples}
 
 \subsection{Sample Quality Control}
 
@@ -373,9 +374,6 @@ totl <- totl[which(!grepl("P02", totl$Proc)),]
 IO_repro_plates <- levels(totl$Plate)
 totl$column <- factor(totl$column, levels = as.character(1:12))
 
-#Raw totals
-# IOrawTotals <- ggplot(totl, aes(x = column, y = row)) + geom_tile(aes(fill = Total.Reads)) + facet_wrap(~Plate, ncol = 5) + plotTheme(legend.position = "right")  +  xlab("Plate Column") + ylab("Plate Row")
-# ggsave("../Paper1/Figures/IO_Repro_TotalCountHeatMap_RawTotals.png", IOrawTotals, width = 14 , height = 5)
 
 totl$colCompressed <- factor(ifelse(totl$column %in% c(4,7,10), 1, 
                              ifelse(totl$column %in% c(5,8,11), 2, 3)))
@@ -393,35 +391,6 @@ TotalBoxplot_IO <- ggplot(totl, aes(x = 1, y = Total.Reads)) + geom_boxplot(outl
 Total_Combined_IO <- plot_grid(TotalBoxplot_IO, IOrawTotalsCompressed, labels = c("A", "B"), nrow = 2, ncol =1)
 ggsave("./Figures/IO_Repro_Combined_RawTotals.png", Total_Combined_IO, width = 14 , height = 10)
 
-
-# totsn <- lapply(dfnlist, getTots)
-# totsn <- lapply(totsn, getPlates)
-# 
-# totln <- do.call(rbind, totsn)
-# totln <- totln[which(!grepl("P02", totln$Proc)),]
-# totln$column <- factor(totln$column, levels = as.character(1:12))
-# totln$Plate <- factor(totln$Plate, levels = IO_repro_plates)
-# 
-# 
-# #Normalize together
-# dfw <- plyr::join_all(dflist, by = "X0")
-# rownames(dfw) <- dfw[, 1]
-# names(dfw) <- dfw[3, ]
-# dfw <- dfw[, which(!grepl("No_Sample", names(dfw)))]
-# dfw[-c(1:4), -1] <- quantile_normalisation(data.matrix(dfw[-c(1:4), -1]))
-# dfw <- dfw[, -1]
-# dfw[4, ] <- colSums(data.matrix(dfw[-c(1:4), ]))
-# 
-# #convert to long form
-# dfl <- as.data.frame(t(dfw[1:4,]))
-# dfl$row <- gsub("(\\w{1})(\\d{1,2})$", "\\1", dfl$Well)
-# dfl$column <- gsub("(\\w{1})(\\d{1,2})$", "\\2", dfl$Well)
-# dfl$column <- factor(dfl$column, levels = as.character(1:12))
-# dfl$Total.Reads <- as.numeric(as.character(dfl$`Total Counts`))
-# dfl$Proc <- gsub(".*(P\\d{2}).*", "\\1", dfl$`Sample Name`)
-# dfl$Day <- ifelse(grepl("D", dfl$`Sample Name`), gsub(".*(D\\d{1}).*", "\\1", dfl$`Sample Name`), "D1")
-# dfl$Plate <- factor(paste0(dfl$Proc, "_", dfl$Day), levels = IO_repro_plates)
-# dfl <- dfl[which(!grepl("P02", dfl$Plate)), ]
 
 
 
