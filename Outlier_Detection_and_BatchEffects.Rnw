@@ -33,9 +33,9 @@
 \section{Introduction}
 
 %-- Introduce the problem and motivate the research -->
-The rapid rise in the use of RNA sequencing technology (RNA-seq) for scientific discovery has led to its consideration as a clinical diagnostic tool. However, as a new technology, the analytical accuracy and reproducibility of RNA-seq must be established before it can realize its full clinical utility~\cite{SEQC/MAQC-IIIConsortium2014,VanKeuren-Jensen2014}. Recent studies evaluating RNA-seq have found generally high intra-platform and inter-platform congruence across multiple laboratories~\cite{Li2013, tHoen2013, SEQC/MAQC-IIIConsortium2014}. Despite these promising results, there remains a need to establish reliable diagnostics and quality control metrics to improve the reproducibility of RNA-seq data.  Understanding, and capatilizing on, the relative frequency nature of RNA-Seq data provides tools for  creating quality control metrics and identifying batch effects leading to improved reproducibility.\\
+% The rapid rise in the use of RNA sequencing technology (RNA-seq) for scientific discovery has led to its consideration as a clinical diagnostic tool. However, as a new technology, the analytical accuracy and reproducibility of RNA-seq must be established before it can realize its full clinical utility~\cite{SEQC/MAQC-IIIConsortium2014,VanKeuren-Jensen2014}. Recent studies evaluating RNA-seq have found generally high intra-platform and inter-platform congruence across multiple laboratories~\cite{Li2013, tHoen2013, SEQC/MAQC-IIIConsortium2014}. Despite these promising results, there remains a need to establish reliable diagnostics and quality control metrics to improve the reproducibility of RNA-seq data.  Understanding, and capatilizing on, the relative frequency nature of RNA-Seq data provides tools for  creating quality control metrics and identifying batch effects leading to improved reproducibility.\\
 
-This research is focused on developing diagnostics, using the theory of compositions, for targeted RNA-Seq.  Targeted sequencing allows researchers to efficiently measure transcripts of interest for a particular disease by focusing sequencing efforts on a select subset of transcript targets.  Targeted sequencing offers several benefits over traditional whole-transciptome RNA-Seq for clinical use including the elminiation of amplification bias, reduced sequencing cost, and a simplified bioinformatics workflow.  Moreover, extraction-free targeted sequencing technologies, such as HTG EdgeSeq, permit the use of very small sample volumes. However, extraction free technologies create the need for post-sequencing quality control metrics since poor quality samples, which would likely be removed after unsucessful RNA extraction in extraction-based technologies, can still be sequenced.  The post-sequencing methods described here should be easily extensible to traditional extraction-based RNA-Seq because targeted and traditional RNA-Seq data share many of the same properties.\\
+We develop diagnostics for targeted RNA-Seq using the theory of compositions.  Targeted sequencing allows researchers to efficiently measure transcripts of interest for a particular disease by focusing sequencing efforts on a select subset of transcript targets.  Targeted sequencing offers several benefits over traditional whole-transciptome RNA-Seq for clinical use including the elminiation of amplification bias, reduced sequencing cost, and a simplified bioinformatics workflow.  Moreover, extraction-free targeted sequencing technologies, such as HTG EdgeSeq, permit the use of very small sample volumes. However, extraction free technologies create the need for post-sequencing quality control metrics since poor quality samples, which would likely be removed after unsucessful RNA extraction in extraction-based technologies, can still be sequenced.  The post-sequencing methods described here should be easily extensible to traditional extraction-based RNA-Seq because targeted and traditional RNA-Seq data share many of the same properties.\\
 
 
 %-- Brief intro to compositional data
@@ -301,6 +301,51 @@ plotPCA <- function(data, annodata, projname, Max=80, pc1 = "PC1", pc2 = "PC2", 
   return(list(pcadata, pvar))
 }
 
+
+pcaBiplot <- function(data,
+                      printSum = FALSE
+                      )
+{
+  
+  #############################################################################
+  #############################################################################
+  ## This function conducts a PCA and prepares data for producing a biplot
+  #############################################################################
+  #############################################################################
+  
+  pcadf <- data.matrix(data)
+  
+  #perform PCA
+  pca <- prcomp(t(pcadf), retx = TRUE)
+  
+  if(printSum) print(summary(pca))
+  
+  #Get proportion of variance explained by first 2 comps
+  pvar <- summary(pca)$importance[3, 2]
+  
+  #-----Create biplot data for use with ggplot-----#
+  nobs.factor <- sqrt(nrow(pca$x) - 1)
+  d <- pca$sdev
+  u <- sweep(pca$x, 2, 1/(d * nobs.factor), FUN = "*")
+  v <- pca$rotation
+  #select first two PCs
+  df.u <- as.data.frame(sweep(u[, 1:2], 2, c(1,1), FUN = "*"))
+  v <- sweep(v, 2, d, FUN = "*")
+  df.v <- as.data.frame(v[, 1:2])
+  names(df.u) <- c("xvar", "yvar")
+  names(df.v) <- names(df.u)
+  df.u <- df.u * nobs.factor
+  r <- sqrt(qchisq(0.69, df = 2)) * prod(colMeans(df.u^2))^(1/4)
+  v.scale <- rowSums(v^2)
+  df.v <- r * df.v/sqrt(max(v.scale))
+  
+  df.v$angle <- with(df.v, (180/pi) * atan(yvar/xvar))
+  df.v$hjust = with(df.v, (-.5 * sign(xvar))/2)
+  
+  return(list(df.v = df.v, df.u = df.u, pvar = pvar))
+}
+
+
 getPlates <- function(x){
   df <- as.data.frame(x)
   df$Proc <- gsub(".*(P\\d{2}).*", "\\1", df$Sample.Name)
@@ -328,14 +373,22 @@ getTots_mi <- function(x){#use t-list
   return(df)
 }
 
-MFtrans <- function(x){#apply to a vector
-  delta <- 0.55/sum(x)# .55 times the smallest detectable value (1 read) after closure
+MFtrans <- function(x){
+  delta <- 0.55/sum(x)
   tdelta <- sum(x == 0) * delta
-  cx <- clo(x)
+  cx <-  x/sum(x)
   cxt <- ifelse(cx == 0, delta, cx * (1-tdelta))
-  ccxt <- clr(cxt)
+  return(cxt)
+}
+
+#CLR transformation after Martin-Fernandez zero transformation
+MFtrans.clr <- function(x){#apply to a vector
+  browser()
+  cxt <- MFtrans(x)
+  ccxt <- log(cxt) - sum(log(cxt))/length(cxt)
   return(ccxt)
 }
+
 
 #Make the legend pretty when it is below the graph
 fancy_scientific <- function(l) {
@@ -449,58 +502,130 @@ for(i in 1:ncol(scmat)){
   scmat[, i] <- sc[i]
 }
 
-pcaDat.mi <- pcaDat.mi.orig
+#Shift the location of every sample by the same amount
+prt <- runif(nrow(pcaDat.mi.orig))
+prt <- prt/sum(prt)
+
+
+
+pcaDat.mi.p <- pcaDat.mi.orig
 #Randomly scale raw data
-pcaDat.mi <- scmat * pcaDat.mi
+# pcaDat.mi <- scmat * pcaDat.mi
 
-#log data
-pcaDatl.mi <- apply(pcaDat.mi.orig, c(1,2), function(x) log2(x + 1))
 
-pcplotdatl.mi <- plotPCA(pcaDatl.mi, annodf.mi, scale = FALSE)
-ggpcal.mi.l <- ggplot(pcplotdatl.mi[[1]], aes(x = PC1, y = PC2, color = Run, shape = SampType)) +
-    geom_point( size = 3)  +
-    coord_equal() + ylim(c(-150, 150)) + xlim(c(-150, 150)) +
-    ggtitle(paste0("Cum. proportion of var. = ", round(pcplotdatl.mi[[2]], 2))) +
-    scale_shape_discrete("Sample Type")
+#perturb raw data the same amount for every sample
+for( i in 1:ncol(pcaDat.mi.p)){
+  #first close each sample
+  pcaDat.mi.p[, i] <- pcaDat.mi.p[, i]/sum(pcaDat.mi.p[, i])
+  #apply the perturbation
+  pcaDat.mi.p[, i] <- (pcaDat.mi.p[, i] * prt)
+  #Reclose the data
+  pcaDat.mi.p[, i] <- pcaDat.mi.p[, i]/sum(pcaDat.mi.p[, i])
+}
+
+###############################################################################
+###############################################################################
+#First perform PCA on log-transformed data
+###############################################################################
+###############################################################################
+
+#log transform
+logdat <- apply(pcaDat.mi.orig[-c(1:11), ], c(1,2), function(x) log2(x + 1))
+
+#perform PCA
+pcalogdat <- pcaBiplot(logdat)
+
+pcalogdat$df.u$SampleID <- rownames(pcalogdat$df.u)
+pcalogdat$df.u <- merge(pcalogdat$df.u, annodf.mi, by = "SampleID")
+
+#biplot of the PCA for log-raw data
+logdatPCA <- ggplot(pcalogdat$df.u, aes(x = xvar, y = yvar, color = Run, shape = SampType)) +
+  geom_point( size = 3)  +
+  coord_equal() + 
+  xlab("PC1") +
+  ylab("PC2") +
+  ggtitle(paste0("Cum. proportion of var. = ", round(pcalogdat$pvar, 2))) +
+  scale_shape_discrete("Sample Type")
 ggsave("./Figures/miRNA_Repro_PCA_log(raw).png", ggpcal.mi.l, width = 9, height = 8 )
 
 #Only Brain
-pcaDatl.mi.brain <- pcaDatl.mi[, which(grepl("Brain", colnames(pcaDatl.mi)))]
-pcplotdatl.mi.brain <- plotPCA(pcaDatl.mi.brain, annodf.mi[which(grepl("Brain", annodf.mi$SampType)), ], scale = FALSE)
-ggpcal.mi.l.brain <- ggplot(pcplotdatl.mi.brain[[1]], aes(x = PC1, y = PC2, color = Run)) + 
+logdat.brain <- logdat[, which(grepl("Brain", colnames(logdat)))]
+
+pcalogdat.brain <- pcaBiplot(logdat.brain)
+pcalogdat.brain$df.u$SampleID <- rownames(pcalogdat.brain$df.u)
+pcalogdat.brain$df.u <- merge(pcalogdat.brain$df.u, annodf.mi, by = "SampleID")
+
+logdatPCA.brain <- ggplot(pcalogdat.brain$df.u, aes(x = xvar, y = yvar, color = Run)) + 
     geom_point( size = 3) +
-    coord_equal() + ylim(c(-30, 100)) + xlim(c(-50, 160)) +
-  ggtitle(paste0("Cum. proportion of var. = ", round(pcplotdatl.mi.brain[[2]], 2)))
+      ylab("PC2") +
+      xlab("PC1") +
+    coord_equal() + #ylim(c(-30, 100)) + xlim(c(-50, 160)) +
+  ggtitle(paste0("Cum. proportion of var. = ", round(pcalogdat.brain$pvar, 2)))
 ggsave("./Figures/miRNA_Repro_PCA_log(raw)_BrainOnly_perturbed.png", ggpcal.mi.l.brain, width = 9, height = 8 )
 
-#log perturbed data
-pcaDatl.mi.p <- apply(pcaDat.mi, c(1,2), function(x) log2(x + 1))
 
-pcaDatl.mi.brain.p <- pcaDatl.mi.p[, which(grepl("Brain", colnames(pcaDatl.mi.p)))]
-pcplotdatl.mi.brain <- plotPCA(pcaDatl.mi.brain.p, annodf.mi[which(grepl("Brain", annodf.mi$SampType)), ], scale = FALSE)
-ggpcal.mi.l.brain.perturbed <- ggplot(pcplotdatl.mi.brain[[1]], aes(x = PC1, y = PC2, color = Run)) + 
-    geom_point( size = 3) +
-    coord_equal() + ylim(c(-30, 100)) + xlim(c(-50, 160)) +
-  ggtitle(paste0("Cum. proportion of var. = ", round(pcplotdatl.mi.brain[[2]], 2)))
+###############################################################################
+#Perform PCA on the perturbed data after log transformation
+###############################################################################
+
+logdat.p <- apply(pcaDat.mi.p[-c(1:11), ], c(1,2), function(x) log2(x*10e6 + 1))
+
+logdat.p.brain <- logdat.p[, which(grepl("Brain", colnames(logdat.p)))]
+pcalogdat.p.brain <- pcaBiplot(logdat.p.brain)
+pcalogdat.p.brain$df.u$SampleID <- rownames(pcalogdat.p.brain$df.u)
+pcalogdat.p.brain$df.u <- merge(pcalogdat.p.brain$df.u, annodf.mi, by = "SampleID")
+
+logdatPCA.brain.p <- ggplot(pcalogdat.p.brain$df.u, aes(x = xvar, y = yvar, color = Run)) + 
+  geom_point( size = 3) +
+  ylab("PC2") +
+  xlab("PC1" ) +
+  coord_equal() + #ylim(c(-30, 100)) + xlim(c(-50, 160)) +
+  ggtitle(paste0("Cum. proportion of var. = ", round(pcalogdat.p.brain$pvar, 2)))
 ggsave("./Figures/miRNA_Repro_PCA_log(raw)_BrainOnly_perturbed.png", ggpcal.mi.l.brain, width = 9, height = 8 )
 
-# CLR data
-pcaDatc.mi <- data.matrix(raw.w.mi[-c(1:5), which(names(raw.w.mi) %in% annodf.mi$SampleID)])
-pcaDatc.mi <- pcaDatc.mi[-which(rowSums(pcaDatc.mi) == 0), ]
-pcaDatc.mi <- as.data.frame(apply(pcaDatc.mi, 2, MFtrans))
-pcplotdatc.mi <- plotPCA(pcaDatc.mi, annodf.mi, scale = FALSE)
-ggpcac <- ggplot(pcplotdatc.mi[[1]], aes(x= PC1, y= PC2, color=Run, shape=SampType, label = SampleID)) +
-    geom_point( size = 3)   +
-    coord_equal()  +
-    ggtitle(paste0("Cum. proportion of var. = ", round(pcplotdatc.mi[[2]], 2))) +
-    scale_shape_discrete("Sample Type")
+
+###############################################################################
+# Perform PCA on CLR data
+###############################################################################
+
+
+clrdat.brain <- pcaDat.mi.orig[-c(1:11), which(grepl("Brain", colnames(pcaDat.mi.orig)))] * 10e6
+
+clrdat.brain <- as.data.frame(apply(clrdat.brain, 2, MFtrans.clr))
+
+pcaclrdat.brain <- pcaBiplot(clrdat.brain)
+pcaclrdat.brain$df.u$SampleID <- rownames(pcaclrdat.brain$df.u)
+pcaclrdat.brain$df.u <- merge(pcaclrdat.brain$df.u, annodf.mi, by = "SampleID")
+
+clrdatPCA.brain <- ggplot(pcaclrdat.brain$df.u, aes(x= xvar, y= yvar, color=Run)) +
+  geom_point( size = 3)   +
+  coord_equal()  +
+  xlab("PC1") +
+  ylab("PC2") +
+  ggtitle(paste0("Cum. proportion of var. = ", round(pcaclrdat.brain$pvar, 2)))
+
+ggsave("./Figures/miRNA_Repro_PCA_CLR_BrainOnly.png", ggpcac.brain, width = 9, height = 8 )
+
+#CLR of perturbed data
+clrdat.p.brain <- as.data.frame(apply(pcaDat.mi.p[-c(1:11), ], 2, MFtrans.clr))
+
+pcaclrdat.p.brain <- pcaBiplot(clrdat.p.brain)
+pcaclrdat.brain$df.u$SampleID <- rownames(pcaclrdat.brain$df.u)
+pcaclrdat.brain$df.u <- merge(pcaclrdat.brain$df.u, annodf.mi, by = "SampleID")
+
+clrdatPCA.brain <- ggplot(pcaclrdat.brain$df.u, aes(x= xvar, y= yvar, color=Run)) +
+  geom_point( size = 3)   +
+  coord_equal()  +
+  xlab("PC1") +
+  ylab("PC2") +
+  ggtitle(paste0("Cum. proportion of var. = ", round(pcaclrdat.brain$pvar, 2)))
 ggsave("./Figures/miRNA_Repro_PCA_CLR.png", ggpcac, width = 9, height = 8 )
 
 
 
-pcaDatc.mi.brain <- pcaDatc.mi[, which(grepl("Brain", colnames(pcaDatc.mi)))]
-pcplotdatc.mi.brain <- plotPCA(pcaDatc.mi.brain, annodf.mi, scale = FALSE)
-ggpcac.brain <- ggplot(pcplotdatc.mi.brain[[1]], aes(x= PC1, y= PC2, color=Run, label = SampleID)) +
+pcaDatc.mi.brain.p <- pcaDatc.mi.p[, which(grepl("Brain", colnames(pcaDatc.mi.p)))]
+pcplotdatc.mi.brain.p <- plotPCA(pcaDatc.mi.brain.p, annodf.mi, scale = FALSE)
+ggpcac.brain <- ggplot(pcplotdatc.mi.brain.p[[1]], aes(x= PC1, y= PC2, color=Run, label = SampleID)) +
     geom_point( size = 3)   +
     coord_equal() +
     ggtitle(paste0("Cum. proportion of var. = ", round(pcplotdatc.mi.brain[[2]], 2)))
