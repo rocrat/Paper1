@@ -101,16 +101,16 @@ The CLR transformation is similar to the familiar Counts per Million (CPM) trans
 
 
 %%%Need to add in ALR transformation for compositional invariance section
-Although the CLR transformation preserves the original dimmension of the data, and gives equal treatment to every element of $\mathbf{x}$, the resulting covariance matrix, $\Gamma$, is singular.  Therefore, care should be taken when using general multivariate methods on CLR transformed data. Aitchison~\cite{Aitchison1986} proposed an alternative transformation, the additive log-ratio (ALR), which does not treat the components symmetrically but results in a non-sigular covariance matrix.
+Although the CLR transformation preserves the original dimmension of the data, and gives equal treatment to every element of $\mathbf{x}$, the resulting covariance matrix, $\Gamma$, is singular.  Therefore, care should be taken when using general multivariate methods on CLR transformed data. Aitchison~\cite{Aitchison1986} proposed an alternative transformation, the additive log-ratio (ALR), which does not treat the components symmetrically but results in a non-sigular covariance matrix.  The ALR transformation is defined as,
 
 \begin{equation}
 y_i  = \text{ALR}(x_i) = log \left(\frac{x_i}{x_D} \right),
 \label{alr}
 \end{equation}
 
-The ALR transformation 
+where $x_D$, the D$^th$ component of $x$, can be any component.  \\  
 
-The compositional geometry must be accounted for when measuring the distance between two compositions or finding the center of a group of compositions~\cite{Aitchison2000}.  Aitchison~\cite{Aitchison1992} outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data due to differences in read depth). The permutation invariance is generally satisfied by existing methods such as Euclidean distance~\cite{Martin-Fernandez1998}. However, the perturbation invariance and subcompositional dominance are not generally satisfied~\cite{Martin-Fernandez1998}. \\
+As noted above, the compositional geometry must be accounted for when measuring the distance between two compositional vectors or finding the center of a group of compositions~\cite{Aitchison2000}.  Aitchison~\cite{Aitchison1992} outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data due to differences in read depth). The permutation invariance is generally satisfied by existing methods such as Euclidean distance~\cite{Martin-Fernandez1998}. However, the perturbation invariance and subcompositional dominance are not generally satisfied~\cite{Martin-Fernandez1998}. \\
 
 Aitchison~\cite{Aitchison1986, Aitchison1992} suggests using the sum of squares of all log-ratio differences.  Billheimer, Guttorp, and Fagan~\cite{Billheimer2001} use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison~\cite{Aitchison1986}, allow the interpretation of differences in compositions. Martin-Fernandez et al.~\cite{Martin-Fernandez1998} showed that applying either Euclidean distance or Mahalanobis distance metric to CLR transformed data satisfies all the requirements of a compositional distance metric. Euclidean distance on CLR transformed compositions is referred to as Aitchison distance:
 
@@ -145,7 +145,6 @@ $x_i$ is a quality control sample failure if $x_i <$ lower-quartile$- 1.5 \times
 We demonstrate the utility of our sample quality control measure using two sets of targeted RNA-Seq data: 1) 120 mRNA technical replicate universal-RNA samples prepared with the HTG EdgeSeq Immuno-Oncology assay and sequenced in 5 different equally sized runs, and 2) 105 miRNA technical replicate samples of human plasma, FFPE tissue, and Brain RNA prepared with the HTG EdgeSeq Whole Transcriptome miRNA assay.  These two data sets differ in the both the type of RNA (mRNA versus miRNA) and the number of sequence targets in each assay (558 versus 2,280 targets, for the mRNA and miRNA assays respectively).  All samples were prepared for sequencing using the HTG EdgeSeq Processor and sequenced with an Illumina Mi-Seq sequencer.\\
 
 We compare the utility of our method to evaluation of the untransformed total counts.  Figure~\ref{totalFig} shows a boxplot and heatmap of the total number of reads allocated to each sample for each of 5 sequencing runs.  Figure~\ref{clrFig} shows the same data after CLR transformation.  After transformation the poor samples become much more visually evident in the heat maps.  Additionally, the ability to detect outlying values increases and the number of poor samples detected increases from 1 to 6.  \\
-\textcolor{blue}{how would we demonstrate the increase in power mathematically?}
 
 \begin{figure}
 \includegraphics[scale=.5]{./Figures/IO_Repro_Combined_RawTotals}
@@ -167,20 +166,7 @@ Normalization and standardization methods for RNA-Seq generally assume that the 
 Compositional invariance is an important property for RNA-Seq data which enables the comparison of samples with differing read depths.  However, it is well documented that the quality of RNA-Seq depends on the read depth of the sequencing run with higher read-depths associated with higher quality data~\cite{Tarazona2011,Sims2014}. Read depth may affect the measurement of relative abundances for the target RNA sequences as some targets may receive proportionally more reads as the read depth increases.  This would be a direct violation of compositional invariance and could lead seemingly differential expression between samples with different read depths, even after normalization.\\
 
 
-Testing for compositional invariance in high-dimensional RNA-Seq assays is important to ensure that the differences in expression among samples is independent of the differences in total counts among samples.  Aitchison~\cite{Aitchison1986} outlined a simple model for testing compositional covariance using the ALR transformation.  \\
-
-1. transform using ALR so that we can use mulivariate normal methods
-  1b. results to not depend on choice of divisor
-2. test hypothesis that $H_0$: $\beta_1 = \ldots = \beta_d = 0$
-  2b.  P(reject $H_0$ | Y, t) $\neq$ 0.05 due to multiple testing so need to apply a correction
-  2c. Likely to have small sample size so low power to reject null
-    i. not enough power to demonstrate equivalence
-    ii. Compare effect sizes? i.e. is the DE more related to total than treatment? How to do this with discrete treatment groups?
-    iii. Create a model which simulatenously estimates effects and controls for size effects?
-    
-    
-    
-  
+Aitchison~\cite{Aitchison1986} outlined a simple model for testing compositional covariance using the ALR transformation,  \\
 
 \begin{equation}
 \left[y_1 \ldots y_d \right] = 
@@ -196,15 +182,24 @@ Testing for compositional invariance in high-dimensional RNA-Seq assays is impor
 \end{array}
 \right] 
 +
-\left[e_1 \ldots e_d \right]
+\left[e_1 \ldots e_d \right],
 \label{matrixModel}
 \end{equation}
+
+where $y_1 \ldots y_d$ are the $d$ ALR transformed components, $t$ is the vector of sample total aligned reads, $\alpha_1 \ldots \alpha_d$ are the probe specific log-ratio intercepts, and $\beta_1 \ldots \beta_d$ are the coefficients relating the the total aligned reads to the relative expression of the probe.  A test for compositional invariance for the experiment then becomes a test of the null hypothesis, $H_o: \beta_1 = \cdots = \beta_d = 0$. This approach is suitable for experiments, or sequencing runs, with enough samples to provide the power to reject the null hypothesis when it is false.  However, sample sizes may be small due to costs or sequencer limitations so the test may be underpowered in practice, particularly after correction for multiple testing.\\
+
+We propose an alternative visualization for detecting compositional invariance
+
+%Use euclidean distance matrix with samples ordered by read depth
+
+  
+
 
 
 \section{Batch Effects and Normalization}
 
 Batch effects arising from differing labratory conditions or operator differences have been identified as a problem in high-throughput measurement systems~\cite{leek2010, chen2011}.  Identifying and controlling for batch effects is a critical step in the transition of RNA-Seq from the lab to the clinic.  Batch effects are typically identified with a hierarchical clustering (HC) method or principal components analysis (PCA).  For both methods, the multivariate distance between the samples is visualized. either in a biplot for PCA or a dendrogram for HC, to check for the existence of clusters of samples related to batch. % and removed through various normalization methods~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, leek2014}.  \\ %I wonder if I should move that last line
-The compositional nature of RNA-Seq data has important implications for the detection of batch effects due to the incompatibility with standard measures of distance between compositions as noted above~\cite{Aitchison1986,Martin-Fernandez1998}.\\  %The CLR transformation facilitates both batch effect detection and normalization.  The CLR transformed covariance matrix is suitable for exploration through PCA (using biplots)~\cite{Aitchison2002} or hierarchical clustering using standard Euclidean or Mahalanobis distance~\cite{Martin-Fernandez1998}.  \\
+The compositional nature of RNA-Seq data has important implications for the detection of batch effects due to the incompatibility with standard measures of distance between compositions as noted above~\cite{Aitchison1986,Martin-Fernandez1998}.\\  
 
 The next generation sequencing process results in arbitrary differences in scale among samples as some samples will receive more total reads than others. Principle components analysis is sensitive to differences in scale among the variables, failure to remove these difference can mask potential batch effects and leave unwanted technical variation in the data.  Most normalization methods use a scaling factor calculated for each sample to rescale the read count for each gene within the sample~\cite{Dillies2013}.  The CLR transformation can similarly be viewed as a scaling normalization (with the scale factor chosen as the inverse of the geomtric mean $1/g(x)$).  Unlike other normalization methods, the CLR transformation has the added benefit of being applied at the individual sample level, not experiment wise, and requires no assumptions about differential expression unlike other popular normalizations.  This makes it particularly well suited for the clinic where there are generally no reference samples for normalization.\\
 
