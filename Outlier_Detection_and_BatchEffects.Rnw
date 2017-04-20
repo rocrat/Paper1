@@ -672,39 +672,7 @@ ggsave("../Paper1/Figures/miRNA_PCA_Brain_logRaw_CLR_perturbed.png", brainPCAper
 
 
 
-#use gPCA method to test for remaining batch effects for each method.
-# library(gPCA)
-# lrawBE <- gPCA.batchdetect(x = t(pcaDatl.mi), as.numeric(factor(annodf.mi$Plate)), center = FALSE, seed = 1014)
-# lrawGpca <- as.data.frame(lrawBE$PCg)
-# lrawGpca$Plate <- gsub("(^run\\d{3})\\.(\\w+)\\_.+", "\\1", rownames(lrawGpca))
-# lrawGpca$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d", "\\2", rownames(lrawGpca))
-# ggplot(lrawGpca, aes(x = V1, y = V2)) + geom_point(aes(color = Plate, shape = SampType), size= 3) + xlab("gPC1") + ylab("gPC2") + ggtitle("Guided PCA on log(Raw) Data") #+ coord_equal()
-# 
-# cpmBE <- gPCA.batchdetect(x = t(pcaDat.mi), as.numeric(factor(annodf.mi$Plate)), center = FALSE, seed = 1014)
-# cpmGpca <- as.data.frame(cpmBE$PCg)
-# cpmGpca$Plate <- gsub("(^run\\d{3})\\.(\\w+)\\_.+", "\\1", rownames(cpmGpca))
-# cpmGpca$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d", "\\2", rownames(cpmGpca))
-# ggplot(cpmGpca, aes(x = V1, y = V2)) + geom_point(aes(color = Plate, shape = SampType), size= 3) + xlab("gPC1") + ylab("gPC2") + ggtitle("Guided PCA on log(CPM) Data") #+ coord_equal()
-# 
-# qnormBE <- gPCA.batchdetect(x = t(pcaDatn.mi), as.numeric(factor(annodf.mi$Plate)), center = FALSE, seed = 1014)
-# qnormGpca <- as.data.frame(qnormBE$PCg)
-# qnormGpca$Plate <- gsub("(^run\\d{3})\\.(\\w+)\\_.+", "\\1", rownames(qnormGpca))
-# qnormGpca$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d", "\\2", rownames(qnormGpca))
-# ggplot(qnormGpca, aes(x = V1, y = V2)) + geom_point(aes(color = Plate, shape = SampType), size= 3) + xlab("gPC1") + ylab("gPC2") + ggtitle("Guided PCA on Quantile Normalized Data") #+ coord_equal()
-# 
-# mnormBE <- gPCA.batchdetect(x = t(pcaDatm.mi), as.numeric(factor(annodf.mi$Plate)), center = FALSE, seed = 1014, filt = 1000)
-# mnormGpca <- as.data.frame(mnormBE$PCg)
-# mnormGpca$Plate <- gsub("(^run\\d{3})\\.(\\w+)\\_.+", "\\1", rownames(mnormGpca))
-# mnormGpca$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d", "\\2", rownames(mnormGpca))
-# ggplot(mnormGpca, aes(x = V1, y = V2)) + geom_point(aes(color = Plate, shape = SampType), size= 3) + xlab("gPC1") + ylab("gPC2") + ggtitle("Guided PCA on Median Normalized Data") #+ coord_equal()
-# 
-# clrBE <- gPCA.batchdetect(x = t(pcaDatc.mi), as.numeric(factor(annodf.mi$Plate)), center = FALSE, seed = 1014)
-# clrGpca <- as.data.frame(clrBE$PCg)
-# clrGpca$Plate <- gsub("(^run\\d{3})\\.(\\w+)\\_.+", "\\1", rownames(clrGpca))
-# clrGpca$SampType <- gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d", "\\2", rownames(clrGpca))
-# ggplot(clrGpca, aes(x = V1, y = V2)) + geom_point(aes(color = Plate, shape = SampType), size= 3) + xlab("gPC1") + ylab("gPC2") + ggtitle("Guided PCA on Median Normalized Data") #+ coord_equal()
 
-#can't really find a batch effect in the miRNA data!
 @
 
 \end{document}
