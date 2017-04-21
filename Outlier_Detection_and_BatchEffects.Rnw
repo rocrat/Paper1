@@ -255,7 +255,7 @@ As RNA-Seq makes the transition from the research laboratory to the clinic there
 library(HTGPackage)
 library(car)
 library(tidyverse)
-library(compositions)
+# library(compositions)
 library(reshape2)
 library(cowplot)
 
@@ -360,6 +360,14 @@ MFtrans.clr <- function(x){#apply to a vector
   return(ccxt)
 }
 
+#ALR transformation after Martin-Fernandez zero transformation
+MFtrans.alr <- function(x, ivar){#apply to a vector
+  cxt <- MFtrans(x)
+  lcxt <- log(cxt)
+  ccxt <- lcxt[-ivar] - lcxt[ivar]
+  return(ccxt)
+}
+
 
 #Make the legend pretty when it is below the graph
 fancy_scientific <- function(l) {
@@ -372,6 +380,21 @@ fancy_scientific <- function(l) {
      # return this as an expression
      parse(text=l)
 }
+
+#Function to find the CLR outliers, returns a vector of indices for failed samples
+getCLROutliers <- function(x){
+  #x is a vector or sample total reads
+  cx <- log(x) - mean(log(x))
+  lq <- quantile(cx, prob = .25)
+  uq <- quantile(cx, prob = .75)
+  llim <- lq - 1.5 * (uq - lq)
+  ulim <- uq + 1.5 * (uq - lq)
+  fails <- which(cx < llim | cx > ulim)
+  return(fails)
+}
+
+source("compInvTest.R")
+
 
 load("./Data/IO_repro_data_lists.Rdata")
 load("./Data/miRNA_Data_lists.Rdata")
@@ -671,8 +694,299 @@ brainPCAperturbed <- plot_grid(ggpcal.mi.l.brain.perturbed, ggpcac.brain, ncol =
 ggsave("../Paper1/Figures/miRNA_PCA_Brain_logRaw_CLR_perturbed.png", brainPCAperturbed, height = 8, width = 16)
 
 
-
-
 @
+
+<<CompositionalInvariance, echo = FALSE>>=
+###############################################################################
+###############################################################################
+## Use available data sets to demonstrate compositional invariance
+###############################################################################
+###############################################################################
+
+#Create compositional invariance annotation for mi-RNA data
+CIanno <- data.frame(sample = names(raw.w.mi)[-1],
+                     total = as.numeric(raw.w.mi["Total.Reads", -1]),
+                     Run = gsub("^(run\\d{3})\\..*", 
+                                "\\1", 
+                                names(raw.w.mi)[-1]),
+                     SampType = gsub("(^run\\d{3})\\.(\\w+)\\_\\d\\_\\d$",
+                                     "\\2", 
+                                     names(raw.w.mi)[-1]),
+                     stringsAsFactors = FALSE)
+
+#Find low-read outliers and remove
+failInd <- getCLROutliers(CIanno$total)
+
+CIanno <- CIanno[, -failInd]
+
+miraw <- data.matrix(raw.w.mi[-c(1:5), -1])
+
+miraw <- miraw[, -failInd]
+
+#Create clr transformed data using MF and CLR
+miclr <- apply(miraw, 2, MFtrans.clr) %>%
+  as.data.frame()
+
+###############################################################################
+###############################################################################
+## This section uses the traditional Aitchison model to find compositional 
+## invariance
+###############################################################################
+###############################################################################
+
+
+mitestdf <- miraw %>%
+  as.data.frame() %>%
+  mutate(probe = rownames(miraw))
+
+mitestdf <- mitestdf[, c(ncol(mitestdf), 1:(ncol(mitestdf)-1))]
+
+mialr.test <- compInvTest(data = mitestdf,
+                          trans = "alr")
+
+mialr.test$numSig
+
+#repeat with only plasma samples
+mitestplas <- miraw[, which(grepl("Plasma", colnames(miraw)))] %>%
+  as.data.frame() %>%
+  mutate(probe = rownames(miraw))
+
+mitestplas <- mitestplas[, c(ncol(mitestplas), 1:(ncol(mitestplas)-1))]
+
+mialr.test.plas <- compInvTest(data = mitestplas,
+                          trans = "alr")
+
+mialr.test.plas$numSig
+
+#repeat with only brain samples
+mitestbrain <- miraw[, which(grepl("Brain", colnames(miraw)))] %>%
+  as.data.frame() %>%
+  mutate(probe = rownames(miraw))
+
+mitestbrain <- mitestbrain[, c(ncol(mitestbrain), 1:(ncol(mitestbrain)-1))]
+
+mialr.test.brain <- compInvTest(data = mitestbrain,
+                          trans = "alr")
+
+mialr.test.brain$numSig
+
+###############################################################################
+###############################################################################
+## This is the 'heatmap' method of visualizing compositional invariance
+## The idea is that we can simultaneously evaluate both "linear invariance" as
+## in the traditional Aitchison model as well as the "variance invariance" idea
+## I put forth in this paper.
+###############################################################################
+###############################################################################
+
+
+#find the distance between all pairwise samples using euclidean distance
+mid <- stats::dist(t(miclr), method = "euclidean") %>%
+  as.matrix()
+
+#Set the order of the samples based on total read count
+CIanno <- CIanno[order(CIanno$Run), ]
+CIanno <- CIanno[order(CIanno$total), ]
+CIanno <- CIanno[order(CIanno$SampType), ]
+
+
+miorder <- CIanno$sample
+
+midl <- mid %>%
+  as.data.frame() %>%
+  mutate(row.sample = rownames(mid)) %>%
+  gather(col.sample, distance, 1:ncol(mid))
+
+midl$row.sample <- factor(midl$row.sample, levels = miorder)
+midl$col.sample <- factor(midl$col.sample, levels = miorder)
+
+#Find the maximum distance for plotting
+mdist <- max(midl$distance)
+
+#Add the total reads along the diagonal
+midltots <- midl[which(midl$distance == 0) ,] 
+midltots$total <- CIanno[midltots$row.sample, ]$total
+
+#Make the heatmap with samples ordered based on total reads
+miRNA.heat <- ggplot(midl, aes(x = col.sample, y = row.sample)) + 
+  geom_tile(aes(fill = distance)) + 
+  geom_tile(data = midltots, 
+            aes(color = log(total)), 
+            fill = "lightgrey",
+            lwd = 1) +
+  scale_fill_gradient("Distance", 
+                      na.value = "lightgrey") +
+  scale_color_gradientn("Total Reads", 
+                        colors = c("red", "orange", "white")) +
+  plotTheme(axis.text.x = element_text(angle = 90, vjust = .5))
+
+ggsave("./Figures/Distance_Heatmap_miRNA.png", 
+       miRNA.heat, 
+       height = 6, 
+       width = 7)
+
+#look at just plasma samples
+midl.plasma <- midl[which(grepl("Plasma", midl$row.sample) &
+                            grepl("Plasma", midl$col.sample)), ]
+midl.plasma$row.sample <- factor(midl.plasma$row.sample, 
+                                 levels = miorder[which(grepl("Plasma", miorder))])
+midl.plasma$col.sample <- factor(midl.plasma$col.sample, 
+                                 levels = miorder[which(grepl("Plasma", miorder))])
+
+#Add the total reads along the diagonal
+midltots.plas <- midl.plasma[which(midl.plasma$distance == 0 ) ,] 
+midltots.plas$total <- CIanno[midltots.plas$row.sample, ]$total
+
+plasma.mi.heat <- ggplot(midl.plasma, aes(x = col.sample, y = row.sample)) + 
+  geom_tile(aes(fill = distance)) + 
+  geom_tile(data = midltots.plas, 
+            aes(color = log(total)), 
+            fill = "lightgrey", 
+            lwd = 1) +
+  scale_fill_gradient("Distance", na.value = "lightgrey") +
+  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white")) +
+  xlab("Sample") + 
+  ylab("Sample") +
+  plotTheme(axis.text.x = element_text(angle = 90, vjust = .5))
+
+ggsave("./Figures/Distance_Heatmap_miPlasma.png", 
+       plasma.mi.heat, 
+       height = 6, 
+       width = 7)
+
+#Trying to make the plot with ggvis so I can have two fill scales
+#almost there, I just need to figure out how to set different 
+#colors on the scales
+ggvisMIplot <- midl.plasma %>%
+  ggvis(~row.sample, ~col.sample) %>%
+  layer_rects(prop("fill", ~distance,
+                   scale = "distance"),
+              width = band(), 
+              height = band(),
+              strokeWidth := 0) %>%
+  layer_rects(prop("fill", ~log(total), 
+                   scale = "total"),
+              data = midltots.plas) %>%
+  scale_nominal("x", padding = 0, points = FALSE) %>%
+  scale_nominal("y", padding = 0, points = FALSE) %>%
+  add_legend(scales = "distance",
+             title = "Distance") %>%
+  add_legend(scales = "total", 
+             properties = legend_props(legend = list(y = 50)),
+             title = "Log(total)" )
+
+
+###############################################################################
+## Brain samples for comparison with plasma samples
+###############################################################################
+midl.brain <- midl[which(grepl("Brain", midl$row.sample) &
+                            grepl("Brain", midl$col.sample)), ]
+midl.brain$row.sample <- factor(midl.brain$row.sample, 
+                                 levels = miorder[which(grepl("Brain", miorder))])
+midl.brain$col.sample <- factor(midl.brain$col.sample, 
+                                 levels = miorder[which(grepl("Brain", miorder))])
+
+#Add the total reads along the diagonal
+midltots.brai <- midl.brain[which(midl.brain$distance == 0 ) ,] 
+midltots.brai$total <- CIanno[midltots.brai$row.sample, ]$total
+
+brain.mi.heat <- ggplot(midl.brain, aes(x = col.sample, y = row.sample)) + 
+  geom_tile(aes(fill = distance)) + 
+  geom_tile(data = midltots.brai, 
+            aes(color = log(total)), 
+            fill = "lightgrey", 
+            lwd = 1) +
+  scale_fill_gradient("Distance", na.value = "lightgrey") +
+  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white")) +
+  xlab("Sample") + 
+  ylab("Sample") +
+  plotTheme(axis.text.x = element_text(angle = 90, vjust = .5))
+
+ggsave("./Figures/Distance_Heatmap_miBrain.png", 
+       brain.mi.heat, 
+       height = 6, 
+       width = 7)
+
+
+###############################################################################
+###############################################################################
+## Repeat the analysis with IO samples
+###############################################################################
+###############################################################################
+
+#Get the data out of the lists
+
+allio <- do.call(cbind, dflist)
+names(allio) <- allio[3,]
+rownames(allio) <- allio$`Sample Name`
+
+#Remove no sample controls and probe columns
+allio <- data.matrix(allio[-c(1:4), -c(which(grepl("Sample", names(allio))))])
+
+iofail <- getCLROutliers(colSums(allio))
+
+#Remove failed samples
+allio <- allio[, -iofail]
+
+ioclr <- apply(allio[-c(1:9), ], 2, MFtrans.clr) %>%
+  as.data.frame()
+
+#Create annotation for IO samples
+IOanno <- data.frame(sample = names(ioclr),
+                     total = colSums(allio),
+                     Proc = gsub(".*_(P\\d{2})_.*", 
+                                "\\1", 
+                                colnames(ioclr)),
+                     Rep = gsub(".*_(R\\d{1,2})$",
+                                "\\1",
+                                colnames(ioclr)),
+                     stringsAsFactors = FALSE)
+
+#find the distance between all pairwise samples using euclidean distance
+iod <- stats::dist(t(ioclr), method = "euclidean") %>%
+  as.matrix()
+
+#Set the order of the samples based on total read count
+IOanno <- IOanno[order(IOanno$total), ]
+IOanno <- IOanno[order(IOanno$Proc), ]
+
+
+
+ioorder <- IOanno$sample
+
+iodl <- iod %>%
+  as.data.frame() %>%
+  mutate(row.sample = rownames(iod)) %>%
+  gather(col.sample, distance, 1:ncol(iod))
+
+iodl$row.sample <- factor(iodl$row.sample, levels = ioorder)
+iodl$col.sample <- factor(iodl$col.sample, levels = ioorder)
+
+#Find the maximum distance for plotting
+iodist <- max(iodl$distance)
+
+#Add the total reads along the diagonal
+iodltots <- iodl[which(iodl$distance == 0) ,] 
+iodltots$total <- IOanno[iodltots$row.sample, ]$total
+
+
+#Plot all samples
+io.heat <- ggplot(iodl, aes(x = col.sample, y = row.sample)) + 
+  geom_tile(aes(fill = distance)) + 
+  geom_tile(data = iodltots, 
+            aes(color = log(total)), 
+            fill = "lightgrey", 
+            lwd = 3) +
+  scale_fill_gradient("Distance", na.value = "lightgrey") +
+  scale_color_gradientn("log Total Reads", colours = c("white", "orange", "red")) +
+  xlab("Sample") + 
+  ylab("Sample") +
+  plotTheme(axis.text.x = element_text(angle = 90, vjust = .5))
+
+ggsave("./Figures/Distance_Heatmap_IO_allSamples.png", io.heat, height = 6, width = 7)
+@
+
+
+
 
 \end{document}

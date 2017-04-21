@@ -2,7 +2,7 @@
 #Function takes a HTG data as produced by read HTG with include.probe = TRUE
 #
 
-compInvTest <- function(data, trans, ctrlProbes = NULL) {
+compInvTest <- function(data, trans, ctrlProbes = NULL, alpha = 0.05) {
   #Change to long form and add identifying information
   #data must have first column as probe id's
   if(!is.character(data[, 1]) & !is.factor(data[, 1])) stop(
@@ -66,8 +66,9 @@ compInvTest <- function(data, trans, ctrlProbes = NULL) {
                           countVar = "trans.count",
                           splitVar = "probe",
                           predVar = "total")
+  numSig <- sum(betas$adjP < alpha)
   
-  return(list(betas = betas, data = df.l))
+  return(list(betas = betas, data = df.l, numSig = numSig))
 }
 
 
