@@ -2,9 +2,14 @@
 #Function takes a HTG data as produced by read HTG with include.probe = TRUE
 #
 
-compInvTest <- function(data, trans, ctrlProbes = NULL, alpha = 0.05) {
+compInvTest <- function(data, #data in wide form with first variable as probe
+                        trans, #one of "alr" or "clr"
+                        ivar = NULL, #The denominator if using alr trans
+                        ctrlProbes = NULL, #character vector of control probes
+                        alpha = 0.05) { #significance level for test (after fdr adj)
+  
   #Change to long form and add identifying information
-  #data must have first column as probe id's
+  
   if(!is.character(data[, 1]) & !is.factor(data[, 1])) stop(
     "The first column must contain probe names"
   )
@@ -22,11 +27,18 @@ compInvTest <- function(data, trans, ctrlProbes = NULL, alpha = 0.05) {
   
   
   if(trans == "alr"){
-    #Find highest expressing probe for use as ALR denominator
-    avg <- df.l %>%
-      group_by(probe) %>%
-      summarize(avg = mean(count)) 
-    den <- as.character(avg$probe[which.max(avg$avg)])
+    
+    if(is.null(ivar)){
+      #Find highest expressing probe for use as ALR denominator
+      avg <- df.l %>%
+        group_by(probe) %>%
+        summarize(avg = mean(count)) 
+      den <- as.character(avg$probe[which.max(avg$avg)])
+      
+    }else{
+      den <- ivar
+    }
+    
     
     
     ##Creat alr transformed count values

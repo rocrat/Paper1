@@ -186,7 +186,10 @@ Aitchison~\cite{Aitchison1986} outlined a simple model for testing compositional
 \label{matrixModel}
 \end{equation}
 
-where $y_1 \ldots y_d$ are the $d$ ALR transformed components, $t$ is the vector of sample total aligned reads, $\alpha_1 \ldots \alpha_d$ are the probe specific log-ratio intercepts, and $\beta_1 \ldots \beta_d$ are the coefficients relating the the total aligned reads to the relative expression of the probe.  A test for compositional invariance for the experiment then becomes a test of the null hypothesis, $H_o: \beta_1 = \cdots = \beta_d = 0$. This approach is suitable for experiments, or sequencing runs, with enough samples to provide the power to reject the null hypothesis when it is false.  However, sample sizes may be small due to costs or sequencer limitations so the test may be underpowered in practice, particularly after correction for multiple testing.\\
+where $y_1 \ldots y_d$ are the $d$ ALR transformed components, $t$ is the vector of sample total aligned reads, $\alpha_1 \ldots \alpha_d$ are the probe specific log-ratio intercepts, and $\beta_1 \ldots \beta_d$ are the coefficients relating the the total aligned reads to the relative expression of the probe.  A test for compositional invariance for the experiment then becomes a test of the null hypothesis, $H_o: \beta_1 = \cdots = \beta_d = 0$. 
+
+
+The Aitchison model is suitable for experiments, or sequencing runs, with enough samples to provide the power to reject the null hypothesis when it is false.  However, sample sizes may be small due to costs or sequencer limitations so the test may be underpowered in practice, particularly after correction for multiple testing.\\
 
 We propose an alternative visualization for detecting compositional invariance
 
@@ -739,10 +742,25 @@ mitestdf <- miraw %>%
   as.data.frame() %>%
   mutate(probe = rownames(miraw))
 
+#rearrange data to have probe first
 mitestdf <- mitestdf[, c(ncol(mitestdf), 1:(ncol(mitestdf)-1))]
 
+##Find which probe for denominator
+ivar <- mitestdf %>%
+  gather(sample, count, 2:ncol(mitestdf)) %>%
+  group_by(probe) %>%
+  summarize(avg = mean(count))
+
+ivars <- ivar$probe[which(ivar$avg >  quantile(ivar$avg, prob = .49) & ivar$avg < quantile(ivar$avg, prob = .51))]
+    
+
+
+mialr.one <- compInvOne(x = mitestdf[-c(1:12), ],
+                        ivar = ivars[20])
+
 mialr.test <- compInvTest(data = mitestdf,
-                          trans = "alr")
+                          trans = "clr")
+
 
 mialr.test$numSig
 
@@ -753,10 +771,27 @@ mitestplas <- miraw[, which(grepl("Plasma", colnames(miraw)))] %>%
 
 mitestplas <- mitestplas[, c(ncol(mitestplas), 1:(ncol(mitestplas)-1))]
 
+for(i in 1:length(ivars)){
 mialr.test.plas <- compInvTest(data = mitestplas,
-                          trans = "alr")
+                          trans = "clr",
+                          ivar = ivars[i])
 
-mialr.test.plas$numSig
+print(mialr.test.plas$numSig)
+}
+
+##The clr test will be affected by the number of probes that exhibit compositional
+##invariance since these probes will have increasing influence on the geometric mean
+## if the geometric mean changes from sample to sample more probes will exhibit CI
+## ALR appears highly dependent on the choice of denominator since if the denominator 
+## does not have CI then many CI probes will appear to violate CI!!!
+
+##Of course, in low dimensions if 1 component fails to exhibit CI, then other probes will
+## also fail to exhibit CI because of the dependency. However, in the high dimensional 
+## setting the change in 1 probe may be spread out over many other probes which may 
+# not therefore show any violation of the CI principle.  For this reason it may be mportant
+# to identify probes which violate CI individually.
+
+
 
 #repeat with only brain samples
 mitestbrain <- miraw[, which(grepl("Brain", colnames(miraw)))] %>%
@@ -765,11 +800,13 @@ mitestbrain <- miraw[, which(grepl("Brain", colnames(miraw)))] %>%
 
 mitestbrain <- mitestbrain[, c(ncol(mitestbrain), 1:(ncol(mitestbrain)-1))]
 
+for(i in 1:length(ivars)){
 mialr.test.brain <- compInvTest(data = mitestbrain,
-                          trans = "alr")
+                          trans = "clr", 
+                          ivar = ivars[i])
 
-mialr.test.brain$numSig
-
+print(mialr.test.brain$numSig)
+}
 ###############################################################################
 ###############################################################################
 ## This is the 'heatmap' method of visualizing compositional invariance
