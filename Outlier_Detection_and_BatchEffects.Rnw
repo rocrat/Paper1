@@ -20,7 +20,7 @@
 
 \doublespacing
 
-\title{RNA-Seq as a Relative Abundance Measure: oportunities afforded by a compositional analysis framework.}
+\title{Quality control metrics for targeted RNA-Seq: methods afforded by a compositional framework.}
 \author{Dominic LaRoche \and Dean Billheimer \and Shripad Sinari \and Kurt Michels \and  Bonnie LaFleur}
 \begin{document}
 
@@ -114,11 +114,18 @@ As noted above, the compositional geometry must be accounted for when measuring 
 
 Aitchison~\cite{Aitchison1986, Aitchison1992} suggests using the sum of squares of all log-ratio differences.  Billheimer, Guttorp, and Fagan~\cite{Billheimer2001} use the geometry of compositions to define a norm which, along with the perturbation operator defined by Aitchison~\cite{Aitchison1986}, allow the interpretation of differences in compositions. Martin-Fernandez et al.~\cite{Martin-Fernandez1998} showed that applying either Euclidean distance or Mahalanobis distance metric to CLR transformed data satisfies all the requirements of a compositional distance metric. Euclidean distance on CLR transformed compositions is referred to as Aitchison distance:
 
-$$d_A(x_i, x_j) = \left[\sum_{k=1}^D \left( log \left(\frac{x_{ik}}{g(x_i)} \right) - log \left(\frac{x_{jk}}{g(x_j)} \right) \right)^2  \right]^\frac{1}{2}$$
+\begin{equation}
+d_A(x_i, x_j) = \left[\sum_{k=1}^D \left( log \left(\frac{x_{ik}}{g(x_i)} \right) - log \left(\frac{x_{jk}}{g(x_j)} \right) \right)^2  \right]^\frac{1}{2}
+\label{aitchdist1}
+\end{equation}
+
 
 or
 
- $$d_A(x_i, x_j) = \left[\sum_{k=1}^D \left( clr(x_{ik}) - clr(x_{jk}) \right)^2  \right]^\frac{1}{2}.$$
+\begin{equation}
+d_A(x_i, x_j) = \left[\sum_{k=1}^D \left( clr(x_{ik}) - clr(x_{jk}) \right)^2  \right]^\frac{1}{2}.
+\label{aitchdist2}
+\end{equation}
 \\
 
 
@@ -163,7 +170,7 @@ We compare the utility of our method to evaluation of the untransformed total co
 
 Normalization and standardization methods for RNA-Seq generally assume that the total number of reads assigned to a sample does not affect the observed relative frequencies of probes within an assay.  For example, implicit in the CPM transformation is the idea that if you re-scale the counts (by dividing by the total for each sample) then the resulting counts are comparible and any differences are due to underlying differences in expression.  Other methods which apply a scaling factor to each sample, such as Trimmed-mean of M values (TMM) or Quantile normalization, also rely on this assumption.  In the parlance of compositional data these methods assume \emph{Compositional Invariance}, i.e. the underlying composition is statistically independent of the total size of the composition (the total counts for a sample, $t$).\\
 
-Compositional invariance is an important property for RNA-Seq data which enables the comparison of samples with differing read depths.  However, it is well documented that the quality of RNA-Seq depends on the read depth of the sequencing run with higher read-depths associated with higher quality data~\cite{Tarazona2011,Sims2014}. Read depth may affect the measurement of relative abundances for the target RNA sequences as some targets may receive proportionally more reads as the read depth increases.  This would be a direct violation of compositional invariance and could lead seemingly differential expression between samples with different read depths, even after normalization.\\
+Compositional invariance (CI) is an important property for RNA-Seq data which enables the comparison of samples with differing read depths.  However, it is well documented that the quality of RNA-Seq depends on the read depth of the sequencing run with higher read-depths associated with higher quality data~\cite{Tarazona2011,Sims2014}. Read depth may affect the measurement of relative abundances for the target RNA sequences as some targets may receive proportionally more reads as the read depth increases.  This would be a direct violation of CI and could lead seemingly differential expression between samples with different read depths, even after normalization.  Another form of CI violation, that is perhaps more likely in RNA-Seq experiements, is the dependence between the variance of read counts and the read depth.\\
 
 
 Aitchison~\cite{Aitchison1986} outlined a simple model for testing compositional covariance using the ALR transformation,  \\
@@ -186,12 +193,13 @@ Aitchison~\cite{Aitchison1986} outlined a simple model for testing compositional
 \label{matrixModel}
 \end{equation}
 
-where $y_1 \ldots y_d$ are the $d$ ALR transformed components, $t$ is the vector of sample total aligned reads, $\alpha_1 \ldots \alpha_d$ are the probe specific log-ratio intercepts, and $\beta_1 \ldots \beta_d$ are the coefficients relating the the total aligned reads to the relative expression of the probe.  A test for compositional invariance for the experiment then becomes a test of the null hypothesis, $H_o: \beta_1 = \cdots = \beta_d = 0$. 
+where $y_1 \ldots y_d$ are the $d$ ALR transformed components, $t$ is the vector of sample total aligned reads, $\alpha_1 \ldots \alpha_d$ are the probe specific log-ratio intercepts, and $\beta_1 \ldots \beta_d$ are the coefficients relating the the total aligned reads to the relative expression of the probe.  A test for compositional invariance for the experiment then becomes a test of the null hypothesis, $H_o: \beta_1 = \cdots = \beta_d = 0$. This test can be re-parameratized to test for dependence between the variance and total aligned reads as well.
 
 
-The Aitchison model is suitable for experiments, or sequencing runs, with enough samples to provide the power to reject the null hypothesis when it is false.  However, sample sizes may be small due to costs or sequencer limitations so the test may be underpowered in practice, particularly after correction for multiple testing.\\
+Unfortunately, the small sample sizes and large number of probes typically associated with RNA-Seq experiements complicates the application of Aitchison's model.  
+We propose an alternative visualization for detecting simultaneously detecting both violations of compositional invariance. We use the multivariate Aitchison distance (\ref{aitchdist2}) between all pairs of samples. If CI is violated we expect pairs samples with similar total aligned reads will have smaller scalar distances. If the variance depends on the total aligned reads we expect the scalar distance between sample pairs to decrease with increasing read depth.\\
 
-We propose an alternative visualization for detecting compositional invariance
+We demonstrate this visualization on ...
 
 %Use euclidean distance matrix with samples ordered by read depth
 
@@ -807,6 +815,7 @@ mialr.test.brain <- compInvTest(data = mitestbrain,
 
 print(mialr.test.brain$numSig)
 }
+
 ###############################################################################
 ###############################################################################
 ## This is the 'heatmap' method of visualizing compositional invariance
@@ -880,8 +889,9 @@ plasma.mi.heat <- ggplot(midl.plasma, aes(x = col.sample, y = row.sample)) +
             aes(color = log(total)), 
             fill = "lightgrey", 
             lwd = 1) +
-  scale_fill_gradient("Distance", na.value = "lightgrey") +
-  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white")) +
+  scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0, 95)) +
+  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white"), 
+                        limits = c(12, 16)) +
   xlab("Sample") + 
   ylab("Sample") +
   plotTheme(axis.text.x = element_text(angle = 90, vjust = .5))
@@ -933,8 +943,9 @@ brain.mi.heat <- ggplot(midl.brain, aes(x = col.sample, y = row.sample)) +
             aes(color = log(total)), 
             fill = "lightgrey", 
             lwd = 1) +
-  scale_fill_gradient("Distance", na.value = "lightgrey") +
-  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white")) +
+  scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0,95)) +
+  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white"),
+                        limits = c(12, 16)) +
   xlab("Sample") + 
   ylab("Sample") +
   plotTheme(axis.text.x = element_text(angle = 90, vjust = .5))
