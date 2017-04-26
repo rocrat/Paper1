@@ -197,14 +197,22 @@ where $y_1 \ldots y_d$ are the $d$ ALR transformed components, $t$ is the vector
 
 
 Unfortunately, the small sample sizes and large number of probes typically associated with RNA-Seq experiements complicates the application of Aitchison's model.  
-We propose an alternative visualization for detecting simultaneously detecting both violations of compositional invariance. We use the multivariate Aitchison distance (\ref{aitchdist2}) between all pairs of samples. If CI is violated we expect pairs samples with similar total aligned reads will have smaller scalar distances. If the variance depends on the total aligned reads we expect the scalar distance between sample pairs to decrease with increasing read depth.\\
+We propose an alternative visualization for detecting simultaneously detecting both violations of compositional invariance. We use the multivariate Aitchison distance (\ref{aitchdist2}) between all pairs of samples in a heatmap with the samples ordered by total aligned reads.  If CI is violated we expect pairs samples with similar total aligned reads will have smaller scalar distances than those with large differences in total aligned reads.  This will result in visual clustering around the 45 degree axis. If the variance depends on the total aligned reads, we expect the scalar distance between sample pairs to decrease with increasing read depth resulting in a visual gradient in the distance heat map.\\
 
-We demonstrate this visualization on ...
+We demonstrate this visualization with two data sets one miRNA (Fig.~\ref{plasmaCompare}) and one mRNA (Fig.~\ref{celCompare})...
 
-%Use euclidean distance matrix with samples ordered by read depth
+\begin{figure}
+\includegraphics[scale=0.52]{./Figures/Plasma_Heatmap_Compare}
+\label{plasmaCompare}
+\caption{Two sets of miRNA samples with samples in (A.) showing a violation of compositional invariance and (B) showing compositional invariance.}
+\end{figure}
 
-  
 
+\begin{figure}
+\includegraphics[scale=0.52]{./Figures/CG_Heatmap_Compare}
+\label{celCompare}
+\caption{Two sets of mRNA samples with samples in (A.) showing a violation of compositional invariance and (B) showing compositional invariance.}
+\end{figure}
 
 
 \section{Batch Effects and Normalization}
@@ -707,7 +715,7 @@ ggsave("../Paper1/Figures/miRNA_PCA_Brain_logRaw_CLR_perturbed.png", brainPCAper
 
 @
 
-<<CompositionalInvariance, echo = FALSE>>=
+<<CompositionalInvariance, echo = FALSE, eval = FALSE>>=
 ###############################################################################
 ###############################################################################
 ## Use available data sets to demonstrate compositional invariance
@@ -864,12 +872,15 @@ miRNA.heat <- ggplot(midl, aes(x = col.sample, y = row.sample)) +
                       na.value = "lightgrey") +
   scale_color_gradientn("Total Reads", 
                         colors = c("red", "orange", "white")) +
-  plotTheme(axis.text.x = element_text(angle = 90, vjust = .5))
+  xlab("Sample Ordered by Type and Read Depth") + 
+  ylab("Sample Ordered by Type and Read Depth") + 
+  plotTheme(axis.text.x = element_blank(),
+            axis.text.y = element_blank())
 
 ggsave("./Figures/Distance_Heatmap_miRNA.png", 
        miRNA.heat, 
        height = 6, 
-       width = 7)
+       width = 6)
 
 #look at just plasma samples
 midl.plasma <- midl[which(grepl("Plasma", midl$row.sample) &
@@ -892,14 +903,15 @@ plasma.mi.heat <- ggplot(midl.plasma, aes(x = col.sample, y = row.sample)) +
   scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0, 95)) +
   scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white"), 
                         limits = c(12, 16)) +
-  xlab("Sample") + 
-  ylab("Sample") +
-  plotTheme(axis.text.x = element_text(angle = 90, vjust = .5))
+  xlab("Sample Ordered by Total Reads") + 
+  ylab("Sample Ordered by Total Reads") +
+  plotTheme(axis.text.x = element_blank(),
+            axis.text.y = element_blank())
 
 ggsave("./Figures/Distance_Heatmap_miPlasma.png", 
        plasma.mi.heat, 
        height = 6, 
-       width = 7)
+       width = 6)
 
 #Trying to make the plot with ggvis so I can have two fill scales
 #almost there, I just need to figure out how to set different 
@@ -946,15 +958,23 @@ brain.mi.heat <- ggplot(midl.brain, aes(x = col.sample, y = row.sample)) +
   scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0,95)) +
   scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white"),
                         limits = c(12, 16)) +
-  xlab("Sample") + 
-  ylab("Sample") +
-  plotTheme(axis.text.x = element_text(angle = 90, vjust = .5))
+  xlab("Sample Ordered by Total Reads") + 
+  ylab("Sample Ordered by Total Reads") +
+  plotTheme(axis.text.x = element_blank(),
+            axis.text.y = element_blank())
 
 ggsave("./Figures/Distance_Heatmap_miBrain.png", 
        brain.mi.heat, 
        height = 6, 
-       width = 7)
+       width = 6)
 
+plasmaGrid <- plot_grid(plasma.mi.heat, brain.mi.heat, labels = c("A", "B"))
+save_plot("./Figures/Plasma_Heatmap_Compare.png",
+          plot = plasmaGrid, 
+          nrow = 1, 
+          ncol = 2, 
+          base_height = 6, 
+          base_width = 6)
 
 ###############################################################################
 ###############################################################################
@@ -996,7 +1016,7 @@ iod <- stats::dist(t(ioclr), method = "euclidean") %>%
 
 #Set the order of the samples based on total read count
 IOanno <- IOanno[order(IOanno$total), ]
-IOanno <- IOanno[order(IOanno$Proc), ]
+# IOanno <- IOanno[order(IOanno$Proc), ]
 
 
 
@@ -1016,7 +1036,8 @@ iodist <- max(iodl$distance)
 #Add the total reads along the diagonal
 iodltots <- iodl[which(iodl$distance == 0) ,] 
 iodltots$total <- IOanno[iodltots$row.sample, ]$total
-
+iodltots$row.sample <- factor(iodltots$row.sample, levels = ioorder)
+iodltots$col.sample <- factor(iodltots$col.sample, levels = ioorder)
 
 #Plot all samples
 io.heat <- ggplot(iodl, aes(x = col.sample, y = row.sample)) + 
@@ -1024,14 +1045,155 @@ io.heat <- ggplot(iodl, aes(x = col.sample, y = row.sample)) +
   geom_tile(data = iodltots, 
             aes(color = log(total)), 
             fill = "lightgrey", 
-            lwd = 3) +
-  scale_fill_gradient("Distance", na.value = "lightgrey") +
-  scale_color_gradientn("log Total Reads", colours = c("white", "orange", "red")) +
-  xlab("Sample") + 
-  ylab("Sample") +
-  plotTheme(axis.text.x = element_text(angle = 90, vjust = .5))
+            lwd = 1) +
+  scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0,95)) +
+  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white"),
+                        limits = c(12, 16)) +
+  xlab("Sample Ordered by Total Reads") + 
+  ylab("Sample Ordered by Total Reads") +
+  plotTheme(axis.text.x = element_blank(),
+            axis.text.y = element_blank())
 
-ggsave("./Figures/Distance_Heatmap_IO_allSamples.png", io.heat, height = 6, width = 7)
+ggsave("./Figures/Distance_Heatmap_IO_allSamples.png", 
+       io.heat, 
+       height = 6, 
+       width = 6)
+
+
+###############################################################################
+###############################################################################
+## Repeat with celgene data
+###############################################################################
+###############################################################################
+
+load("./Data/CelgeneData.Rdata")
+rownames(raw.w) <- raw.w[, 1]
+cgdf <- raw.w[, -1]
+rm(raw.w)
+
+#Create annotation for IO samples
+cganno <- data.frame(sample = names(cgdf),
+                     total = colSums(cgdf),
+                     type = gsub("^(NP1|NP2|DP1|DP2|uRNA).*", 
+                                "\\1", 
+                                names(cgdf)),
+                     Rep = gsub("^(NP1|NP2|DP1|DP2|uRNA).*_(\\d{1})$",
+                                "\\2",
+                                names(cgdf)),
+                     stringsAsFactors = FALSE)
+
+cgclr <- apply(cgdf, 2, MFtrans.clr) %>%
+  as.data.frame()
+
+#find the distance between all pairwise samples using euclidean distance
+cgd <- stats::dist(t(cgclr), method = "euclidean") %>%
+  as.matrix()
+
+#Set the order of the samples based on total read count
+cganno <- cganno[order(cganno$total), ]
+cganno <- cganno[order(cganno$type), ]
+
+
+cgorder <- cganno$sample
+
+cgdl <- cgd %>%
+  as.data.frame() %>%
+  mutate(row.sample = rownames(cgd)) %>%
+  gather(col.sample, distance, 1:ncol(cgd))
+
+cgdl$row.sample <- factor(cgdl$row.sample, levels = cgorder)
+cgdl$col.sample <- factor(cgdl$col.sample, levels = cgorder)
+
+
+#Add the total reads along the diagonal
+cgdltots <- cgdl[which(cgdl$distance == 0) ,] 
+cgdltots$total <- cganno[cgdltots$row.sample, ]$total
+cgdltots$row.sample <- factor(cgdltots$row.sample, levels = cgorder)
+cgdltots$col.sample <- factor(cgdltots$col.sample, levels = cgorder)
+
+#Plot all samples
+cg.heat <- ggplot(cgdl, aes(x = col.sample, y = row.sample)) + 
+  geom_tile(aes(fill = distance)) + 
+  geom_tile(data = cgdltots, 
+            aes(color = log(total)), 
+            fill = "lightgrey", 
+            lwd = 1) +
+  scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0,100)) +
+  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white")) +#,
+                        # limits = c(12, 16)) +
+  xlab("Sample Ordered by Total Reads") + 
+  ylab("Sample Ordered by Total Reads") +
+  plotTheme(axis.text.x = element_blank(),
+            axis.text.y = element_blank())
+
+ggsave("./Figures/Distance_Heatmap_Celgene_allSamples.png", 
+       cg.heat, 
+       height = 6, 
+       width = 6)
+
+###############################################################################
+## Only the uRNA samples
+cgdl.urna <- cgdl[which(grepl("uRNA", cgdl$row.sample) &
+                          grepl("uRNA", cgdl$col.sample)), ]
+
+cgdltots.urna <- cgdltots[which(grepl("uRNA", cgdltots$row.sample) & 
+                                  grepl("uRNA", cgdltots$col.sample)), ]
+
+cg.heat.urna <- ggplot(cgdl.urna, aes(x = col.sample, y = row.sample)) + 
+  geom_tile(aes(fill = distance)) + 
+  geom_tile(data = cgdltots.urna, 
+            aes(color = log(total)), 
+            fill = "lightgrey", 
+            lwd = 1) +
+  scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0,100)) +
+  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white"),
+                        limits = c(12, 16)) +
+  xlab("Sample Ordered by Total Reads") + 
+  ylab("Sample Ordered by Total Reads") +
+  plotTheme(axis.text.x = element_blank(),
+            axis.text.y = element_blank())
+
+ggsave("./Figures/Distance_Heatmap_Celgene_uRNA.png", 
+       cg.heat.urna, 
+       height = 6, 
+       width = 6)
+
+
+###############################################################################
+## Only the DP2 samples
+cgdl.dp2 <- cgdl[which(grepl("DP2", cgdl$row.sample) &
+                          grepl("DP2", cgdl$col.sample)), ]
+
+cgdltots.dp2 <- cgdltots[which(grepl("DP2", cgdltots$row.sample) & 
+                                  grepl("DP2", cgdltots$col.sample)), ]
+
+cg.heat.dp2 <- ggplot(cgdl.dp2, aes(x = col.sample, y = row.sample)) + 
+  geom_tile(aes(fill = distance)) + 
+  geom_tile(data = cgdltots.dp2, 
+            aes(color = log(total)), 
+            fill = "lightgrey", 
+            lwd = 1) +
+  scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0,100)) +
+  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white"),
+                        limits = c(12, 16)) +
+  xlab("Sample Ordered by Total Reads") + 
+  ylab("Sample Ordered by Total Reads") +
+  plotTheme(axis.text.x = element_blank(),
+            axis.text.y = element_blank())
+
+ggsave("./Figures/Distance_Heatmap_Celgene_DP2.png", 
+       cg.heat.dp2, 
+       height = 6, 
+       width = 6)
+
+cgGrid <- plot_grid(cg.heat.urna, cg.heat.dp2, labels = c("A", "B"))
+save_plot("./Figures/CG_Heatmap_compare.png", 
+          plot = cgGrid, 
+          nrow = 1, 
+          ncol = 2, 
+          base_height = 6, 
+          base_width = 6)
+
 @
 
 
