@@ -20,7 +20,7 @@
 
 \doublespacing
 
-\title{Quality control metrics for targeted RNA-Seq: methods afforded by a compositional framework.}
+\title{Quality control metrics for extraction-free targeted RNA-Seq: methods afforded by a compositional framework.}
 \author{Dominic LaRoche \and Dean Billheimer \and Shripad Sinari \and Kurt Michels \and  Bonnie LaFleur}
 \begin{document}
 
@@ -40,40 +40,40 @@ We develop quality control diagnostics for targeted RNA-Seq using the theory of 
 
 %-- Brief intro to compositional data
 Relative frequency measures are characterized as a vector of proportions of some whole.  These proportions are necessarily positive and sum to a constant which is determined by the measurement system and not the measurand.  
-Targeted and whole transcriptome RNA-Seq measurements from NGS-based instruments provide only relative frequencies of the measured transcripts.  The measurment technology, along with sample preparation, preclude the measurement of absolute abundance. The total number of reads in a sequencing run for high-throughput RNA-Seq instruments is determined by the maximum number of reads available per run and not the absolute number of reads in a sample.  For example, the Illumina Mi-Seq is limited to 25 million reads in a sequencning run while the Roche 454 GS Junior \textsuperscript{(TM)}, with longer read lengths, claims approximately 100,000 reads per run for shotgun sequencing.  These reads are distributed across all of the samples included in a sequencing run and, therefore, impose a total sum constraint on the data.  This constraint cascades down to each probe or tag within a sample which is, in turn, constrained by the total number of reads allocated to the sample thereby creating a natural hierarchical structure to RNA-Seq data.\\
+Targeted and whole transcriptome RNA-Seq measurements from NGS-based instruments provide only relative frequencies of the measured transcripts.  The measurment technology, along with sample preparation, preclude the measurement of absolute abundance. The total number of reads in a sequencing run for high-throughput RNA-Seq instruments is determined by the maximum number of available reads  and not the absolute number of reads in a sample.  For example, the Illumina Mi-Seq is limited to 25 million reads in a sequencing run while the Roche 454 GS Junior \textsuperscript{(TM)}, with longer read lengths, claims approximately 100,000 reads per run for shotgun sequencing.  These reads are distributed across all of the samples included in a sequencing run and, therefore, impose a total sum constraint on the data.  This constraint cascades down to each probe or tag within a sample which is, in turn, constrained by the total number of reads allocated to the sample thereby creating a natural hierarchical structure to RNA-Seq data.\\
 
 Previous authors have identified the relative abundance nature of RNA-Seq data~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, Lovell2015}.  For example, Robinson and Smyth (2007)~\cite{Robinson2007} consider counts of RNA tags as relative abundances in their development of a model for estimating differential gene expression implemented in the Bioconductor package edgeR.  Similarly, Robinson and Oshlack (2010) explicitly acknowledge the mapped-read constraint when developing their widely used Trimmed-Mean of M-values (TMM) normalization method for RNA-Seq data. Finally, the commonly used log$_2$ Counts per Million (CPM) re-scaling transformation proposed by Law et al. (2014)~\cite{Law2014} divides each sequence count by the total number of reads allocated to the sample thereby transforming the data for each sample into a vector of proportions. \\%However, none of these authors reference the large body of literature on the analysis of compositions.
 
 
 The positivity and summation constraint complicate the analysis of relative frequency data.  As early as 1896 Karl Pearson~\cite{Pearson1896} identified the spurious correlation problem associated with compositions.  John Aitchison observed that relative frequency data is compositional and developed a methodology based on the geometric constraints of composiitons~\cite{Aitchison1986}.  Recent authors have argued that ignoring the sum constraint can lead to unexpected results and erroneous inference~\cite{Lovell2011}.  Despite the evidence that RNA-Seq data are compositional in nature, few researchers have extended the broad set of compositional data analysis theory and operations for use in RNA-Seq analysis problems.  
 
-We provide a brief background on compositional methods.  We then extend existing compositional data methodology to develop two quality control metrics and improve batch effect detection for RNA-Seq data. Finally, we show how compositional properties can be exploited to facilitate exploration of high-dimensional RNA-Seq data.\\
+We provide a brief background on compositional methods.  We then extend existing compositional data methodology to develop two quality control metrics and improve batch effect detection for RNA-Seq data.\\% Finally, we show how compositional properties can be exploited to facilitate exploration of high-dimensional RNA-Seq data.\\
 
-%-- Describe sequencing QC metrics a little
-% Illumina incorporates several sequencing specific quality control metrics including percentage of clusters passing filters and cluster density analysis. Other quality control metrics are also available, such as HTQC~\cite{Yang2013}.  However, most of the quality control metrics, while informative, are subjective...  %not sure what to say about these
-
-%Targeted sequencing vs traditional sequencing 
-
+%
 
 \section{Methods}
 
 \subsection{Compositional Data}
 %-- CODA intro -->
-We begin with a brief introduction to compositional data, its properties, and some established analytical methods.  Compositional data is defined as any data in which all elements are non-negative and sum to a fixed constant~\cite{Aitchison1986}. %-- Establish notation  and data hierarchy-->
+Compositional data is defined as any data in which all elements are non-negative and sum to a fixed constant~\cite{Aitchison1986}. %-- Establish notation  and data hierarchy-->
 For RNA-seq data, the total sum constraint is imposed by the limited number of available reads in each sequencing run.  Since this total differs between sequencing platforms we will refer to the total number of available reads as $\mathbb{T}$. These reads are distributed among the $D$ samples in a sequencing run such that:
+
 \begin{equation}
 \sum_{i=1}^{D} t_i = \mathbb{T}
 \label{sumt}
 \end{equation}
+
 where $t_i$ represents the total reads for sample $i$.  Because of the total sum constraint, the vector $\mathbf{t}$ is completely determined by $D-1$ elements since the $D^{th}$ element of $\mathbf{t}$ can be determined from the other $d = D-1$ elements and the total $\mathbb{T}$:  
+
 \begin{equation}
 t_D = \mathbb{T} - \sum_{i=1}^{d} \mathbf{t_i}
 \label{sumConst}
 \end{equation}
-In \ref{sumConst}, any of the elements can be chosen for $t_D$ with the remaining elements labeled $1, ..., d$ in any order~\cite{Aitchison1986}.  Similarly, the total reads for each sample ($t_i$) are distributed among the $P$ transcript targets in the assay such that $\sum_{j=1}^{P} p_{ij} = t_i$, where $p_{ij}$ is the total reads allocated to target $j$ in sample $i$.  We highlight the hierarchichal structure of RNA-Seq data as it leads to useful properties when devloping quality control metrics.\\
+
+In \ref{sumConst}, any of the elements can be chosen for $t_D$ with the remaining elements labeled $1, ..., d$ in any order~\cite{Aitchison1986}.  Similarly, the total reads for each sample ($t_i$) are distributed among the $P$ transcript targets in the assay such that $\sum_{j=1}^{P} p_{ij} = t_i$, where $p_{ij}$ is the number of reads allocated to target $j$ in sample $i$.  We highlight the hierarchichal structure of RNA-Seq data as it leads to useful properties when devloping quality control metrics.\\
 
 
-From equations~\ref{sumt} and~\ref{sumConst} it is clear that the total reads allocated to each of the $D$ samples represent a $D - 1 = d$ dimensional simplex ($\mathcal{S}^d$). This leads to problems when using methods developed for standard Euclidean sample spaces such as interpreting the traditional $D \times D$ covariance structur or measuring the distance between vectors.  In particular, it is clear that for a D-part composition $\mathbf{x}$, $\text{cov}(x_1, x_1+ \cdots +x_D) = 0$  since $x_1 + \cdots + x_D$ is a constant.  Moreover, the sum constraint induces negativity in the covariance matrix,
+From equations~\ref{sumt} and~\ref{sumConst} it is clear that the total reads allocated to each of the $D$ samples represent a $D - 1 = d$ dimensional simplex ($\mathcal{S}^d$). This leads to problems when using methods developed for standard Euclidean sample spaces such as interpreting the traditional $D \times D$ covariance structure or measuring the distance between vectors.  In particular, it is clear that for a D-part composition $\mathbf{x}$, $\text{cov}(x_1, x_1+ \cdots +x_D) = 0$  since $x_1 + \cdots + x_D$ is a constant.  Moreover, the sum constraint induces negativity in the covariance matrix,
 
 \begin{equation}
 \text{cov}(x_1, x_2) + \cdots + \text{cov}(x_1, x_D) = -\text{var}(x_1).
@@ -83,7 +83,7 @@ From equations~\ref{sumt} and~\ref{sumConst} it is clear that the total reads al
 Equation~\ref{negbias} shows that at least one element of each row of the covariance matrix must be negative. Aitchison refers to this as the ``negative bias difficulty" (although `bias' is not used in the traditional sense;~\cite{Aitchison1986}, p. 53). The structurally induced negative values create problems for the interpretation of the covariance matrix.  Similarly, the use of naive distance metrics in the simplex may not be interpretable as in Euclidean space. Because of these difficulties, standard statistical methodology is not always appropriate~\cite{Aitchison1986} and can produce misleading results~\cite{Lovell2015}.\\
 
 
-  To overcome these obstacles, Aitchison~\cite{Aitchison1980} proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{x}$ as:
+To overcome these obstacles, Aitchison~\cite{Aitchison1980} proposed working in ratios of components. We focus on the Centered Log-Ratio (CLR) which treats the parts of the composition symmetrically and provides an informative covariance structure.  The CLR transformation is defined for a $D$-part composition $\mathbf{x}$ as:
 \begin{equation}
 y_i  = \text{CLR}(x_i) = log \left(\frac{x_i}{g(\mathbf{x})} \right),
 \label{clr}
@@ -97,7 +97,7 @@ where $g(\mathbf{x})$ is the geometric mean of $\mathbf{x}$.  The $D \times D$ c
 \end{equation}
 \\
 
-The CLR transformation is similar to the familiar Counts per Million (CPM) transformation~\cite{Law2014} defined as, $log_2 \left(\frac{r_{gi}+0.5}{t_i+1} \times 10^6 \right)$, where $r_{gi}$ is the number of sequence reads for each probe ($g$) and sample ($i$), (scaled to avoid zero counts), adjusted for the number of mapped reads (library count) for each sample $t_i$ (scaled by a constant 1 to ensure the proportional read to library size ratio is greater than zero). The primary difference between the CLR and log(CPM) transformations is in the use of the geomtric mean in the denominator of the CLR transformation. The use of the geometric mean results in subtracting the mean of the log transformed values from each element thereby centering the vector of log-ratio transformed read counts. The difference appears minor but has important implications for the application of several common statistical methods.\\
+The CLR transformation is similar to the familiar Counts per Million (CPM) transformation~\cite{Law2014} defined as, $log_2 \left(\frac{r_{gi}+0.5}{t_i+1} \times 10^6 \right)$, where $r_{gi}$ is the number of sequence reads for each probe ($g$) and sample ($i$), (scaled to avoid zero counts), adjusted for the number of mapped reads (library count) for each sample $t_i$ (scaled by a constant 1 to ensure the proportional read to library size ratio is greater than zero). The primary difference between the CLR and log(CPM) transformations is in the use of the geomtric mean in the denominator of the CLR transformation. The use of the geometric mean results in subtracting the mean of the log transformed values from each log-transformed element thereby centering the vector of log-ratio transformed read counts. The difference appears minor but has important implications for the application of several common statistical methods.\\
 
 
 %%%Need to add in ALR transformation for compositional invariance section
@@ -199,30 +199,30 @@ where $y_1 \ldots y_d$ are the $d$ ALR transformed components, $t$ is the vector
 Unfortunately, the small sample sizes and large number of probes typically associated with RNA-Seq experiements complicates the application of Aitchison's model.  
 We propose an alternative visualization for detecting simultaneously detecting both violations of compositional invariance. We use the multivariate Aitchison distance (\ref{aitchdist2}) between all pairs of samples in a heatmap with the samples ordered by total aligned reads.  If CI is violated we expect pairs samples with similar total aligned reads will have smaller scalar distances than those with large differences in total aligned reads.  This will result in visual clustering around the 45 degree axis. If the variance depends on the total aligned reads, we expect the scalar distance between sample pairs to decrease with increasing read depth resulting in a visual gradient in the distance heat map.\\
 
-We demonstrate this visualization with two data sets one miRNA (Fig.~\ref{plasmaCompare}) and one mRNA (Fig.~\ref{celCompare})...
+We demonstrate this visualization with two sets of miRNA samples (Fig.~\ref{miComp}) and two sets of mRNA samples(Fig.~\ref{celComp}).  The miRNA samples are composed of 40 techinical replicates each of (A) plasma samples and (B) brain samples.  In the miRNA data there is a clear gradient along the 45 degree axis for the plasma samples (Fig.~\ref{miComp}.A).  This indicates a dependence between the total aligned reads and the variance of the samples (as indicated by the increasing multivariate distance between replicates as the total aligned reads decreases).  In contrast, there is no clear gradient in the brain samples (Fig.~\ref{miComp}.B).  The mRNA samples are composed of (A) 14 technical replicates of universal RNA and (B) 16 techinical replicates of pancreas tissue.  In the universal RNA there is a small cluster of samples with low total aligned reads which are more distant from samples with greater total aligned reads (Fig.~\ref{celComp}.A).  This indicates that the composition is dependent on the total aligned reads, a violation of compositional invariance for these samples.  In contrast, the pancreas samples show no such pattern related to total aligned reads (Fig.~\ref{celComp}.B).\\
 
 \begin{figure}
 \includegraphics[scale=0.52]{./Figures/Plasma_Heatmap_Compare}
-\label{plasmaCompare}
+\label{miComp}
 \caption{Two sets of miRNA samples with samples in (A.) showing a violation of compositional invariance and (B) showing compositional invariance.}
 \end{figure}
 
 
 \begin{figure}
 \includegraphics[scale=0.52]{./Figures/CG_Heatmap_Compare}
-\label{celCompare}
+\label{celComp}
 \caption{Two sets of mRNA samples with samples in (A.) showing a violation of compositional invariance and (B) showing compositional invariance.}
 \end{figure}
 
-
+\FloatBarrier
 \section{Batch Effects and Normalization}
 
 Batch effects arising from differing labratory conditions or operator differences have been identified as a problem in high-throughput measurement systems~\cite{leek2010, chen2011}.  Identifying and controlling for batch effects is a critical step in the transition of RNA-Seq from the lab to the clinic.  Batch effects are typically identified with a hierarchical clustering (HC) method or principal components analysis (PCA).  For both methods, the multivariate distance between the samples is visualized. either in a biplot for PCA or a dendrogram for HC, to check for the existence of clusters of samples related to batch. % and removed through various normalization methods~\cite{Robinson2007, Anders2010, Robinson2010, Law2014, leek2014}.  \\ %I wonder if I should move that last line
 The compositional nature of RNA-Seq data has important implications for the detection of batch effects due to the incompatibility with standard measures of distance between compositions as noted above~\cite{Aitchison1986,Martin-Fernandez1998}.\\  
 
-The next generation sequencing process results in arbitrary differences in scale among samples as some samples will receive more total reads than others. Principle components analysis is sensitive to differences in scale among the variables, failure to remove these difference can mask potential batch effects and leave unwanted technical variation in the data.  Most normalization methods use a scaling factor calculated for each sample to rescale the read count for each gene within the sample~\cite{Dillies2013}.  The CLR transformation can similarly be viewed as a scaling normalization (with the scale factor chosen as the inverse of the geomtric mean $1/g(x)$).  Unlike other normalization methods, the CLR transformation has the added benefit of being applied at the individual sample level, not experiment wise, and requires no assumptions about differential expression unlike other popular normalizations.  This makes it particularly well suited for the clinic where there are generally no reference samples for normalization.\\
+The next generation sequencing process results in arbitrary differences in scale among samples as some samples will receive more total reads than others. Principle components analysis is sensitive to differences in scale among the variables, failure to remove these difference can mask potential batch effects and leave unwanted technical variation in the data.  Most normalization methods use a scaling factor calculated for each sample to rescale the read count for each gene within the sample~\cite{Dillies2013}.  The CLR transformation can similarly be viewed as a scaling normalization (with the scale factor chosen as the inverse of the geomtric mean $1/g(x)$).  Unlike other normalization methods, the CLR transformation has the added benefit of being applied at the individual sample level, not experiment wise, and requires no assumptions about differential expression among samples, unlike other popular normalizations.  This makes it particularly well suited for the clinic where there are generally no reference samples for normalization.\\
 
-Aitchison demonstrated that the CLR transformation has several other useful properties in addition to rescaling the data~\cite{Aitchison1986}, particularly with respect to PCA biplots~\cite{Aitchison2002}.  Most notably for the detection of batch effects, the distance between any two points representing samples in the form-biplot approximates the Euclidean distance between the two samples.  The CLR transformation retains the property that this distance is at least as great as the distance between any corresponding subset of these two compositions (subspace dominance).  Additionally, the euclidean distance between two CLR transformed samples is location invariant. Other scaling and normalization methods do not necessarily satisfy these properties and, therefore, batch effects may be masked or artificial.\\
+Aitchison demonstrated that the CLR transformation has several other useful properties in addition to rescaling the data~\cite{Aitchison1986}, particularly with respect to PCA biplots~\cite{Aitchison2002}.  Most notably for the detection of batch effects, the distance between any two points representing samples in the form-biplot approximates the Euclidean distance between the two samples or the Mahalanobis distance for covariance biplots.  The CLR transformation retains the property that this distance is at least as great as the distance between any corresponding subset of these two compositions (subspace dominance).  Additionally, the euclidean distance between two CLR transformed samples is location invariant. Other scaling and normalization methods do not necessarily satisfy these properties and, therefore, batch effects may be masked or artificial.\\
 
 %toy example of distance issue when checking for batch effects here
 
@@ -259,6 +259,8 @@ Some of the batch effects detected in the log-transformed data may be attributab
 \section{Discussion}
 
 Our sample quality control metric can identify problematic samples which arise from multiple failure modes, e.g. a low quality sample or a sequencing problem.  However, it is conceivable that a sample might have an unusually low (or high) number of reads and still provide quality information.  In certain experiemental designs one might be able to further evaluate these samples with a PCA biplot on the CLR transformed data. In our PCA analysis we identified a FFPE sample which would have failed our quality control and was clearly very different from the other technical replicates.  However, if this sample had remained quite similar to the other FFPE replicates this would have provided information that the sample may still be valuable.  In this way, the quality control metric and PCA biplot can be used in tandem to provide additional information about the quality of a sample.\\
+
+The compositional invariance visualization is a logical extension of the sample quality control metric since the assumption of the sample quality control is that the total number of aligned reads is related to the proportional allocation of reads within the sample.  As noted above samples which violate the compositional invariance property may still contain valuable information.  The identification compositional invariance violations allows the investigator to account for the dependency between the total aligned reads and the relative abundance of transcripts within the samples when modelling.
 
 The principal components analysis biplot is a well know dimension reduction visualization.  For the current data the dimension is reduced from 2,280 probes to 2 principle components.  The utlity of the data reduction, including the quality of the approximation of the multivariate distance between the samples, is proportional to the amount of variance explained by these two principle components. In our data the first two principle components explain between 72 and 21 percent of the variation in the data.  The analysis with the lowest percent of variation explained by the first 2 components is of the CLR-transformed brain samples.  Surprisingly, batch effects are still visible in this plot, in which case they can be removed~\cite{Luo2010}.  \\
 
@@ -677,21 +679,34 @@ clrdatPCA.p <- ggplot(pcaclrdat.p$df.u, aes(x= xvar, y= yvar, color=Run)) +
 ggsave("./Figures/miRNA_Repro_PCA_CLR_BrainOnly.png", ggpcac.brain, width = 9, height = 8 )
 
 
-clrdat.p.brain <- as.data.frame(apply(pcaDat.mi.p[-c(1:11), ], 2, MFtrans.clr))
+clrdat.p.brain <- apply(pcaDat.mi.p[-c(1:11), which(grepl("Brain", colnames(pcaDat.mi.p)))]*10e6,
+                        2,
+                        MFtrans.clr) %>%
+  as.data.frame()
 
 pcaclrdat.p.brain <- pcaBiplot(clrdat.p.brain)
-pcaclrdat.brain$df.u$SampleID <- rownames(pcaclrdat.brain$df.u)
-pcaclrdat.brain$df.u <- merge(pcaclrdat.brain$df.u, annodf.mi, by = "SampleID")
+pcaclrdat.p.brain$df.u$SampleID <- rownames(pcaclrdat.p.brain$df.u)
+pcaclrdat.p.brain$df.u <- merge(pcaclrdat.p.brain$df.u, annodf.mi, by = "SampleID")
 
-clrdatPCA.brain <- ggplot(pcaclrdat.brain$df.u, aes(x= xvar, y= yvar, color=Run)) +
+clrdatPCA.brain <- ggplot(pcaclrdat.p.brain$df.u, aes(x= xvar, y= yvar, color=Run)) +
   geom_point( size = 3)   +
   coord_equal()  +
   xlab("PC1") +
   ylab("PC2") +
-  ggtitle(paste0("Cum. proportion of var. = ", round(pcaclrdat.brain$pvar, 2)))
+  ggtitle(paste0("Cum. proportion of var. = ", round(pcaclrdat.p.brain$pvar, 2)))
 ggsave("./Figures/miRNA_Repro_PCA_CLR.png", ggpcac, width = 9, height = 8 )
 
+##Check for distance between perturbed and unperturbed points
+pert <- pcaclrdat.p.brain$df.u
+unpert <- pcaclrdat.brain$df.u
 
+hyp <- function(x, y){
+  return(sqrt((x[1] - y[1])^2 + (x[2] - y[2])^2 ))
+}
+
+hyp(x = unpert[1, 2:3], y = unpert[2, 2:3])
+
+####################################################
 
 pcaDatc.mi.brain.p <- pcaDatc.mi.p[, which(grepl("Brain", colnames(pcaDatc.mi.p)))]
 pcplotdatc.mi.brain.p <- plotPCA(pcaDatc.mi.brain.p, annodf.mi, scale = FALSE)
