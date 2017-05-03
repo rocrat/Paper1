@@ -44,7 +44,7 @@ source("compInvTest.R")
 ###############################################################################
 
 dfraw <- readHTG("Data/Pfizer Sample Input OBP parsed 18-Nov-2016.xls",
-include.probe = FALSE)
+                 include.probe = FALSE)
 totals <- colSums(dfraw)
 totals <- totals[order(totals)]
 

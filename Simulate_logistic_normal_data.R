@@ -20,19 +20,45 @@
 
 
 
+rlogistic <- function(N, D, mu, sig){
+  #########################################################
+  ### This function generates multivariate logistic normal
+  ### data given:
+  ### N = the number of samples
+  ### D = the number of components
+  ### mu = vector of component means in units of mn norm
+  ### sig = the covariance matrix in units of the multi-
+  ###     variate normal (see above for conversion)
+  ### Returns a matrix with samples as columns and 
+  ### components as rows
+  #########################################################
+  
+  #Create matrix of N(0,1) random variables
+  Z <- matrix(rnorm(N*D), nrow = N, ncol = D)
+  
+  #Factor sigma into Q^TQ
+  ev <- eigen(sig, symmetric = TRUE)
+  
+  #Get Q from eigen values and eigen vectors
+  Q <- ev$vectors %*% diag(sqrt(ev$values)) %*% t(ev$vectors)
+  
+  #Create matrix of component means
+  mu <- matrix(mu, N, D, byrow = TRUE)
+  
+  X <- Z %*% Q + mu 
+  
+  #Convert to log-normal
+  Y <- exp(X)
+  
+  #Convert to logistic normal through closure
+  U <- apply(Y, 1, function(x) x/sum(x))
+  
+  return(U)
+}
+
+
+
 #Start with low dimension composition D=3
-
-#generate d N(0,1) vectors 
-nlist <- list()
-
-#number of components
-D <- 3
-#number of samples
-N <- 1000
-
-
-#Create matrix of N(0,1) random variables
-Z <- matrix(rnorm(N*D), nrow = N, ncol = D)
 
 
 #Create covariance matrix sigma
@@ -41,22 +67,9 @@ sig[2, 1] <- sig[1, 2] <- .5
 sig[3, 1] <- sig[1, 3] <- .2
 sig[2, 3] <- sig[3, 2] <- 0
 
-#Factor sigma into Q^TQ
-ev <- eigen(sig, symmetric = TRUE)
+X <- rlogistic(N = 100, D = 3, mu = c(1, 3, 6), sig)
 
-#Get Q from eigen values and eigen vectors
-Q <- ev$vectors %*% diag(sqrt(ev$values)) %*% t(ev$vectors)
+cor(t(X))
+cov(t(X))
 
-#Create matrix of component means
-mu <- matrix(c(1, 4, 6), N, D, byrow = TRUE)
-
-X <- Z %*% Q + mu 
-
-cor(X)
-
-
-sigma <- matrix(0, nrow = 3, ncol = 3)
-diag(sigma) <- 1
-tz <- mvrnorm(10, rep(0, 3), sigma)
-
-
+svd(X)
