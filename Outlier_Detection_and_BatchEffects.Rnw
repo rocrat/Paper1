@@ -789,8 +789,18 @@ ivars <- ivar$probe[which(ivar$avg >  quantile(ivar$avg, prob = .49) & ivar$avg 
 mialr.one <- compInvOne(x = mitestdf[-c(1:12), ],
                         ivar = ivars[20])
 
-mialr.test <- compInvTest(data = mitestdf,
+mialr.plasma.test <- compInvTest(data = mitestdf[, c("probe", names(mitestdf)[which(grepl("Plasma", names(mitestdf)))])],
                           trans = "clr")
+
+ggplot(mialr.plasma.test$betas, aes(x = as.numeric(as.character(est)))) + 
+  geom_density()
+
+
+mialr.brain.test <- compInvTest(data = mitestdf[, c("probe", names(mitestdf)[which(grepl("Brain", names(mitestdf)))])],
+                          trans = "clr")
+
+ggplot(mialr.brain.test$betas, aes(x = as.numeric(as.character(est)))) + 
+  geom_density()
 
 
 mialr.test$numSig
