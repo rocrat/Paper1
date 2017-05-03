@@ -1,0 +1,181 @@
+\documentclass [10pt]{article}
+
+%* some useful packages *********
+\usepackage{amsfonts,amssymb}
+\usepackage{epsfig,natbib,float}
+\usepackage[ansinew]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+%****************************************************************
+\setlength{\oddsidemargin}{+4.6mm}
+%
+\setlength{\textwidth}{15cm}
+%
+\setlength{\textheight}{23cm}
+%
+\setlength{\topmargin}{-1.25cm} \setlength{\baselineskip}{1mm}
+%
+\setlength{\parindent}{0pt}
+%
+\setlength{\parskip}{0.25cm}
+%
+\pagestyle{empty}
+
+%*for Spanish*************************************************
+\newcommand{\enye}{\~n}
+%**************************************************************
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{This is my name}
+\rhead{this is page \thepage}
+\cfoot{CoDaWork 2017 --- Abbadia San Salvatore (IT)}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+%****************the document **************************
+
+\begin{document}
+\begin{center}
+\textbf{\large Title: Instructions for authors - CoDaWork 2017}
+
+\bigskip
+\textbf{A.N. Other}$^{1}$\textbf{, U.T. Cobley}$^{2}$\textbf{, and S.F. Adams}$^{3}$ \\
+{\small
+$^{1}$Bloggs University, Biggleswade, UK; \textit{an.other@hotmail.com} \\
+$^{2}$Institute of Mathematical Geology, St.Petersburg, Russia \\
+$^{3}$PB Petroleum, Houtson, Texas, USA}
+\end{center}
+
+\bigskip
+{\centerline{\bf Abstract}}
+
+\begin{quote}
+Write an informative abstract, not longer than 300 words. The abstract paragraph should be indented about 0.25~inches on both left and right-hand margins.
+
+\medskip
+
+{\bf Key words: } Include some informative key words. \par
+\end{quote}
+
+\newpage
+
+\section{Introduction}
+This is the introduction, starting in a new page. The paper size should be set to A4 (not American quarto).
+Margins should be 30 mm on left and right, 25 mm at top and bottom. Paragraphs should be separated by an empty line in
+this way. Text should be justified.
+
+Remember that the final electronic paper --without limit in the number of pages-- will be due {\bf before May 4,
+2017}. It will be sent in PDF format. It will be published in the CoDaWork'17 CD (with ISBN) and will be available in
+the sessions of the workshop. {\bf Only papers of participants registered before May 4, 2017 will be included in the
+proceedings CD}.
+
+\section{First level headings}
+The workshop on Compositional Data is intended as a forum for discussion of important points related to the statistical treatment and modelling of compositional data, as well as their applications and interpretation. The goal of such
+discussions is to get some insight into the most appealing future lines of research in the field.
+
+\subsection{Second level headings}
+In order to meet this general but clear goal, we intend to bring together a significant number of specialists, users and interested people to collect critical contributions and start a stimulating brainstorming.
+
+\subsubsection{Third level headings}
+The Introductory course to statistical analysis of compositional data will work from a variety of practical compositonal problems. Different case studies will be presented and analyzed using CoDaPack, a freeware software based on EXCEL. This software is oriented to users coming from the applied sciences. No extensive background in using computer packages is
+required.
+
+
+\section{Citations, figures and references}
+\subsection{Citations in text}
+Citations within the text should include the author's last name and year: ``The air conditioner data (Proschan,
+1963) ...'', or when the author is used as a noun in the sentence: ``Proschan (1963) presented a data set ...''.
+
+In text, captions, and table headings, list all authors if two or fewer, and just the first author followed by ``et al." for more. Examples:
+
+\begin{center}
+(Jones and Johnson, 1986; Emmanuel et al., 1989)
+\end{center}
+or
+\begin{center}
+Emmanuel et al. (1989) showed that ..., whereas Jones and Johnson (1986) found that ...
+\end{center}
+
+When giving a quote or referring to a specific fact or formula in a book or from an article of more than 8 pages, the citation should include the page number. Examples:
+
+\begin{center}
+(Chayes, 1956, p. 55) or (Matheron, 1975, p. 229).
+\end{center}
+
+Page numbers should not be given in the text when referring to the work as a whole. As with figures, you do not need to direct the reader to ``see" a citation to the literature. Be sure your references are accurate and formatted correctly.
+
+\subsection{Figures}
+All figures should be inserted within the text exactly as they should appear when printed. All figures must be
+centered. Figure number and caption always appear below the figure.
+
+\begin{figure}[ht]
+\begin{center}
+x x x x x
+\end{center}
+\caption{This is a figure caption.}
+\end{figure}
+
+When you refer to an illustration, capitalize and spell out the word ``Figure'' if not in parenthesis, as in \ \ ``Figure 2 shows that the distribution of permeability is skewed ...''; or abbreviate if in parenthesis, as in \ \  ``The distribution of permeability is skewed (Fig. 2) ...''.
+
+If you have multiple parts in a figure, then label them with capital letters A,B,C, etc. Refer to them in the text as Figure 2A, or (Fig. 2A). In captions, follow this example:
+
+\begin{figure}[ht]
+\begin{center}
+\begin{center}
+x x x x x
+\end{center}
+\end{center}
+\caption{Density functions: (A) Permeability; (B) Porosity.}
+\end{figure}
+
+\subsection{Tables}
+All tables must be centered, neat, clean, and legible. Table number and title always appear above the table (see the example below).
+
+\begin{table}[ht]
+\caption{This is an example of a table.}
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Income         &$\$ 42.94$ \\ Expenses       &$\$ 26.12$ \\ \midrule
+Rest           &$\$ 16.82$ \\ \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+The word ``Table'' should be always capitalized, and not abbreviated even in parentheses.
+
+\subsection{Equations}
+The word ``Equation'' should be always capitalized and spelled out in the text, as in ``It follows from Equation (3) that ..'' but capitalized and abbreviated in parenthesis, as in ``It follows [Eq. (3)] that ...''. If you use any other word to refer to an equation, such as ``expression'' or ``relationship'', do not capitalize.
+
+\section*{Acknowledgements and appendices}
+Use non-numbered first level headings for the acknowledgements. They should follow text, and precede the list of references. Appendices follow references, and should be headed ``{\bf Appendix} A'' etc. if more than one.
+
+\section*{References}
+References follow the acknowledgements. Use first level no-numbered headings. The bibliography should follow the {\it Chicago style}. See below for examples.
+
+\hangindent=0.5cm \hangafter=1 %
+Ghahramani, Z. (1997).
+\newblock Learning dynamic Bayesian networks.
+\newblock In C.~Giles and M.~Gori (Eds.), {\em Adaptive Processing of Sequences and Data Structures}, Lecture Notes in Artificial Intelligence, pp.\ 168--197. Berlin: Springer Verlag.
+
+\hangindent=0.5cm \hangafter=1 %
+Pearl, J. (1986).
+\newblock Fusion propagation and structuring in belief networks.
+\newblock {\em Artificial Intelligence\/}~{\em 29\/}(3), pp. 241--288.
+
+\hangindent=0.5cm \hangafter=1 %
+Whittaker, J. (1990).
+\newblock {\em Graphical models in applied multivariate statistics}.
+\newblock Chichester: Wiley.
+
+If you use BibTex, use (see the LaTeX file):
+
+\bibliographystyle{chicago}
+\bibliography{name-of-your-BibTex-file}
+
+
+\end{document}

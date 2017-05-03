@@ -28,14 +28,31 @@ nlist <- list()
 #number of components
 D <- 3
 #number of samples
-N <- 10
+N <- 1000
 
 
 #Create matrix of N(0,1) random variables
 Z <- matrix(rnorm(N*D), nrow = N, ncol = D)
 
+
 #Create covariance matrix sigma
-sig <- matrix(0, D, D)
+sig <- matrix(1, D, D)
+sig[2, 1] <- sig[1, 2] <- .5
+sig[3, 1] <- sig[1, 3] <- .2
+sig[2, 3] <- sig[3, 2] <- 0
+
+#Factor sigma into Q^TQ
+ev <- eigen(sig, symmetric = TRUE)
+
+#Get Q from eigen values and eigen vectors
+Q <- ev$vectors %*% diag(sqrt(ev$values)) %*% t(ev$vectors)
+
+#Create matrix of component means
+mu <- matrix(c(1, 4, 6), N, D, byrow = TRUE)
+
+X <- Z %*% Q + mu 
+
+cor(X)
 
 
 sigma <- matrix(0, nrow = 3, ncol = 3)
