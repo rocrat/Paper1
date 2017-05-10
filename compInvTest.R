@@ -93,18 +93,21 @@ testInvariance <- function(x, countVar, splitVar, predVar) {
   
   #first split data into a list of data frames for each probe
   xs <- split(x, f = factor(x[[splitVar]])) 
-  betas <- matrix(nrow = length(xs), ncol = 3)
-  colnames(betas) <- c(splitVar, "est", "pval")
+  betas <- matrix(nrow = length(xs), ncol = 4) %>%
+    as.data.frame(stringsAsFactors = FALSE)
+  
+  names(betas) <- c(splitVar, "est", "err", "pval")
   for ( i in 1:length(xs)){
     #For each probe determine whether the sample total affects the count
     mod <- lm(as.formula(paste0(countVar, " ~ ", predVar)), data = xs[[i]])
     est <- summary(mod)$coef[2, 1]
+    err <- summary(mod)$coef[2, 2]
     pval <- summary(mod)$coef[2, 4]
-    betas[i, ] <- c(unique(xs[[i]]$probe), 
-                    est, 
-                    pval)
+    betas[i, 1] <- unique(xs[[i]]$probe)
+    betas[i, 2:4] <- c(est, 
+                       err,
+                       pval)
   }
-  betas <- as.data.frame(betas)
   #Adjust for multiple testing
   betas$adjP <- p.adjust(betas$pval, method = "BH")
   return(betas)
