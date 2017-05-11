@@ -867,7 +867,7 @@ mid <- stats::dist(t(miclr), method = "euclidean") %>%
 CIanno <- CIanno[order(CIanno$Run), ]
 CIanno <- CIanno[order(CIanno$total), ]
 CIanno <- CIanno[order(CIanno$SampType), ]
-
+rownames(CIanno) <- CIanno$sample
 
 miorder <- CIanno$sample
 
@@ -938,6 +938,82 @@ ggsave("./Figures/Distance_Heatmap_miPlasma.png",
        height = 6, 
        width = 6)
 
+#####################################################################
+### Find the center of the top quartile of samples with respect to 
+### total reads
+#####################################################################
+
+
+tq <- quantile(midltots.plas$total, probs = .75)
+tqsamps <- midltots.plas[which(midltots.plas$total > tq), "row.sample"]
+
+cent <- apply(miclr[, tqsamps], 1, mean)
+
+distances <- apply(t(miclr), 1, function(x) dist(rbind(x, cent)))
+
+dist.plas <- distances[which(grepl("Plasma", names(distances)))]
+
+##Create data frame:
+plasddf <- data.frame(SampleID = names(dist.plas),
+                      distance = dist.plas,
+                      total = CIanno[names(dist.plas), ]$total)
+
+##Order by total reads
+plasddf$SampleID <- factor(plasddf$SampleID, 
+                           levels = miorder[which(grepl("Plasma", miorder))])
+
+
+ggplot(plasddf, aes(x = SampleID, y = distance)) + 
+  geom_point(aes(size = log(total), color = log(total))) +
+  plotTheme(axis.text.x = element_blank()) +
+  ylab("Distance between sample and \ncenter of high reads samples" ) +
+  xlab("Samples ordered by total aligned reads") +
+  scale_size_continuous("Log(total", breaks = round(as.numeric(breaks), 2)) + 
+  scale_color_continuous("Log(total", breaks = round(as.numeric(breaks), 2))
+  
+
+distPlot <- function(df, quant){
+  ##This function takes in a data frame with samples as columns
+  ## and generates a plot showing the distance between each sample
+  ## and the mean of the top quant samples
+  totals <- apply(df, 2, sum)
+  qt <- quantile(totals, prob = quant)
+  
+  dfclr <- apply(df, 2, MFtrans.clr) %>%
+    as.data.frame()
+  
+  cent <- apply(dfclr[, which(totals > quant)], 1, mean)
+  distances <- apply(t(dfclr), 1, function(x) dist(rbind(x, cent)))
+  
+  distdf <- data.frame(SampleID = names(distances),
+                       distance = distances,
+                       total = as.numeric(totals),
+                       inMean = ifelse(totals > qt), TRUE, FALSE)
+  
+  distdf$SampleID <- factor(distdf$SampleID, 
+                         levels = names(totals)[order(totals)])
+  
+  p <- ggplot(distdf, aes(x = SampleID, y = distance)) +
+    geom_point(aes(size = log(total), color = log(total))) +
+    plotTheme(axis.text.x = element_blank()) +
+    ylab(paste0("Distance between sample and center\n", 
+                100*quant, "% of high reads samples" )) +
+    xlab("Samples ordered by total aligned reads") +
+    scale_color_continuous(guide = FALSE)
+  
+  return(list(p = p, df = distdf))
+}
+
+plas <- distPlot(df = as.data.frame(miraw[, which(grepl("Plasma", colnames(miraw)))]), quant = .75)
+plas$p
+
+brain <- distPlot(df = as.data.frame(miraw[, which(grepl("Brain", colnames(miraw)))]), quant = .75)
+brain$p
+
+ffpe <- distPlot(df = as.data.frame(miraw[, which(grepl("FFPE", colnames(miraw)))]), quant = .75)
+ffpe$p
+
+#####################################################################
 #Trying to make the plot with ggvis so I can have two fill scales
 #almost there, I just need to figure out how to set different 
 #colors on the scales
@@ -1084,6 +1160,8 @@ ggsave("./Figures/Distance_Heatmap_IO_allSamples.png",
        height = 6, 
        width = 6)
 
+io <- distPlot(df = allio, quant = .75)
+io$p
 
 ###############################################################################
 ###############################################################################
@@ -1156,6 +1234,9 @@ ggsave("./Figures/Distance_Heatmap_Celgene_allSamples.png",
        height = 6, 
        width = 6)
 
+cg <- distPlot(df = cgdf, quant = .5)
+cg$p
+
 ###############################################################################
 ## Only the uRNA samples
 cgdl.urna <- cgdl[which(grepl("uRNA", cgdl$row.sample) &
@@ -1182,7 +1263,8 @@ ggsave("./Figures/Distance_Heatmap_Celgene_uRNA.png",
        cg.heat.urna, 
        height = 6, 
        width = 6)
-
+cg.urna <- distPlot(cgdf[, which(grepl("uRNA", names(cgdf)))], quant = .5)
+cg.urna$p
 
 ###############################################################################
 ## Only the DP2 samples
@@ -1219,6 +1301,8 @@ save_plot("./Figures/CG_Heatmap_compare.png",
           base_height = 6, 
           base_width = 6)
 
+cg.dp2 <- distPlot(cgdf[, which(grepl("DP", names(cgdf)))], quant = .75)
+cg.dp2$p
 @
 
 
