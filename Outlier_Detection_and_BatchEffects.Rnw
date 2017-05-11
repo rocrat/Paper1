@@ -108,7 +108,7 @@ y_i  = \text{ALR}(x_i) = log \left(\frac{x_i}{x_D} \right),
 \label{alr}
 \end{equation}
 
-where $x_D$, the D$^th$ component of $x$, can be any component.  \\  
+where $x_D$, the D$^{th}$ component of $x$, can be any component.  \\  
 
 As noted above, the compositional geometry must be accounted for when measuring the distance between two compositional vectors or finding the center of a group of compositions~\cite{Aitchison2000}.  Aitchison~\cite{Aitchison1992} outlined several properties for any compositional difference metric which must be met: scale invariance, permutation invariance, perturbation invariance (similar to translation invariance for Euclidean distance), and subcompositional dominance (similar to subspace dominance of Euclidean distance).  The scale invariance requirement is ignorable if the difference metric is applied to data on the same scale (which is generally not satisfied in raw RNA-seq data due to differences in read depth). The permutation invariance is generally satisfied by existing methods such as Euclidean distance~\cite{Martin-Fernandez1998}. However, the perturbation invariance and subcompositional dominance are not generally satisfied~\cite{Martin-Fernandez1998}. \\
 
@@ -167,6 +167,13 @@ We compare the utility of our method to evaluation of the un-transformed total c
 
 \FloatBarrier
 \section{Testing for Compositional Invariance}
+
+%Traditional testing for CI has several problems
+%   - Choice of denominator will impact the number of probes which exhibit CI violations
+%   - Increases in variance associated with low reads will make it hard to identify CI violations
+%   - How much CI violation is too much?  100 betas != 0?  200? 1000?
+
+
 
 Normalization and standardization methods for RNA-Seq generally assume that the total number of reads assigned to a sample does not affect the observed relative frequencies of probes within an assay.  For example, implicit in the CPM transformation is the idea that if you re-scale the counts (by dividing by the total for each sample) then the resulting counts are comparable and any differences are due to underlying differences in expression.  Other methods which apply a scaling factor to each sample, such as Trimmed-mean of M values (TMM) or Quantile normalization, also rely on this assumption.  In the parlance of compositional data these methods assume \emph{Compositional Invariance}, i.e. the underlying composition is statistically independent of the total size of the composition (the total counts for a sample, $t$).\\
 
@@ -786,20 +793,39 @@ ivars <- ivar$probe[which(ivar$avg >  quantile(ivar$avg, prob = .49) & ivar$avg 
     
 
 
-mialr.one <- compInvOne(x = mitestdf[-c(1:12), ],
-                        ivar = ivars[20])
-
 mialr.plasma.test <- compInvTest(data = mitestdf[, c("probe", names(mitestdf)[which(grepl("Plasma", names(mitestdf)))])],
-                          trans = "clr")
+                          trans = "alr")
 
-ggplot(mialr.plasma.test$betas, aes(x = as.numeric(as.character(est)))) + 
-  geom_density()
+ggplot(mialr.plasma.test$betas, aes(x = est)) + 
+  geom_density() + 
+  annotate("text", 
+           x = -2, 
+           y = 0.5, 
+           label =  paste0(sum(mialr.plasma.test$betas$adjP < 0.05), " adj P < 0.05")) +
+  xlab("Estimate of Beta")
+
 
 
 mialr.brain.test <- compInvTest(data = mitestdf[, c("probe", names(mitestdf)[which(grepl("Brain", names(mitestdf)))])],
                           trans = "clr")
 
-ggplot(mialr.brain.test$betas, aes(x = as.numeric(as.character(est)))) + 
+ggplot(mialr.brain.test$betas, aes(x = est)) + 
+  geom_density() + 
+  annotate("text", 
+           x = -1, 
+           y = 0.75, 
+           label =  paste0(sum(mialr.brain.test$betas$adjP < 0.05), " adj P < 0.05")) +
+  annotate("text", 
+           x = -1, 
+           y = 0.55, 
+           label =  paste0(sum(mialr.brain.test$betas$pval < 0.05, na.rm = TRUE), " P < 0.05")) +
+  xlab("Estimate of Beta")
+
+
+mialr.ffpe.test <- compInvTest(data = mitestdf[, c("probe", names(mitestdf)[which(grepl("FFPE", names(mitestdf)))])],
+                          trans = "clr")
+
+ggplot(mialr.ffpe.test$betas, aes(x = as.numeric(as.character(est)))) + 
   geom_density()
 
 
