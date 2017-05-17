@@ -964,104 +964,6 @@ ggsave("./Figures/Distance_Heatmap_miPlasma.png",
        height = 6, 
        width = 6)
 
-#####################################################################
-### Find the center of the top quartile of samples with respect to 
-### total reads
-#####################################################################
-
-
-tq <- quantile(midltots.plas$total, probs = .75)
-tqsamps <- midltots.plas[which(midltots.plas$total > tq), "row.sample"]
-
-cent <- apply(miclr[, tqsamps], 1, mean)
-
-distances <- apply(t(miclr), 1, function(x) dist(rbind(x, cent)))
-
-dist.plas <- distances[which(grepl("Plasma", names(distances)))]
-
-##Create data frame:
-plasddf <- data.frame(SampleID = names(dist.plas),
-                      distance = dist.plas,
-                      total = CIanno[names(dist.plas), ]$total)
-
-##Order by total reads
-plasddf$SampleID <- factor(plasddf$SampleID, 
-                           levels = miorder[which(grepl("Plasma", miorder))])
-
-
-ggplot(plasddf, aes(x = SampleID, y = distance)) + 
-  geom_point(aes(size = log(total), color = log(total))) +
-  plotTheme(axis.text.x = element_blank()) +
-  ylab("Distance between sample and \ncenter of high reads samples" ) +
-  xlab("Samples ordered by total aligned reads") +
-  scale_size_continuous("Log(total", breaks = round(as.numeric(breaks), 2)) + 
-  scale_color_continuous("Log(total", breaks = round(as.numeric(breaks), 2))
-  
-
-distPlot <- function(df, quant){
-  ##This function takes in a data frame with samples as columns
-  ## and generates a plot showing the distance between each sample
-  ## and the mean of the top quant samples
-  totals <- apply(df, 2, sum)
-  qt <- quantile(totals, prob = quant)
-  
-  dfclr <- apply(df, 2, MFtrans.clr) %>%
-    as.data.frame()
-  
-  cent <- apply(dfclr[, which(totals > quant)], 1, mean)
-  distances <- apply(t(dfclr), 1, function(x) dist(rbind(x, cent)))
-  
-  distdf <- data.frame(SampleID = names(distances),
-                       distance = distances,
-                       total = as.numeric(totals),
-                       inMean = ifelse(totals > qt), TRUE, FALSE)
-  
-  distdf$SampleID <- factor(distdf$SampleID, 
-                         levels = names(totals)[order(totals)])
-  
-  p <- ggplot(distdf, aes(x = SampleID, y = distance)) +
-    geom_point(aes(size = log(total), color = log(total))) +
-    plotTheme(axis.text.x = element_blank()) +
-    ylab(paste0("Distance between sample and center\n", 
-                100*quant, "% of high reads samples" )) +
-    xlab("Samples ordered by total aligned reads") +
-    scale_color_continuous(guide = FALSE)
-  
-  return(list(p = p, df = distdf))
-}
-
-plas <- distPlot(df = as.data.frame(miraw[, which(grepl("Plasma", colnames(miraw)))]), quant = .75)
-plas$p
-
-brain <- distPlot(df = as.data.frame(miraw[, which(grepl("Brain", colnames(miraw)))]), quant = .75)
-brain$p
-
-ffpe <- distPlot(df = as.data.frame(miraw[, which(grepl("FFPE", colnames(miraw)))]), quant = .75)
-ffpe$p
-
-#####################################################################
-#Trying to make the plot with ggvis so I can have two fill scales
-#almost there, I just need to figure out how to set different 
-#colors on the scales
-ggvisMIplot <- midl.plasma %>%
-  ggvis(~row.sample, ~col.sample) %>%
-  layer_rects(prop("fill", ~distance,
-                   scale = "distance"),
-              width = band(), 
-              height = band(),
-              strokeWidth := 0) %>%
-  layer_rects(prop("fill", ~log(total), 
-                   scale = "total"),
-              data = midltots.plas) %>%
-  scale_nominal("x", padding = 0, points = FALSE) %>%
-  scale_nominal("y", padding = 0, points = FALSE) %>%
-  add_legend(scales = "distance",
-             title = "Distance") %>%
-  add_legend(scales = "total", 
-             properties = legend_props(legend = list(y = 50)),
-             title = "Log(total)" )
-
-
 ###############################################################################
 ## Brain samples for comparison with plasma samples
 ###############################################################################
@@ -1327,8 +1229,156 @@ save_plot("./Figures/CG_Heatmap_compare.png",
           base_height = 6, 
           base_width = 6)
 
+
+#####################################################################
+#####################################################################
+### Find the center of the top quartile of samples with respect to 
+### total reads
+#####################################################################
+#####################################################################
+heatPlot <- function(df){
+  #Create annotation for  samples
+  anno <- data.frame(sample = names(df),
+                     total = colSums(df),
+                     stringsAsFactors = FALSE)
+  #Set the order of the samples based on total read count
+  anno <- anno[order(anno$total), ]
+
+  clrdf <- apply(df, 2, MFtrans.clr) %>%
+    as.data.frame()
+  
+  #find the distance between all pairwise samples using euclidean distance
+  d <- stats::dist(t(clrdf), method = "euclidean") %>%
+    as.matrix()
+  
+  #set the order of samples
+  dforder <- anno$sample
+
+  dl <- d %>%
+    as.data.frame() %>%
+    mutate(row.sample = rownames(d)) %>%
+    gather(col.sample, distance, 1:ncol(d))
+
+  dl$row.sample <- factor(dl$row.sample, levels = dforder)
+  dl$col.sample <- factor(dl$col.sample, levels = dforder)
+
+
+  #Add the total reads along the diagonal
+  dltots <- dl[which(dl$distance == 0) ,] 
+  dltots$total <- anno[dltots$row.sample, ]$total
+  dltots$row.sample <- factor(dltots$row.sample, levels = dforder)
+  dltots$col.sample <- factor(dltots$col.sample, levels = dforder)
+  
+  #Plot pairwise distance between all samples
+  heat <- ggplot(dl, aes(x = col.sample, y = row.sample)) + 
+    geom_tile(aes(fill = distance)) + 
+    geom_tile(data = dltots, 
+              aes(color = log(total)), 
+              fill = "lightgrey", 
+              lwd = 1) +
+    scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0,100)) +
+    scale_color_gradientn("log Total Reads", 
+                          colors = c("red", "orange", "white")) +
+    xlab("Sample Ordered by Total Reads") + 
+    ylab("Sample Ordered by Total Reads") +
+    plotTheme(axis.text.x = element_blank(),
+              axis.text.y = element_blank())
+  
+  return(list(p = heat, df = dl))
+}
+
+distPlot <- function(df, quant){
+  ##This function takes in a data frame with samples as columns
+  ## and generates a plot showing the distance between each sample
+  ## and the mean of the top quant samples
+  totals <- apply(df, 2, sum)
+  qt <- quantile(totals, prob = quant)
+  
+  dfclr <- apply(df, 2, MFtrans.clr) %>%
+    as.data.frame()
+  
+  cent <- apply(dfclr[, which(totals > quant)], 1, mean)
+  distances <- apply(t(dfclr), 1, function(x) dist(rbind(x, cent)))
+  
+  distdf <- data.frame(SampleID = names(distances),
+                       distance = distances,
+                       total = as.numeric(totals),
+                       inMean = ifelse(totals > qt, TRUE, FALSE))
+  
+  
+  distdf$SampleID <- factor(distdf$SampleID, 
+                         levels = names(totals)[order(totals)])
+  
+  p <- ggplot(distdf, aes(x = SampleID, y = distance)) +
+    geom_point(aes(size = log(total), color = log(total))) +
+    plotTheme(axis.text.x = element_blank()) +
+    ylab(paste0("Distance between sample and center\n", 
+                100*quant, "% of high reads samples" )) +
+    xlab("Samples ordered by total aligned reads") +
+    scale_color_continuous(guide = FALSE)
+  
+  return(list(p = p, df = distdf))
+}
+
+#miRna samples
+plas.mi.heat <- heatPlot(df = as.data.frame(miraw[, which(grepl("Plasma", colnames(miraw)))]))
+plas <- distPlot(df = as.data.frame(miraw[, which(grepl("Plasma", colnames(miraw)))]), quant = .75)
+plas$p
+
+plasComp <- plot_grid(plas.mi.heat$p, plas$p, labels = c("A", "B"), nrow = 1)
+ggsave("./Figures/Compare_compInvPlots_Plasma.png", plasComp, width = 10, height = 5)
+
+
+brain.heat <- heatPlot(df = as.data.frame(miraw[, which(grepl("Brain", colnames(miraw)))]))
+brain.heat$p
+brain <- distPlot(df = as.data.frame(miraw[, which(grepl("Brain", colnames(miraw)))]), quant = .75)
+brain$p
+
+brainComp <- plot_grid(brain.heat$p, brain$p, labels = c("A", "B"), nrow = 1)
+ggsave("./Figures/Compare_compInvPlots_Brain.png", brainComp, width = 10, height = 5)
+
+
+ffpe.heat <- heatPlot(df = as.data.frame(miraw[, which(grepl("FFPE", colnames(miraw)))]))
+ffpe.heat$p
+ffpe <- distPlot(df = as.data.frame(miraw[, which(grepl("FFPE", colnames(miraw)))]), quant = .75)
+ffpe$p
+
+ffpeComp <- plot_grid(ffpe.heat$p, ffpe$p, labels = c("A", "B"), nrow = 1)
+ggsave("./Figures/Compare_compInvPlots_FFPE.png", ffpeComp, width = 10, height = 5)
+
+#Celgene samples
+cgdp.heat <- heatPlot(df = cgdf[, which(grepl("DP", names(cgdf)))])
 cg.dp2 <- distPlot(cgdf[, which(grepl("DP", names(cgdf)))], quant = .75)
 cg.dp2$p
+
+cgdpComp <-  plot_grid(cgdp.heat$p, cg.dp2$p, labels = c("A", "B"), nrow = 1)
+ggsave("./Figures/Compare_compInvPlots_CelgeneDP.png", cgdpComp, width = 10, height = 5)
+
+
+#####################################################################
+#Trying to make the plot with ggvis so I can have two fill scales
+#almost there, I just need to figure out how to set different 
+#colors on the scales
+ggvisMIplot <- midl.plasma %>%
+  ggvis(~row.sample, ~col.sample) %>%
+  layer_rects(prop("fill", ~distance,
+                   scale = "distance"),
+              width = band(), 
+              height = band(),
+              strokeWidth := 0) %>%
+  layer_rects(prop("fill", ~log(total), 
+                   scale = "total"),
+              data = midltots.plas) %>%
+  scale_nominal("x", padding = 0, points = FALSE) %>%
+  scale_nominal("y", padding = 0, points = FALSE) %>%
+  add_legend(scales = "distance",
+             title = "Distance") %>%
+  add_legend(scales = "total", 
+             properties = legend_props(legend = list(y = 50)),
+             title = "Log(total)" )
+
+
+
 @
 
 
