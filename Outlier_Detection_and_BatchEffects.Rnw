@@ -138,6 +138,7 @@ Up to this point we have referred to the total reads available per sequencing ru
 
 
 \section{Sample Quality Control}
+
 Problems with sample quality, library preparation, or sequencing may result in a low number of reads allocated to a given sample within a sequencing run.  The Percent Pass Filter (\% PF) metric provided on Illumina sequencers provides a subjective measure that can identify problems with sequencing that result in a low number of reads allocated to a sample.  However, \% PF will not necessarily catch problems associated with poor sample quality or problems with sample pre-processing since these processes may affect cluster generation, and not just cluster quality.  This is particularly important for extraction-free RNA-Seq technologies, such as the HTG EdgeSeq$^{(tm)}$, which allow for the use of smaller input amounts but lack the intermediate steps for checking sample quality.  There is currently no objective way to evaluate sample quality based on the total number of reads attributed to a sample. We propose a method for objectively identifying problematic samples based on the total number of reads allocated to the sample. \\
 
 For most experimental designs we expect the number of reads allocated to each sample in a sequencing run to arise from the same general data generating mechanism, namely the chemistry of the NGS-based measurement system, regardless of experimental condition.  The objective is then to determine which samples arise from a different mechanism.  Outlier detection is well suited for discovering observations that deviate so much from other observations that they are likely to have arisen from a different mechanism~\cite{Hawkins1980}.  We base our method off Tukey's box-plots~\cite{Tukey1977}, which is a commonly used and robust method for detecting outliers~\cite{Ben-Gal2009}.\\
@@ -204,21 +205,23 @@ where $y_1 \ldots y_d$ are the $d$ ALR transformed components, $t$ is the vector
 
 
 Unfortunately, the small sample sizes and large number of probes typically associated with RNA-Seq experiments complicates the application of Aitchison's model.  
-We propose an alternative visualization for detecting simultaneously detecting both violations of compositional invariance. We use the multivariate Aitchison distance (\ref{aitchdist2}) between all pairs of samples in a heat-map with the samples ordered by total aligned reads.  If CI is violated we expect pairs samples with similar total aligned reads will have smaller scalar distances than those with large differences in total aligned reads.  This will result in visual clustering around the 45 degree axis. If the variance depends on the total aligned reads, we expect the scalar distance between sample pairs to decrease with increasing read depth resulting in a visual gradient in the distance heat map.\\
+We propose an alternative visualization for simultaneously detecting both violations of compositional invariance described above. We use the multivariate Aitchison distance (\ref{aitchdist2}) between all pairs of samples in a heat-map with the samples ordered by total aligned reads.  If CI is violated we expect pairs samples with similar total aligned reads will have smaller scalar distances than those with large differences in total aligned reads.  This will result in visual clustering around the 45 degree axis. If the variance depends on the total aligned reads, we expect the scalar distance between sample pairs to decrease with increasing read depth resulting in a visual gradient in the distance heat map.  To reduce the visual noise associated with outlier samples in the heat-map we also provide a dot-plot of the distance between each CLR transformed sample and the compositional center of the samples in the top quartile of total reads.\\
 
-We demonstrate this visualization with two sets of miRNA samples (Fig.~\ref{miComp}) and two sets of mRNA samples(Fig.~\ref{celComp}).  The miRNA samples are composed of 40 technical replicates each of (A) plasma samples and (B) brain samples.  In the miRNA data there is a clear gradient along the 45 degree axis for the plasma samples (Fig.~\ref{miComp}.A).  This indicates a dependence between the total aligned reads and the variance of the samples (as indicated by the increasing multivariate distance between replicates as the total aligned reads decreases).  In contrast, there is no clear gradient in the brain samples (Fig.~\ref{miComp}.B).  The mRNA samples are composed of (A) 14 technical replicates of universal RNA and (B) 16 technical replicates of pancreas tissue.  In the universal RNA there is a small cluster of samples with low total aligned reads which are more distant from samples with greater total aligned reads (Fig.~\ref{celComp}.A).  This indicates that the composition is dependent on the total aligned reads, a violation of compositional invariance for these samples.  In contrast, the pancreas samples show no such pattern related to total aligned reads (Fig.~\ref{celComp}.B).\\
+We demonstrate this visualization with two sets of miRNA samples (Fig.~\ref{miComp}) and two sets of mRNA samples(Fig.~\ref{celComp}).  The miRNA samples are composed of 40 technical replicates each of (1) plasma samples and (2) brain samples.  In the miRNA data there is a clear gradient along the 45 degree axis for the plasma samples (Fig.~\ref{miComp}.A).  This indicates a dependence between the total aligned reads and the variance of the samples (as indicated by the increasing multivariate distance between replicates as the total aligned reads decreases).  In contrast, there is no clear gradient in the brain samples (Fig.~\ref{miComp}.B).  The mRNA samples are composed of (A) 16 technical replicates of diseased pancreas tissue and (B) 16 technical replicates of normal pancreas tissue.  In the diseased pancreas samples there is a clear gradient with low total aligned read samples more distant from samples with greater total aligned reads (Fig.~\ref{celComp}.1).  This indicates that the composition is dependent on the total aligned reads, a violation of compositional invariance for these samples.  In contrast, the normal pancreas samples show no such pattern related to total aligned reads (Fig.~\ref{celComp}.2).\\
 
 \begin{figure}
-\includegraphics[scale=0.52]{./Figures/Plasma_Heatmap_Compare}
+\centering
+\includegraphics[scale=0.6]{./Figures/CompInvPlots_miRNA}
 \label{miComp}
-\caption{Two sets of miRNA samples with samples in (A.) showing a violation of compositional invariance and (B) showing compositional invariance.}
+\caption{Two sets of miRNA samples with samples in (1.) showing a violation of compositional invariance and (2) showing compositional invariance.}
 \end{figure}
 
 
 \begin{figure}
-\includegraphics[scale=0.52]{./Figures/CG_Heatmap_Compare}
+\centering
+\includegraphics[scale=0.6]{./Figures/CompInvPlots_Celgene}
 \label{celComp}
-\caption{Two sets of mRNA samples with samples in (A.) showing a violation of compositional invariance and (B) showing compositional invariance.}
+\caption{Two sets of mRNA samples with samples in (1.) showing a violation of compositional invariance and (2) showing compositional invariance.}
 \end{figure}
 
 \FloatBarrier
@@ -1209,7 +1212,7 @@ cg.heat.dp2 <- ggplot(cgdl.dp2, aes(x = col.sample, y = row.sample)) +
             fill = "lightgrey", 
             lwd = 1) +
   scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0,100)) +
-  scale_color_gradientn("log Total Reads", colors = c("red", "orange", "white"),
+  scale_color_gradientn("log(Total Reads)", colors = c("red", "orange", "white"),
                         limits = c(12, 16)) +
   xlab("Sample Ordered by Total Reads") + 
   ylab("Sample Ordered by Total Reads") +
@@ -1276,11 +1279,17 @@ heatPlot <- function(df){
               aes(color = log(total)), 
               fill = "lightgrey", 
               lwd = 1) +
-    scale_fill_gradient("Distance", na.value = "lightgrey", limits = c(0,100)) +
-    scale_color_gradientn("log Total Reads", 
-                          colors = c("red", "orange", "white")) +
-    xlab("Sample Ordered by Total Reads") + 
-    ylab("Sample Ordered by Total Reads") +
+    scale_fill_gradient("Distance", 
+                        na.value = "lightgrey", 
+                        limits = c(0,100), 
+                        guide = guide_colorbar(title.position = "top",
+                                               label.theme = element_text(angle = 90))) +
+    scale_color_gradientn("log(Total Reads)", 
+                          colors = c("red", "orange", "yellow"), 
+                        guide = guide_colorbar(title.position = "top",
+                                               label.theme = element_text(angle = 90))) +
+    xlab("Sample ordered by total reads") + 
+    ylab("Sample ordered by total reads") +
     plotTheme(axis.text.x = element_blank(),
               axis.text.y = element_blank())
   
@@ -1312,10 +1321,14 @@ distPlot <- function(df, quant){
   p <- ggplot(distdf, aes(x = SampleID, y = distance)) +
     geom_point(aes(size = log(total), color = log(total))) +
     plotTheme(axis.text.x = element_blank()) +
-    ylab(paste0("Distance between sample and center\n", 
-                100*quant, "% of high reads samples" )) +
+    ylab(paste0("Distance between sample and center\nof top ", 
+                100*(1-quant), "% high reads samples" )) +
     xlab("Samples ordered by total aligned reads") +
-    scale_color_continuous(guide = FALSE)
+    scale_size_continuous("log(Total Reads)",
+                          guide = guide_legend(title.position = "top")) +
+    scale_color_gradientn("log(Total Reads)", 
+                          colors = c("red", "orange", "yellow"),
+                           guide = guide_legend(title.position = "top"))
   
   return(list(p = p, df = distdf))
 }
@@ -1346,6 +1359,15 @@ ffpe$p
 ffpeComp <- plot_grid(ffpe.heat$p, ffpe$p, labels = c("A", "B"), nrow = 1)
 ggsave("./Figures/Compare_compInvPlots_FFPE.png", ffpeComp, width = 10, height = 5)
 
+#place plasma and ffpe samples into same 4x4 plot
+miRNAcomp <- plot_grid(plas.mi.heat$p, 
+                       plas$p,
+                       brain.heat$p, 
+                       brain$p, 
+                       labels = c("1a", "1b", "2a", "2b"), 
+                       nrow = 2)
+ggsave("./Figures/CompInvPlots_miRNA.png", miRNAcomp, width = 10, height = 10)
+
 #Celgene samples
 cgdp.heat <- heatPlot(df = cgdf[, which(grepl("DP", names(cgdf)))])
 cg.dp2 <- distPlot(cgdf[, which(grepl("DP", names(cgdf)))], quant = .75)
@@ -1354,7 +1376,53 @@ cg.dp2$p
 cgdpComp <-  plot_grid(cgdp.heat$p, cg.dp2$p, labels = c("A", "B"), nrow = 1)
 ggsave("./Figures/Compare_compInvPlots_CelgeneDP.png", cgdpComp, width = 10, height = 5)
 
+cgnp.heat <- heatPlot(df = cgdf[, which(grepl("NP", names(cgdf)))])
+cgnp <- distPlot(df = cgdf[, which(grepl("NP", names(cgdf)))], quant = .75)
+cgnp$p
 
+cgnpComp <-  plot_grid(cgnp.heat$p, cgnp$p, labels = c("A", "B"), nrow = 1)
+ggsave("./Figures/Compare_compInvPlots_CelgeneNP.png", cgnpComp, width = 10, height = 5)
+
+#Put all compositional invariance plots for Celgene into single plot
+dpnpComp <- plot_grid(cgdp.heat$p, 
+                      cg.dp2$p,
+                      cgnp.heat$p, 
+                      cgnp$p, 
+                      nrow = 2, 
+                      labels = c("1a", "1b", "2a", "2b"))
+ggsave("./Figures/CompInvPlots_Celgene.png", dpnpComp, width = 10, height = 10)
+
+###Check that the results are not driven by specific samples
+cgnp2.heat <- heatPlot(df = cgdf[, which(grepl("NP2", names(cgdf)))])
+cgnp2 <- distPlot(df = cgdf[, which(grepl("NP2", names(cgdf)))], quant = .75)
+cgnp2$p
+
+cgnp2Comp <-  plot_grid(cgnp2.heat$p, cgnp2$p, labels = c("A", "B"), nrow = 1)
+ggsave("./Figures/Compare_compInvPlots_CelgeneNP2.png", cgnp2Comp, width = 10, height = 5)
+
+cgnp1.heat <- heatPlot(df = cgdf[, which(grepl("NP1", names(cgdf)))])
+cgnp1 <- distPlot(df = cgdf[, which(grepl("NP1", names(cgdf)))], quant = .75)
+cgnp1$p
+
+cgnp1Comp <-  plot_grid(cgnp1.heat$p, cgnp1$p, labels = c("A", "B"), nrow = 1)
+ggsave("./Figures/Compare_compInvPlots_CelgeneNP1.png", cgnp2Comp, width = 10, height = 5)
+
+cgu.heat <- heatPlot(df = cgdf[, which(grepl("uRNA", names(cgdf)))])
+cgu <- distPlot(df = cgdf[, which(grepl("uRNA", names(cgdf)))], quant = .75)
+
+cguComp <-  plot_grid(cgu.heat$p, cgu$p, labels = c("A", "B"), nrow = 1)
+ggsave("./Figures/Compare_compInvPlots_CelgeneuRNA.png", cguComp, width = 10, height = 5)
+
+
+##IO samples
+io.heat <- heatPlot(df = as.data.frame(allio))
+io.dist <- distPlot(df = as.data.frame(allio), quant = .75)
+
+ioComp <- plot_grid(io.heat$p, io.dist$p, labels = c("A", "B"), nrow = 1)
+ggsave("./Figures/Compare_compInvPlots_IO.png", ioComp, width = 10, height = 5)
+
+#####################################################################
+#####################################################################
 #####################################################################
 #Trying to make the plot with ggvis so I can have two fill scales
 #almost there, I just need to figure out how to set different 
