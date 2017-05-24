@@ -25,22 +25,7 @@
 
 \usepackage{framed}
 \makeatletter
-\newenvironment{kframe}{%
- \def\at@end@of@kframe{}%
- \ifinner\ifhmode%
-  \def\at@end@of@kframe{\end{minipage}}%
-  \begin{minipage}{\columnwidth}%
- \fi\fi%
- \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
- \colorbox{shadecolor}{##1}\hskip-\fboxsep
-     % There is no \\@totalrightmargin, so:
-     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
- \MakeFramed {\advance\hsize-\width
-   \@totalleftmargin\z@ \linewidth\hsize
-   \@setminipage}}%
- {\par\unskip\endMakeFramed%
- \at@end@of@kframe}
-\makeatother
+
 
 \definecolor{shadecolor}{rgb}{.97, .97, .97}
 \definecolor{messagecolor}{rgb}{0, 0, 0}
@@ -84,7 +69,6 @@
 \section{Introduction}
 
 %-- Introduce the problem and motivate the research -->
-% The rapid rise in the use of RNA sequencing technology (RNA-seq) for scientific discovery has led to its consideration as a clinical diagnostic tool. However, as a new technology, the analytical accuracy and reproducibility of RNA-seq must be established before it can realize its full clinical utility~\cite{SEQC/MAQC-IIIConsortium2014,VanKeuren-Jensen2014}. Recent studies evaluating RNA-seq have found generally high intra-platform and inter-platform congruence across multiple laboratories~\cite{Li2013, tHoen2013, SEQC/MAQC-IIIConsortium2014}. Despite these promising results, there remains a need to establish reliable diagnostics and quality control metrics to improve the reproducibility of RNA-seq data.  Understanding, and capatilizing on, the relative frequency nature of RNA-Seq data provides tools for  creating quality control metrics and identifying batch effects leading to improved reproducibility.\\
 
 We develop quality control diagnostics for targeted RNA-Seq using the theory of compositional data.  Targeted sequencing allows researchers to efficiently measure transcripts of interest for a particular disease by focusing sequencing efforts on a select subset of transcript targets.  Targeted sequencing offers several benefits over traditional whole-transcriptome RNA-Seq for clinical use including the elimination of amplification bias, reduced sequencing cost, and a simplified bioinformatics workflow.  Moreover, extraction-free targeted sequencing technologies, such as HTG EdgeSeq, permit the use of very small sample volumes. However, extraction free technologies create the need for post-sequencing quality control metrics since poor quality samples, which would likely be removed after unsuccessful RNA extraction in extraction-based technologies, can still be sequenced.  The post-sequencing methods described here should be easily extensible to traditional extraction-based RNA-Seq because targeted and traditional RNA-Seq data share many of the same properties.\\
 
