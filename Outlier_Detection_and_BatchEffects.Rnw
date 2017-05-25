@@ -1323,7 +1323,7 @@ distPlot <- function(df, quant){
   distdf$SampleID <- factor(distdf$SampleID, 
                          levels = names(totals)[order(totals)])
   
-  p <- ggplot(distdf, aes(x = SampleID, y = distance)) +
+  p <- ggplot(distdf, aes(x = as.numeric(SampleID), y = distance)) +
     geom_point(aes(size = log(total), color = log(total))) +
     plotTheme(axis.text.x = element_blank()) +
     ylab(paste0("Distance between sample and center\nof top ", 
@@ -1333,8 +1333,9 @@ distPlot <- function(df, quant){
                           guide = guide_legend(title.position = "top")) +
     scale_color_gradientn("log(Total Reads)", 
                           colors = c("red", "orange", "yellow"),
-                           guide = guide_legend(title.position = "top"))
-  
+                           guide = guide_legend(title.position = "top")) + 
+    geom_smooth(method = "lm", se = FALSE)
+   
   return(list(p = p, df = distdf))
 }
 
