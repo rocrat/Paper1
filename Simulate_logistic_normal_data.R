@@ -18,7 +18,7 @@
 # which can then be used to generate logistic normal data through closure
 ###############################################################################
 
-
+biocLite("limma")
 
 rlogistic <- function(N, D, mu, sig){
   #########################################################
@@ -73,3 +73,11 @@ cor(t(X))
 cov(t(X))
 
 svd(X)
+
+#Estimate mu and sigma from real data
+dfraw <- readHTG("Data/Pfizer Sample Input OBP parsed 18-Nov-2016.xls",
+                 include.probe = FALSE)
+
+dfclo <- apply(dfraw, 2, function(x) x/sum(x))
+
+ecov <- cov(t(dfclo))
