@@ -21,7 +21,7 @@
 \doublespacing
 
 \title{Quality control metrics for extraction-free targeted RNA-Seq: methods afforded by a compositional framework.}
-\author{Dominic LaRoche \and Dean Billheimer \and Shripad Sinari \and Kurt Michels \and  Bonnie LaFleur}
+\author{Dominic LaRoche \and Dean Billheimer \and Kurt Michels \and  Bonnie LaFleur}
 \begin{document}
 
 \maketitle
